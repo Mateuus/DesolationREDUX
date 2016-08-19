@@ -3,7 +3,7 @@ Current Version
 ==================================
  - DesolationREDUX 0.1.0-a1
  
- Current License
+Current License
 =================================
 https://www.bistudio.com/community/licenses/arma-public-license-share-alike with monetization
 
