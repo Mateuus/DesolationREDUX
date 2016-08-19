@@ -26,3 +26,14 @@ Directories
  - **Client Files** - Files that are required on both client and server (The mod files)
  - **Documentation** - Help & Credits
  - **Server Files** - Files that are required to host a DesolationREDUX server
+
+Releases
+--------
+Downloads for all versions can be found here: https://github.com/BigBenMOTO/DesolationREDUX/releases
+ - There is no Releases yet. (REDUX is still under development)
+ 
+Known Bugs
+----------
+Please Report Bugs Here: https://github.com/BigBenMOTO/DesolationREDUX/issues
+ - Some vehicle spawns are unreachable
+ - Some vehicles explode when a player walks near them (this is because of the spawning system)
