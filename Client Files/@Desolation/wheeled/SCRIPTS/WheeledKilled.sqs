@@ -1,0 +1,157 @@
+
+_obj = _this select 0
+_size = _this select 1
+_duration = _this select 2
+_yoffset = _this select 3
+_zoffset = _this select 4
+
+
+_light = "#lightpoint" createVehicleLocal getpos _obj
+_light setLightColor [0.1,0.05,0.01]
+_light setLightBrightness 0.2 * _size
+_light setLightAmbient [0.3,0.2,0.1]
+_light LightAttachObject [_obj,[0,0,0]]
+
+
+_trigger = createTrigger["EmptyDetector", [(position _obj select 0) + _yoffset*sin(getdir _obj),(position _obj select 1) + _yoffset*cos(getdir _obj),(position _obj select 2)]]
+_trigger setTriggerArea [4*_size, 4*_size,0, false]
+_trigger setTriggerActivation ["ANY", "PRESENT", true]
+
+
+;//creates smoke and fire particle sources
+
+
+_fsource = "#particlesource" createVehicleLocal getpos _obj
+_fsource setParticleCircle [0, [0, 0, 0]]
+_fsource setParticleRandom [0.2, [_size/1.5, 1.5*_size, 0], [1, 1, 1], 0.2, 0.2, [0, 0, 0, 0], 0, 0]
+_fsource setDropInterval 0.01
+
+
+_fsource setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 2, 8], "", "Billboard", 1, 0.4, [0, _yoffset, _zoffset], [0, 0, 2], 1, 1, 0.9, 0.3, [4,3], [[1,1,1,0.3],[1,1,1,0.2],[1,1,1,0]], [0,1], 1, 1, "", "", _obj]
+
+
+;//creates dust
+_dsource = "#particlesource" createVehicleLocal getpos _obj
+_dsource setParticleCircle [3, [20, 20, 0]]
+_dsource setParticleRandom [0.2, [_size, _size, _size], [10, 10, 2], 0.2, 0.2, [0, 0, 0, 0], 0, 0]
+_dsource setDropInterval 0.003
+
+;//creates explosion particle sources
+_source =  "#particlesource" createVehicleLocal getpos _obj
+_source setParticleCircle [0, [0, 0, 0]]
+_source setParticleRandom [0.5, [1, 1, 1], [5, 5, 5], 0, 0.5, [0, 0, 0, 0], 0, 0]
+_source setDropInterval 0.04
+
+;//fire part of explosion
+_sourc =  "#particlesource" createVehicleLocal getpos _obj
+_sourc setParticleCircle [0, [0, 0, 0]]
+_sourc setParticleRandom [0.5, [1, 1, 1], [4, 4, 4], 0, 0.5, [0, 0, 0, 0], 0, 0]
+_sourc setDropInterval 0.005
+
+_source setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 1, 10 + random 10, [0, _yoffset, 0], [0, 0, 0], 1, 1.2, 1, 0.2, [8, 16], [[0.2,0.15,0.1,0.5],[0.20,0.150,0.10,0.3],[0.2,0.15,0.1,0]], [0,1], 1, 0, "", "", _obj]
+_sourc setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 2, 8], "", "Billboard", 2, 1, [0, _yoffset, 0], [0, 0, 0], 1, 1.2, 1, 0.2, [6, 8], [[0.98,0.6,0.2,0.7],[0,0,0,0.4],[0,0,0,0]], [1, 1], 1, 0, "", "", _obj]
+_dsource setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 2, 5, [0, _yoffset, 0], [0, 0, 0], 1, 1.5, 1, 0.2 + random 0.2, [4, 6], [[0.53,0.5,0.42,0.5],[0.53,0.5,0.42,0.45],[0.53,0.5,0.42,0]], [1, 1], 1, 0, "", "", _obj]
+
+
+;//creates armor pieces
+_pole = []
+_i = 0
+
+#createp
+	_pole = _pole + ["FxExploArmor1" createVehicleLocal [((position _obj select 0) + random 4 - 2) + _yoffset*sin(getdir _obj), ((position _obj select 1) + random 4 - 2) + _yoffset*cos(getdir _obj), 1+(position _obj select 2) + random 1]]
+	(_pole select _i) setDir random 360
+	(_pole select _i) setVectorUp [random 1,random 1,random 1]
+	(_pole select _i) setVelocity [((random 30) - 15) + (velocity _obj select 0), ((random 30) - 15) + (velocity _obj select 1), (5 + random 20) + (velocity _obj select 2)]
+	_i = _i + 1
+if (_i < 10) then {goto "createp"}
+
+;//creates particle sources for armor pieces
+_poles = []
+_i = 0
+
+#creates
+	_poles = _poles + ["#particlesource" createVehicleLocal getpos (_pole select _i)]	
+	
+	_ran = random 0.5
+	(_poles select _i) setParticleCircle [0, [0, 0, 0]]
+	(_poles select _i) setParticleRandom [0.5, [0, 0, 0], [1, 1, 1], 0, 0.5, [0, 0, 0, 0], 0, 0]
+	(_poles select _i) setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 2, 3 + random 3, [0, 0, 0], [0, 0, 0], 1, 1.2, 1, 0.5, [1, 3], [[_ran,_ran,_ran,0.1],[_ran,_ran,_ran,0.1],[_ran,+_ran,_ran,0]], [0,1], 1, 0, "", "", (_pole select _i)]
+	(_poles select _i) setDropInterval 0.1
+	
+	_i = _i + 1
+if (_i < 10) then {goto "creates"}
+
+_i = 0
+#loop3
+	~0.1
+	
+	_trigger setpos getpos _obj
+	_list = list _trigger
+	_count = count _list
+	_counter = 0
+	
+ 	#kill1
+ 	  _panak = _list select _counter
+ 	  if (_panak isKindOf "Man") then {_panak  setdamage (damage _panak +(0.2/((_panak distance _obj)/2)))}
+ 		_counter = _counter +1
+ 	if (_counter < _count)then {goto "kill1"}
+
+	_ran = 0.1 + random 0.2
+	
+
+	_fsource setPos getPos _obj
+
+	_source setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 1, 10 + random 10, [0, _yoffset, 0], [0, 0, 0], 1, 1.2, 1, 0.2, [8, 16], [[0.2+_ran,0.15+_ran,0.1+_ran,0.5],[0.2+_ran,0.15+_ran,0.1+_ran,0.3],[0.2+_ran,0.15+_ran,0.1+_ran,0]], [0,1], 1, 0, "", "", _obj]
+	_sourc setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 2, 8], "", "Billboard", 2, 1, [0, _yoffset, 0], [0, 0, 0], 1, 1, 1.2, 0.2, [6, 8], [[0.98,0.6,0.2,0.7],[_ran,_ran,_ran,0.4],[_ran,+_ran,_ran,0]], [1, 1], 1, 0, "", "", _obj]
+
+ 	 _dsource setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 2, 5, [0, _yoffset, 0], [0, 0, 0], 1, 1.2 + random 0.6, 1, 0.2 + random 0.2, [4, 6], [[0.53,0.5,0.42,0.5],[0.53,0.5,0.42,0.45],[0.53,0.5,0.42,0]], [1, 1], 1, 0, "", "", _obj]
+
+	(_poles select _i) setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 3, 1], "", "Billboard", 2, 8 + random 8 - _time*2, [0, 0, 0], [0, 0, 0], 1, 1.2 + random 0.1, 1, random 0.2, [(4 - _time/2)/2, (10 - _time)], [[_ran,_ran,_ran,_ran],[_ran,_ran,_ran,_ran],[_ran,+_ran,_ran,0]], [0,1], 1, 0, "", "", (_pole select _i)]
+	_i = _i + 1
+
+	if (_time > 0.3)then {deleteVehicle _source;deleteVehicle _sourc;deleteVehicle _dsource;}
+
+if (_time > 5)then {_i = 0; goto "end"}
+if (_i < count _poles) then {goto "loop3"} else {_i = 0; goto "loop3"}
+
+#end
+	deleteVehicle (_pole select _i)
+	if (_i < count _poles) then {deleteVehicle (_poles select _i)}
+	_i = _i + 1
+if (_i < count _pole) then {goto "end"}
+
+_lifetime = (120 + random 60)* _duration
+
+#smoking
+	~0.3
+	
+	_trigger setpos getpos _obj
+	_list = list _trigger
+	_count = count _list
+	_counter = 0
+	
+ 	_light setLightBrightness 0.2 * _size - _time/500 + random 0.02 - 0.01
+
+	#kill2
+		_panak = _list select _counter
+		if (_panak isKindOf "Man" && _time < _lifetime/2.2) then {_panak setdamage (damage _panak +(0.1/((_panak distance _obj)/2))); if (_panak == player) then {titleText ["Ouch!! Too hot!!!", "Black In",0.5]}}
+		_counter = _counter +1
+	if (_counter < _count)then {goto "kill2"}
+	
+	_ran = random 0.3
+
+	_fsource setPos getPos _obj
+	
+
+	_fsource setParticleParams [["\ca\data\ParticleEffects\FireAndSmokeAnim\FireAndSmokeAnim", 8, 2, 8], "", "Billboard", 1, 2, [0, _yoffset, _zoffset], [0, 0, 1], 10, 1, 0.9, 0.3, [4,3], [[1,1,1,0.3],[1,1,1,0.2],[1,1,1,0]], [0.5,0.5], 1, 1, "", "", _obj]
+
+	_inter = (_time/300)*(_time/300)
+
+	_fsource setDropInterval 0.05
+
+	if (_time > _lifetime/2) then {deleteVehicle _fsource; deleteVehicle _light}
+
+
+goto "smoking"
+
+exit

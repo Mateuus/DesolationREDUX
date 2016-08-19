@@ -1,0 +1,15 @@
+ambient[] = {2, 2, 2, 1};
+diffuse[] = {0.45, 0.42, 0.4, 1};
+forcedDiffuse[] = {0.2, 0.4, 0.4, 0.1};
+emmisive[] = {33880, 0.3, 0.65, 1};
+specular[] = {0.8, 0.8, 0.8, 1};
+specularPower = 40;
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
+
+class Stage0
+{
+	texture="#(argb,8,8,3)color(1,1,1,1,CO)";
+	uvSource="tex";
+	Filter="Trilinear";
+};
