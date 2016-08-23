@@ -16,8 +16,7 @@ class CfgFunctions
 	class DS
 	{
 		//--- client functions
-		class Client_Spawning
-		{
+		class Client_Spawning {
 			file = "Desolation\Client\Spawning";
 			isclient = 1;
 			class findSpawnPosition {};
@@ -26,31 +25,29 @@ class CfgFunctions
 			class finishSpawn {};			
 			class showRegionNotification {};
 		};
-		class Client_Functions
-		{
+		class Client_Events {
+			file = "Desolation\Client\Functions";
+			isclient = 1;
+			class initEventHandlers {};		
+			class registerPlayer {};		
+			class registerNewPlayer {};
+		};
+		class Client_Functions {
 			file = "Desolation\Client\Functions";
 			isclient = 1;
 			class infoText {};
-			class initEventHandlers {};		
-			class registerPlayer {};		
-			class registerNewPlayer {};		
-			class onPlayerKilled {};
-			class playerUpdateStats {};
 		};
-		class Client 
-		{
+		class Client {
 			file = "Desolation\Client";
 			isclient = 1;
 			class initClient {};
 		};
-		class Client_Medical
-		{
+		class Client_Medical {
 			file = "Desolation\Client\Medical";
 			isclient = 1;
 			class knockOut {};
 		};
-		class Client_Medical_Bleeding
-		{
+		class Client_Medical_Bleeding {
 			file = "Desolation\Client\Medical\Bleeding";
 			isclient = 1;
 			class createBleedSource {};
@@ -59,49 +56,41 @@ class CfgFunctions
 			class removeBleedSource {};
 			class updateBleedSource {};
 		};
-		class Client_Inventory
-		{
+		class Client_Inventory {
 			file = "Desolation\Client\Inventory";
 			isclient = 1;
 			class onLBSelChanged {};
 			class onMouseButtonDblClick {};
-		};
-		class Client_Vehicle
-		{
-			file = "Desolation\Client\Vehicle";
-			isclient = 1;
-			class rekeyVehicleClaim {};
 		};
 		//--- server functions
 		class Server_Database {
 			file = "Desolation\Server\Database";
 			isserver = 1;
 			class dbRequest {};
+			class dbLoadPlayerResponse {};
+			class dbOnSpawnResponse {};
+		};
+		class Server_Events {
+			file = "Desolation\Server\Events";
+			isserver = 1;
+			class onPlayerKilled {};
+			class handleDisconnect {};
+			class playerDisconnected {};
 		};
 		class Server_Players {
 			file = "Desolation\Server\Players";
 			isserver = 1;
-			class dbLoadPlayerResponse {};
-			class dbOnPlayerKilled {};
-			class dbOnSpawnResponse {};
 			class requestFreshSpawn {};
 			class requestSpawn {};
 			class setupLoadout {};
-			class dbSendStatsUpdate {};
-			class OnHandleDisconnect {};
-			class onPlayerConnected {};
-			class onPlayerDisconnected {};
 		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;
 			class spawnVehicles {};
 			class simManager {};
-			class dbSendVehicleClaim {};
-			class spawnDatabaseVehicles {};
 		};
-		class Server 
-		{
+		class Server {
 			file = "Desolation\Server";
 			isserver = 1;
 			class initServer {};

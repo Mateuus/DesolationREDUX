@@ -11,20 +11,6 @@ class CfgPatches
 		author[]= {"Desolation Redux Dev Team"};
 	};
 };
-class CfgFunctions 
-{
-	class Desolation_Redux_Functions 
-	{
-		class bootstrap 
-		{
-			file = "\DS_desolationredux\bootstrap";
-			class preInit 
-			{
-				preInit = 1;
-			};
-		};
-	};
-};
 class CfgEditorCategories
 {
 	class EdCat_Desolation {
@@ -786,26 +772,7 @@ class CfgVehicles
 		icon = "iconObject_1x2";
 		destrType = "DestructNo";
 		class UserActions{
-			class takeanap
-			{
-				displayNameDefault = "Take a Nap";
-				displayName = "Take a nap";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerInCombat',true])";
-				statement = "[_this] call DS_fnc_sleepingTakeNap";
-			};
-			class rollupbag
-			{
-				displayNameDefault = "Roll Up Sleeping Bag";
-				displayName = "Roll Up ";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerSleeping',true])";
-				statement = "[_this] call DS_fnc_objectPackUp";
-			};
+			
 		};
 	};
 	class DS_Obj_SleepingBag_Blue: DS_Buildable_Sleeping {
@@ -823,26 +790,7 @@ class CfgVehicles
 		icon = "iconObject_1x2";
 		destrType = "DestructNo";
 		class UserActions{
-			class takeanap
-			{
-				displayNameDefault = "Take a Nap";
-				displayName = "Take a nap";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerInCombat',true])";
-				statement = "[_this] call DS_fnc_sleepingTakeNap";
-			};
-			class rollupbag
-			{
-				displayNameDefault = "Roll Up Sleeping Bag";
-				displayName = "Roll Up ";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerSleeping',true])";
-				statement = "[_this] call DS_fnc_sleepingPackUp";
-			};
+			
 		};
 	};
 	class DS_Obj_SleepingBag_Brown: DS_Buildable_Sleeping {
@@ -860,26 +808,7 @@ class CfgVehicles
 		icon = "iconObject_1x2";
 		destrType = "DestructNo";
 		class UserActions{
-			class takeanap
-			{
-				displayNameDefault = "Take a Nap";
-				displayName = "Take a nap";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerInCombat',true])";
-				statement = "[_this] call DS_fnc_sleepingTakeNap";
-			};
-			class rollupbag
-			{
-				displayNameDefault = "Roll Up Sleeping Bag";
-				displayName = "Roll Up ";
-				position = "ohniste";
-				radius = 3;
-				onlyForPlayer = 1;
-				condition = "!(player getVariable['DS_isPlayerSleeping',true])";
-				statement = "[_this] call DS_fnc_sleepingPackUp";
-			};
+			
 		};
 	};	
 };
