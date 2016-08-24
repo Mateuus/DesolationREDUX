@@ -98,6 +98,17 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 			_posasl = AGLtoASL _posagl;
 			
 			_tv = _v createVehicle _posagl;
+			_hitpoints = (getAllHitPointsDamage _tv) select 0;
+			{
+				if(_x != "" && _x != "HitFuel" && _x != "HitFuelTank" && _x != "HitBody") then {
+					_value = random(1);
+					_tv setHitPointDamage [_x,_value];
+				};
+				if(_x == "HitBody") then {
+					_value = random(0.5);
+					_tv setHitPointDamage [_x,_value];
+				};
+			} forEach _hitpoints;
 			_tv enableSimulationGlobal false;
 			_tv setposasl _posasl;
 			_tv setdir _vDir;
