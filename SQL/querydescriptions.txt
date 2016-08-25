@@ -151,23 +151,96 @@
  /**
   * \brief  Create New Character DATA
   *
-  *         Returns UUID of new Character DATA, needs an additional UPDATE
-  *         to set Spawn Loadout
+  *         Returns UUID of new Character DATA
   *
   * \param      PlayerOrderedUUID UUID of Player
   *             WorldOrderedUUID  UUID of World (taken from configfile)
+  *             AnimationState    Current AnimationState
+  *             Direction         Current Direction
+  *             PositionType      Type of Position e.g. 1 == getPos, 2 == getPosASL, 3 == getPosATL
+  *             PositionX         PositionX
+  *             Positiony         Positiony
+  *             Positionz         Positionz
+  *             Classname         Classname of Character
+  *             HitPoints         getAllHitPointsDamage player
+  *             Variables         allVariables player - if set as character based in configfile
+  *             Textures          getObjectTextures player - only set if changed
+  *             InventoryUniform  Everything in the uniform gear
+  *             InventoryVest     Everything in the vest gear
+  *             InventoryBackpack Everything in the backpack gear
+  *             Uniform           Name of Uniform - uniform player
+  *             Vest              Name of Vest - vest player
+  *             Backpack          Name of Backpack - backpack player
+  *             Headgear          Name of the Headgear - headgear player
+  *             Googles           Name of the Googles - goggles player
+  *             PrimaryWeapon     Name of PrimaryWeapon including attachments - primaryWeapon player + primaryWeaponItems player
+  *             SecondaryWeapon   Name of SecondaryWeapon including attachments - secondaryWeapon player + secondaryWeaponItems player
+  *             Handgun           Name of Handgun including attachments - handgunWeapon player + handgunItems player
+  *             Tools             List of Tools - assignedItems player;
+  *             Currentweapon     Name of curent Weapon - currentWeapon player
   * \return     CharOrderedUUID   UUID of Character
   *
   */
-BROKEN!!!!
-  $VAR_CharacterShareablesOrderedUUID$ = generateOrderedUUID();
-  INSERT INTO `charactershareables` (`uuid`, `classname`, `death_persistent_variables_uuid`) 
-  VALUES (CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY), 'uninitialized', CAST($VAR_VariabOrderedUUID$ AS BINARY));
+  /* get the uuid for the Death Persistent Variables */
+  result = SELECT `death_persistent_variables_uuid` 
+  FROM `player_on_world_has_death_persistent_variables` 
+  WHERE `player_uuid` = CAST($VAR_PlayerOrderedUUID$ AS BINARY)
+    AND `world_uuid` = CAST($VAR_WorldOrderedUUID$ AS BINARY)
+
+  $VAR_VariabOrderedUUID$ = result.death_persistent_variables_uuid
+
+  /* get alive linked character shareables */
+  result = SELECT `charactershareables`.`uuid`
+  FROM `player_on_world_has_character`
+  INNER JOIN `character`
+    ON `player_on_world_has_character`.`character_uuid` = `character`.`uuid`
+  INNER JOIN `charactershareables`
+    ON `character`.`charactershareables_uuid` = `charactershareables`.`uuid`
+  WHERE `player_on_world_has_character`.`player_uuid` = CAST($VAR_PlayerOrderedUUID$ AS BINARY)
+    AND `player_on_world_has_character`.`killinfo_uuid` IS NULL
+    AND `player_on_world_has_character`.`world_uuid` IN  (
+        SELECT `world_uuid`
+        FROM `player_on_world_has_death_persistent_variables` 
+        WHERE `death_persistent_variables_uuid` = $VAR_VariabOrderedUUID$
+    )
+    LIMIT 1
+
+  $VAR_CharacterShareablesOrderedUUID$ = result.uuid;
   
+  /* if no alive linked character shareables found create new one */
+  if ( $VAR_CharacterShareablesOrderedUUID$ == empty) {
+    $VAR_CharacterShareablesOrderedUUID$ = generateOrderedUUID();
+    INSERT INTO `charactershareables` (`uuid`, `classname`, `death_persistent_variables_uuid`) 
+    VALUES (CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY), $VAR_CLASSNAME$, CAST($VAR_VariabOrderedUUID$ AS BINARY));
+    
+    INSERT INTO `charactershareables` (`uuid`, `classname`, `hitpoints`, 
+                                       `variables`, `death_persistent_variables_uuid`, `textures`, 
+                                       `inventoryuniform`, `inventoryvest`, `inventorybackpack`, 
+                                       `uniform`, `vest`, `backpack`, 
+                                       `headgear`, `googles`, `primaryweapon`, 
+                                       `secondaryweapon`, `handgun`, `tools`, 
+                                       `currentweapon`) 
+                               VALUES ($VAR_CharacterShareablesOrderedUUID$, $VAR_CLASSNAME$, $VAR_HITPOINTS$, 
+                                       $VAR_VARIABLES$, $VAR_VariabOrderedUUID$, $VAR_TEXTURES$, 
+                                       $VAR_INVENTORYUNIFORM$, $VAR_INVENTORYVEST$, $VAR_INVENTORYBACKPACK$, 
+                                       $VAR_UNIFORM$, $VAR_VEST$, $VAR_BACKPACK$, 
+                                       $VAR_HEADGEAR$, $VAR_GOOGLES$, $VAR_PRIMARYWEAPON$, 
+                                       $VAR_SECONDARYWEAPON$, $VAR_HANDGUN$, $VAR_TOOLS$, 
+                                       $VAR_CURRENTWEAPON$)
+   
+  }
+  
+  /* add character world specific data */
   $VAR_CharacterOrderedUUID$ = generateOrderedUUID();
-  INSERT INTO `character` (`uuid`, `charactershareables_uuid`) 
-  VALUES (CAST($VAR_CharacterOrderedUUID$ AS BINARY), CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY));
+  INSERT INTO `character` (`uuid`, `animationstate`, `direction`, 
+                           `positiontype`, `positionx`, `positiony`, 
+                           `positionz`, `charactershareables_uuid`) 
+                   VALUES (CAST($VAR_CharacterOrderedUUID$ AS BINARY), $VAR_ANIMATIONSTATE$, $VAR_DIRECTION$, 
+                           $VAR_POSITIONTYPE$, $VAR_POSITIONX$, $VAR_POSITIONY$, 
+                           $VAR_POSITIONZ$, CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY))
+
   
+  /* add character to world */
   INSERT INTO `player_on_world_has_character` (`player_uuid`, `world_uuid`, `character_uuid`, `killinfo_uuid`) 
   VALUES ((CAST($VAR_PlayerOrderedUUID$ AS BINARY), (CAST($VAR_WorldOrderedUUID$ AS BINARY), (CAST($VAR_CharacterOrderedUUID$ AS BINARY), NULL)
 
@@ -211,7 +284,6 @@ BROKEN!!!!
   
   UPDATE `characterview` 
   SET `animationstate` = $VAR_AnimationState$,
-    `animationstate` = $VAR_ANIMATIONSTATE$,
     `direction` = $VAR_DIRECTION$,
     `positiontype` = $VAR_POSITIONTYPE$,
     `positionx` = $VAR_POSITIONX$,
