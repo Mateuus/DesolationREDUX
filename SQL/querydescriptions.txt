@@ -95,25 +95,6 @@
   */
   INSERT INTO `player_on_world_has_death_persistent_variables` (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) 
   VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_VariabOrderedUUID$ AS BINARY));
-
-/*************************************************************************************************************************************/
-/*************************************************************************************************************************************/
-/*************************************************************************************************************************************/
-  
- /**
-  * \brief  Create Death Persistent Character Information
-  *
-  *         takes an existing UUID of Death Persistent Variables and links it to the current world
-  *
-  * \param      PlayerOrderedUUID UUID of Player
-  *             WorldOrderedUUID  UUID of World (taken from configfile)
-  * \return     VariabOrderedUUID UUID of Death Persistent Variables
-  *
-  */
-  $VAR_VariabOrderedUUID$ = generateOrderedUUID();
-  INSERT INTO `death_persistent_variables` (`uuid`, `persistentvariables`) VALUES (CAST($VAR_VariabOrderedUUID$ AS BINARY), NULL);
-  INSERT INTO `player_on_world_has_death_persistent_variables` (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) 
-  VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_VariabOrderedUUID$ AS BINARY));
   
 /*************************************************************************************************************************************/
 /*************************************************************************************************************************************/
@@ -188,6 +169,14 @@
     AND `world_uuid` = CAST($VAR_WorldOrderedUUID$ AS BINARY)
 
   $VAR_VariabOrderedUUID$ = result.death_persistent_variables_uuid
+  
+  if ($VAR_VariabOrderedUUID$ == empty) {
+    $VAR_VariabOrderedUUID$ = generateOrderedUUID();
+    INSERT INTO `death_persistent_variables` (`uuid`, `persistentvariables`) VALUES (CAST($VAR_VariabOrderedUUID$ AS BINARY), NULL);
+    INSERT INTO `player_on_world_has_death_persistent_variables` (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) 
+    VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_VariabOrderedUUID$ AS BINARY));
+  }
+  
 
   /* get alive linked character shareables */
   result = SELECT `charactershareables`.`uuid`
