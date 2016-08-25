@@ -1,0 +1,272 @@
+ /**
+  * \brief  Link Worlds
+  *
+  *         Creates an World, is not meant to be run in Arma
+  *
+  * \param      Name                    String
+  *             Map                     String
+  * \return     WorldOrderedUUID        Containing CharacterData or Empty Array
+  *
+  */
+  $VAR_WorldOrderedUUID$ = generateOrderedUUID();
+  INSERT INTO `world` (`uuid`, `name`, `map`) 
+  VALUES (CAST($VAR_WorldOrderedUUID$ AS BINARY, $VAR_Name$, $VAR_Map$);
+
+ /**
+  * \brief  Link Worlds
+  *
+  *         Links 2 Worlds, is not meant to be run in Arma
+  *
+  * \param      World1OrderedUUID UUID of World1
+  *             World2OrderedUUID UUID of World2
+  * \return     ArmA Array        Containing CharacterData or Empty Array
+  *
+  */
+  INSERT INTO `world_is_linked_to_world` (`world_uuid1`, `world_uuid2`) VALUES (CAST($VAR_World1OrderedUUID$ AS BINARY), CAST($VAR_World2OrderedUUID$ AS BINARY))
+  INSERT INTO `world_is_linked_to_world` (`world_uuid1`, `world_uuid2`) VALUES (CAST($VAR_World2OrderedUUID$ AS BINARY), CAST($VAR_World1OrderedUUID$ AS BINARY))
+
+ /**
+  * \brief  Player Login
+  *
+  *         Loads UUID of Player
+  *         Loads UUID of Death Persistent Variables
+  *         Updates/Creats Player Record
+  *
+  * \param      Nickname          profileName
+  *             SteamID           getPlayerUID player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     PlayerOrderedUUID UUID of Player
+  *             VariabOrderedUUID UUID of Death Persistent Variables
+  *
+  */
+  
+  SELECT `player`.`uuid`, `player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`  FROM `player` 
+  LEFT JOIN `player_on_world_has_death_persistent_variables`
+    ON `player`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid`
+    AND `player_on_world_has_death_persistent_variables`.`world_uuid` =  CAST($VAR_WorldOrderedUUID$ AS BINARY)
+  WHERE `player`.`steamid` = $VAR_SteamID$
+  
+  
+  $VAR_PlayerOrderedUUID$ = result.uuid
+  $VAR_VariabOrderedUUID$ = result.uuid
+  
+  if($VAR_PlayerOrderedUUID$ == empty) {
+    $VAR_PlayerOrderedUUID$ = generateOrderedUUID();
+    $VAR_BattleyeID$ = calculateBattleyeIDfromSteamID($VAR_SteamID$);
+    INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, `firstlogin`, `firstnick`, `lastlogin`, `lastnick`, `bancount`, `banreason`, `banbegindate`, `banenddate`) 
+    VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), $VAR_SteamID$, c, NOW(), $VAR_Nickname$, NOW(), $VAR_Nickname$, '0', NULL, NULL, NULL);
+  } else {
+    UPDATE `player` SET `lastlogin` = NOW(), `lastnick` = $VAR_Nickname$ WHERE `player`.`uuid` = CAST($VAR_PlayerOrderedUUID$ AS BINARY);
+  }
+  
+ /**
+  * \brief  Get available Character Informations
+  *
+  *         If the server detects that there is no existing Death Persistent Variables
+  *         for the Player on the World give the Player a one time chance to link
+  *         his Data on the World to an other World if existing.
+  *         Returns a list of available Informations
+  *
+  * \param      PlayerOrderedUUID UUID of Player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     ArmA Array        Containing available Death Persistent Variables
+  *
+  */
+  SELECT `character`.`death_persistent_variables_uuid `
+  FROM `world_is_linked_to_world`
+  INNER JOIN `death_persistent_variables`
+    ON `world_is_linked_to_world`.`world_uuid2` = `character`.`uuid`
+  WHERE `world_is_linked_to_world`.`world_uuid1` = $VAR_WorldOrderedUUID$
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Link Death Persistent Character Information
+  *
+  *         takes an existing UUID of Death Persistent Variables and links it to the current world
+  *
+  * \param      PlayerOrderedUUID UUID of Player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  *             VariabOrderedUUID UUID of Death Persistent Variables
+  * \return     VariabOrderedUUID UUID of Death Persistent Variables
+  *
+  */
+  INSERT INTO `player_on_world_has_death_persistent_variables` (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) 
+  VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_VariabOrderedUUID$ AS BINARY));
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+  
+ /**
+  * \brief  Create Death Persistent Character Information
+  *
+  *         takes an existing UUID of Death Persistent Variables and links it to the current world
+  *
+  * \param      PlayerOrderedUUID UUID of Player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     VariabOrderedUUID UUID of Death Persistent Variables
+  *
+  */
+  $VAR_VariabOrderedUUID$ = generateOrderedUUID();
+  INSERT INTO `death_persistent_variables` (`uuid`, `persistentvariables`) VALUES (CAST($VAR_VariabOrderedUUID$ AS BINARY), NULL);
+  INSERT INTO `player_on_world_has_death_persistent_variables` (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) 
+  VALUES (CAST($VAR_PlayerOrderedUUID$ AS BINARY), CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_VariabOrderedUUID$ AS BINARY));
+  
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Get Character
+  *
+  *         Returns CharacterData or Empy Array if no alive Character
+  *
+  * \param      PlayerOrderedUUID UUID of Player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     ArmA Array        Containing CharacterData or Empty Array
+  *
+  */
+  SELECT `character`.`uuid`, `animationstate`, `direction`, `positiontype`, `positionx`,
+        `positiony`, `positionz`, `classname`, `hitpoints`, `variables`, `persistentvariables`, `textures`, `inventoryuniform`,
+        `inventoryvest`, `inventorybackpack`, `uniform`, `vest`, `backpack`, `headgear`, `googles`, 
+        `primaryweapon`, `secondaryweapon`, `handgun`, `tools`, `currentweapon`
+  FROM `player_on_world_has_character`
+  INNER JOIN `character`
+    ON `player_on_world_has_character`.`character_uuid` = `character`.`uuid`
+  INNER JOIN `charactershareables`
+    ON `character`.`charactershareables_uuid` = `charactershareables`.`uuid`
+  INNER JOIN `death_persistent_variables`
+    ON `charactershareables`.`death_persistent_variables_uuid` = `death_persistent_variables`.`uuid`
+  WHERE `player_on_world_has_character`.`player_uuid` = CAST($VAR_PlayerOrderedUUID$ AS BINARY)
+    AND `player_on_world_has_character`.`world_uuid` =  CAST($VAR_WorldOrderedUUID$ AS BINARY)
+    AND `player_on_world_has_character`.`killinfo_uuid` IS NULL
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Create New Character DATA
+  *
+  *         Returns UUID of new Character DATA, needs an additional UPDATE
+  *         to set Spawn Loadout
+  *
+  * \param      PlayerOrderedUUID UUID of Player
+  *             WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     CharOrderedUUID   UUID of Character
+  *
+  */
+BROKEN!!!!
+  $VAR_CharacterShareablesOrderedUUID$ = generateOrderedUUID();
+  INSERT INTO `charactershareables` (`uuid`, `classname`, `death_persistent_variables_uuid`) 
+  VALUES (CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY), 'uninitialized', CAST($VAR_VariabOrderedUUID$ AS BINARY));
+  
+  $VAR_CharacterOrderedUUID$ = generateOrderedUUID();
+  INSERT INTO `character` (`uuid`, `charactershareables_uuid`) 
+  VALUES (CAST($VAR_CharacterOrderedUUID$ AS BINARY), CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY));
+  
+  INSERT INTO `player_on_world_has_character` (`player_uuid`, `world_uuid`, `character_uuid`, `killinfo_uuid`) 
+  VALUES ((CAST($VAR_PlayerOrderedUUID$ AS BINARY), (CAST($VAR_WorldOrderedUUID$ AS BINARY), (CAST($VAR_CharacterOrderedUUID$ AS BINARY), NULL)
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+  
+ /**
+  * \brief  Update Character
+  *
+  *         Returns UUID of Character DATA
+  *
+  * \param      CharOrderedUUID   UUID of Character
+  *             AnimationState    Current AnimationState
+  *             Direction         Current Direction
+  *             PositionType      Type of Position e.g. 1 == getPos, 2 == getPosASL, 3 == getPosATL
+  *             PositionX         PositionX
+  *             Positiony         Positiony
+  *             Positionz         Positionz
+  *             Classname         Classname of Character
+  *             HitPoints         getAllHitPointsDamage player
+  *             Variables         allVariables player - if set as character based in configfile
+  *             PersistentVariables allVariables player - if set as player based in configfile
+  *             Textures          getObjectTextures player - only set if changed
+  *             InventoryUniform  Everything in the uniform gear
+  *             InventoryVest     Everything in the vest gear
+  *             InventoryBackpack Everything in the backpack gear
+  *             Uniform           Name of Uniform - uniform player
+  *             Vest              Name of Vest - vest player
+  *             Backpack          Name of Backpack - backpack player
+  *             Headgear          Name of the Headgear - headgear player
+  *             Googles           Name of the Googles - goggles player
+  *             PrimaryWeapon     Name of PrimaryWeapon including attachments - primaryWeapon player + primaryWeaponItems player
+  *             SecondaryWeapon   Name of SecondaryWeapon including attachments - secondaryWeapon player + secondaryWeaponItems player
+  *             Handgun           Name of Handgun including attachments - handgunWeapon player + handgunItems player
+  *             Tools             List of Tools - assignedItems player;
+  *             Currentweapon     Name of curent Weapon - currentWeapon player
+  * \return     CharOrderedUUID   Containing CharacterData or Empty Array
+  *
+  */
+  
+  UPDATE `characterview` 
+  SET `animationstate` = $VAR_AnimationState$,
+    `animationstate` = $VAR_ANIMATIONSTATE$,
+    `direction` = $VAR_DIRECTION$,
+    `positiontype` = $VAR_POSITIONTYPE$,
+    `positionx` = $VAR_POSITIONX$,
+    `positiony` = $VAR_POSITIONY$,
+    `positionz` = $VAR_POSITIONZ$,
+    `classname` = $VAR_CLASSNAME$,
+    `hitpoints` = $VAR_HITPOINTS$,
+    `variables` = $VAR_VARIABLES$,
+    `persistentvariables` = $VAR_PERSISTENTVARIABLES$,
+    `textures` = $VAR_TEXTURES$,
+    `inventoryuniform` = $VAR_INVENTORYUNIFORM$,
+    `inventoryvest` = $VAR_INVENTORYVEST$,
+    `inventorybackpack` = $VAR_INVENTORYBACKPACK$,
+    `uniform` = $VAR_UNIFORM$,
+    `vest` = $VAR_VEST$,
+    `backpack` = $VAR_BACKPACK$,
+    `headgear` = $VAR_HEADGEAR$,
+    `googles` = $VAR_GOOGLES$,
+    `primaryweapon` = $VAR_PRIMARYWEAPON$,
+    `secondaryweapon` = $VAR_SECONDARYWEAPON$,
+    `handgun` = $VAR_HANDGUN$,
+    `tools` = $VAR_TOOLS$,
+    `currentweapon` = $VAR_CURRENTWEAPON$
+  WHERE `characterview`.`uuid` = CAST($VAR_CharacterOrderedUUID$ AS BINARY);
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Update Character Location only
+  *
+  *         Returns UUID of Character DATA
+  *
+  * \param      CharOrderedUUID   UUID of Character
+  *             AnimationState    Current AnimationState
+  *             Direction         Current Direction
+  *             PositionType      Type of Position e.g. 1 == getPos, 2 == getPosASL, 3 == getPosATL
+  *             PositionX         PositionX
+  *             Positiony         Positiony
+  *             Positionz         Positionz
+  * \return     CharOrderedUUID   Containing CharacterData or Empty Array
+  *
+  */
+  
+  UPDATE `character` 
+  SET `animationstate` = $VAR_AnimationState$,
+    `animationstate` = $VAR_ANIMATIONSTATE$,
+    `direction` = $VAR_DIRECTION$,
+    `positiontype` = $VAR_POSITIONTYPE$,
+    `positionx` = $VAR_POSITIONX$,
+    `positiony` = $VAR_POSITIONY$,
+    `positionz` = $VAR_POSITIONZ$
+  WHERE `characterview`.`uuid` = CAST($VAR_CharacterOrderedUUID$ AS BINARY);
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/

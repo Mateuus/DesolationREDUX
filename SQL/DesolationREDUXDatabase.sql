@@ -31,19 +31,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `desolationredux`.`player` (
   `uuid` BINARY(16) NOT NULL COMMENT '',
-  `steamid` BIGINT NULL COMMENT '',
+  `steamid` BIGINT NOT NULL COMMENT '',
   `battleyeid` VARCHAR(32) NULL COMMENT '',
-  `firstseen` TIMESTAMP NULL COMMENT '',
+  `firstlogin` TIMESTAMP NULL COMMENT '',
   `firstnick` VARCHAR(45) NULL COMMENT '',
-  `lastseen` TIMESTAMP NULL COMMENT '',
+  `lastlogin` TIMESTAMP NULL COMMENT '',
   `lastnick` VARCHAR(45) NULL COMMENT '',
   `bancount` INT NULL DEFAULT 0 COMMENT '',
   `banreason` VARCHAR(100) NULL COMMENT '',
   `banbegindate` TIMESTAMP NULL COMMENT '',
   `banenddate` TIMESTAMP NULL COMMENT '',
-  `mainclan_uuid` BINARY(16) NULL COMMENT '',
   PRIMARY KEY (`uuid`)  COMMENT '',
-  UNIQUE INDEX `uuid_UNIQUE` (`uuid` ASC)  COMMENT '')
+  UNIQUE INDEX `uuid_UNIQUE` (`uuid` ASC)  COMMENT '',
+  UNIQUE INDEX `steamid_UNIQUE` (`steamid` ASC)  COMMENT '')
 ENGINE = InnoDB;
 
 
@@ -81,11 +81,11 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`charactershareables` (
   `tools` TEXT NULL COMMENT '',
   `currentweapon` VARCHAR(45) NULL COMMENT '',
   PRIMARY KEY (`uuid`)  COMMENT '',
-  INDEX `fk_charactershareables_death_persistant_variables1_idx` (`death_persistent_variables_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_charactershareables_death_persistant_variables1`
+  INDEX `fk_charactershareables_death_persistant_variables_uuid_idx` (`death_persistent_variables_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_charactershareables_death_persistant_variables`
     FOREIGN KEY (`death_persistent_variables_uuid`)
     REFERENCES `desolationredux`.`death_persistent_variables` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -104,11 +104,11 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`character` (
   `charactershareables_uuid` BINARY(16) NOT NULL COMMENT '',
   PRIMARY KEY (`uuid`)  COMMENT '',
   UNIQUE INDEX `uuid_UNIQUE` (`uuid` ASC)  COMMENT '',
-  INDEX `fk_players_playershareables1_idx` (`charactershareables_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_players_playershareables1`
+  INDEX `playershareables_uuid_idx` (`charactershareables_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_character_charactershareables`
     FOREIGN KEY (`charactershareables_uuid`)
     REFERENCES `desolationredux`.`charactershareables` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -157,23 +157,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `desolationredux`.`sharedplayerdata`
+-- Table `desolationredux`.`world_is_linked_to_world`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `desolationredux`.`sharedplayerdata` (
-  `worlds_uuid1` BINARY(16) NOT NULL COMMENT '',
-  `worlds_uuid2` BINARY(16) NOT NULL COMMENT '',
-  PRIMARY KEY (`worlds_uuid1`, `worlds_uuid2`)  COMMENT '',
-  INDEX `fk_worlds_has_worlds_worlds2_idx` (`worlds_uuid2` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_worlds_worlds1_idx` (`worlds_uuid1` ASC)  COMMENT '',
-  CONSTRAINT `fk_worlds_has_worlds_worlds1`
-    FOREIGN KEY (`worlds_uuid1`)
+CREATE TABLE IF NOT EXISTS `desolationredux`.`world_is_linked_to_world` (
+  `world_uuid1` BINARY(16) NOT NULL COMMENT '',
+  `world_uuid2` BINARY(16) NOT NULL COMMENT '',
+  PRIMARY KEY (`world_uuid1`, `world_uuid2`)  COMMENT '',
+  INDEX `world_uuid2_idx` (`world_uuid2` ASC)  COMMENT '',
+  INDEX `world_uuid1_idx` (`world_uuid1` ASC)  COMMENT '',
+  CONSTRAINT `fk_world_is_linked_to_world_worlds1`
+    FOREIGN KEY (`world_uuid1`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_worlds_worlds2`
-    FOREIGN KEY (`worlds_uuid2`)
+  CONSTRAINT `fk_world_is_linked_to_world_worlds2`
+    FOREIGN KEY (`world_uuid2`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -207,26 +207,26 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`world_has_objects` (
   `killinfo_uuid` BINARY(16) NULL COMMENT '',
   `parentobject_uuid` BINARY(16) NULL COMMENT '',
   PRIMARY KEY (`world_uuid`, `object_uuid`)  COMMENT '',
-  INDEX `fk_worlds_has_objects1_objects1_idx` (`object_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_objects1_worlds1_idx` (`world_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_objects_killinfo1_idx` (`killinfo_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_objects_objects1_idx` (`parentobject_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_worlds_has_objects1_worlds1`
+  INDEX `fk_object_uuid_idx` (`object_uuid` ASC)  COMMENT '',
+  INDEX `fk_world_uuid_idx` (`world_uuid` ASC)  COMMENT '',
+  INDEX `fk_killinfo_uuid_idx` (`killinfo_uuid` ASC)  COMMENT '',
+  INDEX `fk_parentobjects_uuid_idx` (`parentobject_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_worlds_has_objects_world`
     FOREIGN KEY (`world_uuid`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_objects1_objects1`
+  CONSTRAINT `fk_worlds_has_objects_object`
     FOREIGN KEY (`object_uuid`)
     REFERENCES `desolationredux`.`object` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_objects_killinfo1`
+  CONSTRAINT `fk_worlds_has_objects_killinfo`
     FOREIGN KEY (`killinfo_uuid`)
     REFERENCES `desolationredux`.`killinfo` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_objects_objects1`
+  CONSTRAINT `fk_worlds_has_objects_parentobject`
     FOREIGN KEY (`parentobject_uuid`)
     REFERENCES `desolationredux`.`object` (`uuid`)
     ON DELETE NO ACTION
@@ -243,26 +243,26 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`player_on_world_has_character` (
   `character_uuid` BINARY(16) NOT NULL COMMENT '',
   `killinfo_uuid` BINARY(16) NULL COMMENT '',
   PRIMARY KEY (`player_uuid`, `world_uuid`, `character_uuid`)  COMMENT '',
-  INDEX `fk_worlds_has_players_players1_idx` (`character_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_players_worlds1_idx` (`world_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_has_players_user1_idx` (`player_uuid` ASC)  COMMENT '',
-  INDEX `fk_worlds_and_user_have_players_killinfo1_idx` (`killinfo_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_worlds_has_players_worlds1`
+  INDEX `character_uuid_idx` (`character_uuid` ASC)  COMMENT '',
+  INDEX `world_uuid_idx` (`world_uuid` ASC)  COMMENT '',
+  INDEX `player_uuid_idx` (`player_uuid` ASC)  COMMENT '',
+  INDEX `killinfo_uuid_idx` (`killinfo_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_player_on_world_has_character_world`
     FOREIGN KEY (`world_uuid`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_players_players1`
+  CONSTRAINT `fk_player_on_world_has_character_character`
     FOREIGN KEY (`character_uuid`)
     REFERENCES `desolationredux`.`character` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_has_players_user1`
+  CONSTRAINT `fk_player_on_world_has_character_player`
     FOREIGN KEY (`player_uuid`)
     REFERENCES `desolationredux`.`player` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_worlds_and_user_have_players_killinfo1`
+  CONSTRAINT `fk_player_on_world_has_character_killinfo`
     FOREIGN KEY (`killinfo_uuid`)
     REFERENCES `desolationredux`.`killinfo` (`uuid`)
     ON DELETE NO ACTION
@@ -277,17 +277,17 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`player_is_friend_with_player` (
   `player1_uuid` BINARY(16) NOT NULL COMMENT '',
   `player2_uuid` BINARY(16) NOT NULL COMMENT '',
   PRIMARY KEY (`player1_uuid`, `player2_uuid`)  COMMENT '',
-  INDEX `fk_player_has_player_player2_idx` (`player2_uuid` ASC)  COMMENT '',
-  INDEX `fk_player_has_player_player1_idx` (`player1_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_player_has_player_player1`
+  INDEX `player2_uuid_idx` (`player2_uuid` ASC)  COMMENT '',
+  INDEX `player1_uuid_idx` (`player1_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_player_is_friend_with_player_player1`
     FOREIGN KEY (`player1_uuid`)
     REFERENCES `desolationredux`.`player` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_player_has_player_player2`
+  CONSTRAINT `fk_player_is_friend_with_player_player2`
     FOREIGN KEY (`player2_uuid`)
     REFERENCES `desolationredux`.`player` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -297,26 +297,26 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `desolationredux`.`player_on_world_has_death_persistent_variables` (
   `player_uuid` BINARY(16) NOT NULL COMMENT '',
-  `worlds_uuid` BINARY(16) NOT NULL COMMENT '',
+  `world_uuid` BINARY(16) NOT NULL COMMENT '',
   `death_persistent_variables_uuid` BINARY(16) NOT NULL COMMENT '',
-  PRIMARY KEY (`player_uuid`, `worlds_uuid`, `death_persistent_variables_uuid`)  COMMENT '',
-  INDEX `fk_player_has_death_persistant_variables_death_persistant_v_idx` (`death_persistent_variables_uuid` ASC)  COMMENT '',
-  INDEX `fk_player_has_death_persistant_variables_player1_idx` (`player_uuid` ASC)  COMMENT '',
-  INDEX `fk_player_has_death_persistant_variables_worlds1_idx` (`worlds_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_player_has_death_persistant_variables_player1`
+  PRIMARY KEY (`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`)  COMMENT '',
+  INDEX `fk_death_persistant_variables_uuid_idx` (`death_persistent_variables_uuid` ASC)  COMMENT '',
+  INDEX `fk_player_uuid_idx` (`player_uuid` ASC)  COMMENT '',
+  INDEX `fk_world_uuid_idx` (`world_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_p_o_w_has_death_persistant_variables_player`
     FOREIGN KEY (`player_uuid`)
     REFERENCES `desolationredux`.`player` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_player_has_death_persistant_variables_death_persistant_var1`
+  CONSTRAINT `fk_p_o_w_has_death_persistant_variables_death_persistant_var`
     FOREIGN KEY (`death_persistent_variables_uuid`)
     REFERENCES `desolationredux`.`death_persistent_variables` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_player_has_death_persistant_variables_worlds1`
-    FOREIGN KEY (`worlds_uuid`)
+  CONSTRAINT `fk_p_o_w_has_death_persistant_variables_worlds`
+    FOREIGN KEY (`world_uuid`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -328,17 +328,17 @@ CREATE TABLE IF NOT EXISTS `desolationredux`.`whitelist` (
   `world_uuid` BINARY(16) NOT NULL COMMENT '',
   `player_uuid` BINARY(16) NOT NULL COMMENT '',
   PRIMARY KEY (`world_uuid`, `player_uuid`)  COMMENT '',
-  INDEX `fk_world_has_player_player1_idx` (`player_uuid` ASC)  COMMENT '',
-  INDEX `fk_world_has_player_world1_idx` (`world_uuid` ASC)  COMMENT '',
-  CONSTRAINT `fk_world_has_player_world1`
+  INDEX `player_uuid_idx` (`player_uuid` ASC)  COMMENT '',
+  INDEX `world_uuid_idx` (`world_uuid` ASC)  COMMENT '',
+  CONSTRAINT `fk_whitelist_world`
     FOREIGN KEY (`world_uuid`)
     REFERENCES `desolationredux`.`world` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_world_has_player_player1`
+  CONSTRAINT `fk_wwhitelist_player`
     FOREIGN KEY (`player_uuid`)
     REFERENCES `desolationredux`.`player` (`uuid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
