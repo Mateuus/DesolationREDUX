@@ -388,30 +388,30 @@
   */
   
   UPDATE `object` 
-  SET ´classname` = $VAR_CLASSNAME$,
-    ´priority` = $VAR_PRIORITY$,
-    ´visible` = $VAR_VISIBLE$,
-    ´accesscode` = $VAR_ACCESSCODE$,
-    ´locked` = $VAR_LOCKED$,
-    ´player_uuid` = $VAR_PLAYER_UUID$,
-    ´hitpoints` = $VAR_HITPOINTS$,
-    ´damage` = $VAR_DAMAGE$,
-    ´fuel` = $VAR_FUEL$,
-    ´fuelcargo` = $VAR_FUELCARGO$,
-    ´repaircargo` = $VAR_REPAIRCARGO$,
-    ´items` = $VAR_ITEMS$,
-    ´magazines` = $VAR_MAGAZINES$,
-    ´weapons` = $VAR_WEAPONS$,
-    ´backpacks` = $VAR_BACKPACKS$,
-    ´magazinesturret` = $VAR_MAGAZINESTURRET$,
-    ´variables` = $VAR_VARIABLES$,
-    ´animationstate` = $VAR_ANIMATIONSTATE$,
-    ´textures` = $VAR_TEXTURES$,
-    ´direction` = $VAR_DIRECTION$,
-    ´positiontype` = $VAR_POSITIONTYPE$,
-    ´positionx` = $VAR_POSITIONX$,
-    ´positiony` = $VAR_POSITIONY$,
-    ´positionz` = $VAR_POSITIONZ$
+  SET `classname` = $VAR_CLASSNAME$,
+    `priority` = $VAR_PRIORITY$,
+    `visible` = $VAR_VISIBLE$,
+    `accesscode` = $VAR_ACCESSCODE$,
+    `locked` = $VAR_LOCKED$,
+    `player_uuid` = $VAR_PLAYER_UUID$,
+    `hitpoints` = $VAR_HITPOINTS$,
+    `damage` = $VAR_DAMAGE$,
+    `fuel` = $VAR_FUEL$,
+    `fuelcargo` = $VAR_FUELCARGO$,
+    `repaircargo` = $VAR_REPAIRCARGO$,
+    `items` = $VAR_ITEMS$,
+    `magazines` = $VAR_MAGAZINES$,
+    `weapons` = $VAR_WEAPONS$,
+    `backpacks` = $VAR_BACKPACKS$,
+    `magazinesturret` = $VAR_MAGAZINESTURRET$,
+    `variables` = $VAR_VARIABLES$,
+    `animationstate` = $VAR_ANIMATIONSTATE$,
+    `textures` = $VAR_TEXTURES$,
+    `direction` = $VAR_DIRECTION$,
+    `positiontype` = $VAR_POSITIONTYPE$,
+    `positionx` = $VAR_POSITIONX$,
+    `positiony` = $VAR_POSITIONY$,
+    `positionz` = $VAR_POSITIONZ$
   WHERE `characterview`.`uuid` = CAST($VAR_ObjectOrderedUUID$ AS BINARY);
 
 /*************************************************************************************************************************************/
@@ -446,9 +446,8 @@
  /**
   * \brief  Dump All Objects of World
   *
-  *         Returns UUID of new Object DATA, NEEDS an additional UPDATE
-  *         to actualy submit the Data - helps to reduce code that needs 
-  *         to be debugged
+  *         Returns every object of the current world 
+  *         including the friendlist of the object owner 
   *
   * \param      WorldOrderedUUID  UUID of World (taken from configfile)
   * \return     ArmAArray          Character with ObjectDATA
