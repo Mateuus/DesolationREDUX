@@ -425,7 +425,7 @@
   *         to actualy submit the Data - helps to reduce code that needs 
   *         to be debugged
   *
-  * \param      ObjectOrderedUUID  UUID of World (taken from configfile)
+  * \param      ObjectOrderedUUID  UUID of Object
   * \return     ArmAArray          Character with ObjectDATA
   *
   */
@@ -447,14 +447,18 @@
   * \brief  Dump All Objects of World
   *
   *         Returns every object of the current world 
-  *         including the friendlist of the object owner 
+  *         including the friendlist of the object owner.
+  *         While Spawning check if the parentobject already got spawned
+  *         if not move Object Data to the end until the parentobject got spawned.
+  *         If parrentobject exists the position variables are offsets.
   *
-  * \param      WorldOrderedUUID  UUID of World (taken from configfile)
-  * \return     ArmAArray          Character with ObjectDATA
+  * \param      WorldOrderedUUID   UUID of World (taken from configfile)
+  * \return     ArmAArray          Array of ObjectDATA
   *
   */
 
-  SELECT `object`.`uuid`, `object`.`classname`, `object`.`priority`, 
+  SELECT `object`.`uuid`, `world_has_objects`.`parentobject_uuid`, 
+       `object`.`classname`, `object`.`priority`, 
        `object`.`visible`, `object`.`accesscode`, `object`.`locked`, 
        `object`.`player_uuid`, `object`.`hitpoints`, `object`.`damage`, 
        `object`.`fuel`, `object`.`fuelcargo`, `object`.`repaircargo`, 
@@ -472,6 +476,7 @@
     ON `player_is_friend_with_player`.`player2_uuid` = `player`.`uuid`
   WHERE `world_has_objects`.`world_uuid` = CAST($VAR_WorldOrderedUUID$ AS BINARY)
   GROUP BY `object`.`uuid`
+  ORDER BY `object`.priority ASC, `world_has_objects`.`parentobject_uuid` ASC
 
 
 /*************************************************************************************************************************************/
