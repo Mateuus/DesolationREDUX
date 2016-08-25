@@ -331,3 +331,150 @@
 /*************************************************************************************************************************************/
 /*************************************************************************************************************************************/
 /*************************************************************************************************************************************/
+
+
+ /**
+  * \brief  Create New Object DATA
+  *
+  *         Returns UUID of new Object DATA, NEEDS an additional UPDATE
+  *         to actualy submit the Data - helps to reduce code that needs 
+  *         to be debugged
+  *
+  * \param      WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     ObjectOrderedUUID UUID of Character
+  *
+  */
+  
+  $VAR_ObjectOrderedUUID$ = generateOrderedUUID();
+  INSERT INTO `object` (`uuid`, `classname`, `priority`, `timelastused`, `timecreated`) VALUES (CAST($VAR_ObjectOrderedUUID$ AS BINARY), 'BrokenObject', '999', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+  INSERT INTO `world_has_objects` (`world_uuid`, `object_uuid`) VALUES (CAST($VAR_WorldOrderedUUID$ AS BINARY), CAST($VAR_ObjectOrderedUUID$ AS BINARY))
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+  
+ /**
+  * \brief  Update Character
+  *
+  *         Returns UUID of Character DATA
+  *
+  * \param      ObjectOrderedUUID   UUID of Character
+  *             Classname         Classname of Character
+  *             Priority          Spawn Priority the lower the Number the higher the Priority e.g. 32 == Building, 64 == Props, 128 == Vehicles ...
+  *             Visible           Sets the Vehicle to be visible, maybe it is visible because loaded in another object
+  *             Accesscode        An Code to Open/Close Objects like Doors
+  *             Locked            State if Object is locked or not
+  *             CharOrderedUUID   UUID of the Player Owning the Object
+  *             Hitpoints         getAllHitPointsDamage object
+  *             Damage            damage object 
+  *             Fuel              fuel object
+  *             Fuelcargo         getFuelCargo object
+  *             Repaircargo       getRepairCargo object
+  *             Items             Items in Inventory
+  *             Magazines         Magazines in Inventory
+  *             Weapons           Weapons in Inventory
+  *             Backpacks         Backpacks  in Inventory
+  *             Magazinesturret   Magazines in Turrets - magazinesAllTurrets object
+  *             Variables         allVariables object - if set as whitelisted in configfile
+  *             AnimationState    Current AnimationState
+  *             Textures          Custom Textures of Object
+  *             Direction         Current Direction
+  *             PositionType      Type of Position e.g. 1 == getPos, 2 == getPosASL, 3 == getPosATL
+  *             PositionX         PositionX
+  *             Positiony         Positiony
+  *             Positionz         Positionz
+  * \return     ObjectOrderedUUID   Containing CharacterData or Empty Array
+  *
+  */
+  
+  UPDATE `object` 
+  SET ´classname` = $VAR_CLASSNAME$,
+    ´priority` = $VAR_PRIORITY$,
+    ´visible` = $VAR_VISIBLE$,
+    ´accesscode` = $VAR_ACCESSCODE$,
+    ´locked` = $VAR_LOCKED$,
+    ´player_uuid` = $VAR_PLAYER_UUID$,
+    ´hitpoints` = $VAR_HITPOINTS$,
+    ´damage` = $VAR_DAMAGE$,
+    ´fuel` = $VAR_FUEL$,
+    ´fuelcargo` = $VAR_FUELCARGO$,
+    ´repaircargo` = $VAR_REPAIRCARGO$,
+    ´items` = $VAR_ITEMS$,
+    ´magazines` = $VAR_MAGAZINES$,
+    ´weapons` = $VAR_WEAPONS$,
+    ´backpacks` = $VAR_BACKPACKS$,
+    ´magazinesturret` = $VAR_MAGAZINESTURRET$,
+    ´variables` = $VAR_VARIABLES$,
+    ´animationstate` = $VAR_ANIMATIONSTATE$,
+    ´textures` = $VAR_TEXTURES$,
+    ´direction` = $VAR_DIRECTION$,
+    ´positiontype` = $VAR_POSITIONTYPE$,
+    ´positionx` = $VAR_POSITIONX$,
+    ´positiony` = $VAR_POSITIONY$,
+    ´positionz` = $VAR_POSITIONZ$
+  WHERE `characterview`.`uuid` = CAST($VAR_ObjectOrderedUUID$ AS BINARY);
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Create New Object DATA
+  *
+  *         Returns UUID of new Object DATA, NEEDS an additional UPDATE
+  *         to actualy submit the Data - helps to reduce code that needs 
+  *         to be debugged
+  *
+  * \param      ObjectOrderedUUID  UUID of World (taken from configfile)
+  * \return     ArmAArray          Character with ObjectDATA
+  *
+  */
+  
+  SELECT `uuid`, `classname`, `priority`, `visible`, 
+         `accesscode`, `locked`, `player_uuid`, `hitpoints`, 
+         `damage`, `fuel`, `fuelcargo`, `repaircargo`, 
+         `items`, `magazines`, `weapons`, `backpacks`, 
+         `magazinesturret`, `variables`, `animationstate`, 
+         `textures`, `direction`, `positiontype`, `positionx`, 
+         `positiony`, `positionz` FROM `object`
+  WHERE `uuid` = CAST($VAR_ObjectOrderedUUID$ AS BINARY);
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+
+ /**
+  * \brief  Dump All Objects of World
+  *
+  *         Returns UUID of new Object DATA, NEEDS an additional UPDATE
+  *         to actualy submit the Data - helps to reduce code that needs 
+  *         to be debugged
+  *
+  * \param      WorldOrderedUUID  UUID of World (taken from configfile)
+  * \return     ArmAArray          Character with ObjectDATA
+  *
+  */
+
+  SELECT `object`.`uuid`, `object`.`classname`, `object`.`priority`, 
+       `object`.`visible`, `object`.`accesscode`, `object`.`locked`, 
+       `object`.`player_uuid`, `object`.`hitpoints`, `object`.`damage`, 
+       `object`.`fuel`, `object`.`fuelcargo`, `object`.`repaircargo`, 
+       `object`.`items`, `object`.`magazines`, `object`.`weapons`, 
+       `object`.`backpacks`, `object`.`magazinesturret`, `object`.`variables`, 
+       `object`.`animationstate`, `object`.`textures`, `object`.`direction`, 
+       `object`.`positiontype`, `object`.`positionx`, `object`.`positiony`, 
+       `object`.`positionz`, GROUP_CONCAT(`player`.`steamid` SEPARATOR ', ') AS friendlist
+  FROM `world_has_objects` 
+  INNER JOIN `object`
+    ON `world_has_objects`.`object_uuid` = `object`.`uuid`
+  LEFT JOIN `player_is_friend_with_player`
+    ON `object`.`player_uuid` = `player_is_friend_with_player`.`player1_uuid`
+  LEFT JOIN `player`
+    ON `player_is_friend_with_player`.`player2_uuid` = `player`.`uuid`
+  WHERE `world_has_objects`.`world_uuid` = CAST($VAR_WorldOrderedUUID$ AS BINARY)
+  GROUP BY `object`.`uuid`
+
+
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
+/*************************************************************************************************************************************/
