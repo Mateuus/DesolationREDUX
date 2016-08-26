@@ -37,18 +37,24 @@
   *             WorldOrderedUUID  UUID of World (taken from configfile)
   * \return     PlayerOrderedUUID UUID of Player
   *             VariabOrderedUUID UUID of Death Persistent Variables
+  *             FriendList        List of SteamID
   *
   */
   
-  SELECT `player`.`uuid`, `player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`  FROM `player` 
+  SELECT `actualplayer`.`uuid`, `player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`, GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR ', ') AS friendlist
+  FROM `player` actualplayer
   LEFT JOIN `player_on_world_has_death_persistent_variables`
-    ON `player`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid`
+    ON `actualplayer`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid`
     AND `player_on_world_has_death_persistent_variables`.`world_uuid` =  CAST($VAR_WorldOrderedUUID$ AS BINARY)
-  WHERE `player`.`steamid` = $VAR_SteamID$
+  LEFT JOIN `player_is_friend_with_player`
+    ON `actualplayer`.`uuid` = `player_is_friend_with_player`.`player1_uuid`
+  LEFT JOIN `player` friendplayer
+    ON `player_is_friend_with_player`.`player2_uuid` = `friendplayer`.`uuid`
+  WHERE `actualplayer`.`steamid` = $VAR_SteamID$
+  GROUP BY `actualplayer`.`uuid`
   
-  
-  $VAR_PlayerOrderedUUID$ = result.uuid
-  $VAR_VariabOrderedUUID$ = result.uuid
+  $VAR_PlayerOrderedUUID$ = result.actualplayer.uuid
+  $VAR_VariabOrderedUUID$ = result.variables.uuid
   
   if($VAR_PlayerOrderedUUID$ == empty) {
     $VAR_PlayerOrderedUUID$ = generateOrderedUUID();
