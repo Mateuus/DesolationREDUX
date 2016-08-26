@@ -360,11 +360,11 @@
 /*************************************************************************************************************************************/
   
  /**
-  * \brief  Update Character
+  * \brief  Update Object
   *
-  *         Returns UUID of Character DATA
+  *         Returns UUID of Object DATA
   *
-  * \param      ObjectOrderedUUID   UUID of Character
+  * \param      ObjectOrderedUUID UUID of Object
   *             Classname         Classname of Character
   *             Priority          Spawn Priority the lower the Number the higher the Priority e.g. 32 == Building, 64 == Props, 128 == Vehicles ...
   *             Visible           Sets the Vehicle to be visible, maybe it is visible because loaded in another object
@@ -389,7 +389,7 @@
   *             PositionX         PositionX
   *             Positiony         Positiony
   *             Positionz         Positionz
-  * \return     ObjectOrderedUUID   Containing CharacterData or Empty Array
+  * \return     ObjectOrderedUUID UUID of Object
   *
   */
   
@@ -425,11 +425,9 @@
 /*************************************************************************************************************************************/
 
  /**
-  * \brief  Create New Object DATA
+  * \brief  Request Object
   *
-  *         Returns UUID of new Object DATA, NEEDS an additional UPDATE
-  *         to actualy submit the Data - helps to reduce code that needs 
-  *         to be debugged
+  *         Returns the Object DATA
   *
   * \param      ObjectOrderedUUID  UUID of Object
   * \return     ArmAArray          Character with ObjectDATA
