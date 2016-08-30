@@ -16,16 +16,58 @@ ReduxEx::ReduxEx(String^ _input)
 }
 String^ ReduxEx::execute()
 {
-	if (function->Equals("get_player"))
+	if (function->Equals("create_world"))
 	{
-		return "[DATA HERE AS ARMA ARRAY]";
-	} 
-	if (function->Equals("kill_player"))
-	{
-		return "TRUE"; //true/false based on success
+		// is not meant to be run in arma
+		return "[]";
 	}
-	if (function->Equals("save_player"))
+	if (function->Equals("link_worlds"))
 	{
-		return "TRUE"; //true/false based on success
+		// is not meant to be run in arma
+		return "[]";
+	}
+	if (function->Equals("player_login"))
+	{
+		return "[]";
+	} 
+	if (function->Equals("get_information"))
+	{
+		return "[]";
+	}
+	if (function->Equals("link_death"))
+	{
+		return "[]";
+	}
+	if (function->Equals("get_character"))
+	{
+		return "[]"; 
+	}
+	if (function->Equals("create_character"))
+	{
+		return "[]";
+	}
+	if (function->Equals("update_character"))
+	{
+		return "[]";
+	}
+	if (function->Equals("update_character_loconly"))
+	{
+		return "[]";
+	}
+	if (function->Equals("create_object"))
+	{
+		return "[]";
+	}
+	if (function->Equals("update_object"))
+	{
+		return "[]";
+	}
+	if (function->Equals("request_object"))
+	{
+		return "[]";
+	}
+	if (function->Equals("get_objects"))
+	{
+		return "[]";
 	}
 }
