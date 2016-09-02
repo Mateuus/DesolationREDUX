@@ -78,11 +78,12 @@
   * \return     ArmA Array        Containing available Death Persistent Variables
   *
   */
-  SELECT `character`.`death_persistent_variables_uuid `
+  SELECT `player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`
   FROM `world_is_linked_to_world`
-  INNER JOIN `death_persistent_variables`
-    ON `world_is_linked_to_world`.`world_uuid2` = `character`.`uuid`
-  WHERE `world_is_linked_to_world`.`world_uuid1` = $VAR_WorldOrderedUUID$
+  INNER JOIN `player_on_world_has_death_persistent_variables`
+    ON `world_is_linked_to_world`.`world_uuid2` = `player_on_world_has_death_persistent_variables`.`world_uuid`
+  WHERE `world_is_linked_to_world`.`world_uuid1` = CAST($VAR_WorldOrderedUUID$ AS BINARY)
+    AND `player_on_world_has_death_persistent_variables`.`player_uuid` = CAST($VAR_PlayerOrderedUUID$ AS BINARY)
 
 /*************************************************************************************************************************************/
 /*************************************************************************************************************************************/
@@ -205,9 +206,6 @@
   /* if no alive linked character shareables found create new one */
   if ( $VAR_CharacterShareablesOrderedUUID$ == empty) {
     $VAR_CharacterShareablesOrderedUUID$ = generateOrderedUUID();
-    INSERT INTO `charactershareables` (`uuid`, `classname`, `death_persistent_variables_uuid`) 
-    VALUES (CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY), $VAR_CLASSNAME$, CAST($VAR_VariabOrderedUUID$ AS BINARY));
-    
     INSERT INTO `charactershareables` (`uuid`, `classname`, `hitpoints`, 
                                        `variables`, `death_persistent_variables_uuid`, `textures`, 
                                        `inventoryuniform`, `inventoryvest`, `inventorybackpack`, 
@@ -215,8 +213,8 @@
                                        `headgear`, `googles`, `primaryweapon`, 
                                        `secondaryweapon`, `handgun`, `tools`, 
                                        `currentweapon`) 
-                               VALUES ($VAR_CharacterShareablesOrderedUUID$, $VAR_CLASSNAME$, $VAR_HITPOINTS$, 
-                                       $VAR_VARIABLES$, $VAR_VariabOrderedUUID$, $VAR_TEXTURES$, 
+                               VALUES (CAST($VAR_CharacterShareablesOrderedUUID$ AS BINARY), $VAR_CLASSNAME$, $VAR_HITPOINTS$, 
+                                       $VAR_VARIABLES$, CAST($VAR_VariabOrderedUUID$ AS BINARY), $VAR_TEXTURES$, 
                                        $VAR_INVENTORYUNIFORM$, $VAR_INVENTORYVEST$, $VAR_INVENTORYBACKPACK$, 
                                        $VAR_UNIFORM$, $VAR_VEST$, $VAR_BACKPACK$, 
                                        $VAR_HEADGEAR$, $VAR_GOOGLES$, $VAR_PRIMARYWEAPON$, 
