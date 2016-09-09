@@ -1,12 +1,14 @@
 /*
 	fn_spawnVehicles
-	
+
 	Desolation Redux
 	2016 Desolation Dev Team
-	
+
 	License info here and copyright symbol above
 */
 params["_numVtoSpawn"];
+
+diag_log ("Spawning " + str(_numVtoSpawn) + " vehicles.");
 
 _types = [];
 _data = [];
@@ -22,7 +24,7 @@ for "_i" from 0 to count(_config)-1 do {
 		_type = configName _cfg;
 		_types pushBack tolower _type;
 		_data pushBack [_locations,_directions,[]];
-		
+
 	};
 };
 diag_log format["found %1 types of houses", count(_types)];
@@ -35,7 +37,7 @@ for "_i" from 0 to count(_config)-1 do {
 	if(isClass _cfg) then {
 		_houses = getArray(_cfg >> "buildings");
 		_type = configName _cfg;
-		
+
 		{
 			_index = _types find tolower _x;
 			if(_index != -1) then {
@@ -79,24 +81,24 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 		_locations = _hData select 0;
 		_directions = _hData select 1;
 		_vehicles = _hData select 2;
-		
+
 		if(_bikeLimit == 0) then {_vehicles = _vehicles - ["MMT_Civ"];}; //---vehicles is case sensitive
-		
+
 		_lIndex = floor(random(count(_locations))); //--- get location index
-		
+
 		_v = _vehicles select floor(random(count(_vehicles))); //--- get vehicle type we are spawning
 		if(!isNil {_v}) then {
-			
+
 			if(toLower(_v) == "mmt_civ") then {_bikeLimit = _bikeLimit - 1;};
-			
+
 			_location = _locations select _lIndex; //--- get offset of the spawn position
 			_direction = _directions select _lIndex; //--- get vehicle direction additive
-			
+
 			_vDir = (getdir _x) + _direction;
-			
+
 			_posagl = _x modelToWorld _location;
 			_posasl = AGLtoASL _posagl;
-			
+
 			_tv = _v createVehicle _posagl;
 			_hitpoints = (getAllHitPointsDamage _tv) select 0;
 			{
