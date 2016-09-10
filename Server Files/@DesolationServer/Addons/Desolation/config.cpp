@@ -85,6 +85,11 @@ class CfgFunctions
 			class requestSpawn {};
 			class setupLoadout {};
 		};
+		class Server_Loot {
+			file = "Desolation\Server\Loot";
+			isserver = 1;
+			class lootManager {};
+		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;
@@ -99,6 +104,18 @@ class CfgFunctions
 	};
 };
 class CfgItemSpawns {
+	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
+	//--- TODO: add building spawn definitions here
+
+	// Example
+	class MilitaryBuildings {
+		class BUILDING_TYPE {
+			positions[] = {
+				{0,0,0}
+			};
+		};
+	};
+
 
 };
 class CfgVehicleSpawns {
