@@ -89,6 +89,7 @@ class CfgFunctions
 			file = "Desolation\Server\Loot";
 			isserver = 1;
 			class lootManager {};
+			class spawnLoot {};
 		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
@@ -105,8 +106,1553 @@ class CfgFunctions
 };
 class CfgItemSpawns {
 	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
-	//--- TODO: add building spawn definitions here
+	lootRarity[] = {"Rare","SemiRare","Average","SemiCommon","Common"};
+	lootTypes[] = {	"Weapon","Handgun","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart"};
 
+	class Loot {
+		class Military {
+			class Weapon {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handgun {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmet {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetic {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItem {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronic {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+		class Civilian {
+			class Weapons {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handguns {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmets {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItems {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarParts {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+		class Industrial {
+			class Weapons {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handguns {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmets {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItems {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarParts {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+		class Commercial {
+			class Weapons {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handguns {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmets {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItems {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarParts {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+		class Medical {
+			class Weapons {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handguns {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmets {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItems {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarParts {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+		class Mechanical {
+			class Weapons {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handguns {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Food {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Drink {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Medical {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Junk {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Backpack {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Uniform {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Vest {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Helmets {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Cosmetics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class GeneralItems {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Construction {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Electronics {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class CarParts {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+		};
+	};
 	class Buildings {
 		class Land_Airport_01_controlTower_F {
 			table = "Military";
@@ -123,20 +1669,17 @@ class CfgItemSpawns {
 			positions[] = {{3.36981, 10.9082, -1.40149}, {0.277771, 4.55811, -1.40149}, {2.60266, -0.411133, -1.40149}, {5.20868, 3.13037, -1.40149}, {9.82227, 1.33496, -1.40149}, {10.3759, -2.8335, -1.40149}, {-3.33417, -9.50488, -1.40149}, {-19.4422, -10.1187, -1.40149}, {12.8807, -10.3208, -1.40149}, {22.9008, -5.79883, -1.40149}, {21.9941, 10.5249, -1.40149}};
 		};
 
-		class Land_Airport_01_terminal_F
-		{
+		class Land_Airport_01_terminal_F {
 			table = "Commercial";
 			positions[] = {{-14.3466, -0.588379, -4.02741}, {-11.2858, 2.41602, -4.02741}, {-8.2597, 4.43359, -3.98237}, {-5.414, 7.771, -3.98237}, {8.09961, 8.10889, -4.01762}, {6.22021, -7.17871, -4.00997}, {9.02838, -10.4839, -4.00997}, {5.16388, 5.54004, -4.02803}, {-1.08685, 1.23682, -4.10765}, {3.38068, -4.2085, -4.12297}};
 		};
 
-		class Land_Airport_01_hangar_F
-		{
+		class Land_Airport_01_hangar_F {
 			table = "Mechanical";
 			positions[] = {{12.7657, -8.04395, -2.68443}, {12.7607, 12.7231, -2.68448}, {-13.3329, 13.9307, -2.68448}, {-12.2171, -7.75732, -2.68444}, {0.403809, 13.1753, -2.68448}, {13.1948, -2.32715, -2.68444}};
 		};
 
-		class Land_House_Big_04_F
-		{
+		class Land_House_Big_04_F {
 			table = "Civilian";
 			positions[] = {{3.31604, 6.40625, -2.94933}, {-8.47241, 6.26709, -2.95065}, {-8.08984, -6.6377, -2.94858}, {1.90912, -6.72803, -2.94858}, {-8.40582, -6.66602, 0.276856}, {11.6814, -7.04492, 0.276991}, {-0.609863, -7.23633, 0.27781}, {-8.26996, 6.34521, 0.303274}, {4.09497, 6.37451, 0.302769}, {3.77234, 1.79395, 0.301416}, {-5.09198, 4.31494, 0.301416}, {-4.98438, 1.64209, 0.301415}, {-5.69537, -4.48975, -2.94858}, {3.39117, -3.10498, -2.94858}};
 		};
@@ -243,8 +1786,7 @@ class CfgItemSpawns {
 			positions[] = {{12.5829, -4.72314, -1.3499}, {5.64906, -4.41797, -1.3499}, {-2.35116, -4.51416, -1.34991}, {-13.0124, -4.5957, -1.3499}, {-13.5541, 3.14209, -1.25486}, {-13.1472, -1.72852, -1.25354}, {-7.8992, -1.9585, -1.24099}, {-2.83229, -1.9165, -1.24139}, {-0.00878716, 3.48877, -1.25486}, {5.56185, -1.90625, -1.24072}, {13.2059, 3.23486, -1.24905}, {13.2425, -1.62842, -1.24132}, {0.097558, -1.6709, -1.24214}};
 		};
 
-		class Land_House_Big_03_F
-		{
+		class Land_House_Big_03_F {
 			table = "Civilian";
 			positions[] = {{2.81361, -1.31836, -3.17496}, {5.83369, -4.93799, -3.17496}, {9.58751, -1.87451, -3.17496}, {10.1001, 5.53369, -3.20496}, {3.31785, 5.73145, -3.20496}, {10.4125, 0.702148, -3.17496}, {1.97136, 3.28271, -3.17496}, {-11.5872, -4.88965, -0.111648}, {-12.0157, 4.62109, -0.111648}, {-7.68954, -5.24902, -0.111648}, {2.43372, -5.17139, -0.111647}, {9.50365, -4.35547, -0.111646}, {9.58155, 5.29199, -0.111646}, {2.44902, 5.5708, -0.111649}, {3.10835, -2.11768, -0.0905371}, {7.9266, -1.31445, -0.090538}, {7.36005, 3.07031, -0.090538}, {2.70773, 2.98096, -0.090538}};
 		};
@@ -698,7 +2240,6 @@ class CfgItemSpawns {
 			table = "Mechanical";
 			positions[] = {{-0.0791626, 0.706543, -0.721425}};
 		};
-		
 	};
 };
 class CfgVehicleSpawns {
