@@ -1,0 +1,58 @@
+player:Actor[p] "Player"
+client:Process[c] "Arma 3"
+server:Process[s] "Server"
+dll:Process[l] "Connector"
+database:Process[d] "Database"
+
+player:client.connect!
+client:server.connect
+server:prepare code and data
+client:return code
+
+client:server.player login
+server:dll.player_login
+dll:database.select player data
+[c:if player does not exist]
+dll:database.insert player data
+--[else]
+dll:database.update player data
+[/c]
+server:execute some checks
+
+[c:if new to server]
+client:server.get linkable chars 
+server:dll.get linkable chars 
+dll:database.select death_persistent_variables
+client:player.show available chars / create new
+[c:if selected data]
+client:server.link_data
+server:dll.link_data
+dll:database.insert player_on_world_has_death_persistent_variables
+[/c]
+[/c]
+
+client:server.spawn character
+server:dll.get_character
+dll:database.select character data
+[c:if no alive character]
+[c:if spawn point selection enabled]
+server:client.show spawn gui
+client:player.select spawn point
+[/c]
+server:generate spawn loadout
+server:generate position
+server:dll.create_character
+dll:database.select death_persistent_variables
+[c:if no death_persistent_variables]
+dll:database.insert death_persistent_variables
+dll:database.insert player_on_world_has_death_persistent_variables
+[/c]
+dll:database.select charactershareables
+[c:if no charactershareables]
+dll:database.insert charactershareables
+[/c]
+dll:database.insert character
+dll:database.insert player_on_world_has_character
+[/c]
+server:create character
+client:player.let the games begin
