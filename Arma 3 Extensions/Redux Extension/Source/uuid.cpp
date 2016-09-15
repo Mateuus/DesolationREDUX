@@ -13,18 +13,18 @@ std::string generateUUID() {
 	return uuidstring;
 }
 #else
-#include <Rpc.h>
-#pragma comment(lib, "Rpcrt4.lib")
+#include <rpc.h>
+#pragma comment(lib, "rpcrt4.lib")
 
 std::string generateUUID() {
 	UUID uuid;
 	UuidCreateSequential( &uuid );
 
-	WCHAR* wszUuid = NULL;
+	unsigned char* wszUuid = NULL;
 
-	UuidToStringW(&uuid, &wszUuid);
+	UuidToString(&uuid, &wszUuid);
 
-	std::string uuidstring = wszUuid;
+	std::string uuidstring = (const char*)wszUuid;
 
 	RpcStringFree(&wszUuid);
 	wszUuid = NULL;
