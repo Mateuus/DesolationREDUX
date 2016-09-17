@@ -91,6 +91,16 @@ class CfgFunctions
 			class lootManager {};
 			class spawnLoot {};
 		};
+		class Server_Audio {
+			file = "Desolation\Server\Loot";
+			isserver = 1;
+			class playOverRadio {};
+		};
+		class Server_Crashes {
+			file = "Desolation\Server\Loot";
+			isserver = 1;
+			class createC130Crash {};
+		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;
@@ -107,7 +117,7 @@ class CfgFunctions
 class CfgItemSpawns {
 	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
 	lootRarity[] = {"Rare","SemiRare","Average","SemiCommon","Common"};
-	lootTypes[] = {	"Weapon","Handgun","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart"};
+	lootTypes[] = {	"Weapon","Handgun","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart", "Attachment"};
 
 	class Loot {
 		class Military {
@@ -366,9 +376,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-		};
-		class Civilian {
-			class Weapons {
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -385,7 +393,26 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Handguns {
+		};
+		class Civilian {
+			class Weapon {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Handgun {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -521,7 +548,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Helmets {
+			class Helmet {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -538,7 +565,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Cosmetics {
+			class Cosmetic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -555,7 +582,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class GeneralItems {
+			class GeneralItem {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -589,7 +616,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Electronics {
+			class Electronic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -606,7 +633,24 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class CarParts {
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -625,7 +669,7 @@ class CfgItemSpawns {
 			};
 		};
 		class Industrial {
-			class Weapons {
+			class Weapon {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -642,7 +686,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Handguns {
+			class Handgun {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -778,7 +822,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Helmets {
+			class Helmet {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -795,7 +839,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Cosmetics {
+			class Cosmetic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -812,7 +856,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class GeneralItems {
+			class GeneralItem {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -846,7 +890,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Electronics {
+			class Electronic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -863,7 +907,24 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class CarParts {
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -882,7 +943,7 @@ class CfgItemSpawns {
 			};
 		};
 		class Commercial {
-			class Weapons {
+			class Weapon {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -899,7 +960,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Handguns {
+			class Handgun {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1035,7 +1096,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Helmets {
+			class Helmet {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1052,7 +1113,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Cosmetics {
+			class Cosmetic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1069,7 +1130,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class GeneralItems {
+			class GeneralItem {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1103,7 +1164,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Electronics {
+			class Electronic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1120,7 +1181,24 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class CarParts {
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1139,7 +1217,7 @@ class CfgItemSpawns {
 			};
 		};
 		class Medical {
-			class Weapons {
+			class Weapon {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1156,7 +1234,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Handguns {
+			class Handgun {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1292,7 +1370,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Helmets {
+			class Helmet {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1309,7 +1387,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Cosmetics {
+			class Cosmetic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1326,7 +1404,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class GeneralItems {
+			class GeneralItem {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1360,7 +1438,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Electronics {
+			class Electronic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1377,7 +1455,24 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class CarParts {
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1396,7 +1491,7 @@ class CfgItemSpawns {
 			};
 		};
 		class Mechanical {
-			class Weapons {
+			class Weapon {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1413,7 +1508,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Handguns {
+			class Handgun {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1549,7 +1644,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Helmets {
+			class Helmet {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1566,7 +1661,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Cosmetics {
+			class Cosmetic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1583,7 +1678,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class GeneralItems {
+			class GeneralItem {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1617,7 +1712,7 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class Electronics {
+			class Electronic {
 				rare[] = {
 					{"ItemClass",1}
 				};
@@ -1634,7 +1729,24 @@ class CfgItemSpawns {
 					{"ItemClass",1}
 				};
 			};
-			class CarParts {
+			class CarPart {
+				rare[] = {
+					{"ItemClass",1}
+				};
+				semirare[] = {
+					{"ItemClass",1}
+				};
+				average[] = {
+					{"ItemClass",1}
+				};
+				semicommon[] = {
+					{"ItemClass",1}
+				};
+				common[] = {
+					{"ItemClass",1}
+				};
+			};
+			class Attachment {
 				rare[] = {
 					{"ItemClass",1}
 				};

@@ -58,30 +58,40 @@ while{true} do {
 		//--- TODO: check if they've spawned in
 		if(alive _x) then {
 			_nearest_building = nearestObject [_x,"House"];
+
 			if(!isNull _nearest_building) then {
-				_nearest_building_type = toLower(typeof _nearest_building);
 
-				if(_nearest_building_type in _all_buildings) then {
-					_hasVar = _building getVariable ["SpawnedLoot",false];
-					_savedLoot = _building getVariable ["SavedLoot",[]];
-					_spawnTime = _building getVariable ["SpawnedTime",0];
+				_last_nearest = _x getVariable ["LastNearestBuilding",objNull];
+				if(_last_nearest != _nearest_building) then {
+					if(!isNull _last_nearest) then {
+						//--- despawn loot? (this may bug if multiple people are near a building so we may need a global check like simmanager)
+					};
+					_x setVariable ["LastNearestBuilding",_nearest_building];
 
-					_doFreshSpawn = false;
+					_nearest_building_type = toLower(typeof _nearest_building);
 
-					if !(_hasVar) then {
-						_doFreshSpawn = true;
-					} else {
-						if(_DoRespawn) then {
-							if ((diag_tickTime - _spawnTime) >= _RespawnTimeS) then {
-								_doFreshSpawn = true;
+					if(_nearest_building_type in _all_buildings) then {
+						_hasVar = _building getVariable ["SpawnedLoot",false];
+						_savedLoot = _building getVariable ["SavedLoot",[]];
+						_spawnTime = _building getVariable ["SpawnedTime",0];
+
+						_doFreshSpawn = false;
+
+						if !(_hasVar) then {
+							_doFreshSpawn = true;
+						} else {
+							if(_DoRespawn) then {
+								if ((diag_tickTime - _spawnTime) >= _RespawnTimeS) then {
+									_doFreshSpawn = true;
+								};
 							};
 						};
-					};
 
-					if(_doFreshSpawn) then {
-						[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
-					} else {
-						[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,_savedLoot remoteExecCall ["DS_fnc_spawnLoot",2];
+						if(_doFreshSpawn) then {
+							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
+						} else {
+							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,_savedLoot remoteExecCall ["DS_fnc_spawnLoot",2];
+						};
 					};
 				};
 			};
