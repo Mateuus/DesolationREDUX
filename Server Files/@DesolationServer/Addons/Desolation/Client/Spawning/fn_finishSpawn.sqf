@@ -22,3 +22,8 @@ selectPlayer _unit;
 call DS_fnc_initBleedingSystem;
 call DS_fnc_registerPlayer;
 call DS_fnc_initEventHandlers;
+
+//--- init removable plugins
+if(!isNil "RSM_fnc_initRealism") then {
+	[player] call RSM_fnc_initRealism;
+};
