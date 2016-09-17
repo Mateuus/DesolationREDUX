@@ -90,7 +90,7 @@ while{true} do {
 						if(_doFreshSpawn) then {
 							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
 						} else {
-							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,_savedLoot remoteExecCall ["DS_fnc_spawnLoot",2];
+							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
 						};
 					};
 				};

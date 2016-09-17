@@ -127,8 +127,7 @@ if(_savedLoot isEqualTo []) then {
 				} forEach _tChance;
 
 				//--- TODO: rewrite this LOL
-
-				//cfg weapons
+				
 				_class = _item;
 				if(isClass (configFile >> "CfgWeapons" >> _item)) then {
 					if((toLower(_class) find "item" == 0) || (toLower(_class) find "h_" == 0) || (toLower(_class) find "u_" == 0) || (toLower(_class) find "v_" == 0) || (toLower(_class) find "minedetector" == 0) || (toLower(_class) find "binocular" == 0) || (toLower(_class) find "rangefinder" == 0) || (toLower(_class) find "NVGoggles" == 0) || (toLower(_class) find "laserdesignator" == 0) || (toLower(_class) find "firstaidkit" == 0) || (toLower(_class) find "medkit" == 0) || (toLower(_class) find "toolkit" == 0) || (toLower(_class) find "muzzle_" == 0) || (toLower(_class) find "optic_" == 0) || (toLower(_class) find "acc_" == 0) || (toLower(_class) find "bipod_" == 0)) then {

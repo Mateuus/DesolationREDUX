@@ -26,7 +26,7 @@ class CfgFunctions
 			class showRegionNotification {};
 		};
 		class Client_Events {
-			file = "Desolation\Client\Functions";
+			file = "Desolation\Client\Events";
 			isclient = 1;
 			class initEventHandlers {};
 			class registerPlayer {};
@@ -92,12 +92,12 @@ class CfgFunctions
 			class spawnLoot {};
 		};
 		class Server_Audio {
-			file = "Desolation\Server\Loot";
+			file = "Desolation\Server\Audio";
 			isserver = 1;
 			class playOverRadio {};
 		};
 		class Server_Crashes {
-			file = "Desolation\Server\Loot";
+			file = "Desolation\Server\Crashes";
 			isserver = 1;
 			class createC130Crash {};
 		};
@@ -123,1644 +123,1644 @@ class CfgItemSpawns {
 		class Military {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
 		class Civilian {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
 		class Industrial {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
 		class Commercial {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
 		class Medical {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
 		class Mechanical {
 			class Weapon {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Food {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Drink {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class GeneralItem {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Construction {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class CarPart {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				average[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				semicommon[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 				common[] = {
-					{"ItemClass",1}
+					{"Desolation_hgun_P07",1}
 				};
 			};
 		};
@@ -1786,11 +1786,11 @@ class CfgItemSpawns {
 			positions[] = {{-14.3466, -0.588379, -4.02741}, {-11.2858, 2.41602, -4.02741}, {-8.2597, 4.43359, -3.98237}, {-5.414, 7.771, -3.98237}, {8.09961, 8.10889, -4.01762}, {6.22021, -7.17871, -4.00997}, {9.02838, -10.4839, -4.00997}, {5.16388, 5.54004, -4.02803}, {-1.08685, 1.23682, -4.10765}, {3.38068, -4.2085, -4.12297}};
 		};
 
-		class Land_Airport_01_hangar_F {
+	/*	class Land_Airport_01_hangar_F {
 			table = "Mechanical";
 			positions[] = {{12.7657, -8.04395, -2.68443}, {12.7607, 12.7231, -2.68448}, {-13.3329, 13.9307, -2.68448}, {-12.2171, -7.75732, -2.68444}, {0.403809, 13.1753, -2.68448}, {13.1948, -2.32715, -2.68444}};
 		};
-
+	*/
 		class Land_House_Big_04_F {
 			table = "Civilian";
 			positions[] = {{3.31604, 6.40625, -2.94933}, {-8.47241, 6.26709, -2.95065}, {-8.08984, -6.6377, -2.94858}, {1.90912, -6.72803, -2.94858}, {-8.40582, -6.66602, 0.276856}, {11.6814, -7.04492, 0.276991}, {-0.609863, -7.23633, 0.27781}, {-8.26996, 6.34521, 0.303274}, {4.09497, 6.37451, 0.302769}, {3.77234, 1.79395, 0.301416}, {-5.09198, 4.31494, 0.301416}, {-4.98438, 1.64209, 0.301415}, {-5.69537, -4.48975, -2.94858}, {3.39117, -3.10498, -2.94858}};
