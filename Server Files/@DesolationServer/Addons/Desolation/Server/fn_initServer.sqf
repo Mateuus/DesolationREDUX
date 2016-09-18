@@ -26,7 +26,7 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 // start Vehicle Spawns
 [] spawn {
 	_vehCount = 0; //--- get this from the database spawning system
-	diag_log ("Spawned " + str(_vehCount) + "vehicles from the database");
+	diag_log ("Spawned " + str(_vehCount) + " vehicles from the database");
 	_randomSpawnCount = (call compile (["NumVehicles","DS"] call BASE_fnc_getCfgValue)) - _vehCount;
 	[_randomSpawnCount] call DS_fnc_spawnVehicles; //--- spawn 1000 vehicles (TODO: take into account database vehicles & the cfg entry for vehicle spawn count)
 };

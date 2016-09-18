@@ -31,10 +31,10 @@ _RespawnTimeS = (["RespawnTime"] call _getCFGValue)*60;
 _Config_Options = [];
 {
 	diag_log ("<Loot Manager>: Config options for " + _x + " buildings ->");
-	_lChance = _x + "_lootChance";
-	_sChance = _x + "_spawnChance";
-	_tChance = _x + "_typeChance";
-	_gChance = _x + "_gearChance";
+	_lChance = call compile ([_x + "_lootChance","DS"] call BASE_fnc_getCfgValue);
+	_sChance = call compile ([_x + "_spawnChance","DS"] call BASE_fnc_getCfgValue);
+	_tChance = call compile ([_x + "_typeChance","DS"] call BASE_fnc_getCfgValue);
+	_gChance = call compile ([_x + "_gearChance","DS"] call BASE_fnc_getCfgValue);
 	_data = [_lChance,_sChance,_tChance,_gChance];
 	diag_log str(_data);
 	_Config_Options pushBack _data;
@@ -71,9 +71,9 @@ while{true} do {
 					_nearest_building_type = toLower(typeof _nearest_building);
 
 					if(_nearest_building_type in _all_buildings) then {
-						_hasVar = _building getVariable ["SpawnedLoot",false];
-						_savedLoot = _building getVariable ["SavedLoot",[]];
-						_spawnTime = _building getVariable ["SpawnedTime",0];
+						_hasVar = _nearest_building getVariable ["SpawnedLoot",false];
+						_savedLoot = _nearest_building getVariable ["SavedLoot",[]];
+						_spawnTime = _nearest_building getVariable ["SpawnedTime",0];
 
 						_doFreshSpawn = false;
 

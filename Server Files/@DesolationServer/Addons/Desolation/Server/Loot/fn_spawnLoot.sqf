@@ -8,11 +8,12 @@
 params["_building","_MinPiles","_buildingTypes","_Config_Options","_savedLoot"];
 
 _building_type = typeof(_building);
+
 _positions = getArray(configFile >> "CfgItemSpawns" >> "Buildings" >> _building_type >> "positions");
 _building_table = getText(configFile >> "CfgItemSpawns" >> "Buildings" >> _building_type >> "table");
 
 _loot_rarity = getArray(configFile >> "CfgItemSpawns" >> "lootRarity");
-_loot_types = getArray(confgFile >> "CfgItemSpawns" >> "lootTypes");
+_loot_types = getArray(configFile >> "CfgItemSpawns" >> "lootTypes");
 
 _Config = _Config_Options select (_buildingTypes find _building_table);
 
@@ -36,7 +37,7 @@ if(_savedLoot isEqualTo []) then {
 			_spawn_positions pushBack (_positions deleteAt floor(random(count(_positions))));
 		};
 		while{count(_positions) > 0} do {
-			_pos = _positions deleteAt (_positions deleteAt floor(random(count(_positions))));
+			_pos = _positions deleteAt floor(random(count(_positions)));
 			if(random(100) < _sChance) then {
 				_spawn_positions pushBack _pos;
 			};
@@ -60,7 +61,7 @@ if(_savedLoot isEqualTo []) then {
 					_value = 0;
 					{
 						_value = _value + _x;
-						if(_roll < _value) then {
+						if(_roll <= _value) exitWith {
 							_type = _loot_types select _forEachIndex;
 						};
 					} forEach _gChance;
@@ -98,8 +99,6 @@ if(_savedLoot isEqualTo []) then {
 						_spawnedCount pushBack 1;
 					};
 				};
-
-
 				_rarity = "";
 				_max = 0;
 				{_max = _max + _x;} forEach _tChance;
@@ -107,7 +106,7 @@ if(_savedLoot isEqualTo []) then {
 				_value = 0;
 				{
 					_value = _value + _x;
-					if(_roll < _value) then {
+					if(_roll <= _value) exitWith {
 						_rarity = _loot_rarity select _forEachIndex;
 					};
 				} forEach _tChance;
@@ -117,17 +116,18 @@ if(_savedLoot isEqualTo []) then {
 				_item = "";
 				_max = 0;
 				{_max = _max + (_x select 1);} forEach _itemArray;
+
 				_roll = random(_max);
 				_value = 0;
 				{
 					_value = _value + (_x select 1);
-					if(_roll < _value) then {
-						_item = (_itemArray select _forEachIndex) select 0;
+					if(_roll <= _value) exitWith {
+						_item = _x select 0;
 					};
-				} forEach _tChance;
+				} forEach _itemArray;
 
 				//--- TODO: rewrite this LOL
-				
+
 				_class = _item;
 				if(isClass (configFile >> "CfgWeapons" >> _item)) then {
 					if((toLower(_class) find "item" == 0) || (toLower(_class) find "h_" == 0) || (toLower(_class) find "u_" == 0) || (toLower(_class) find "v_" == 0) || (toLower(_class) find "minedetector" == 0) || (toLower(_class) find "binocular" == 0) || (toLower(_class) find "rangefinder" == 0) || (toLower(_class) find "NVGoggles" == 0) || (toLower(_class) find "laserdesignator" == 0) || (toLower(_class) find "firstaidkit" == 0) || (toLower(_class) find "medkit" == 0) || (toLower(_class) find "toolkit" == 0) || (toLower(_class) find "muzzle_" == 0) || (toLower(_class) find "optic_" == 0) || (toLower(_class) find "acc_" == 0) || (toLower(_class) find "bipod_" == 0)) then {
