@@ -110,7 +110,7 @@ while{true} do {
 		if(_doFreshSpawn) then {
 			_x setVariable ["SpawnedLoot",true];
 			_x setVariable ["SpawnedTime",diag_tickTime];
-			
+			_x setVariable ["SavedLoot",[]];
 			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
 		} else {
 			[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
