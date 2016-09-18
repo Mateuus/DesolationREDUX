@@ -54,47 +54,72 @@ diag_log "<Loot Manager>: # of lootable buildings ->";
 diag_log str(count(_all_buildings));
 
 while{true} do {
+
+	_buildingsToSpawn = [];
+	_buildingsToDespawn = [];
+	_buildingsNotToDespawn = [];
+
 	{
 		//--- TODO: check if they've spawned in
 		if(alive _x) then {
 			_nearest_building = nearestObject [_x,"House"];
 
-			if(!isNull _nearest_building) then {
+			if(!isNull _nearest_building) then { /// near a building
+
+				_nearest_building_type = toLower(typeof _nearest_building);
+
+				_buildingsNotToDespawn pushBack _nearest_building; /// mark this building as not despawnable
 
 				_last_nearest = _x getVariable ["LastNearestBuilding",objNull];
-				if(_last_nearest != _nearest_building) then {
+				if(_last_nearest != _nearest_building) then { /// nearest building has changed
+
 					if(!isNull _last_nearest) then {
-						//--- despawn loot? (this may bug if multiple people are near a building so we may need a global check like simmanager)
+						_buildingsToDespawn pushback _last_nearest; /// if we were at a previous building, mark it as despawnable
 					};
-					_x setVariable ["LastNearestBuilding",_nearest_building];
 
-					_nearest_building_type = toLower(typeof _nearest_building);
+					_x setVariable ["LastNearestBuilding",_nearest_building]; /// update our previous building to this new one
 
-					if(_nearest_building_type in _all_buildings) then {
-						_hasVar = _nearest_building getVariable ["SpawnedLoot",false];
-						_savedLoot = _nearest_building getVariable ["SavedLoot",[]];
-						_spawnTime = _nearest_building getVariable ["SpawnedTime",0];
+					if(_nearest_building_type in _all_buildings) then { /// if this building can contain loot
 
-						_doFreshSpawn = false;
+						_buildingsToSpawn pushBack _nearest_building; /// mark this building as "Spawn loot here"
 
-						if !(_hasVar) then {
-							_doFreshSpawn = true;
-						} else {
-							if(_DoRespawn) then {
-								if ((diag_tickTime - _spawnTime) >= _RespawnTimeS) then {
-									_doFreshSpawn = true;
-								};
-							};
-						};
-
-						if(_doFreshSpawn) then {
-							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
-						} else {
-							[_nearest_building,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
-						};
 					};
 				};
 			};
 		};
 	} forEach allPlayers;
+
+	{
+
+		_hasVar = _x getVariable ["SpawnedLoot",false];
+		_savedLoot = _x getVariable ["SavedLoot",[]];
+		_spawnTime = _x getVariable ["SpawnedTime",0];
+
+		_doFreshSpawn = false;
+
+		if !(_hasVar) then {
+			_doFreshSpawn = true;
+		} else {
+			if(_DoRespawn) then {
+				if ((diag_tickTime - _spawnTime) >= _RespawnTimeS) then {
+					_doFreshSpawn = true;
+				};
+			};
+		};
+
+		if(_doFreshSpawn) then {
+			_x setVariable ["SpawnedLoot",true];
+			_x setVariable ["SpawnedTime",diag_tickTime];
+			
+			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
+		} else {
+			[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+		};
+	} forEach _buildingsToSpawn;
+	{
+		if !(_x in _buildingsNotToDespawn) then {
+				[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //temp: we need to get DS_fnc_despawnLoot into a non-schedueled environment
+		};
+	} forEach _buildingsToDespawn;
+
 };
