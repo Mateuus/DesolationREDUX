@@ -171,7 +171,23 @@ if(_savedLoot isEqualTo []) then {
 			_container addItemCargoGlobal [_x,1];
 		} forEach _items;
 		{
-			_container addWeaponCargoGlobal [_x, 1];
+			_class = _x select 0;
+			_muzzle = _x select 1;
+			_side = _x select 2;
+			_optic = _x select 3;
+			_magazineInfo = _x select 4;
+			_launch = "";
+			_bipod = _x select 5;
+			if(typename(_bipod) == typename([])) then {
+					_bipod = _x select 6;
+					_launch = _x select 5;
+			};
+
+			_container addWeaponCargoGlobal [_class, 1];
+			_container addItemCargoGlobal [_side, 1];
+			_container addItemCargoGlobal [_bipod,1];
+			_container addMagazineAmmoCargo [_magazineInfo select 0,_magazineInfo select 1];
+			_container addMagazineAmmoCargo [_launch select 0,_launch select 1];
 		} forEach _weapons;
 		{
 			_container addBackpackCargoGlobal [_x,1];
@@ -194,13 +210,15 @@ if(_savedLoot isEqualTo []) then {
 		} forEach _containerdata;
 	};
 
+	_bLootPiles = [];
 	{
 		_pos = _x select 0;
 		_loot = _x select 1;
 
 		_object = "groundWeaponHolder" createVehicle _pos;
 		_object setposATL _pos;
-
+		_bLootPiles pushBack _object;
 		[_object,_loot] call _setLoot;
 	} forEach _savedLoot;
+	_building setVariable ["LOOT_PILES",_bLootPiles];
 };

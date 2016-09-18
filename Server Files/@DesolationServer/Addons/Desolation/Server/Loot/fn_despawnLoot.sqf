@@ -29,7 +29,7 @@ _getLoot = {
 
 	_data pushback (magazinesAmmoCargo _container);
 	_data pushBack (itemCargo _container);
-	_data pushback (weaponCargo _container);
+	_data pushback (weaponsItemsCargo _container);
 	_data pushBack (backpackCargo _container);
 
 	_data;
@@ -43,6 +43,7 @@ _savedLoot = [];
 	//--- TEMPORARY
 	_data = [getposatl _x,[_x] call _getLoot];
 	_savedLoot pushBack _data;
+	deleteVehicle _x;
 } forEach _bLootPiles;
 
 _building setVariable ["SavedLoot",_savedLoot];

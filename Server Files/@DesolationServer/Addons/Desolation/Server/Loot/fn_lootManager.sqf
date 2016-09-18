@@ -64,6 +64,12 @@ while{true} do {
 		if(alive _x) then {
 			_nearest_building = nearestObject [_x,"House"];
 
+			//--- near building check (fixes bug with lamps being called "houses" rofl)
+			if !(typeof(_nearest_building) in _all_buildings) then {
+				_nearest_building = nearestBuilding _x;
+			};
+
+
 			if(!isNull _nearest_building) then { /// near a building
 
 				_nearest_building_type = toLower(typeof _nearest_building);
@@ -74,7 +80,9 @@ while{true} do {
 				if(_last_nearest != _nearest_building) then { /// nearest building has changed
 
 					if(!isNull _last_nearest) then {
-						_buildingsToDespawn pushback _last_nearest; /// if we were at a previous building, mark it as despawnable
+						if(_last_nearest getVariable ["SpawnedLoot",false]) then {
+							_buildingsToDespawn pushback _last_nearest; /// if we were at a previous building, mark it as despawnable
+						};
 					};
 
 					_x setVariable ["LastNearestBuilding",_nearest_building]; /// update our previous building to this new one
@@ -111,14 +119,17 @@ while{true} do {
 			_x setVariable ["SpawnedLoot",true];
 			_x setVariable ["SpawnedTime",diag_tickTime];
 			_x setVariable ["SavedLoot",[]];
+			diag_log ("Spawning loot @ " + typeof(_x));
 			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
 		} else {
+			diag_log ("Respawning loot @ " + typeof(_x));
 			[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
 		};
 	} forEach _buildingsToSpawn;
 	{
 		if !(_x in _buildingsNotToDespawn) then {
-				[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //temp: we need to get DS_fnc_despawnLoot into a non-schedueled environment
+			diag_log ("Despawning loot @ " + typeof(_x)); //--- running on non-spawned buildings?
+			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //--- despawns once?
 		};
 	} forEach _buildingsToDespawn;
 

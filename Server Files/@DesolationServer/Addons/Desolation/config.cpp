@@ -90,6 +90,7 @@ class CfgFunctions
 			isserver = 1;
 			class lootManager {};
 			class spawnLoot {};
+			class despawnLoot {};
 		};
 		class Server_Audio {
 			file = "Desolation\Server\Audio";
