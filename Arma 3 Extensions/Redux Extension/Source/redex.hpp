@@ -1,9 +1,8 @@
 #ifndef SOURCE_REDEX_HPP_
 #define SOURCE_REDEX_HPP_
 
-#include <iostream>
-#include <sstream>
 #include <string>
+#include "dbcon.hpp"
 
 class redex
 {
@@ -13,6 +12,8 @@ class redex
 	std::string processCallExtension(const char *function);
 
   private:
+	std::string returnStringGenerator();
+	dbcon dbconnection;
 
 };
 

@@ -1,6 +1,7 @@
+#include <iostream>
+#include <sstream>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include <boost/foreach.hpp>
 #include <cassert>
 #include <exception>
 #include <stdexcept>
@@ -23,18 +24,11 @@ std::string redex::processCallExtension(const char *function) {
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(functionstream, pt);
 
+	std::string dllfunction = pt.get<std::string>("dllfunction");
 	boost::property_tree::ptree &dllarguments = pt.get_child("dllarguments");
 
-	std::string dllfunction = pt.get<std::string>("dllfunction");
-
 	if (dllfunction.compare("dbcall") == 0) {
-		std::string dbfunction = dllarguments.get<std::string>("dbfunction");
-
-		if (dbfunction.compare("uuid") == 0) {
-			returnstring = orderedUUID();
-		} else {
-			throw std::runtime_error("Don't know dbfunction: " + dbfunction);
-		}
+		returnstring = dbconnection.processDBCall(dllarguments);
 	} else {
 		throw std::runtime_error("Don't know dllfunction: " + dllfunction);
 	}
