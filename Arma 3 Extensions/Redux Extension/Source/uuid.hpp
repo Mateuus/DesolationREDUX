@@ -1,9 +1,9 @@
-#ifndef UUID_H
-#define UUID_H
-#include <sstream>
+#ifndef SOURCE_UUID_HPP_
+#define SOURCE_UUID_HPP_
+
 #include <string>
 
 std::string generateUUID();
 std::string orderedUUID();
 
-#endif
+#endif /* SOURCE_UUID_HPP_ */

@@ -1,3 +1,4 @@
+#include <sstream>
 #include "uuid.hpp"
 
 #ifdef __linux__
