@@ -12,6 +12,7 @@
 #include <string>
 #include <string.h>            // strcmp, strncpy
 
+#include "constants.hpp"
 #include "redex.hpp"
 redex extension;
 

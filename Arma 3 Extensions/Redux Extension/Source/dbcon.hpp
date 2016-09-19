@@ -5,9 +5,7 @@
 #include <map>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/function.hpp>
-#include <boost/bind.hpp>
-
-#include <boost/mem_fn.hpp>
+#include "constants.hpp"
 
 class dbcon {
 public:

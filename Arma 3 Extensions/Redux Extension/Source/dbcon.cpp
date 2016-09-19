@@ -1,3 +1,4 @@
+#include <boost/bind.hpp>
 #include <boost/foreach.hpp>
 #include <cassert>
 #include <exception>
@@ -17,7 +18,7 @@ dbcon::~dbcon() {
 }
 
 std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
-	std::string returnstring;
+	std::string returnString;
 
 	std::string dbfunction = dbcall.get<std::string>("dbfunction");
 	boost::property_tree::ptree &dbarguments = dbcall.get_child("dbarguments");
@@ -25,14 +26,14 @@ std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 	DB_FUNCTIONS::iterator it = dbfunctions.find(dbfunction);
 	if (it != dbfunctions.end()) {
 		const DB_FUNCTION &func(it->second);
-		returnstring = func(dbarguments);
+		returnString = func(dbarguments);
 	} else {
 		throw std::runtime_error("Don't know dbfunction: " + dbfunction);
 	}
 
-	return returnstring;
+	return returnString;
 }
 
 std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments) {
-	return orderedUUID();
+	return "[\"" + PROTOCOL_MSG_STRING + "\", \"" + orderedUUID() + "\"]";
 }
