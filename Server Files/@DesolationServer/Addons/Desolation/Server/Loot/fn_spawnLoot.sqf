@@ -137,6 +137,15 @@ if(_savedLoot isEqualTo []) then {
 					if((toLower(_class) find "item" == 0) || (toLower(_class) find "h_" == 0) || (toLower(_class) find "u_" == 0) || (toLower(_class) find "v_" == 0) || (toLower(_class) find "minedetector" == 0) || (toLower(_class) find "binocular" == 0) || (toLower(_class) find "rangefinder" == 0) || (toLower(_class) find "NVGoggles" == 0) || (toLower(_class) find "laserdesignator" == 0) || (toLower(_class) find "firstaidkit" == 0) || (toLower(_class) find "medkit" == 0) || (toLower(_class) find "toolkit" == 0) || (toLower(_class) find "muzzle_" == 0) || (toLower(_class) find "optic_" == 0) || (toLower(_class) find "acc_" == 0) || (toLower(_class) find "bipod_" == 0)) then {
 						_object addItemCargoGlobal [_class,1];
 					} else {
+						if(_type in ["handgun","weapon"]) then {
+							_chance = call compile (["ChanceToSpawnWithMag","DS"] call BASE_fnc_getCfgValue);
+							if(random(100) < _chance) then {
+								_mags = getArray(configFile >> "CfgWeapons" >> _item >> "Magazines");
+								_mag = _mags select floor(random(count(_mags)));
+								_object addMagazineCargoGlobal [_mag,1];
+								_i = _i + 1;
+							};
+						};
 						_object addWeaponCargoGlobal [_class,1];
 					};
 				};
