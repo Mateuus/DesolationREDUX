@@ -176,7 +176,7 @@ if(_savedLoot isEqualTo []) then {
 			_side = _x select 2;
 			_optic = _x select 3;
 			_magazineInfo = _x select 4;
-			_launch = "";
+			_launch = [];
 			_bipod = _x select 5;
 			if(typename(_bipod) == typename([])) then {
 					_bipod = _x select 6;
@@ -186,8 +186,13 @@ if(_savedLoot isEqualTo []) then {
 			_container addWeaponCargoGlobal [_class, 1];
 			_container addItemCargoGlobal [_side, 1];
 			_container addItemCargoGlobal [_bipod,1];
-			_container addMagazineAmmoCargo [_magazineInfo select 0,_magazineInfo select 1];
-			_container addMagazineAmmoCargo [_launch select 0,_launch select 1];
+			if(count(_magazineInfo) > 0) then {
+				_container addMagazineAmmoCargo [_magazineInfo select 0,_magazineInfo select 1];
+			};
+			if(count(_launch) > 0) then {
+				_container addMagazineAmmoCargo [_launch select 0,_launch select 1];
+			};
+
 		} forEach _weapons;
 		{
 			_container addBackpackCargoGlobal [_x,1];
