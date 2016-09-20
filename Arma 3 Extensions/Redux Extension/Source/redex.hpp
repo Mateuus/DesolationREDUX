@@ -3,6 +3,8 @@
 
 #include <string>
 #include <map>
+#include <queue>
+#include <mutex>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/function.hpp>
 #include "constants.hpp"
@@ -21,10 +23,14 @@ private:
 	DLL_FUNCTIONS dllfunctions;
 	dbcon dbconnection;
 
+	std::mutex msgmutex;
+	typedef std::map<std::string, std::queue<std::string>> MESSAGE_MAP;
+	MESSAGE_MAP msgmap;
+
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
 
-	std::string multipartMSGGenerator(std::string returnString);
+	std::string multipartMSGGenerator(std::string returnString, int outputSize);
 };
 
 #endif /* SOURCE_REDEX_HPP_ */

@@ -11,6 +11,9 @@ dbcon::dbcon() {
 	dbfunctions.insert(
 			std::make_pair(std::string("getUUID"),
 					boost::bind(&dbcon::getUUID, this, _1)));
+	dbfunctions.insert(
+				std::make_pair(std::string("echo"),
+						boost::bind(&dbcon::echo, this, _1)));
 	return;
 }
 dbcon::~dbcon() {
@@ -36,4 +39,9 @@ std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 
 std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments) {
 	return "[\"" + PROTOCOL_MSG_STRING + "\", \"" + orderedUUID() + "\"]";
+}
+
+std::string dbcon::echo(boost::property_tree::ptree &dbarguments) {
+	std::string echostring = dbarguments.get<std::string>("echostring");
+	return "[\"" + PROTOCOL_MSG_STRING + "\", \"" + echostring + "\"]";
 }

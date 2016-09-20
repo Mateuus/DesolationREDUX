@@ -20,6 +20,7 @@ private:
 	DB_FUNCTIONS dbfunctions;
 
 	std::string getUUID(boost::property_tree::ptree &dbarguments);
+	std::string echo(boost::property_tree::ptree &dbarguments);
 
 };
 
