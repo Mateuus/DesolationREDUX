@@ -124,38 +124,84 @@ class CfgItemSpawns {
 		class Military {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -173,6 +219,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -192,121 +239,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -326,110 +795,194 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
 		class Civilian {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -447,6 +1000,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -466,121 +1020,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -600,110 +1576,194 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
 		class Industrial {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -721,6 +1781,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -740,121 +1801,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -874,110 +2357,194 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
 		class Commercial {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -995,6 +2562,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -1014,121 +2582,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -1148,110 +3138,194 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
 		class Medical {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -1269,6 +3343,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -1288,121 +3363,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -1422,110 +3919,194 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
 		class Mechanical {
 			class Weapon {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"srifle_EBR_F",1},
+					{"srifle_GM6_F",1},
+					{"srifle_LRR_F",1},
+					{"srifle_GM6_camo_F",1},
+					{"srifle_LRR_camo_F",1},
+					{"srifle_DMR_01_F",1},
+					{"srifle_DMR_02_F",1},
+					{"srifle_DMR_02_camo_F",1},
+					{"srifle_DMR_02_sniper_F",1},
+					{"srifle_DMR_03_F",1},
+					{"srifle_DMR_03_khaki_F",1},
+					{"srifle_DMR_03_tan_F",1},
+					{"srifle_DMR_03_multicam_F",1},
+					{"srifle_DMR_03_woodland_F",1},
+					{"srifle_DMR_04_F",1},
+					{"srifle_DMR_04_Tan_F",1},
+					{"srifle_DMR_05_blk_F",1},
+					{"srifle_DMR_05_hex_F",1},
+					{"srifle_DMR_05_tan_F",1},
+					{"srifle_DMR_06_camo_F",1},
+					{"srifle_DMR_06_olive_F",1},
+					{"srifle_DMR_06_camo_khs_F",1},
+					{"LMG_Mk200_F",1},
+					{"LMG_Zafir_F",1},
+					{"MMG_01_hex_F",1},
+					{"MMG_01_tan_F",1},
+					{"MMG_02_camo_F",1},
+					{"MMG_02_black_F",1},
+					{"MMG_02_sand_F",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_MXC_F",1},
+					{"arifle_MX_F",1},
+					{"arifle_MX_GL_F",1},
+					{"arifle_MX_SW_F",1},
+					{"arifle_MXM_F",1},
+					{"arifle_MXC_Black_F",1},
+					{"arifle_MX_Black_F",1},
+					{"arifle_MX_GL_Black_F",1},
+					{"arifle_MX_SW_Black_F",1},
+					{"arifle_MXM_Black_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"arifle_Katiba_F",1},
+					{"arifle_Katiba_C_F",1},
+					{"arifle_Katiba_GL_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_PDW2000_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"SMG_01_F",1},
+					{"SMG_02_F",1}
 				};
 			};
 			class Handgun {
 				rare[] = {
+					{"hgun_Pistol_heavy_01_F",1},
+					{"hgun_Pistol_heavy_02_F",1},
 					{"Desolation_hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_Rook",1},
+					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"Desolation_hgun_P07",1},
+					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_Pistol_Signal_F",1},
+					{"hgun_ACPC2_F",1}
 				};
 			};
+			//No food items yet?
 			class Food {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -1543,6 +4124,7 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//No drink items yet?
 			class Drink {
 				rare[] = {
 					{"Desolation_hgun_P07",1}
@@ -1562,121 +4144,543 @@ class CfgItemSpawns {
 			};
 			class Medical {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"FirstAidKit",1}
 				};
 			};
 			class Junk {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1},
+					{"ItemWatch",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"UGL_FlareCIR_F",1},
+					{"UGL_FlareGreen_F",1},
+					{"UGL_FlareRed_F",1},
+					{"UGL_FlareWhite_F",1},
+					{"UGL_FlareYellow_F",1}
 				};
 			};
 			class Backpack {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Carryall_oucamo",1},
+					{"B_Carryall_ocamo",1},
+					{"B_Carryall_khk",1},
+					{"B_Carryall_oli",1},
+					{"B_Carryall_cbr",1},
+					{"B_Carryall_mcamo",1},
+					//Special Need to Test (Some might spawn with gear in them)
+					{"I_Parachute_02_F",1},
+					{"B_Parachute_02_F",1},
+					{"B_AssaultPack_rgr_LAT",1},
+					{"B_AssaultPack_rgr_Medic",1},
+					{"B_AssaultPack_rgr_Repair",1},
+					{"B_AssaultPack_blk_DiverExp",1},
+					{"B_Kitbag_rgr_Exp",1},
+					{"B_FieldPack_blk_DiverExp",1},
+					{"B_FieldPack_ocamo_Medic",1},
+					{"B_FieldPack_cbr_LAT",1},
+					{"B_FieldPack_cbr_Repair",1},
+					{"B_Carryall_ocamo_Exp",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Kitbag_sgg",1},
+					{"B_Kitbag_cbr",1},
+					{"B_Kitbag_mcamo",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_Bergen_blk",1},
+					{"B_Bergen_rgr",1},
+					{"B_Bergen_sgg",1},
+					{"B_Bergen_mcamo",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_HuntingBackpack",1},
+					{"B_OutdoorPack_blk",1},
+					{"B_OutdoorPack_blu",1},
+					{"B_OutdoorPack_tan",1},
+					{"B_FieldPack_blk",1},
+					{"B_FieldPack_oucamo",1},
+					{"B_FieldPack_ocamo",1},
+					{"B_FieldPack_cbr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"B_AssaultPack_blk",1},
+					{"B_AssaultPack_dgtl",1},
+					{"B_AssaultPack_khk",1},
+					{"B_AssaultPack_sgg",1},
+					{"B_AssaultPack_cbr",1},
+					{"B_AssaultPack_mcamo",1}
 				};
 			};
 			class Uniform {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_B_CombatUniform_wdl",1},
+					{"U_B_CombatUniform_sgg",1},
+					{"U_B_CombatUniform_wdl_tshirt",1},
+					{"U_B_CombatUniform_sgg_tshirt",1},
+					{"U_O_SpecopsUniform_blk",1},
+					{"U_B_CombatUniform_wdl_vest",1},
+					{"U_B_CombatUniform_sgg_vest",1},
+					{"U_B_SpecopsUniform_sgg",1},
+					{"U_AttisBody",1},
+					{"U_AntigonaBody",1},
+					{"U_B_CombatUniform_mcam_worn",1},
+					{"U_B_CombatUniform_mcam_tshirt",1},
+					{"U_B_CombatUniform_mcam",1},
+					{"U_I_CombatUniform",1},
+					{"U_O_CombatUniform_ocamo",1},
+					{"U_O_CombatUniform_oucamo",1},
+					{"U_Competitor",1},
+					{"U_B_CTRG_1",1},
+					{"U_B_CTRG_3",1},
+					{"U_OG_leader",1},
+					{"U_BG_Guerilla1_1",1},
+					{"U_IG_Guerilla1_1",1},
+					{"U_OG_Guerilla1_1",1},
+					{"U_OG_Guerilla2_1",1},
+					{"U_IG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_1",1},
+					{"U_BG_Guerilla2_2",1},
+					{"U_IG_Guerilla2_2",1},
+					{"U_OG_Guerilla2_2",1},
+					{"U_BG_Guerilla2_3",1},
+					{"U_IG_Guerilla2_3",1},
+					{"U_OG_Guerilla2_3",1},
+					{"U_BG_Guerilla3_1",1},
+					{"U_IG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_1",1},
+					{"U_OG_Guerilla3_2",1},
+					{"U_IG_Guerilla3_2",1},
+					{"U_BG_Guerilla3_2",1},
+					{"U_IG_Guerrilla_6_1",1},
+					{"U_BG_Guerrilla_6_1",1},
+					{"U_OG_Guerrilla_6_1",1},
+					{"U_BG_leader",1},
+					{"U_B_FullGhillie_ard",1},
+					{"U_B_FullGhillie_lsh",1},
+					{"U_B_FullGhillie_sard",1},
+					{"U_B_GhillieSuit",1},
+					{"U_B_CombatUniform_mcam_vest",1},
+					{"U_B_Wetsuit",1},
+					{"U_I_Wetsuit",1},
+					{"U_O_Wetsuit",1},
+					{"U_I_G_resistanceLeader_F",1},
+					{"U_IG_leader",1},
+					{"U_I_OfficerUniform",1},
+					{"U_I_CombatUniform_shortsleeve",1},
+					{"U_I_HeliPilotCoveralls",1},
+					{"U_I_pilotCoveralls",1},
+					{"U_I_CombatUniform_tshirt",1},
+					{"U_O_SpecopsUniform_ocamo",1},
+					{"U_O_OfficerUniform_ocamo",1},
+					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_pilot_F",1},
+					{"U_B_survival_uniform",1},
+					{"U_B_CTRG_2",1},
+					{"U_Marshal",1},
+					{"U_NikosBody",1},
+					{"U_NikosAgedBody",1},
+					{"U_OrestesBody",1},
+					{"U_C_Scientist",1},
+					{"U_C_PriestBody",1},
+					{"U_KerryBody",1},
+					{"U_MillerBody",1},
+					{"U_Rangemaster",1},
+					{"U_B_HeliPilotCoveralls",1},
+					{"U_B_PilotCoveralls",1},
+					{"U_OI_Scientist",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Fisherman",1},
+					{"U_C_FishermanOveralls",1},
+					{"U_C_HunterBody_brn",1},
+					{"U_IG_Menelaos",1},
+					{"U_C_Novak",1},
+					{"C_scientist_F",1},
+					{"C_man_hunter_1_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"U_C_Commoner1_2",1},
+					{"U_C_Commoner1_3",1},
+					{"U_C_Commoner2_1",1},
+					{"U_C_Commoner2_2",1},
+					{"U_C_Commoner2_3",1},
+					{"C_man_p_shorts_1_F",1},
+					{"C_man_p_shorts_1_F_afro",1},
+					{"C_man_p_shorts_1_F_euro",1},
+					{"C_man_p_shorts_1_F_asia",1},
+					{"C_man_shorts_1_F",1},
+					{"C_man_shorts_1_F_afro",1},
+					{"C_man_shorts_1_F_euro",1},
+					{"C_man_shorts_1_F_asia",1},
+					{"C_man_shorts_2_F",1},
+					{"C_man_shorts_2_F_afro",1},
+					{"C_man_shorts_2_F_euro",1},
+					{"C_man_shorts_2_F_asia",1},
+					{"C_man_shorts_3_F",1},
+					{"C_man_shorts_3_F_afro",1},
+					{"C_man_shorts_3_F_euro",1},
+					{"C_man_shorts_3_F_asia",1},
+					{"C_man_shorts_4_F",1},
+					{"C_man_shorts_4_F_afro",1},
+					{"C_man_shorts_4_F_euro",1},
+					{"C_man_shorts_4_F_asia",1},
+					{"C_man_polo_1_F",1},
+					{"C_man_polo_1_F_afro",1},
+					{"C_man_polo_1_F_euro",1},
+					{"C_man_polo_1_F_asia",1},
+					{"C_man_polo_2_F",1},
+					{"C_man_polo_2_F_afro",1},
+					{"C_man_polo_2_F_euro",1},
+					{"C_man_polo_2_F_asia",1},
+					{"C_man_polo_3_F",1},
+					{"C_man_polo_3_F_afro",1},
+					{"C_man_polo_3_F_euro",1},
+					{"C_man_polo_3_F_asia",1},
+					{"C_man_polo_4_F",1},
+					{"C_man_polo_4_F_afro",1},
+					{"C_man_polo_4_F_euro",1},
+					{"C_man_polo_4_F_asia",1},
+					{"C_man_polo_5_F",1},
+					{"C_man_polo_5_F_afro",1},
+					{"C_man_polo_5_F_euro",1},
+					{"C_man_polo_5_F_asia",1},
+					{"C_man_polo_6_F",1},
+					{"C_man_polo_6_F_afro",1},
+					{"C_man_polo_6_F_euro",1},
+					{"C_man_polo_6_F_asia",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"C_man_1",1},
+					{"C_man_1_1_F",1},
+					{"C_man_1_2_F",1},
+					{"C_man_1_3_F",1},
+					{"C_man_p_fugitive_F",1},
+					{"C_man_p_fugitive_F_afro",1},
+					{"C_man_p_fugitive_F_euro",1},
+					{"C_man_p_fugitive_F_asia",1},
+					{"C_man_p_beggar_F",1},
+					{"C_man_p_beggar_F_afro",1},
+					{"C_man_p_beggar_F_euro",1},
+					{"C_man_p_beggar_F_asia",1},
+					{"C_man_w_worker_F",1},
+					{"C_journalist_F",1},
+					{"C_Orestes",1},
+					{"C_Nikos",1},
+					{"C_Nikos_aged",1},
+					{"C_Driver_1_F",1},
+					{"C_Driver_2_F",1},
+					{"C_Driver_3_F",1},
+					{"C_Driver_4_F",1},
+					{"C_Driver_1_random_base_F",1},
+					{"C_Driver_1_black_F",1},
+					{"C_Driver_1_blue_F",1},
+					{"C_Driver_1_green_F",1},
+					{"C_Driver_1_red_F",1},
+					{"C_Driver_1_white_F",1},
+					{"C_Driver_1_yellow_F",1},
+					{"C_Driver_1_orange_F",1},
+					{"C_Marshal_F",1},
+					{"U_C_Poor_2",1},
+					{"U_C_Poor_1",1},
+					{"U_C_Poor_shorts_1",1},
+					{"U_C_Poloshirt_blue",1},
+					{"U_C_Poloshirt_burgundy",1},
+					{"U_C_Poloshirt_tricolour",1},
+					{"U_C_Poloshirt_salmon",1},
+					{"U_C_Poloshirt_redwhite",1},
+					{"U_C_WorkerOveralls",1},
+					{"U_C_Farmer",1},
+					{"U_C_Scavenger_2",1},
+					{"U_C_Scavenger_1",1},
+					{"U_C_Poor_shorts_2",1},
+					{"U_C_Journalist",1},
+					{"U_C_Poloshirt_stripped",1},
+					{"U_C_Commoner1_1",1},
+					{"U_C_Commoner_shorts",1},
+					{"U_C_ShirtSurfer_shorts",1},
+					{"U_C_TeeSurfer_shorts_1",1},
+					{"U_C_TeeSurfer_shorts_2",1},
+					{"U_C_WorkerCoveralls",1},
+					{"U_C_HunterBody_grn",1}
 				};
 			};
 			class Vest {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Chestrig_blk",1},
+					{"V_Chestrig_khk",1},
+					{"V_Chestrig_oli",1},
+					{"V_Chestrig_rgr",1},
+					{"V_PlateCarrier1_blk",1},
+					{"V_PlateCarrier1_rgr",1},
+					{"V_PlateCarrier2_rgr",1},
+					{"V_PlateCarrier3_rgr",1},
+					{"V_PlateCarrierGL_rgr",1},
+					{"V_PlateCarrierIA1_dgtl",1},
+					{"V_PlateCarrierIA2_dgtl",1},
+					{"V_PlateCarrierIAGL_dgtl",1},
+					{"V_PlateCarrierSpec_rgr",1},
+					{"V_I_G_resistanceLeader_F",1},
+					{"V_PlateCarrierSpec_blk",1},
+					{"V_PlateCarrierSpec_mtp",1},
+					{"V_PlateCarrierGL_mtp",1},
+					{"V_PlateCarrierGL_blk",1},
+					{"V_PlateCarrierIAGL_oli",1},
+					{"V_PlateCarrier_Kerry",1},
+					{"V_PlateCarrierL_CTRG",1},
+					{"V_PlateCarrierH_CTRG",1},
+					{"V_RebreatherB",1},
+					{"V_RebreatherIA",1},
+					{"V_RebreatherIR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_TacVest_blk",1},
+					{"V_TacVest_blk_POLICE",1},
+					{"V_TacVest_brn",1},
+					{"V_TacVest_camo",1},
+					{"V_TacVest_khk",1},
+					{"V_TacVest_oli",1},
+					{"V_TacVestCamo_khk",1},
+					{"V_TacVestIR_blk",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_HarnessO_brn",1},
+					{"V_HarnessO_gry",1},
+					{"V_HarnessOGL_brn",1},
+					{"V_HarnessOGL_gry",1},
+					{"V_HarnessOSpec_brn",1},
+					{"V_HarnessOSpec_gry",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Rangemaster_belt",1},
+					{"V_BandollierB_blk",1},
+					{"V_BandollierB_cbr",1},
+					{"V_BandollierB_khk",1},
+					{"V_BandollierB_oli",1},
+					{"V_BandollierB_rgr",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"V_Press_F",1},
+					{"V_Rangemaster_belt",1}
 				};
 			};
 			class Helmet {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_HelmetB_camo",1},
+					{"H_HelmetB_grass",1},
+					{"H_HelmetB_black",1},
+					{"H_HelmetB_light",1},
+					{"H_HelmetB_sand",1},
+					{"H_HelmetB_desert",1},
+					{"H_HelmetB_light_black",1},
+					{"H_HelmetB_light_grass",1},
+					{"H_HelmetB_light_snakeskin",1},
+					{"H_HelmetB_light_desert",1},
+					{"H_HelmetB_light_sand",1},
+					{"H_HelmetB_snakeskin",1},
+					{"H_HelmetB_paint",1},
+					{"H_HelmetSpecB",1},
+					{"H_HelmetSpecB_paint1",1},
+					{"H_HelmetSpecB_blk",1},
+					{"H_HelmetSpecB_paint2",1},
+					{"H_HelmetSpecO_ocamo",1},
+					{"H_HelmetSpecO_blk",1},
+					{"H_HelmetB_plain_blk",1},
+					{"H_HelmetB_plain_mcamo",1},
+					{"H_HelmetB",1},
+					{"H_HelmetIA",1},
+					{"H_HelmetIA_net",1},
+					{"H_HelmetIA_camo",1},
+					{"H_HelmetO_ocamo",1},
+					{"H_HelmetO_oucamo",1},
+					{"H_HelmetLeaderO_ocamo",1},
+					{"H_HelmetLeaderO_oucamo",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Shemag_olive_hs",1},
+					{"H_ShemagOpen_tan",1},
+					{"H_ShemagOpen_khk",1},
+					{"H_Shemag_khk",1},
+					{"H_Shemag_tan",1},
+					{"H_Shemag_olive",1},
+					{"H_Helmet_Kerry",1},
+					{"H_HelmetCrew_B",1},
+					{"H_HelmetCrew_I",1},
+					{"H_HelmetCrew_O",1},
+					{"H_CrewHelmetHeli_I",1},
+					{"H_CrewHelmetHeli_B",1},
+					{"H_CrewHelmetHeli_O",1},
+					{"H_PilotHelmetHeli_B",1},
+					{"H_PilotHelmetHeli_I",1},
+					{"H_PilotHelmetHeli_O",1},
+					{"H_PilotHelmetFighter_B",1},
+					{"H_PilotHelmetFighter_I",1},
+					{"H_PilotHelmetFighter_O",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_RacingHelmet_1_F",1},
+					{"H_RacingHelmet_1_black_F",1},
+					{"H_RacingHelmet_1_blue_F",1},
+					{"H_RacingHelmet_1_green_F",1},
+					{"H_RacingHelmet_1_orange_F",1},
+					{"H_RacingHelmet_1_red_F",1},
+					{"H_RacingHelmet_1_white_F",1},
+					{"H_RacingHelmet_1_yellow_F",1},
+					{"H_RacingHelmet_2_F",1},
+					{"H_RacingHelmet_3_F",1},
+					{"H_RacingHelmet_4_F",1},
+					{"H_Beret_grn",1},
+					{"H_Beret_blk",1},
+					{"H_Beret_blk_POLICE",1},
+					{"H_Beret_red",1},
+					{"H_Beret_brn_SF",1},
+					{"H_Beret_grn_SF",1},
+					{"H_Beret_02",1},
+					{"H_Beret_Colonel",1},
+					{"H_Beret_ocamo",1},
+					{"H_TurbanO_blk",1},
+					{"H_MilCap_blue",1},
+					{"H_MilCap_gry",1},
+					{"H_MilCap_ocamo",1},
+					{"H_MilCap_rucamo",1},
+					{"H_MilCap_oucamo",1},
+					{"H_MilCap_mcamo",1},
+					{"H_MilCap_dgtl",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Booniehat_dirty",1},
+					{"H_Booniehat_khk_hs",1},
+					{"H_Booniehat_grn",1},
+					{"H_Booniehat_indp",1},
+					{"H_Booniehat_khk",1},
+					{"H_Booniehat_oli",1},
+					{"H_Booniehat_tan",1},
+					{"H_Booniehat_dgtl",1},
+					{"H_Booniehat_mcamo",1},
+					{"H_Cap_grn_BI",1},
+					{"H_Cap_blk",1},
+					{"H_Cap_blu",1},
+					{"H_Cap_oli",1},
+					{"H_Cap_grn",1},
+					{"H_Cap_red",1},
+					{"H_Cap_surfer",1},
+					{"H_Cap_tan",1},
+					{"H_Cap_blk_CMMG",1},
+					{"H_Cap_blk_ION",1},
+					{"H_Cap_oli_hs",1},
+					{"H_Cap_police",1},
+					{"H_Cap_usblack",1},
+					{"H_Cap_tan_specops_US",1},
+					{"H_Cap_blk_Raven",1},
+					{"H_Cap_brn_SPECOPS",1},
+					{"H_Cap_khaki_specops_UK",1},
+					{"H_Cap_headphones",1},
+					{"H_Cap_press",1},
+					{"H_Cap_marshal",1},
+					{"H_Watchcap_camo",1},
+					{"H_Watchcap_blk",1},
+					{"H_Hat_blue",1},
+					{"H_Hat_brown",1},
+					{"H_Hat_camo",1},
+					{"H_Hat_checker",1},
+					{"H_Hat_grey",1},
+					{"H_Hat_tan",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"H_Bandanna_gry",1},
+					{"H_Bandanna_blu",1},
+					{"H_Bandanna_cbr",1},
+					{"H_Bandanna_mcamo",1},
+					{"H_Bandanna_sgg",1},
+					{"H_Bandanna_sand",1},
+					{"H_Bandanna_surfer",1},
+					{"H_Bandanna_surfer_blk",1},
+					{"H_Bandanna_surfer_grn",1},
+					{"H_Bandanna_camo",1},
+					{"H_Bandanna_khk",1},
+					{"H_Bandanna_khk_hs",1},
+					{"H_BandMask_blk",1},
+					{"H_BandMask_demon",1},
+					{"H_BandMask_khk",1},
+					{"H_BandMask_reaper",1},
+					{"H_Watchcap_cbr",1},
+					{"H_Watchcap_khk",1},
+					{"H_Watchcap_sgg",1},
+					{"H_StrawHat",1},
+					{"H_StrawHat_dark",1}
 				};
 			};
 			class Cosmetic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemGPS",1},
+					{"NVGoggles",1},
+					{"Binocular",1},
+					{"Rangefinder",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1},
+					{"ItemRadio",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"Binocular",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemMap",1},
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemWatch",1},
+					{"ItemCompass",1}
 				};
 			};
 			class GeneralItem {
@@ -1696,72 +4700,110 @@ class CfgItemSpawns {
 					{"Desolation_hgun_P07",1}
 				};
 			};
+			//Nothing yet really
 			class Construction {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Electronic {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1},
+					{"ItemGPS",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ItemRadio",1}
 				};
 			};
+			//Nothing Yet
 			class CarPart {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"ToolKit",1}
 				};
 			};
 			class Attachment {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_SOS",1},
+					{"optic_NVS",1},
+					{"optic_Nightstalker",1},
+					{"optic_tws",1},
+					{"optic_tws_mg",1},
+					{"optic_DMS",1},
+					{"optic_LRPS",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"bipod_01_F_mtp",1},
+					{"bipod_02_F_tan",1},
+					{"bipod_02_F_hex",1},
+					{"bipod_03_F_oli",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_AMS",1},
+					{"optic_AMS_khk",1},
+					{"optic_AMS_snd",1},
+					{"optic_KHS_blk",1},
+					{"optic_KHS_hex",1},
+					{"optic_KHS_old",1},
+					{"optic_KHS_tan",1},
+					{"optic_MRCO",1},
+					{"bipod_01_F_snd",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1},
+					{"acc_pointer_IR",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Arco",1},
+					{"optic_Hamr",1},
+					{"optic_Holosight",1},
+					{"bipod_01_F_blk",1},
+					{"acc_flashlight",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_Aco",1},
+					{"optic_ACO_grn",1},
+					{"optic_Aco_smg",1},
+					{"optic_ACO_grn_smg",1},
+					{"acc_flashlight",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"optic_MRD",1},
+					{"optic_Yorris",1},
+					{"acc_flashlight",1}
 				};
 			};
 		};
