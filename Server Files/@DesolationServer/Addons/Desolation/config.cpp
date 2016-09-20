@@ -183,17 +183,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -204,41 +204,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -409,7 +410,6 @@ class CfgItemSpawns {
 					{"U_O_PilotCoveralls",1}
 				};
 				semirare[] = {
-					{"C_man_pilot_F",1},
 					{"U_B_survival_uniform",1},
 					{"U_B_CTRG_2",1},
 					{"U_Marshal",1},
@@ -430,92 +430,16 @@ class CfgItemSpawns {
 					{"U_C_FishermanOveralls",1},
 					{"U_C_HunterBody_brn",1},
 					{"U_IG_Menelaos",1},
-					{"U_C_Novak",1},
-					{"C_scientist_F",1},
-					{"C_man_hunter_1_F",1}
+					{"U_C_Novak",1}
 				};
 				semicommon[] = {
 					{"U_C_Commoner1_2",1},
 					{"U_C_Commoner1_3",1},
 					{"U_C_Commoner2_1",1},
 					{"U_C_Commoner2_2",1},
-					{"U_C_Commoner2_3",1},
-					{"C_man_p_shorts_1_F",1},
-					{"C_man_p_shorts_1_F_afro",1},
-					{"C_man_p_shorts_1_F_euro",1},
-					{"C_man_p_shorts_1_F_asia",1},
-					{"C_man_shorts_1_F",1},
-					{"C_man_shorts_1_F_afro",1},
-					{"C_man_shorts_1_F_euro",1},
-					{"C_man_shorts_1_F_asia",1},
-					{"C_man_shorts_2_F",1},
-					{"C_man_shorts_2_F_afro",1},
-					{"C_man_shorts_2_F_euro",1},
-					{"C_man_shorts_2_F_asia",1},
-					{"C_man_shorts_3_F",1},
-					{"C_man_shorts_3_F_afro",1},
-					{"C_man_shorts_3_F_euro",1},
-					{"C_man_shorts_3_F_asia",1},
-					{"C_man_shorts_4_F",1},
-					{"C_man_shorts_4_F_afro",1},
-					{"C_man_shorts_4_F_euro",1},
-					{"C_man_shorts_4_F_asia",1},
-					{"C_man_polo_1_F",1},
-					{"C_man_polo_1_F_afro",1},
-					{"C_man_polo_1_F_euro",1},
-					{"C_man_polo_1_F_asia",1},
-					{"C_man_polo_2_F",1},
-					{"C_man_polo_2_F_afro",1},
-					{"C_man_polo_2_F_euro",1},
-					{"C_man_polo_2_F_asia",1},
-					{"C_man_polo_3_F",1},
-					{"C_man_polo_3_F_afro",1},
-					{"C_man_polo_3_F_euro",1},
-					{"C_man_polo_3_F_asia",1},
-					{"C_man_polo_4_F",1},
-					{"C_man_polo_4_F_afro",1},
-					{"C_man_polo_4_F_euro",1},
-					{"C_man_polo_4_F_asia",1},
-					{"C_man_polo_5_F",1},
-					{"C_man_polo_5_F_afro",1},
-					{"C_man_polo_5_F_euro",1},
-					{"C_man_polo_5_F_asia",1},
-					{"C_man_polo_6_F",1},
-					{"C_man_polo_6_F_afro",1},
-					{"C_man_polo_6_F_euro",1},
-					{"C_man_polo_6_F_asia",1}
+					{"U_C_Commoner2_3",1}
 				};
 				common[] = {
-					{"C_man_1",1},
-					{"C_man_1_1_F",1},
-					{"C_man_1_2_F",1},
-					{"C_man_1_3_F",1},
-					{"C_man_p_fugitive_F",1},
-					{"C_man_p_fugitive_F_afro",1},
-					{"C_man_p_fugitive_F_euro",1},
-					{"C_man_p_fugitive_F_asia",1},
-					{"C_man_p_beggar_F",1},
-					{"C_man_p_beggar_F_afro",1},
-					{"C_man_p_beggar_F_euro",1},
-					{"C_man_p_beggar_F_asia",1},
-					{"C_man_w_worker_F",1},
-					{"C_journalist_F",1},
-					{"C_Orestes",1},
-					{"C_Nikos",1},
-					{"C_Nikos_aged",1},
-					{"C_Driver_1_F",1},
-					{"C_Driver_2_F",1},
-					{"C_Driver_3_F",1},
-					{"C_Driver_4_F",1},
-					{"C_Driver_1_random_base_F",1},
-					{"C_Driver_1_black_F",1},
-					{"C_Driver_1_blue_F",1},
-					{"C_Driver_1_green_F",1},
-					{"C_Driver_1_red_F",1},
-					{"C_Driver_1_white_F",1},
-					{"C_Driver_1_yellow_F",1},
-					{"C_Driver_1_orange_F",1},
-					{"C_Marshal_F",1},
 					{"U_C_Poor_2",1},
 					{"U_C_Poor_1",1},
 					{"U_C_Poor_shorts_1",1},
@@ -780,19 +704,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
@@ -964,17 +888,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -985,41 +909,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -1561,19 +1486,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
@@ -1745,17 +1670,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -1766,41 +1691,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -2342,19 +2268,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
@@ -2526,17 +2452,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -2547,41 +2473,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -3123,19 +3050,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
@@ -3307,17 +3234,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -3328,41 +3255,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -3904,19 +3832,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
@@ -4088,17 +4016,17 @@ class CfgItemSpawns {
 				rare[] = {
 					{"hgun_Pistol_heavy_01_F",1},
 					{"hgun_Pistol_heavy_02_F",1},
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07_F",1}
 				};
 				semirare[] = {
 					{"hgun_ACPC2_F",1}
 				};
 				average[] = {
-					{"Desolation_hgun_Rook",1},
+					{"hgun_Rook40_F",1},
 					{"hgun_ACPC2_F",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1},
+					{"hgun_P07",1},
 					{"hgun_ACPC2_F",1}
 				};
 				common[] = {
@@ -4109,41 +4037,42 @@ class CfgItemSpawns {
 			//No food items yet?
 			class Food {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//No drink items yet?
 			class Drink {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			class Medical {
 				rare[] = {
+					{"FirstAidKit",1},
 					{"FirstAidKit",1}
 				};
 				semirare[] = {
@@ -4685,19 +4614,19 @@ class CfgItemSpawns {
 			};
 			class GeneralItem {
 				rare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semirare[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				average[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				semicommon[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 				common[] = {
-					{"Desolation_hgun_P07",1}
+					{"hgun_P07",1}
 				};
 			};
 			//Nothing yet really
