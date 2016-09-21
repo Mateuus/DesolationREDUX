@@ -29,6 +29,9 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 	std::stringstream functionstream;
 	functionstream << function;
 
+	// TODO: is the following line needed? i don't think so, but not sure.
+	// outputSize = outputSize - 1;
+
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(functionstream, pt);
 
@@ -52,33 +55,46 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 
 std::string redex::multipartMSGGenerator(std::string returnString, int outputSize) {
 	std::string msguuid = orderedUUID();
+	std::string firststring = orderedUUID();
 	std::queue<std::string> stringqueue;
-	int stringlength;
+	int firststringlength;
 	int i = 0;
 
 	// safe some characters for the protocol overhead
-	outputSize = outputSize - MAXCHARS_FOR_PROTOCOL_OVERHEAD;
+	// int firstoutputSize = outputSize - MAXCHARS_FOR_PROTOCOL_OVERHEAD;
+	int firstoutputSize = outputSize - STATIC_MULTIPART_MESSAGE_PROTOCOL_OVERHEAD;
 
-	while ( (i=returnString.find("\"",i)) != std::string::npos )
-	{
-		returnString.insert(i,"\"");
-		i+=2;
+	// BEGIN TODO
+	// find better way to find the perfect length for first string because escaping
+	// the double quotes causes a problem if there are many double quotes
+	firststring = returnString.substr(0, firstoutputSize);
+	firststringlength = firststring.length();
+	i = 0;
+	while ((i = firststring.find("\"", i)) != std::string::npos) {
+		firststring.insert(i, "\"");
+		i += 2;
+	}
+	// END TODO
+
+	firstoutputSize = firstoutputSize - firststring.length() + firststringlength;
+	firststring = returnString.substr(0, firstoutputSize);
+	i = 0;
+	// add second " to get the string after call compile to concatinate with the remaining parts
+	while ((i = firststring.find("\"", i)) != std::string::npos) {
+		firststring.insert(i, "\"");
+		i += 2;
 	}
 
-	stringlength = returnString.length();
-
-	for (i = 0; i < returnString.length(); i += outputSize) {
+	// split the remaining string at outputSize
+	for (i = firstoutputSize; i < returnString.length(); i += outputSize) {
 		stringqueue.push(returnString.substr(i, outputSize));
 	}
-
-	returnString = stringqueue.front();
-	stringqueue.pop();
 
 	msgmutex.lock();
 	msgmap.insert(std::make_pair(msguuid, stringqueue));
 	msgmutex.unlock();
 
-	return "[\"" + PROTOCOL_MULTIPART_MSG_STRING + "\", " + std::to_string(stringqueue.size()) + ", \"" + msguuid + "\", \"" + returnString + "\"]";
+	return "[\"" + PROTOCOL_MULTIPART_MSG_STRING+ "\", \"" + msguuid + "\", \"" + firststring + "\"]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
@@ -91,7 +107,8 @@ std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
 	msgmutex.unlock();
 
 	if (it == msgmap.end()) {
-		throw std::runtime_error("Message " + msguuid + " does not exist");
+		//throw std::runtime_error("Message " + msguuid + " does not exist");
+		return "DONE GETTING CONTENT";
 	}
 
 	stringqueue = &it->second;
@@ -104,7 +121,7 @@ std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
 		msgmutex.unlock();
 	}
 
-	return "[\"" + PROTOCOL_MULTIPART_MSG_STRING + "\", " + std::to_string(stringqueue->size()) + ", \"" + msguuid + "\", \"" + returnString + "\"]";
+	return returnString;
 }
 
 std::string redex::dbcall(boost::property_tree::ptree &dllarguments) {
