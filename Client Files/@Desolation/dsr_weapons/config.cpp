@@ -6,7 +6,7 @@ class CfgPatches
 		requiredAddons[] = {"A3_Data_F","A3_Weapons_F"};
 		requiredVersion = 0.1;
 		units[] = {};
-		weapons[] = {};
+		weapons[] = {"DSR_hgun_P07","DSR_hgun_Rook"};
 		vehicles[] = {};
 		author[]= {"Desolation Redux Dev Team"};
 	};
@@ -18,8 +18,8 @@ class CfgWeapons
 	class hgun_Rook40_F;
 	
 	//--- Handguns
-	class Desolation_hgun_P07 : hgun_P07_F {
-		_generalMacro = "Desolation_hgun_P07";
+	class DSR_hgun_P07 : hgun_P07_F {
+		_generalMacro = "DSR_hgun_P07";
 		displayName = "Old P07";
 		descriptionShort = "A P07 from the old war.";
 		description = "An old P07 from the war between CSAT and NATO. This is one of the few that survived.";
@@ -28,8 +28,8 @@ class CfgWeapons
 		initSpeed = 410;
 		maxZeroing = 100;
 	};
-	class Desolation_hgun_Rook : hgun_Rook40_F {
-		_generalMacro = "Desolation_hgun_Rook";
+	class DSR_hgun_Rook : hgun_Rook40_F {
+		_generalMacro = "DSR_hgun_Rook";
 		displayName = "Old Rook";
 		descriptionShort = "A rook 40 from the old war.";
 		description = "An old rook 40 from the war between CSAT and NATO. This is one of the few that survived.";
