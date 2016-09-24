@@ -1,8 +1,8 @@
 class CfgPatches
 {
-	class dsr_objects
+	class dsr_zombies
 	{
-		fileName = "dsr_objects.pbo";
+		fileName = "dsr_zombies.pbo";
 		requiredAddons[] = {"A3_Data_F","A3_Weapons_F"};
 		requiredVersion = 0.1;
 		units[] = {};
@@ -10,8 +10,4 @@ class CfgPatches
 		vehicles[] = {};
 		author[]= {"Desolation Redux Dev Team"};
 	};
-};
-class CfgVehicles
-{
-	 
 };
