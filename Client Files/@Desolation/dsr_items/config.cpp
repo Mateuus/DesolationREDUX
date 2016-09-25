@@ -227,13 +227,6 @@ class CfgMagazines
 		descriptionUse = "TODO";
 		mass = 5;
 	};
-	class dsr_item_campinglight : dsr_item_base {
-		displayName = "Camping Light";
-		model = "\A3\Structures_F\Civ\Camping\Camping_Light_off_F.p3d";
-		descriptionShort = "Light up the night with this camping light.";
-		descriptionUse = "TODO";
-		mass = 5;
-	};
 	class dsr_item_campingchair : dsr_item_base {
 		displayName = "Camping Chair";
 		model = "\A3\Structures_F\Civ\Camping\CampingChair_V1_folded_F.p3d";
@@ -419,14 +412,14 @@ class CfgMagazines
 	};
 	class dsr_item_bucket_full : dsr_item_base {
 		displayName = "Full Bucket";
-		model = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Bucket_F.jpg";
+		model = "\A3\Structures_F\Items\Vessels\Bucket_F.p3d";
 		descriptionShort = "A bucket filled with water.";
 		descriptionUse = "TODO";
 		mass = 5;
 	};
 	class dsr_item_bucket_empty : dsr_item_base {
 		displayName = "Empty Bucket";
-		model = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Bucket_F.jpg";
+		model = "\A3\Structures_F\Items\Vessels\Bucket_F.p3d";
 		descriptionShort = "An empty bucket.";
 		descriptionUse = "TODO";
 		mass = 5;
