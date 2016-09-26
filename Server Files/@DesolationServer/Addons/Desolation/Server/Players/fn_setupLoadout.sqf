@@ -25,8 +25,8 @@ if!(_equipmentArray isEqualTo [])then
 else
 {
 	_unit addMagazine "16Rnd_9x21_Mag";
-	_unit addWeapon "hgun_Rook40_F";
+	_unit addWeapon "dsr_hgun_rook";
+	_unit addMagazine "dsr_item_bandage";
 	_unit unlinkItem "ItemMap";
 	_unit unlinkItem "ItemWatch";
-	_unit unlinkItem "ItemCompass";
 };
