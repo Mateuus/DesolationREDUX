@@ -16,6 +16,7 @@ class CfgWeapons
 	 //--- import
 	class hgun_P07_F;
 	class hgun_Rook40_F;
+	class arifle_Katiba_F;
 	
 	//--- Handguns
 	class DSR_hgun_P07 : hgun_P07_F {
@@ -37,5 +38,13 @@ class CfgWeapons
 		dexterity = 1.8;
 		initSpeed = 450;
 		maxZeroing = 100;
+	};
+	
+	//--- rifles
+	class DSR_arifle_Katiba : arifle_Katiba_F {
+		_generalMacro = "DSR_arifle_Katiba";
+		displayName = "Old Katiba";
+		descriptionShort = "A katiba 40 from the old war.";
+		description = "An old katiba 40 from the war between CSAT and NATO. This is one of the few that survived.";
 	};
 };

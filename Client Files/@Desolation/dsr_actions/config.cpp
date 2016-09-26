@@ -3,7 +3,7 @@ class CfgPatches
 	class dsr_actions
 	{
 		fileName = "dsr_actions.pbo";
-		requiredAddons[] = {"dsr_items"};
+		requiredAddons[] = {};
 		requiredVersion = 0.1;
 		units[] = {};
 		weapons[] = {};
