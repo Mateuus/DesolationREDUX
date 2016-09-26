@@ -317,6 +317,7 @@ class CfgMagazines
 		model = "\A3\Structures_F_EPA\Items\Tools\Matches_F.p3d";
 		descriptionShort = "A box of matches.";
 		descriptionUse = "TODO";
+		count = 40;
 		mass = 5;
 	};
 	class dsr_item_metalwire : dsr_item_base {
