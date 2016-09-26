@@ -13,11 +13,14 @@
 
 redex::redex() {
 	dllfunctions.insert(
-			std::make_pair(std::string("dbcall"),
+			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL),
 					boost::bind(&redex::dbcall, this, _1)));
 	dllfunctions.insert(
-				std::make_pair(std::string("rcvmsg"),
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE),
 						boost::bind(&redex::rcvmsg, this, _1)));
+	dllfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_CHECK_MESSAGE_STATE),
+							boost::bind(&redex::chkmsg, this, _1)));
 	return;
 }
 redex::~redex() {
@@ -54,8 +57,8 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 }
 
 std::string redex::multipartMSGGenerator(std::string returnString, int outputSize) {
-	std::string msguuid = orderedUUID();
-	std::string firststring = orderedUUID();
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = PROTOCOL_IDENTIFIER_GENERATOR;
+	std::string firststring;
 	std::queue<std::string> stringqueue;
 	int firststringlength;
 	int i = 0;
@@ -91,34 +94,69 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 	}
 
 	msgmutex.lock();
-	msgmap.insert(std::make_pair(msguuid, stringqueue));
+	msgmap.insert(std::make_pair(messageIdentifier, stringqueue));
 	msgmutex.unlock();
 
-	return "[\"" + PROTOCOL_MULTIPART_MSG_STRING+ "\", \"" + msguuid + "\", \"" + firststring + "\"]";
+	return "[\"" + PROTOCOL_MULTIPART_MSG_TYPE + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
-	std::string msguuid = dllarguments.get<std::string>("msguuid");
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>("messageIdentifier");
 	std::queue<std::string> *stringqueue;
 	std::string returnString;
 
 	msgmutex.lock();
-	MESSAGE_MAP::iterator it = msgmap.find(msguuid);
+	MESSAGE_MAP::iterator it = msgmap.find(messageIdentifier);
 	msgmutex.unlock();
 
+	// check if message object was found
 	if (it == msgmap.end()) {
-		//throw std::runtime_error("Message " + msguuid + " does not exist");
-		return "DONE GETTING CONTENT";
+		throw std::runtime_error("Message " + messageIdentifier + " does not exist");
 	}
 
+	// extract message object
 	stringqueue = &it->second;
-	returnString = stringqueue->front();
-	stringqueue->pop();
 
 	if (stringqueue->empty()) {
+		// delete message object
 		msgmutex.lock();
 		msgmap.erase (it);
 		msgmutex.unlock();
+		// signal arma that it got the last message
+		returnString = PROTOCOL_RESULT_TRANSMIT_FINISHED_MSG;
+	} else {
+		// get next message and remove it from queue
+		returnString = stringqueue->front();
+		stringqueue->pop();
+	}
+
+	return returnString;
+}
+
+std::string redex::chkmsg(boost::property_tree::ptree &dllarguments) {
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>("messageIdentifier");
+	std::queue<PROTOCOL_IDENTIFIER_DATATYPE> *stringqueue;
+	std::string returnString;
+
+	msgmutex.lock();
+	MESSAGE_MAP::iterator it = msgmap.find(messageIdentifier);
+	msgmutex.unlock();
+
+	// check if message object was found
+	if (it == msgmap.end()) {
+		returnString = PROTOCOL_RESULT_NOT_EXISTING;
+	} else {
+		returnString = PROTOCOL_RESULT_EXISTING;
+
+		/*
+		 * dunno if we want more information
+		stringqueue = &it->second;
+		if (stringqueue->empty()) {
+			returnString = PROTOCOL_RESULT_EMPTY;
+		} else {
+			returnString = PROTOCOL_RESULT_EXISTING;
+		}
+		*/
 	}
 
 	return returnString;

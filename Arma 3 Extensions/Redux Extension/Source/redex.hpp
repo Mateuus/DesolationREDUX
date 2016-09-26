@@ -24,11 +24,12 @@ private:
 	dbcon dbconnection;
 
 	std::mutex msgmutex;
-	typedef std::map<std::string, std::queue<std::string>> MESSAGE_MAP;
+	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::queue<std::string>> MESSAGE_MAP;
 	MESSAGE_MAP msgmap;
 
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
+	std::string chkmsg(boost::property_tree::ptree &dllarguments);
 
 	std::string multipartMSGGenerator(std::string returnString, int outputSize);
 };
