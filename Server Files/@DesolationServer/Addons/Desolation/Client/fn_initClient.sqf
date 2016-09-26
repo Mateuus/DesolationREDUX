@@ -13,7 +13,7 @@ if(!_enabled) exitWith {diag_log "DESOLATION IS NOT ENABLED, THE PLUGIN WILL NOT
 0 fadeSound 0;
 0 fadeMusic 0;
 
-
+call dsr_fnc_initInvHandler;
 
 //asks the server to spawn us
 [player] remoteExec ["DS_fnc_requestSpawn", 2];

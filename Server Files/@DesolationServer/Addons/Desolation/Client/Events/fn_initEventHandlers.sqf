@@ -15,3 +15,12 @@ player addEventHandler ["HandleDamage",{
 	};
 	false;
 }];
+player addEventHandler ["InventoryOpened",{
+	DSR_var_InvOpen = true;
+	[] spawn dsr_fnc_setupInvEvents;
+	false
+}];
+player addEventHandler ["InventoryClosed",{
+	DSR_var_InvOpen = false;
+	false
+}];

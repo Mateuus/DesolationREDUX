@@ -60,8 +60,10 @@ class CfgFunctions
 		class Client_Inventory {
 			file = "Desolation\Client\Inventory";
 			isclient = 1;
-			class onLBSelChanged {};
-			class onMouseButtonDblClick {};
+			class closeButtons {};
+			class initInvHandler {};
+			class itemClick {};
+			class setupInvEvents {};
 		};
 		//--- server functions
 		class Server_Database {

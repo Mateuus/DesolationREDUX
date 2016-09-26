@@ -49,7 +49,8 @@ if(_savedLoot isEqualTo []) then {
 			_pos = ASLtoATL(AGLtoASL(_building modelToWorld _x));
 			_object = "groundWeaponHolder" createVehicle _pos;
 			_object setposATL _pos;
-
+			_object setDir random(360);
+			
 			_bLootPiles pushBack _object;
 
 			_number_of_items_in_pile = 1 + floor(random(3)); //TODO: make this configurable
@@ -231,6 +232,7 @@ if(_savedLoot isEqualTo []) then {
 
 		_object = "groundWeaponHolder" createVehicle _pos;
 		_object setposATL _pos;
+		_object setDir random(360);
 		_bLootPiles pushBack _object;
 		[_object,_loot] call _setLoot;
 	} forEach _savedLoot;
