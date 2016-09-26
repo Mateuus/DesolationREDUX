@@ -97,7 +97,7 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 	msgmap.insert(std::make_pair(messageIdentifier, stringqueue));
 	msgmutex.unlock();
 
-	return "[\"" + PROTOCOL_MULTIPART_MSG_TYPE + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MULTIPART + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
@@ -123,7 +123,7 @@ std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
 		msgmap.erase (it);
 		msgmutex.unlock();
 		// signal arma that it got the last message
-		returnString = PROTOCOL_RESULT_TRANSMIT_FINISHED_MSG;
+		returnString = PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG;
 	} else {
 		// get next message and remove it from queue
 		returnString = stringqueue->front();
@@ -144,17 +144,17 @@ std::string redex::chkmsg(boost::property_tree::ptree &dllarguments) {
 
 	// check if message object was found
 	if (it == msgmap.end()) {
-		returnString = PROTOCOL_RESULT_NOT_EXISTING;
+		returnString = PROTOCOL_MESSAGE_NOT_EXISTING;
 	} else {
-		returnString = PROTOCOL_RESULT_EXISTING;
+		returnString = PROTOCOL_MESSAGE_EXISTING;
 
 		/*
 		 * dunno if we want more information
 		stringqueue = &it->second;
 		if (stringqueue->empty()) {
-			returnString = PROTOCOL_RESULT_EMPTY;
+			returnString = PROTOCOL_MESSAGE_EMPTY;
 		} else {
-			returnString = PROTOCOL_RESULT_EXISTING;
+			returnString = PROTOCOL_MESSAGE_EXISTING;
 		}
 		*/
 	}

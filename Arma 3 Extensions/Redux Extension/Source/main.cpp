@@ -8,7 +8,7 @@ void RVExtension(char *output, int outputSize, const char *function)
 		strncpy(output, returnString.c_str(), outputSize);
 		return;
 	} catch (std::exception const& e) {
-		std::string errstr = "[\"" + PROTOCOL_ERROR_TYPE + "\", \"";
+		std::string errstr = "[\"" + PROTOCOL_MESSAGE_TYPE_ERROR + "\", \"";
 		errstr += e.what();
 		errstr += "\"]";
 		strncpy(output, errstr.c_str(), outputSize);

@@ -38,10 +38,10 @@ std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 }
 
 std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments) {
-	return "[\"" + PROTOCOL_MSG_TYPE + "\", \"" + orderedUUID() + "\"]";
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + orderedUUID() + "\"]";
 }
 
 std::string dbcon::echo(boost::property_tree::ptree &dbarguments) {
 	std::string echostring = dbarguments.get<std::string>("echostring");
-	return "[\"" + PROTOCOL_MSG_TYPE + "\", \"" + echostring + "\"]";
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + echostring + "\"]";
 }
