@@ -12,6 +12,7 @@
  * Magic Strings for the Arma 3 Call Extension API
  */
 // Libary Datatypes
+#define PROTOCOL_IDENTIFIER_NAME "msguuid"
 #define PROTOCOL_IDENTIFIER_DATATYPE std::string
 #define PROTOCOL_IDENTIFIER_GENERATOR orderedUUID()
 

@@ -4,8 +4,8 @@
 #include <exception>
 #include <stdexcept>
 
-#include "dbcon.hpp"
-#include "uuid.hpp"
+#include "database/dbcon.hpp"
+#include "utils/uuid.hpp"
 
 dbcon::dbcon(unsigned int threadcount) {
 	dbfunctions.insert(

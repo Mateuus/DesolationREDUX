@@ -8,7 +8,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/function.hpp>
 #include "constants.hpp"
-#include "dbcon.hpp"
+#include "database/dbcon.hpp"
 
 class redex {
 public:

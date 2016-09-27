@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <string.h>
+#include "../constants.hpp"
 
 void RVExtension(char *output, int outputSize, const char *function);
 
@@ -15,11 +16,11 @@ int main(int argc, char *argv[])
 
     uuid = output;
     uuid = uuid.substr(11, 32);
-    //std::cout << uuid << std::endl;
+    std::cout << "FOUND UUID: " << uuid << std::endl;
 
     std::cout << output << std::endl;
 
-    while (strncmp(output, "DONE GETTING CONTENT", 20) != 0) {
+    while (strncmp(output, PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG, 20) != 0) {
     	functionstring = "{ \"dllfunction\": \"rcvmsg\", \"dllarguments\": {  \"msguuid\": \"";
     	functionstring += uuid;
 		functionstring += "\" } }";
