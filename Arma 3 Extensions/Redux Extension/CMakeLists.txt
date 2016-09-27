@@ -9,37 +9,42 @@ SET(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 IF (WIN32)
-SET(BOOST_INCLUDEDIR C:\\mingw-w64\\boost\\include)
-SET(BOOST_LIBRARYDIR C:\\mingw-w64\\boost\\lib)
+SET(BOOST_INCLUDEDIR C:/mingw-w64/boost/include)
+SET(BOOST_LIBRARYDIR C:/mingw-w64/boost/lib)
+
+SET(MYSQL_INCLUDE_DIR C:/mingw-w64/mysql-connector-c/include)
+SET(MYSQL_LIBRARY_DIR C:/mingw-w64/mysql-connector-c/lib)
+#SET(MYSQL_LIBRARY ${MYSQL_LIBRARY_DIR}/vs10/mysqlclient.lib)
+SET(MYSQL_LIBRARY ${MYSQL_LIBRARY_DIR}/libmysql.lib)
+
+SET(MYSQLCPPCON_INCLUDE_DIRS C:/mingw-w64/mysql-connector-c++/include)
+SET(MYSQLCPPCON_LIBRARY_DIR C:/mingw-w64/mysql-connector-c++/lib)
+#SET(MYSQLCPPCON_LIBRARY ${MYSQLCPPCON_LIBRARY_DIR}/mysqlcppconn-static.lib)
+SET(MYSQLCPPCON_LIBRARY ${MYSQLCPPCON_LIBRARY_DIR}/mysqlcppconn.lib)
+
 ELSE(WIN32)
 SET(BOOST_INCLUDEDIR /usr/include/boost)
 SET(BOOST_LIBRARYDIR /usr/lib32)
 
 SET(MYSQL_INCLUDE_DIR /usr/include/mysql)
 SET(MYSQL_LIBRARY /usr/lib32)
+SET(MYSQL_LIBRARY ssl dl z crypto mysqlclient.a)
+#SET(MYSQL_LIBRARY ssl.a dl.a z.a crypto.a dl.a z.a mysqlclient.a)
+
 SET(MYSQLCPPCON_INCLUDE_DIRS /usr/include)
 SET(MYSQLCPPCON_LIBRARY /usr/lib32)
+SET(MYSQLCPPCON_LIBRARY mysqlcppconn.a)
 
-
+FIND_PACKAGE(Threads REQUIRED)
 ENDIF(WIN32)
-
-SET(Boost_USE_STATIC_LIBS ON) 
-SET(Boost_USE_MULTITHREADED ON)  
-SET(Boost_USE_STATIC_RUNTIME ON) 
-
-#FIND_PACKAGE(MySql REQUIRED)
 
 INCLUDE_DIRECTORIES("Source")
 INCLUDE_DIRECTORIES("${MYSQL_INCLUDE_DIR}")
 INCLUDE_DIRECTORIES("${MYSQLCPPCON_INCLUDE_DIRS}")
 
-#SET(MYSQL_LIBRARY ssl.a dl.a z.a crypto.a dl.a z.a mysqlclient.a)
-SET(MYSQL_LIBRARY ssl dl z crypto mysqlclient.a)
-SET(MYSQLCPPCON_LIBRARY mysqlcppconn.a)
-
-
-
-FIND_PACKAGE(Threads)
+SET(Boost_USE_STATIC_LIBS ON) 
+SET(Boost_USE_MULTITHREADED ON)  
+SET(Boost_USE_STATIC_RUNTIME ON) 
 
 FIND_PACKAGE(Boost
              1.54.0
@@ -49,6 +54,8 @@ FIND_PACKAGE(Boost
 
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}) 
 
+message(STATUS "${MYSQL_LIBRARY}")
+message(STATUS "${MYSQLCPPCON_LIBRARY}")
 message(STATUS "${Boost_LIBRARIES}")
 
 IF (WIN32)
@@ -56,6 +63,8 @@ IF (WIN32)
     IF(MINGW)
         SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -static")
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -static")
+        #SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -static -DCPPCONN_PUBLIC_FUNC=\"\" -D__MSVCRT_VERSION__=0x900 -lmsvcr90")
+        #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -static -DCPPCONN_PUBLIC_FUNC=\"\" -D__MSVCRT_VERSION__=0x900 -lmsvcr90")
     ENDIF(MINGW)
 ELSE(WIN32)
     SET(SYSTEMLIBS uuid)
