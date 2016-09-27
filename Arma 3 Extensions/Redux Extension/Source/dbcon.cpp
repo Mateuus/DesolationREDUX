@@ -7,16 +7,25 @@
 #include "dbcon.hpp"
 #include "uuid.hpp"
 
-dbcon::dbcon() {
+dbcon::dbcon(unsigned int threadcount) {
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_UUID),
 					boost::bind(&dbcon::getUUID, this, _1)));
 	dbfunctions.insert(
 				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ECHO_STRING),
 						boost::bind(&dbcon::echo, this, _1)));
+
+//	boost::asio::io_service::work work(DBioService);
+
+//	threadpool.create_thread(
+//	    boost::bind(&boost::asio::io_service::run, &DBioService)
+//	);
+
 	return;
 }
+
 dbcon::~dbcon() {
+	threadpool.join_all();
 	return;
 }
 

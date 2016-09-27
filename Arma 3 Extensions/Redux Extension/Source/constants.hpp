@@ -6,6 +6,7 @@
  */
 #define MAXCHARS_FOR_PROTOCOL_OVERHEAD 128
 #define STATIC_MULTIPART_MESSAGE_PROTOCOL_OVERHEAD 49
+#define DEFAULT_THREAD_COUNT boost::thread::hardware_concurrency()
 
 /*
  * Magic Strings for the Arma 3 Call Extension API
