@@ -21,6 +21,12 @@ class RscListBox;
 class RscProgress;
 class RscPictureKeepAspect;
 class RscDisplayInventory_DLCTemplate;
+class RscStructuredText;
+class RscTitle;
+class RscButtonMenuOK;
+class RscControlsGroupNoHScrollbars;
+class RscHTML;
+class RscButtonMenu;
 
 class DS_spawnSelection {
 	idd = 4000;
@@ -32,6 +38,15 @@ class DS_spawnSelection {
 	onUnload = "_this call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_spawnSelectionUnload.sqf';";
 	
 	class controlsBackground {
+		class PictureBackground: RscPicture
+		{
+			idc = 1999;
+			text = "\dsr_ui\Assets\background.paa";
+			x = "safezoneX";
+			y = "safezoneY";
+			w = "safezoneW";
+			h = "safezoneH";
+		};
 		class IGUIBack_2200: IGUIBack
 		{
 			idc = 2200;

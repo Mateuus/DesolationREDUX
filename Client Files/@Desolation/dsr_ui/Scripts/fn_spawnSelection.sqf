@@ -6,6 +6,11 @@
 disableserialization;
 _display = _this select 0;
 
+if(isMultiplayer) then {
+	_ctrl = _display displayCtrl 1999;
+	_ctrl ctrlSetText "background.paa";
+};
+
 //--- north
 _ctrl = _display displayCtrl 1600;
 _ctrl buttonSetAction "

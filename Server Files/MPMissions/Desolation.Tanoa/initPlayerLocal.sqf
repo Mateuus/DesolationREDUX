@@ -4,7 +4,8 @@ if(!(_this select 1)) then {
 	diag_log "JIP NOT ALLOWED. WHY DID THIS HAPPEN?";
 	endMission "FAIL";
 };
-10000 cutText ["Please wait...","BLACK FADED",0];
+//10000 cutText ["Please wait...","BLACK FADED",0];
+0 cutRsc ["background","PLAIN",0];
 enableSaving[false,false];
 player allowDamage false;
 

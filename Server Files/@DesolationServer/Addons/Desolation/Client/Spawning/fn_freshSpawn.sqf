@@ -6,6 +6,5 @@
 	
 	License info here and copyright symbol above
 */
-
-0 cutText ["","BLACK FADED",2];
+0 cutRsc ["background","PLAIN",0];
 createDialog "DS_spawnSelection";

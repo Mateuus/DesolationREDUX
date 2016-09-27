@@ -11,16 +11,17 @@ player addEventHandler ["HandleDamage",{
 	params["_unit","_selectionName","_damage","_shooter","_projectile","_hitPartIndex"];
 	
 	if(!isNull _shooter) then {
-		DS_var_damagedBy pushBack _shooter;
+		if(toLower(_projectile) find "b_" == 0) then {
+			DS_var_damagedBy pushBack _shooter;
+		};
 	};
-	false;
 }];
 player addEventHandler ["InventoryOpened",{
-	DSR_var_InvOpen = true;
-	[] spawn dsr_fnc_setupInvEvents;
+	DS_var_InvOpen = true;
+	[] spawn ds_fnc_setupInvEvents;
 	false
 }];
 player addEventHandler ["InventoryClosed",{
-	DSR_var_InvOpen = false;
+	DS_var_InvOpen = false;
 	false
 }];

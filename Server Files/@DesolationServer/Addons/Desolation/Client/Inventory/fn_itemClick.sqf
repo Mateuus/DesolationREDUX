@@ -8,7 +8,7 @@
 */
 disableSerialization;
 params["_params"];
-call dsr_fnc_closebuttons;
+call ds_fnc_closebuttons;
 _display = findDisplay 602;
 if(isNull _display) exitWith {systemchat "ERROR: displayNull";};
 _ctrl = _display displayCtrl 1020;
@@ -50,7 +50,7 @@ if(isClass _actions) then {
 				_ctrl = _display ctrlCreate ["RscButton",-1];
 				_ctrl ctrlSetPosition [_bX,_bY,_bW,_bH];
 				_ctrl ctrlSetText _aText;
-				_ctrl buttonSetAction ("[] spawn dsr_fnc_closebuttons;" + _action);
+				_ctrl buttonSetAction ("[] spawn ds_fnc_closebuttons;" + _action);
 				_ctrl ctrlCommit 0;
 				
 				_buttons pushBack _ctrl;
@@ -66,7 +66,7 @@ _bIndex = _bIndex + 1;
 _ctrl = _display ctrlCreate ["RscButton",-1];
 _ctrl ctrlSetPosition [_bX,_bY,_bW,_bH];
 _ctrl ctrlSetText "Exit";
-_ctrl buttonSetAction ("[] spawn dsr_fnc_closebuttons;");
+_ctrl buttonSetAction ("[] spawn ds_fnc_closebuttons;");
 _ctrl ctrlCommit 0;
 _buttons pushBack _ctrl;
-uinamespace setVariable ["dsr_var_itemButtons",_buttons];
+uinamespace setVariable ["ds_var_itemButtons",_buttons];

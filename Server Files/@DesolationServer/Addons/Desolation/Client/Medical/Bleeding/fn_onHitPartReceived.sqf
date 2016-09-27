@@ -94,18 +94,18 @@ if(_shooter in DS_var_damagedBy) then {
 	_i = _sources find _selection;
 	if(_i != -1) then {
 		//--- increase bleed level & broadcast
-		_sourcesinfo = player getVariable ["DS_var_BleedSourcesInfo",[]];
-		
-		_bleeddata = _sourcesinfo select _i;
-		
-		_lvl = _bleeddata select 0;
-		
-		_newlvl = (_lvl + 1) min 10;
-		
-		
-		[player,_selection,_newlvl] remoteExec ["DS_fnc_updateBleedSource",-2];
-		
-		
+		if(random(100) < 50) then {
+			_sourcesinfo = player getVariable ["DS_var_BleedSourcesInfo",[]];
+			
+			_bleeddata = _sourcesinfo select _i;
+			
+			_lvl = _bleeddata select 0;
+			
+			_newlvl = (_lvl + 1) min 10;
+			
+			
+			[player,_selection,_newlvl] remoteExec ["DS_fnc_updateBleedSource",-2];
+		};
 	} else {
 		//--- create the bleed source
 		[player,1,_selection,[0,0,0]] remoteExec ["DS_fnc_createBleedSource",-2];

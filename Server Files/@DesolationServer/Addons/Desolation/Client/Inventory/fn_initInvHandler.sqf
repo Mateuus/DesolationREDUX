@@ -6,4 +6,4 @@
 
 	License info here and copyright symbol above
 */
-DSR_var_InvOpen = false;
+DS_var_InvOpen = false;

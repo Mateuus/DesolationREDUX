@@ -15,4 +15,5 @@ call BASE_fnc_initEventHandlers;
 		[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
 	};
 } forEach BASE_var_Files;
-10000 cutText ["","BLACK IN",1];
+0 cutRsc ["background","PLAIN",0];
+//10000 cutText ["","BLACK IN",1];

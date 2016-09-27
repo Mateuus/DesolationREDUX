@@ -7,10 +7,10 @@
 	License info here and copyright symbol above
 */
 disableSerialization;
-_buttons = uiNamespace getVariable ["dsr_var_itemButtons",[]];
+_buttons = uiNamespace getVariable ["ds_var_itemButtons",[]];
 {
 	if(!isNull _x) then {
 		ctrlDelete _x;
 	};
 } forEach _buttons;
-uiNamespace setVariable ["dsr_var_itemButtons",[]];
+uiNamespace setVariable ["ds_var_itemButtons",[]];

@@ -21,8 +21,7 @@ scopeName "exitSpawn";
 
 _multiplier = 1;
 if(_flip) then {_multiplier = -1;};
-
-0 cutText ["Finding a safe place to spawn","BLACK FADED",2];
+0 cutRsc ["background","PLAIN",0];
 while{true} do {
 	_randomX = _minX + random(_maxX - _minX);
 	_randomY = _minY + random(_maxY - _minY);
