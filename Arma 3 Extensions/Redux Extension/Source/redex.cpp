@@ -9,7 +9,7 @@
 #include <stdexcept>
 
 #include "redex.hpp"
-#include "uuid.hpp"
+#include "utils/uuid.hpp"
 
 redex::redex() {
 	dllfunctions.insert(
@@ -32,8 +32,8 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 	std::stringstream functionstream;
 	functionstream << function;
 
-	// TODO: is the following line needed? i don't think so, but not sure.
-	// outputSize = outputSize - 1;
+	// NEEDED to make sure there is room for the last '\0'
+	outputSize -= 1;
 
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(functionstream, pt);
@@ -101,7 +101,7 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
-	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>("messageIdentifier");
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
 	std::queue<std::string> *stringqueue;
 	std::string returnString;
 
