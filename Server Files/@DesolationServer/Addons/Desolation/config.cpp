@@ -37,10 +37,29 @@ class CfgFunctions
 			isclient = 1;
 			class infoText {};
 		};
+		class Client_Interface {
+			file = "Desolation\Client\Interface";
+			isclient = 1;
+			class onEscape {};
+		};
 		class Client {
 			file = "Desolation\Client";
 			isclient = 1;
 			class initClient {};
+		};
+		class Client_Status {
+			file = "Desolation\Client\Status";
+			isclient = 1;
+			class initHealthSys {};
+			class initStatusSys {};
+			class onBleedTick {};
+			class onBloodReceive {};
+			class onDrink {};
+			class onEat {};
+			class onEffectTick {};
+			class onHungerTick {};
+			class onThirstTick {};
+			class onTick {};
 		};
 		class Client_Medical {
 			file = "Desolation\Client\Medical";

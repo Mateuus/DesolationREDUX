@@ -1,5 +1,5 @@
 /*
-	Stops the player from bleeding
+	Stops the player from bleeding (on bandage)
 
 */
 

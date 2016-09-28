@@ -27,6 +27,16 @@ class RscButtonMenuOK;
 class RscControlsGroupNoHScrollbars;
 class RscHTML;
 class RscButtonMenu;
+class RscStandardDisplay;
+class RscVignette;
+class RscControlsGroupNoScrollbars;
+class RscFrame;
+class CA_Title;
+class RscDebugConsole;
+class RscTrafficLight;
+class RscFeedback;
+class RscMessageBox;
+class ShortcutPos;
 
 class DS_spawnSelection {
 	idd = 4000;
@@ -130,7 +140,584 @@ class DS_spawnSelection {
 	};
 };
 
-
+class RscDisplayMPInterrupt: RscStandardDisplay
+{
+	scriptName = "RscDisplayMPInterrupt";
+	scriptPath = "GUI";
+	onLoad = "[""onLoad"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _code = missionNamespace getVariable ['ds_fnc_onEscape',{}]; [_this] call _code;";
+	onUnload = "[""onUnload"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
+	movingEnable = 0;
+	enableSimulation = 1;
+	class controlsBackground
+	{
+		class Vignette: RscVignette
+		{
+			idc = 114998;
+		};
+		class TileGroup: RscControlsGroupNoScrollbars
+		{
+			idc = 115099;
+			x = "safezoneX";
+			y = "safezoneY";
+			w = "safezoneW";
+			h = "safezoneH";
+			disableCustomColors = 1;
+			class Controls
+			{
+				class TileFrame: RscFrame
+				{
+					idc = 114999;
+					x = 0;
+					y = 0;
+					w = "safezoneW";
+					h = "safezoneH";
+					colortext[] = {0,0,0,1};
+				};
+				class Tile_0_0: RscText
+				{
+					idc = 115000;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_0_1: RscText
+				{
+					idc = 115001;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_0_2: RscText
+				{
+					idc = 115002;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_0_3: RscText
+				{
+					idc = 115003;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_0_4: RscText
+				{
+					idc = 115004;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_0_5: RscText
+				{
+					idc = 115005;
+					x = "(0 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_0: RscText
+				{
+					idc = 115010;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_1: RscText
+				{
+					idc = 115011;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_2: RscText
+				{
+					idc = 115012;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_3: RscText
+				{
+					idc = 115013;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_4: RscText
+				{
+					idc = 115014;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_1_5: RscText
+				{
+					idc = 115015;
+					x = "(1 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_0: RscText
+				{
+					idc = 115020;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_1: RscText
+				{
+					idc = 115021;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_2: RscText
+				{
+					idc = 115022;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_3: RscText
+				{
+					idc = 115023;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_4: RscText
+				{
+					idc = 115024;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_2_5: RscText
+				{
+					idc = 115025;
+					x = "(2 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_0: RscText
+				{
+					idc = 115030;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_1: RscText
+				{
+					idc = 115031;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_2: RscText
+				{
+					idc = 115032;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_3: RscText
+				{
+					idc = 115033;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_4: RscText
+				{
+					idc = 115034;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_3_5: RscText
+				{
+					idc = 115035;
+					x = "(3 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_0: RscText
+				{
+					idc = 115040;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_1: RscText
+				{
+					idc = 115041;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_2: RscText
+				{
+					idc = 115042;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_3: RscText
+				{
+					idc = 115043;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_4: RscText
+				{
+					idc = 115044;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_4_5: RscText
+				{
+					idc = 115045;
+					x = "(4 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_0: RscText
+				{
+					idc = 115050;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(0 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_1: RscText
+				{
+					idc = 115051;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(1 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_2: RscText
+				{
+					idc = 115052;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(2 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_3: RscText
+				{
+					idc = 115053;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(3 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_4: RscText
+				{
+					idc = 115054;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(4 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+				class Tile_5_5: RscText
+				{
+					idc = 115055;
+					x = "(5 * 1/6) * safezoneW";
+					y = "(5 * 1/6) * safezoneH";
+					w = "1/6 * safezoneW";
+					h = "1/6 * safezoneH";
+					colorBackground[] = {0,0,0,0.1};
+				};
+			};
+		};
+		class TitleBackground: RscText
+		{
+			idc = 1050;
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "14.2 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+		};
+		class MissionNameBackground: RscText
+		{
+			idc = -1;
+			x = "SafezoneX + (1 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			y = "23 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "SafezoneW - (2 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class Pause1: RscText
+		{
+			idc = 1000;
+			x = "safezoneX + safezoneW - 2.2 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			y = "safezoneY + 1.4 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			w = "0.7 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "2 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {1,1,1,1};
+			shadow = 2;
+		};
+		class Pause2: Pause1
+		{
+			idc = 1001;
+			x = "safezoneX + safezoneW - 3.2 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+		};
+	};
+	class controls
+	{
+		delete B_Players;
+		delete B_Options;
+		delete B_Abort;
+		delete B_Retry;
+		delete B_Load;
+		delete B_Save;
+		delete B_Continue;
+		delete B_Diary;
+		delete TrafficLight;
+		class Title: RscTitle
+		{
+			idc = 523;
+			style = 0;
+			text = "$STR_XBOX_CONTROLER_DP_MENU";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "14.2 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "5 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {0,0,0,0};
+		};
+		class PlayersName: CA_Title
+		{
+			idc = 109;
+			style = 1;
+			colorBackground[] = {0,0,0,0};
+			x = "6 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "14.2 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "10 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonCancel: RscButtonMenu
+		{
+			idc = 2;
+			shortcuts[] = {"0x00050000 + 1","0x00050000 + 8"};
+			default = 1;
+			class ShortcutPos: ShortcutPos
+			{
+				left = "14 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			};
+			text = "$STR_DISP_INT_CONTINUE";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "15.3 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonSAVE: RscButtonMenu
+		{
+			idc = 103;
+			text = "$STR_DISP_INT_SAVE";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "16.4 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonSkip: RscButtonMenu
+		{
+			idc = 1002;
+			text = "$STR_DISP_INT_SKIP";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "16.4 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonRespawn: RscButtonMenu
+		{
+			idc = 1010;
+			text = "$STR_DISP_INT_RESPAWN";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "17.5 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonOptions: RscButtonMenu
+		{
+			idc = 101;
+			text = "$STR_A3_RscDisplayMain_ButtonOptions";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "18.6 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonVideo: RscButtonMenu
+		{
+			idc = 301;
+			text = "$STR_A3_RscDisplayInterrupt_ButtonVideo";
+			x = "2 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "15.3 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "14 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			tooltip = "$STR_TOOLTIP_MAIN_VIDEO";
+		};
+		class ButtonAudio: RscButtonMenu
+		{
+			idc = 302;
+			text = "$STR_A3_RscDisplayInterrupt_ButtonAudio";
+			x = "2 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "16.4 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "14 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			tooltip = "$STR_TOOLTIP_MAIN_AUDIO";
+		};
+		class ButtonControls: RscButtonMenu
+		{
+			idc = 303;
+			text = "$STR_A3_RscDisplayInterrupt_ButtonControls";
+			x = "2 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "17.5 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "14 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			tooltip = "$STR_TOOLTIP_MAIN_CONTROLS";
+		};
+		class ButtonGame: RscButtonMenu
+		{
+			idc = 307;
+			text = "$STR_A3_RscDisplayInterrupt_ButtonGame";
+			x = "2 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "18.6 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "14 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			tooltip = "$STR_TOOLTIP_MAIN_GAME";
+		};
+		class ButtonTutorialHints: RscButtonMenu
+		{
+			idc = 122;
+			text = "$STR_A3_RscDisplayInterrupt_ButtonTutorialHints";
+			tooltip = "$STR_TOOLTIP_MAIN_FIELDMANUAL";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "19.7 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class ButtonAbort: RscButtonMenu
+		{
+			idc = 104;
+			text = "$STR_DISP_INT_ABORT";
+			x = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "20.8 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "15 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class DebugConsole: RscDebugConsole
+		{
+			x = "17 * 			(			((safezoneW / safezoneH) min 1.2) / 40) + 			(safezoneX)";
+			y = "0.5 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "22 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "21.5 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class MissionTitle: RscText
+		{
+			idc = 120;
+			font = "RobotoCondensedLight";
+			sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+			shadow = 0;
+			x = "SafezoneX + (1 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			w = "SafezoneW - (15 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			y = "23 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class Version: RscText
+		{
+			style = 1;
+			font = "RobotoCondensedLight";
+			sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+			shadow = 0;
+			x = "SafezoneX + SafezoneW - (13 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			idc = 1005;
+			y = "23 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "12 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class TraffLight: RscTrafficLight
+		{
+			idc = 121;
+			x = "SafezoneX + SafezoneW - (2 * 			(			((safezoneW / safezoneH) min 1.2) / 40))";
+			show = 0;
+			y = "23 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 			(safezoneY + safezoneH - 			(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			w = "1 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class Feedback: RscFeedback{};
+		class MessageBox: RscMessageBox{};
+	};
+};
 
 //--- UI overrides
 class RscDisplayInventory

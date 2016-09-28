@@ -65,7 +65,9 @@ class RscTitles
 		class Controls {
 			class PictureBackground
 			{
+				//--- TODO: add the rest of the errors
 				type=0;
+				font="TahomaB";
 				style=48;
 				shadow = 0;
 				colorBackground[] = {0,0,0,1};
@@ -73,7 +75,9 @@ class RscTitles
 				tooltipColorText[] = {1,1,1,1};
 				tooltipColorBox[] = {1,1,1,1};
 				tooltipColorShade[] = {0,0,0,0.65};
+				tooltip = "";
 				idc = -1;
+				sizeEx = 0.1;
 				text = "background.paa";
 				x = "safezoneX";
 				y = "safezoneY";
