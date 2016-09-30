@@ -65,7 +65,7 @@ private:
 	std::string getUUID(boost::property_tree::ptree &dbarguments);
 	std::string echo(boost::property_tree::ptree &dbarguments);
 	std::string dbVersion(boost::property_tree::ptree &dbarguments);
-	db_handler tempsyncdbhandler;
+	//db_handler tempsyncdbhandler;
 	//boost::lockfree::queue<intptr_t, boost::lockfree::capacity<10>> syncdbhandlerpool;
 	boost::lockfree::queue<intptr_t, boost::lockfree::fixed_sized<false>> syncdbhandlerpool{1};
 };

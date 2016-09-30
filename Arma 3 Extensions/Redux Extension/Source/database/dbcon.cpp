@@ -39,6 +39,7 @@ int dbcon::spawnThreads(unsigned int poolsize) {
 		std::string user = "root";
 		std::string password = "root";
 		std::string database = "desolationredux";
+		unsigned int port = 0;
 		db_handler *syncdbhandler;
 
 		if (!syncdbhandlerpool.is_lock_free()) {
@@ -48,18 +49,20 @@ int dbcon::spawnThreads(unsigned int poolsize) {
 		syncdbhandlerpool.reserve(poolsize + 1);
 		for (i = 0; i < poolsize; i++) {
 			syncdbhandler = new (db_handler);
-			syncdbhandler->connect(hostname, user, password, database);
+			syncdbhandler->connect(hostname, user, password, database, port);
 			syncdbhandlerpool.bounded_push((intptr_t) syncdbhandler);
 		}
 
-		tempsyncdbhandler.connect(hostname, user, password, database);
+		// tempsyncdbhandler.connect(hostname, user, password, database);
 
+		/* commented until async is needed
 		DBioService.set_dbinfos(hostname, user, password, database);
 		for (i = 0; i < poolsize; i++) {
 			asyncthreadpool.create_thread(
 					boost::bind(&dbcon_io_service::run, &DBioService)
 			);
 		}
+		*/
 		poolinitialized = true;
 	} else {
 		throw std::runtime_error("Threads already spawned");
@@ -122,35 +125,3 @@ std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments) {
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + version + "\"]";
 }
-
-/*
-std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments) {
-	intptr_t syncdbhandlerpointer;
-	db_handler *syncdbhandler;
-	MYSQL_RES *result;
-	MYSQL_ROW row = 0;
-	//int fieldcount = 0;
-	std::string version;
-
-	// try to get an db handler
-	while (!syncdbhandlerpool.pop(syncdbhandlerpointer)) {
-		printf("i am in a loop! :( \n");
-	}
-
-	//	syncdbhandler = &tempsyncdbhandler;
-	syncdbhandler = (db_handler*) syncdbhandlerpointer;
-
-	syncdbhandler->rawquery("SELECT VERSION()", &result);
-
-	// return handler to the pool
-	syncdbhandlerpool.bounded_push(syncdbhandlerpointer);
-
-	row = mysql_fetch_row(result);
-	//fieldcount = mysql_num_fields(*result);
-	version = row[0];
-
-	mysql_free_result(result);
-
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + version + "\"]";
-}
-*/

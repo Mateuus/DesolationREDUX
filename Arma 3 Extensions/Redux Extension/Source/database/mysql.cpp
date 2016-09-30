@@ -3,10 +3,14 @@
 #include "database/mysql.hpp"
 
 db_handler::db_handler() {
-	this->hostname = 0;
-	this->user = 0;
-	this->password = 0;
-	this->database = 0;
+	this->hostname = NULL;
+	this->user = NULL;
+	this->password = NULL;
+	this->database = NULL;
+	this->port = 0;
+	this->socket = NULL;
+	this->flag = 0;
+
 	connection = mysql_init(NULL);
 
 	if (connection == NULL) {
@@ -19,14 +23,17 @@ db_handler::~db_handler() {
 	return;
 }
 
-void db_handler::connect(std::string hostname, std::string user, std::string password, std::string database) {
+void db_handler::connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port) {
 	this->hostname = hostname.c_str();
 	this->user = user.c_str();
 	this->password = password.c_str();
 	this->database = database.c_str();
+	this->port = port;
+//	this->socket = NULL;
+//	this->flag = 0;
 
 	if (mysql_real_connect(connection, this->hostname, this->user,
-			this->password, this->database, 0, NULL, 0) == NULL) {
+			this->password, this->database, this->port, this->socket, this->flag) == NULL) {
 		throw std::runtime_error("connection problem while initializing db_handler: " + std::string(mysql_error(connection)));
 		mysql_close(connection);
 	} else {

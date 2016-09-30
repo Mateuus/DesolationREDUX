@@ -10,7 +10,7 @@ public:
 	db_handler();
 	~db_handler();
 
-	void connect(std::string hostname, std::string user, std::string password, std::string database);
+	void connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port);
 	void rawquery(std::string query, MYSQL_RES **result);
 	std::string querydbversion();
 
@@ -20,6 +20,9 @@ private:
 		const char *user;
 		const char *password;
 		const char *database;
+		unsigned int port;
+		const char *socket;
+		unsigned long int flag;
 };
 
 #endif /* SOURCE_MYSQL_HPP_ */
