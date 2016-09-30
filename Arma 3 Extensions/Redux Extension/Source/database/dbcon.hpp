@@ -19,17 +19,18 @@
 
 class dbcon_io_service: public boost::asio::io_service {
 public:
-	int set_dbinfos(std::string hostname, std::string user, std::string password, std::string database) {
+	void set_dbinfos(std::string hostname, std::string user, std::string password, std::string database, unsigned int port) {
 		this->hostname = hostname;
 		this->user = user;
 		this->password = password;
 		this->database = database;
+		this->port = port;
 	}
 
 	std::size_t run() {
 		if (handler.get() == 0) {
 			handler.reset(new db_handler);
-			handler->connect(hostname, user, password, database);
+			handler->connect(hostname, user, password, database, port);
 		}
 
 		return boost::asio::io_service::run();
@@ -41,6 +42,7 @@ private:
 	std::string user;
 	std::string password;
 	std::string database;
+	unsigned int port;
 };
 
 class dbcon {
