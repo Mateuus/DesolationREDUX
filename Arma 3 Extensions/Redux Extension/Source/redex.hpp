@@ -27,6 +27,7 @@ private:
 	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::queue<std::string>> MESSAGE_MAP;
 	MESSAGE_MAP msgmap;
 
+	std::string initdb(boost::property_tree::ptree &dllarguments);
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
 	std::string chkmsg(boost::property_tree::ptree &dllarguments);
