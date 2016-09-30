@@ -30,6 +30,8 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 	_randomSpawnCount = (call compile (["NumVehicles","DS"] call BASE_fnc_getCfgValue)) - _vehCount;
 	[_randomSpawnCount] call DS_fnc_spawnVehicles; //--- spawn 1000 vehicles (TODO: take into account database vehicles & the cfg entry for vehicle spawn count)
 };
+// start zombie spawns
+[] spawn DS_fnc_spawnZombies;
 
 // start Item Spawns
 [] spawn DS_fnc_lootManager;

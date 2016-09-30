@@ -13,4 +13,4 @@ _unitUID = _this select 2;
 _unitName = _this select 3;
 
 
-deleteVehicle _unit;
+// deleteVehicle _unit; // (why was this here??)

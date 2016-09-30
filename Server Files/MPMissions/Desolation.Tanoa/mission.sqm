@@ -27,7 +27,9 @@ addons[]=
 {
 	"A3_Ui_F",
 	"A3_Characters_F",
-	"CAWheeled2_MMT"
+	"dsr_weapons",
+	"dsr_actions",
+	"CAWheeled_2_MMT"
 };
 class AddonsMetaData
 {

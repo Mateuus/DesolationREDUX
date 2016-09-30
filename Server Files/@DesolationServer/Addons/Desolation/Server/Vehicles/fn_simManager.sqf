@@ -44,12 +44,19 @@ while{true} do {
 	{
 		if (simulationEnabled _x) then {
 			_x enableSimulationGlobal false;
+			
 		};
-	} forEach _tolock;	
+	} forEach _tolock;
+	_redamage = [];
 	{
 		if !(simulationEnabled _x) then {
+			_x allowDamage false; //--- exploding vehicle fix
 			_x enableSimulationGlobal true;
+			_redamage pushBack _x;
 		};
 	} forEach _tounlock;
 	uiSleep 1;
+	{
+		_x allowDamage true;
+	} forEach _redamage;
 };

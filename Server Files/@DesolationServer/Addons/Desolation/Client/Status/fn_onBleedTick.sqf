@@ -9,13 +9,14 @@
 params["_sourcesinfo"];
 // each bleed source / level increases loss by 5 per second
 
-_tickLoss = 0;
+_numLevels = 0;
+
 {
 	_lvl = _x select 0;
-	_tickLoss = _tickLoss + ((_lvl^1.5) * 5);
+	_numLevels = _numLevels + _lvl;
 } forEach _sourcesinfo;
 
-_tickLoss = 
+_tickLoss = (_numLevels^2) * 5;
 
 DS_var_Blood = DS_var_Blood - _tickLoss;
 

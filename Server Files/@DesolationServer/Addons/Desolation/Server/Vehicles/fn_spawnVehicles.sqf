@@ -63,7 +63,7 @@ _shuffle = {
 };
 
 
-_bikeLimit = 150; //--- temp, to be loaded from config (TODO)
+_bikeLimit = call compile (["MaxBikes","DS"] call BASE_fnc_getCfgValue); //--- temp, to be loaded from config (TODO)
 
 //--- get all houses on the map that can spawn vehicles in them
 _housesOrdered = nearestObjects [[worldsize/2,worldsize/2],_types,worldsize];
@@ -100,6 +100,7 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 			_posasl = AGLtoASL _posagl;
 
 			_tv = _v createVehicle _posagl;
+			clearItemCargo _tv;
 			_hitpoints = (getAllHitPointsDamage _tv) select 0;
 			{
 				if(_x != "" && _x != "HitFuel" && _x != "HitFuelTank" && _x != "HitBody") then {

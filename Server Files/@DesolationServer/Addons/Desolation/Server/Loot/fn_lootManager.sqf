@@ -17,12 +17,8 @@ diag_log "<Loot Manager>: Parsing config entries";
 
 //--- Parse config entries
 _buildingTypes = getArray(configFile >> "CfgItemSpawns" >> "buildingTypes");
-diag_log "<Loot Manager>: Building types -> ";
-diag_log str(_buildingTypes);
 //--- Parse User Defined Config Entries
 _MinPiles = ["MinPiles"] call _getCFGValue;
-diag_log "<Loot Manager>: Minimum loot piles -> ";
-diag_log str(_MinPiles);
 
 _DoRespawn = ["RespawnLoot"] call _getCFGValue;
 _RespawnTimeS = (["RespawnTime"] call _getCFGValue)*60;
@@ -30,13 +26,11 @@ _RespawnTimeS = (["RespawnTime"] call _getCFGValue)*60;
 
 _Config_Options = [];
 {
-	diag_log ("<Loot Manager>: Config options for " + _x + " buildings ->");
 	_lChance = call compile ([_x + "_lootChance","DS"] call BASE_fnc_getCfgValue);
 	_sChance = call compile ([_x + "_spawnChance","DS"] call BASE_fnc_getCfgValue);
 	_tChance = call compile ([_x + "_typeChance","DS"] call BASE_fnc_getCfgValue);
 	_gChance = call compile ([_x + "_gearChance","DS"] call BASE_fnc_getCfgValue);
 	_data = [_lChance,_sChance,_tChance,_gChance];
-	diag_log str(_data);
 	_Config_Options pushBack _data;
 } forEach _buildingTypes;
 
@@ -50,8 +44,8 @@ for "_i" from 0 to count(configFile >> "CfgItemSpawns" >> "Buildings")-1 do {
 		_all_buildings pushBack _name;
 	};
 };
-diag_log "<Loot Manager>: # of lootable buildings ->";
-diag_log str(count(_all_buildings));
+
+diag_log "<Loot Manager>: Loot Manager Running!";
 
 while{true} do {
 
@@ -62,35 +56,57 @@ while{true} do {
 	{
 		//--- TODO: check if they've spawned in
 		if(alive _x) then {
-			_nearest_building = nearestObject [_x,"House"];
-
+			//--- get house im standing on, fixes bug with some houses despawning loot when im in them
+			_houses = lineIntersectsObjs [(AGLtoASL (_x modelToWorld [0,0,0])),(AGLtoASL(_x modelToWorld [0,0,-0.5])),objNull,_x,true];
+			_nearest_building = objNull;
+			if(count(_houses) > 0) then {
+				_nearest_building = _houses select (count(_houses)-1);
+			};
+			
+			if !(toLower(typeof(_nearest_building)) in _all_buildings) then {
+				_houses = nearestObjects [_x,_all_buildings,50];
+				_nearest_building = objNull;
+				{
+					if(isNull _nearest_building) then {
+						_nearest_building = _x;
+					} else {
+						if((player distance _x) < (player distance _nearest_building)) then {
+							_nearest_building = _x;
+						};
+					};
+				} forEach _houses;
+			};
 			//--- near building check (fixes bug with lamps being called "houses" rofl)
-			if !(typeof(_nearest_building) in _all_buildings) then {
+			if !(toLower(typeof(_nearest_building)) in _all_buildings) then {
 				_nearest_building = nearestBuilding _x;
 			};
 
 
 			if(!isNull _nearest_building) then { /// near a building
-
-				_nearest_building_type = toLower(typeof _nearest_building);
-
+			
 				_buildingsNotToDespawn pushBack _nearest_building; /// mark this building as not despawnable
+				if !(_nearest_building in _buildingsToSpawn) then {
+					
+					_nearest_building_type = toLower(typeof _nearest_building);
 
-				_last_nearest = _x getVariable ["LastNearestBuilding",objNull];
-				if(_last_nearest != _nearest_building) then { /// nearest building has changed
+					_last_nearest = _x getVariable ["LastNearestBuilding",objNull];
+					if(_last_nearest != _nearest_building) then { /// nearest building has changed
 
-					if(!isNull _last_nearest) then {
-						if(_last_nearest getVariable ["SpawnedLoot",false]) then {
-							_buildingsToDespawn pushback _last_nearest; /// if we were at a previous building, mark it as despawnable
+						if(!isNull _last_nearest) then {
+							if(_last_nearest getVariable ["SpawnedLoot",false]) then {
+								if !(_last_nearest in _buildingsToDespawn) then {
+									_buildingsToDespawn pushback _last_nearest; /// if we were at a previous building, mark it as despawnable
+								};
+							};
 						};
-					};
 
-					_x setVariable ["LastNearestBuilding",_nearest_building]; /// update our previous building to this new one
+						_x setVariable ["LastNearestBuilding",_nearest_building]; /// update our previous building to this new one
 
-					if(_nearest_building_type in _all_buildings) then { /// if this building can contain loot
+						if(_nearest_building_type in _all_buildings) then { /// if this building can contain loot
+							
+							_buildingsToSpawn pushBack _nearest_building; /// mark this building as "Spawn loot here"
 
-						_buildingsToSpawn pushBack _nearest_building; /// mark this building as "Spawn loot here"
-
+						};
 					};
 				};
 			};
@@ -100,6 +116,7 @@ while{true} do {
 	{
 
 		_hasVar = _x getVariable ["SpawnedLoot",false];
+		_isSpawned = _x getVariable ["IsSpawnedLoot",false];
 		_savedLoot = _x getVariable ["SavedLoot",[]];
 		_spawnTime = _x getVariable ["SpawnedTime",0];
 
@@ -119,16 +136,20 @@ while{true} do {
 			_x setVariable ["SpawnedLoot",true];
 			_x setVariable ["SpawnedTime",diag_tickTime];
 			_x setVariable ["SavedLoot",[]];
+			_x setVariable ["IsSpawnedLoot",true];
 			diag_log ("Spawning loot @ " + typeof(_x));
 			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
 		} else {
-			diag_log ("Respawning loot @ " + typeof(_x));
-			[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+			if(!_isSpawned) then {
+				diag_log ("Respawning loot @ " + typeof(_x));
+				[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+			};
 		};
 	} forEach _buildingsToSpawn;
 	{
 		if !(_x in _buildingsNotToDespawn) then {
 			diag_log ("Despawning loot @ " + typeof(_x)); //--- running on non-spawned buildings?
+			_x setVariable ["IsSpawnedLoot",false];
 			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //--- despawns once?
 		};
 	} forEach _buildingsToDespawn;

@@ -53,7 +53,7 @@ while{true} do {
 	
 	if !(surfaceIsWater _pos || !((getTerrainHeightASL [_randomX,_randomY]) < 1)) then {
 		_others = _pos nearEntities [(typeof player), 200];
-		if(count(_others) == 0 && ({typeof _x != ""} count(nearestTerrainObjects [_pos,[],40])) == 0) then {
+		if(count(_others) == 0 && ( count(nearestTerrainObjects [_pos,["rock"],5]) == 0) && (({typeof _x != ""} count(nearestTerrainObjects [_pos,[],40])) == 0)) then {
 			_spawnPos = _pos;
 			breakTo "exitSpawn";
 		};

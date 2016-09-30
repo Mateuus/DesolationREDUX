@@ -50,7 +50,7 @@ if(isClass _actions) then {
 				_ctrl = _display ctrlCreate ["RscButton",-1];
 				_ctrl ctrlSetPosition [_bX,_bY,_bW,_bH];
 				_ctrl ctrlSetText _aText;
-				_ctrl buttonSetAction ("[] spawn ds_fnc_closebuttons;" + _action);
+				_ctrl buttonSetAction ("[] spawn ds_fnc_closebuttons;_classname = """ + _classname + """; " + _action);
 				_ctrl ctrlCommit 0;
 				
 				_buttons pushBack _ctrl;

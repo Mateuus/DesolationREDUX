@@ -144,7 +144,7 @@ class RscDisplayMPInterrupt: RscStandardDisplay
 {
 	scriptName = "RscDisplayMPInterrupt";
 	scriptPath = "GUI";
-	onLoad = "[""onLoad"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _code = missionNamespace getVariable ['ds_fnc_onEscape',{}]; [_this] call _code;";
+	onLoad = "[""onLoad"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _code = missionNamespace getVariable ['ds_fnc_onEscape',{}]; [_this select 0] call _code;";
 	onUnload = "[""onUnload"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
 	movingEnable = 0;
 	enableSimulation = 1;

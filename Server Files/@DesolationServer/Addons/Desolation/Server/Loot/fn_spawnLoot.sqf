@@ -175,7 +175,11 @@ if(_savedLoot isEqualTo []) then {
 		_backpacks = _loot select 4;
 
 		{
-			_container addMagazineAmmoCargo [_x select 0, 1, _x select 1];
+			if(count(_x) > 1) then {
+				_container addMagazineAmmoCargo [_x select 0, 1, _x select 1];
+			} else {
+				_container addMagazineAmmoCargo [_x select 0, 1, 1];
+			};
 		} forEach _magazines;
 		{
 			_container addItemCargoGlobal [_x,1];

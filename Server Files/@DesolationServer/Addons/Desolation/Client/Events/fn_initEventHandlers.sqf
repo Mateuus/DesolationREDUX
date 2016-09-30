@@ -12,15 +12,18 @@ player addEventHandler ["HandleDamage",{
 	
 	if(!isNull _shooter) then {
 		if(toLower(_projectile) find "b_" == 0) then {
-			DS_var_damagedBy pushBack _shooter;
+			if !(_shooter in DS_var_damagedBy) then {
+				DS_var_damagedBy pushBack _shooter;
 			
-			_bloodLoss = _damage * 27500;
-			DS_var_Blood = DS_var_Blood - _bloodLoss;
+				_bloodLoss = _damage * 27500;
+				DS_var_Blood = DS_var_Blood - _bloodLoss;
+			};
 		};
 	};
 	nil;
 }];
 player addEventHandler ["Killed",{
+	call DS_fnc_stopBleeding;
 	0 cutText ["You are dead","BLACK FADED",10000];
 }];
 player addEventHandler ["InventoryOpened",{

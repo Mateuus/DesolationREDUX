@@ -6,8 +6,9 @@
 
 	License info here and copyright symbol above
 */
-disableserialization;
 params["_display"];
+if(isNil {_display}) exitWith {systemchat "ESCAPE DISPLAY NIL";};
+if(isNull _display) exitWith {systemchat "ESCAPE DISPLAY NULL";};
 
 _ctrl = _display displayCtrl 103;
 _ctrl ctrlEnable false;

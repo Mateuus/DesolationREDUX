@@ -16,6 +16,7 @@ for "_i" from 1 to _time do {
 	uiSleep 1;
 };
 10481 cutText ["","BLACK IN",5];
+DS_var_lastKnockout = diag_tickTime;
 player setUnconscious false;
 player switchMove "unconsciousoutprone";
 //--- TODO: sync the switchmove
