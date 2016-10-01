@@ -7,11 +7,20 @@
 	License info here and copyright symbol above
 */
 
-params["_unit"];
+params["_unit",["_goggles",""]];
 
 
 //--- todo: initialize event handlers on unit
 selectPlayer _unit;
+
+if(_goggles != "") then {
+	_goggles spawn {
+		uiSleep 2;
+		removeGoggles player;
+		player addGoggles _this;
+		systemchat "GIVEN GOGGLES";
+	};
+};
 //--- fade into the game
 1 fadeSound 2;
 1 fadeMusic 2;

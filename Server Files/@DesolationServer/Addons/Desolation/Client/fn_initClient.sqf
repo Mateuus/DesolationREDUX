@@ -17,4 +17,9 @@ call ds_fnc_initInvHandler;
 call ds_fnc_initHealthSys;
 
 //asks the server to spawn us
-[player] remoteExec ["DS_fnc_requestSpawn", 2];
+
+if((uiNamespace getVariable ["DS_LOADOUTDATA",[]]) isEqualTo []) then {
+	uiNamespace setVariable ["DS_LOADOUTDATA",[(profileNamespace getVariable ["DS_Default_Uniform","U_C_Poor_2"]),(profileNamespace getVariable ["DS_Default_Headgear","H_StrawHat"]),(profileNamespace getVariable ["DS_Default_Goggles","G_Aviator"])]];
+};
+
+[player,uiNamespace getVariable "DS_LOADOUTDATA"] remoteExec ["DS_fnc_requestSpawn", 2];

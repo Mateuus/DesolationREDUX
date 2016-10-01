@@ -4,12 +4,61 @@ class CfgPatches
 	{
 		units[] = {};
 		weapons[] = {};
-		requiredAddons[] = {"A3_Data_F","A3_Ui_F","A3_Functions_F","A3_UiFonts_F"};
+		requiredAddons[] = {"A3_Data_F","A3_Ui_F","A3_Functions_F","A3_UiFonts_F","A3_Map_Stratis","A3_Map_Altis","A3_Map_VR","A3_Map_Tanoabuka","A3_Map_Stratis_Scenes", "A3_Map_VR_Scenes", "A3_Map_Altis_Scenes","A3_Map_Tanoa_Scenes_F"};
 		fileName = "dsr_ui.pbo";
 		requiredVersion = 0.1;
 		author[]= {"Desolation Redux Dev Team"};
 	};
 };
+//--- todo move this shit somewhere else
+class CfgMissions {
+	class Cutscenes {
+		class DSIntro {
+			directory = "dsr_ui\Intro\dsintro.tanoa";
+		};
+	};
+};
+class CfgWorlds {
+	class CAWorld;
+	
+	class Altis : CAWorld {
+		cutscenes[] = {"DSIntro"};
+	};
+	class Stratis : CAWorld {
+		cutscenes[] = {"DSIntro"};
+	};
+	class Tanoa : CAWorld {
+		cutscenes[] = {"DSIntro"};
+	};
+	class VR : CAWorld {
+		cutscenes[] = {"DSIntro"};
+	};
+	initWorld = "Tanoa";
+	demoWorld = "Tanoa";
+};
+class CfgDifficulties {
+	class Mercenary {
+		class Flags {
+			weaponCursor[] = {0,0};
+		};
+	};
+	class Recruit {
+		class Flags {
+			weaponCursor[] = {0,0};
+		};
+	};
+	class Regular {
+		class Flags {
+			weaponCursor[] = {0,0};
+		};
+	};
+	class Veteran {
+		class Flags {
+			weaponCursor[] = {0,0};
+		};
+	};
+};
+//--- end todo
 
 class RscPicture;
 class RscButton;
@@ -37,6 +86,10 @@ class RscTrafficLight;
 class RscFeedback;
 class RscMessageBox;
 class ShortcutPos;
+class RscButtonMenuCancel;
+class RscButtonMenuSteam;
+class RscActivePicture;
+class RscButtonMenuMain;
 
 class DS_spawnSelection {
 	idd = 4000;
@@ -719,7 +772,121 @@ class RscDisplayMPInterrupt: RscStandardDisplay
 	};
 };
 
-//--- UI overrides
+class RscDisplayMultiplayerSetup: RscStandardDisplay
+{
+	scriptName = "RscDisplayMultiplayerSetup";
+	scriptPath = "GUI";
+	onLoad = "[""onLoad"",_this,""RscDisplayMultiplayerSetup"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
+	onUnload = "[""onUnload"",_this,""RscDisplayMultiplayerSetup"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
+	west = "A3\ui_f\data\gui\rsc\RscDisplayMultiplayerSetup\flag_bluefor_ca.paa";
+	east = "A3\ui_f\data\gui\rsc\RscDisplayMultiplayerSetup\flag_opfor_ca.paa";
+	guer = "A3\ui_f\data\gui\rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
+	civl = "A3\ui_f\data\gui\rsc\RscDisplayMultiplayerSetup\flag_civil_ca.paa";
+	none = "#(argb,8,8,3)color(0,0,0,0)";
+	westUnlocked = "a3\ui_f\data\map\diary\icons\playerwest_ca.paa";
+	westLocked = "a3\ui_f\data\map\diary\icons\playerbriefwest_ca.paa";
+	eastUnlocked = "a3\ui_f\data\map\diary\icons\playereast_ca.paa";
+	eastLocked = "a3\ui_f\data\map\diary\icons\playerbriefeast_ca.paa";
+	guerUnlocked = "a3\ui_f\data\map\diary\icons\playerguer_ca.paa";
+	guerLocked = "a3\ui_f\data\map\diary\icons\playerbriefguer_ca.paa";
+	civlUnlocked = "a3\ui_f\data\map\diary\icons\playerciv_ca.paa";
+	civlLocked = "a3\ui_f\data\map\diary\icons\playerbriefciv_ca.paa";
+	virtUnlocked = "a3\ui_f\data\map\diary\icons\playervirtual_ca.paa";
+	virtLocked = "a3\ui_f\data\map\diary\icons\playerbriefvirtual_ca.paa";
+	disabledAllAI = "$STR_DISP_MULTI_ENABLE_AI";
+	enabledAllAI = "$STR_DISP_MULTI_DISABLE_AI";
+	hostLocked = "$STR_DISP_MULTI_UNLOCK";
+	hostUnlocked = "$STR_DISP_MULTI_LOCK";
+	colorNotAssigned[] = {1,1,1,0.25};
+	colorAssigned[] = {1,1,1,1};
+	colorConfirmed[] = {0,1,0,1};
+	class controlsbackground
+	{
+		delete SideBackground;
+
+		class RolesBackground: RscText
+		{
+			colorBackground[] = {0,0,0,0.3};
+			idc = 1085;
+			x = "(4.8 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 		(SafezoneX)) - (3.5 * 					(			((safezoneW / safezoneH) min 1.2) / 40))";
+			y = "6.8 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 		(safezoneY)";
+			w = "(3.5 * 					(			((safezoneW / safezoneH) min 1.2) / 40)) + ((14.9 * 					(			((safezoneW / safezoneH) min 1.2) / 40)) + 0.45*(safezoneW - 				((safezoneW / safezoneH) min 1.2)))";
+			h = "(10.3 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)) + 0.7*(safezoneH - 				(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+		};	
+	};
+	class controls
+	{
+		delete B_Civilian;
+		delete B_Guerrila;
+		delete B_East;
+		delete B_West;
+		delete B_Side;
+		delete B_OK;
+		delete B_Cancel;
+		delete B_Kick;
+		delete B_EnableAll;
+		delete B_Lock;
+		delete TextDescription;
+		delete ValueDescription;
+		delete TextMessage;
+		delete ValueRoles;
+		delete TextParam1;
+		delete TextParam2;
+		delete ValueParam1;
+		delete ValueParam2;
+		delete ValuePool;
+		delete B_Params;
+		delete TextPool;
+		delete TextRoles;
+		delete ButtonSteamWorkshop;
+		delete CA_B_West;
+		delete CA_B_East;
+		delete CA_B_Guerrila;
+		delete CA_B_Civilian;
+		delete CA_B_Virtual;
+		delete TextSide;
+		
+		class Title: RscTitle
+		{
+			w = "15 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 0.45*(safezoneW - 				((safezoneW / safezoneH) min 1.2))";
+			idc = 1000;
+			text = "Select A Slot";
+			x = "1 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 		(SafezoneX)";
+			y = "1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 		(safezoneY)";
+			h = "1 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class CA_ValueRoles: RscListBox
+		{
+			idc = 109;
+			colorPlayer[] = {1,1,0,1};
+			colorAI[] = {1,0,0,1};
+			colorNobody[] = {1,1,1,0.25};
+			enabledAI = "a3\ui_f\data\gui\rsc\rscdisplaymultiplayersetup\enabledai_ca.paa";
+			disabledAI = "a3\ui_f\data\gui\rsc\rscdisplaymultiplayersetup\disabledai_ca.paa";
+			rowHeight = "1.75 * 		(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+			x = "(4.8 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 		(SafezoneX)) - (3.5 * 					(			((safezoneW / safezoneH) min 1.2) / 40))";
+			w = "(3.5 * 					(			((safezoneW / safezoneH) min 1.2) / 40)) + ((14.9 * 					(			((safezoneW / safezoneH) min 1.2) / 40)) + 0.45*(safezoneW - 				((safezoneW / safezoneH) min 1.2)))";
+			//--- todo increase height
+			h = "(9.4 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)) + 0.7*(safezoneH - 				(			((safezoneW / safezoneH) min 1.2) / 1.2))";
+			colorSelectBackground[] = {1,1,1,0.3};
+			colorSelectBackground2[] = {1,1,1,0.3};
+			y = "6.8 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 		(safezoneY)";
+		};
+		class TextRole: RscText
+		{
+			idc = 108;
+			sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+			w = "(14.9 * 					(			((safezoneW / safezoneH) min 1.2) / 40)) + 0.45*(safezoneW - 				((safezoneW / safezoneH) min 1.2))";
+			text = "Survivor Roles:";
+			x = "1.2 * 					(			((safezoneW / safezoneH) min 1.2) / 40) + 		(SafezoneX)";
+			y = "6 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + 		(safezoneY)";
+			h = "0.8 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {0,0,0,1};
+		};
+	};
+};
+
+
 class RscDisplayInventory
 {
 	scriptName = "RscDisplayInventory";
@@ -1510,5 +1677,243 @@ class RscDisplayInventory
 };
 
 
-
+class RscDisplayMain: RscStandardDisplay
+{
+	idd = 0;
+	scriptName = "RscDisplayMain";
+	scriptPath = "GUI";
+	onLoad = "[""onLoad"",_this,""RscDisplayMain"",'GUI'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+	onUnload = "[""onUnload"",_this,""RscDisplayMain"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
+	
+	delete Spotlight;
+	class Controls
+	{
+		delete ModIcons;
+		delete B_Quit;
+		delete B_Expansions;
+		delete B_Credits;
+		delete B_Player;
+		delete B_Options;
+		delete B_SinglePlayer;
+		delete B_MissionEditor;
+		delete B_MultiPlayer;
+		delete B_SingleMission;
+		delete B_Campaign;
+		delete Date;
+		delete ModList;
+		delete TrafficLight;
+		delete Version;
+		delete Spotlight1;
+		delete Spotlight2;
+		delete Spotlight3;
+		delete BackgroundSpotlightRight;
+		delete BackgroundSpotlightLeft;
+		delete BackgroundSpotlight;
+		delete InfoMods;
+		delete InfoDLCsOwned;
+		delete InfoDLCs;
+		delete InfoNews;
+		delete InfoVersion;
+		delete Footer;
+		delete AllMissions;
+		delete ProofsOfConcept;
+		
+		class NewsBackground: IGUIBack
+		{
+			idc = 22000;
+			x = 0.0410937 * safezoneW + safezoneX;
+			y = 0.247 * safezoneH + safezoneY;
+			w = 0.252656 * safezoneW;
+			h = 0.528 * safezoneH;
+		};
+		class NewsTitle: RscText
+		{
+			idc = 10000;
+			text = "Version 1.0.1 News";
+			x = 0.0410937 * safezoneW + safezoneX;
+			y = 0.225 * safezoneH + safezoneY;
+			w = 0.252656 * safezoneW;
+			h = 0.022 * safezoneH;
+			colorBackground[] = {0.4,0,0,0.75};
+		};
+		class NewsContent: RscStructuredText
+		{
+			idc = 11000;
+			x = 0.04625 * safezoneW + safezoneX;
+			y = 0.247 * safezoneH + safezoneY;
+			w = 0.242344 * safezoneW;
+			h = 0.517 * safezoneH;
+		};
+		class NextHat: RscButtonMenuMain 
+		{
+			class Attributes
+			{
+				align = "center";
+				color = "#ffffff";
+				font = "PuristaLight";
+				shadow = 0;
+				size = 2;
+			};
+			text = "Change Hat";
+			x = 0.3;
+			w = 0.4;
+			y = 0.2;
+			h = 0.1;
+			onbuttonclick = "0 call compile preprocessfilelinenumbers '\dsr_ui\Scripts\loadout_handler.sqf'";
+		};
+		class NextGlasses: NextHat 
+		{
+			text = "Change Glasses";
+			x = 0.3;
+			w = 0.4;
+			y = 0.31;
+			h = 0.1;
+			onbuttonclick = "1 call compile preprocessfilelinenumbers '\dsr_ui\Scripts\loadout_handler.sqf'";
+		};
+		class NextUniform: NextHat 
+		{
+			text = "Change Uniform";
+			x = 0.3;
+			w = 0.4;
+			y = 0.42;
+			h = 0.1;
+			onbuttonclick = "2 call compile preprocessfilelinenumbers '\dsr_ui\Scripts\loadout_handler.sqf'";
+		};
+		class GroupSingleplayer: RscControlsGroupNoScrollbars
+		{
+			idc = 1001;
+			x = "0.5 - (	5 + 2 * 	10) * 	(pixelW * pixelGrid * 2)";
+			y = "safezoneY + (2 + 		2) * 	(pixelH * pixelGrid * 2)";
+			w = "10 * 	(pixelW * pixelGrid * 2)";
+			h = "(5 * 	1.5) * 	(pixelH * pixelGrid * 2)";
+			class Controls
+			{
+				class Campaigns: RscButtonMenuMain
+				{
+					idc = 101;
+					text = "$STR_A3_RscDisplayMain_ButtonCampaign";
+					tooltip = "$STR_TOOLTIP_MAIN_CAMPAIGN";
+					x = 0;
+					y = "(0) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					w = "10 * 	(pixelW * pixelGrid * 2)";
+					h = "1.5 * 	(pixelH * pixelGrid * 2) - 	(pixelH)";
+					onbuttonclick = "uinamespace setvariable ['RscDisplayCampaignLoad_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONCAMPAIGN')];";
+				};
+				class Showcases: Campaigns
+				{
+					idc = 150;
+					text = "$STR_A3_RscDisplayMain_ButtonShowcases";
+					tooltip = "$STR_TOOLTIP_MAIN_SHOWCASES";
+					y = "(1 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONSHOWCASES')];";
+				};
+				class Challenges: Campaigns
+				{
+					idc = 151;
+					text = "$STR_A3_RscDisplayMain_ButtonChallenges";
+					tooltip = "$STR_A3_RscDisplayMain_ButtonChallenges_tooltip";
+					y = "(2 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONCHALLENGES')];";
+				};
+				class Scenarios: Campaigns
+				{
+					idc = 103;
+					text = "$STR_A3_RscDisplayMain_ButtonScenarios";
+					tooltip = "$STR_TOOLTIP_MAIN_SCENARIOS";
+					y = "(3 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONSCENARIOS')];";
+				};
+				class Editor: Campaigns
+				{
+					idc = 142;
+					text = "$STR_A3_RscDisplayMain_ButtonEditor";
+					tooltip = "$STR_TOOLTIP_SINGLEPLAYER_EDITOR_A3";
+					y = "(4 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					onbuttonclick = "";
+				};
+			};
+		};
+		class Logo: RscActivePicture
+		{
+			onbuttonclick = "";
+			text = "\dsr_ui\Assets\logo.paa";
+			tooltip = "";
+			url = "";
+		};
+		class LogoApex: Logo
+		{
+			text = "\dsr_ui\Assets\logo.paa";
+		};
+		class GroupMultiplayer: GroupSingleplayer
+		{
+			class Controls: Controls
+			{
+				delete ApexProtocol;
+			};
+		};
+		class GroupTutorials: GroupSingleplayer
+		{
+			class Controls: Controls
+			{
+				delete FieldManual;
+				delete CommunityGuides;
+				delete VRTraining;
+				delete Arsenal;
+				
+				class Website: Campaigns
+				{
+					idc = 1338;
+					y = "(1 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					w = "(	10 + 3.5) * 	(pixelW * pixelGrid * 2)";
+					text = "Desolation Website";
+					tooltip = "Find everything you need on our website.";
+					url = "http://desolationredux.com";
+					onbuttonclick = "";
+				};
+				class Wiki: Website
+				{
+					idc = 1339;
+					text = "Desolation Wiki";
+					tooltip = "Have a question? Look for the answer on the wiki!";
+					url = "http://desolationredux.com";
+					y = "(2 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+					onbuttonclick = "";
+				};
+				class BugReport: Website
+				{
+					idc = 1340;
+					text = "Report a bug";
+					tooltip = "Found a bug? Please report it ASAP!";
+					url = "http://desolationredux.com/";
+					onbuttonclick = "";
+					y = "(3 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
+				};
+			};
+		};
+		class GroupOptions: GroupSingleplayer
+		{
+			idc = 1004;
+			x = "0.5 + (	5 + 	10) * 	(pixelW * pixelGrid * 2)";
+			h = "(5 * 	1.5) * 	(pixelH * pixelGrid * 2)";
+			class Controls: Controls
+			{
+				delete Expansions;
+			};
+		};
+		class GroupSession: GroupSingleplayer
+		{
+			idc = 1005;
+			x = "safezoneX + safezoneW - (	10 + 		2) * 	(pixelW * pixelGrid * 2) - 	(pixelW)";
+			h = "(4 * 	1.5) * 	(pixelH * pixelGrid * 2)";
+			class Controls: Controls
+			{
+				delete Unit;
+				class Profile: Campaigns
+				{
+					text = "Edit Profile";
+				};
+			};
+		};
+	};
+};
 

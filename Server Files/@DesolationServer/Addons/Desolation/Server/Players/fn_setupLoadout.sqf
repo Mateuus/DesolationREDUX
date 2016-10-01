@@ -6,10 +6,10 @@
 	
 	License info here and copyright symbol above
 */
-params["_unit",["_equipmentArray",[]]];
+params["_unit",["_equipmentArray",[]],["_defaultData",[]]];
 
 
-if!(_equipmentArray isEqualTo [])then
+if !(_equipmentArray isEqualTo []) then
 {
 	//--- load the chosen loadout
 	removeHeadgear _unit:
@@ -24,6 +24,15 @@ if!(_equipmentArray isEqualTo [])then
 }
 else
 {
+	removeHeadgear _unit;
+	removeUniform _unit;
+	removeGoggles _unit;
+	
+	diag_log ("Giving unit: " + str(_defaultData));
+	
+	_unit addUniform (_defaultData select 0);
+	_unit addHeadgear (_defaultData select 1);
+	
 	_unit addMagazine "16Rnd_9x21_Mag";
 	_unit addWeapon "dsr_hgun_rook";
 	_unit addMagazine "dsr_item_bandage";
