@@ -2,10 +2,10 @@
 #define SOURCE_MYSQL_HPP_
 
 #include <string>
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
+#include <mysql.h>
+#include <map>
+#include <queue>
+#include <vector>
 
 class db_handler {
 	// https://dev.mysql.com/doc/connector-cpp/en/connector-cpp-examples-complete-example-1.html
@@ -13,13 +13,22 @@ public:
 	db_handler();
 	~db_handler();
 
-	void connect(std::string hostname, std::string user, std::string password, std::string database);
+	void connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port, std::string worlduuid);
+	void rawquery(std::string query, MYSQL_RES **result);
+	std::string querydbversion();
+	std::vector< std::vector<std::string> > verbosetest(std::string query);
+	std::vector< std::vector<std::string> > dumpObjects();
 
 private:
-	sql::Driver *driver;
-	sql::Connection *connection;
-	sql::Statement *statement;
-	sql::ResultSet *result;
+		MYSQL *connection;
+		std::string hostname;
+		std::string user;
+		std::string password;
+		std::string database;
+		unsigned int port;
+		std::string socket;
+		unsigned long int flag;
+		std::string worlduuid;
 };
 
 #endif /* SOURCE_MYSQL_HPP_ */

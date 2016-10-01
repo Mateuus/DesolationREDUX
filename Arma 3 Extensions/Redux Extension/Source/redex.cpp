@@ -13,6 +13,9 @@
 
 redex::redex() {
 	dllfunctions.insert(
+			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_INIT_DB),
+					boost::bind(&redex::initdb, this, _1)));
+	dllfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL),
 					boost::bind(&redex::dbcall, this, _1)));
 	dllfunctions.insert(
@@ -44,7 +47,15 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 	DLL_FUNCTIONS::iterator it = dllfunctions.find(dllfunction);
 	if (it != dllfunctions.end()) {
 		const DLL_FUNCTION &func(it->second);
-		returnString = func(dllarguments);
+
+		try {
+			returnString = func(dllarguments);
+		} catch (std::exception const& e) {
+			returnString = "[\"" + PROTOCOL_MESSAGE_TYPE_ERROR+ "\", \"";
+			returnString += e.what();
+			returnString += "\"]";
+		}
+
 	} else {
 		throw std::runtime_error("Don't know dllfunction: " + dllfunction);
 	}
@@ -98,6 +109,17 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 	msgmutex.unlock();
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MULTIPART + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
+}
+
+
+std::string redex::initdb(boost::property_tree::ptree &dbcall) {
+	int poolsize = dbcall.get<int>("poolsize");
+	std::string worlduuid = dbcall.get<std::string>("worlduuid");
+
+	//poolsize =
+	dbconnection.spawnHandler(poolsize, worlduuid);
+
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", [\"" + std::to_string(poolsize) + "\", \"Threads spawned\"]]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
