@@ -36,6 +36,7 @@ class CfgWorlds {
 	initWorld = "Tanoa";
 	demoWorld = "Tanoa";
 };
+//--- TODO: not work?
 class CfgDifficulties {
 	class Mercenary {
 		class Flags {
@@ -1686,6 +1687,10 @@ class RscDisplayMain: RscStandardDisplay
 	onUnload = "[""onUnload"",_this,""RscDisplayMain"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
 	
 	delete Spotlight;
+	class ControlsBackground {
+		delete BackgroundLeft;
+		delete BackgroundRight;
+	};
 	class Controls
 	{
 		delete ModIcons;
@@ -1718,10 +1723,57 @@ class RscDisplayMain: RscStandardDisplay
 		delete AllMissions;
 		delete ProofsOfConcept;
 		
+		delete TitleMultiplayer;
+		delete TitleSingleplayer;
+		delete TitleTutorials;
+		delete TitleOptions;
+		
+		delete TitleIconSingleplayer;
+		delete TitleIconMultiplayer;
+		delete TitleIconTutorials;
+		delete TitleIconOptions;
+		
+		delete GroupSingleplayer;
+		delete GroupMultiplayer;
+		delete GroupTutorials;
+		delete GroupOptions;
+		
+		delete LogoApex;
+		delete Logo;
+		delete GroupSession;
+		delete TitleSession;
+		
+		class BackgroundBar: RscText
+		{
+			colorBackground[] = {0,0,0,0.75};
+			x = -10;
+			y = -10;
+			w = 1;
+			h = 1;
+		};
+		class BackgroundCenter: BackgroundBar
+		{
+			colorBackground[] = {0,0,0,1};
+		};
+		class BackgroundBarLeft: RscPicture
+		{
+			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayMain\gradientMods_ca.paa";
+			colorText[] = {0,0,0,1};
+			angle = 180;
+			x = -10;
+			y = -10;
+			w = 1;
+			h = 1;
+		};
+		class BackgroundBarRight: BackgroundBarLeft
+		{
+			angle = 0;
+		};
+		
 		class NewsBackground: IGUIBack
 		{
 			idc = 22000;
-			x = 0.0410937 * safezoneW + safezoneX;
+			x = "safeZoneX+(pixelW * pixelGrid * 2)";
 			y = 0.247 * safezoneH + safezoneY;
 			w = 0.252656 * safezoneW;
 			h = 0.528 * safezoneH;
@@ -1730,7 +1782,7 @@ class RscDisplayMain: RscStandardDisplay
 		{
 			idc = 10000;
 			text = "Version 1.0.1 News";
-			x = 0.0410937 * safezoneW + safezoneX;
+			x = "safeZoneX+(pixelW * pixelGrid * 2)";
 			y = 0.225 * safezoneH + safezoneY;
 			w = 0.252656 * safezoneW;
 			h = 0.022 * safezoneH;
@@ -1739,11 +1791,12 @@ class RscDisplayMain: RscStandardDisplay
 		class NewsContent: RscStructuredText
 		{
 			idc = 11000;
-			x = 0.04625 * safezoneW + safezoneX;
+			x = "safeZoneX + ((0.04625 * safezoneW + safezoneX)-(0.0410937 * safezoneW + safezoneX))+(pixelW * pixelGrid * 2)";
 			y = 0.247 * safezoneH + safezoneY;
 			w = 0.242344 * safezoneW;
 			h = 0.517 * safezoneH;
 		};
+		
 		class NextHat: RscButtonMenuMain 
 		{
 			class Attributes
@@ -1755,7 +1808,7 @@ class RscDisplayMain: RscStandardDisplay
 				size = 2;
 			};
 			text = "Change Hat";
-			x = 0.3;
+			x = "safeZoneX + safezoneW - 0.4 - (pixelW * pixelGrid * 2)";
 			w = 0.4;
 			y = 0.2;
 			h = 0.1;
@@ -1764,7 +1817,7 @@ class RscDisplayMain: RscStandardDisplay
 		class NextGlasses: NextHat 
 		{
 			text = "Change Glasses";
-			x = 0.3;
+			x = "safeZoneX + safezoneW - 0.4 - (pixelW * pixelGrid * 2)";
 			w = 0.4;
 			y = 0.31;
 			h = 0.1;
@@ -1773,147 +1826,167 @@ class RscDisplayMain: RscStandardDisplay
 		class NextUniform: NextHat 
 		{
 			text = "Change Uniform";
-			x = 0.3;
+			x = "safeZoneX + safezoneW - 0.4 - (pixelW * pixelGrid * 2)";
 			w = 0.4;
 			y = 0.42;
 			h = 0.1;
 			onbuttonclick = "2 call compile preprocessfilelinenumbers '\dsr_ui\Scripts\loadout_handler.sqf'";
 		};
-		class GroupSingleplayer: RscControlsGroupNoScrollbars
-		{
-			idc = 1001;
-			x = "0.5 - (	5 + 2 * 	10) * 	(pixelW * pixelGrid * 2)";
-			y = "safezoneY + (2 + 		2) * 	(pixelH * pixelGrid * 2)";
-			w = "10 * 	(pixelW * pixelGrid * 2)";
-			h = "(5 * 	1.5) * 	(pixelH * pixelGrid * 2)";
-			class Controls
-			{
-				class Campaigns: RscButtonMenuMain
-				{
-					idc = 101;
-					text = "$STR_A3_RscDisplayMain_ButtonCampaign";
-					tooltip = "$STR_TOOLTIP_MAIN_CAMPAIGN";
-					x = 0;
-					y = "(0) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					w = "10 * 	(pixelW * pixelGrid * 2)";
-					h = "1.5 * 	(pixelH * pixelGrid * 2) - 	(pixelH)";
-					onbuttonclick = "uinamespace setvariable ['RscDisplayCampaignLoad_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONCAMPAIGN')];";
-				};
-				class Showcases: Campaigns
-				{
-					idc = 150;
-					text = "$STR_A3_RscDisplayMain_ButtonShowcases";
-					tooltip = "$STR_TOOLTIP_MAIN_SHOWCASES";
-					y = "(1 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONSHOWCASES')];";
-				};
-				class Challenges: Campaigns
-				{
-					idc = 151;
-					text = "$STR_A3_RscDisplayMain_ButtonChallenges";
-					tooltip = "$STR_A3_RscDisplayMain_ButtonChallenges_tooltip";
-					y = "(2 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONCHALLENGES')];";
-				};
-				class Scenarios: Campaigns
-				{
-					idc = 103;
-					text = "$STR_A3_RscDisplayMain_ButtonScenarios";
-					tooltip = "$STR_TOOLTIP_MAIN_SCENARIOS";
-					y = "(3 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					onbuttonclick = "uinamespace setvariable ['RscDisplaySingleMission_title', toUpper (localize 'STR_A3_RSCDISPLAYMAIN_BUTTONSCENARIOS')];";
-				};
-				class Editor: Campaigns
-				{
-					idc = 142;
-					text = "$STR_A3_RscDisplayMain_ButtonEditor";
-					tooltip = "$STR_TOOLTIP_SINGLEPLAYER_EDITOR_A3";
-					y = "(4 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					onbuttonclick = "";
-				};
-			};
+		
+		//--- UPDATE ICONS TO SURROUND LOGO ( after logo resize )
+		class Exit: RscButton {
+			x = "0.6-(2 *	(pixelW * pixelGrid * 2))";
+			y = "0.2-(2 *	(pixelH * pixelGrid * 2))";
+			tooltip = "Quit the game.";
+			backgroundColor[] = {0,0,0,1};
+			textColor[] = {1,1,1,1};
 		};
-		class Logo: RscActivePicture
+		class Profile: Exit
 		{
+			idc = 109;
+			style = 0;
+			text = "Edit Profile";
+			tooltip = "Edit your profile.";
+			x = 0.4;
+			y = "0.2 - (2 *	(pixelH * pixelGrid * 2))";
+			w = "0.2 - (2 * 	(pixelW * pixelGrid * 2))";
 			onbuttonclick = "";
-			text = "\dsr_ui\Assets\logo.paa";
+		};
+		
+		
+		//--- PLAY tab
+		class Editor: RscButtonMenuMain
+		{
+			idc = 142;
+			text = "$STR_A3_RscDisplayMain_ButtonEditor";
+			tooltip = "$STR_TOOLTIP_SINGLEPLAYER_EDITOR_A3";
+			x = 0.4;
+			y = 0.3;
+			w = 0.2;
+			h = 0.05;
+			show = 0;
+			onbuttonclick = "";
+			class Attributes
+			{
+				align = "center";
+				color = "#ffffff";
+				font = "PuristaLight";
+				shadow = 0;
+				size = 1.5;
+			};
+		};
+		class ServerBrowser: Editor
+		{
+			idc = 105;
+			text = "Play Online";
+			tooltip = "Find a server to play on.";
+			y = 0.2;
+			show = 1;
+			onbuttonclick = "";
+		};
+		
+		//--- HELP tab
+		class Website: Editor
+		{
+			idc = 1338;
+			y = 0.2;
+			text = "Visit Website";
+			tooltip = "Find everything you need on our website.";
+			url = "http://desolationredux.com";
+			onbuttonclick = "";
+			show = 0;
+		};
+		class BugReport: Editor
+		{
+			idc = 1340;
+			text = "Report a bug";
+			tooltip = "Found a bug? Please report it ASAP!";
+			url = "http://desolationredux.com/";
+			onbuttonclick = "";
+			y = 0.25;
+			show = 0;
+		};
+		//--- MAIN tab
+		class Options: Editor
+		{
+			idc = 1342;
+			text = "Options";
+			tooltip = "Configure your game.";
+			onbuttonclick = "[""mOpen"",[(findDisplay 0),2],""RscDisplayMain""] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+			y = 0.25;
+			show = 1;
+		};
+		class Help: Editor
+		{
+			idc = 1343;
+			text = "Help";
+			tooltip = "Need help?";
+			onbuttonclick = "[""mOpen"",[(findDisplay 0),3],""RscDisplayMain""] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+			y = 0.3;
+			show = 1;
+		};
+		//--- OPTIONS tab
+		class Video: Editor
+		{
+			idc = 301;
+			text = "$STR_A3_RscDisplayMain_ButtonVideo";
+			tooltip = "$STR_TOOLTIP_MAIN_VIDEO";
+			y = 0.2;
+			show = 0;
+			onbuttonclick = "";
+		};
+		class Audio: Editor
+		{
+			idc = 302;
+			text = "$STR_A3_RscDisplayMain_ButtonAudio";
+			tooltip = "$STR_TOOLTIP_MAIN_AUDIO";
+			y = 0.25;
+			show = 0;
+			onbuttonclick = "";
+		};
+		class Controls: Editor
+		{
+			idc = 303;
+			text = "$STR_A3_RscDisplayMain_ButtonControls";
+			tooltip = "$STR_TOOLTIP_MAIN_CONTROLS";
+			y = 0.3;
+			show = 0;
+			onbuttonclick = "";
+		};
+		class DesolationControls: Editor
+		{
+			idc = 1344;
+			text = "Desolation Controls";
 			tooltip = "";
-			url = "";
+			show = 0;
+			onbuttonclick = "";
+			y = 0.35;
 		};
-		class LogoApex: Logo
+		class DesolationBack: Editor
 		{
+			idc = 1345;
+			text = "Back";
+			tooltip = "Back to the main menu.";
+			show = 0;
+			onbuttonclick = "[""mOpen"",[(findDisplay 0),0],""RscDisplayMain""] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+			y = 0.2;
+		};
+		//--- CHANGE SIZING (make bigger)
+		class NewLogo: RscPictureKeepAspect
+		{
+			text = "\dsr_ui\Assets\logo_topalign.paa";
+			url = "";
+			shadow = 0;
+			x = 0;
+			y = "safezoneY+(pixelH * pixelGrid * 2)";
+			w = 1;
+			h = 0.5;
+		};
+		
 			text = "\dsr_ui\Assets\logo.paa";
 		};
-		class GroupMultiplayer: GroupSingleplayer
-		{
-			class Controls: Controls
-			{
-				delete ApexProtocol;
-			};
-		};
-		class GroupTutorials: GroupSingleplayer
-		{
-			class Controls: Controls
-			{
-				delete FieldManual;
-				delete CommunityGuides;
-				delete VRTraining;
-				delete Arsenal;
-				
-				class Website: Campaigns
-				{
-					idc = 1338;
-					y = "(1 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					w = "(	10 + 3.5) * 	(pixelW * pixelGrid * 2)";
-					text = "Desolation Website";
-					tooltip = "Find everything you need on our website.";
-					url = "http://desolationredux.com";
-					onbuttonclick = "";
-				};
-				class Wiki: Website
-				{
-					idc = 1339;
-					text = "Desolation Wiki";
-					tooltip = "Have a question? Look for the answer on the wiki!";
-					url = "http://desolationredux.com";
-					y = "(2 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-					onbuttonclick = "";
-				};
-				class BugReport: Website
-				{
-					idc = 1340;
-					text = "Report a bug";
-					tooltip = "Found a bug? Please report it ASAP!";
-					url = "http://desolationredux.com/";
-					onbuttonclick = "";
-					y = "(3 * 	1.5) * 	(pixelH * pixelGrid * 2) + 	(pixelH)";
-				};
-			};
-		};
-		class GroupOptions: GroupSingleplayer
-		{
-			idc = 1004;
-			x = "0.5 + (	5 + 	10) * 	(pixelW * pixelGrid * 2)";
-			h = "(5 * 	1.5) * 	(pixelH * pixelGrid * 2)";
-			class Controls: Controls
-			{
-				delete Expansions;
-			};
-		};
-		class GroupSession: GroupSingleplayer
-		{
-			idc = 1005;
-			x = "safezoneX + safezoneW - (	10 + 		2) * 	(pixelW * pixelGrid * 2) - 	(pixelW)";
-			h = "(4 * 	1.5) * 	(pixelH * pixelGrid * 2)";
-			class Controls: Controls
-			{
-				delete Unit;
-				class Profile: Campaigns
-				{
-					text = "Edit Profile";
-				};
-			};
-		};
+		//--- END CHANGE SIZING
+		
 	};
 };
 

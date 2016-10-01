@@ -1,5 +1,5 @@
 diag_log "Starting intro";
-cutText ["", "BLACK IN", 10]; 
+cutText ["", "BLACK IN", 5]; 
 setViewDistance 200;
 showCinemaBorder false;
 _newCam = "camera" camCreate [0,0,0];
