@@ -16,13 +16,16 @@ dbcon::dbcon() {
 						std::make_tuple(boost::bind(&dbcon::echo, this, _1, _2), HANDLELESS_MAGIC)));
 	dbfunctions.insert(
 				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_DB_VERSION),
-						std::make_tuple(boost::bind(&dbcon::dbVersion, this, _1, _2), ASYNC_MAGIC)));
+						std::make_tuple(boost::bind(&dbcon::dbVersion, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
 				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DEBUG_CALL),
-						std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), ASYNC_MAGIC)));
+						std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
 					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
-							std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), ASYNC_MAGIC)));
+							std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER),
+							std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), SYNC_MAGIC)));
 
 	boost::asio::io_service::work work(DBioService);
 
@@ -231,4 +234,12 @@ std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_hand
 	matrix += "]";
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + matrix + "]";
+}
+
+std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string nickname = dbarguments.get<std::string>("nickname");
+	std::string steamid = dbarguments.get<std::string>("steamid");
+	std::string playerinfo = dbhandler->loadPlayer(nickname, steamid);
+
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + playerinfo + "]";
 }

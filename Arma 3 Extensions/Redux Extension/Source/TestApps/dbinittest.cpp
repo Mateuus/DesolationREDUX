@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     const char function2[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dbVersion\", \"dbarguments\": {  } } }";
     const char function3[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dbgCall\", \"dbarguments\": {  } } }";
     const char function4[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dumpObjects\", \"dbarguments\": {  } } }";
+    const char function5[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"loadPlayer\", \"dbarguments\": { \"nickname\": \"Lego\", \"steamid\": \"76561198025362180\"  } } }";
     std::cout << "trying to spawn 4 threads" << std::endl;
     RVExtension(output, 1024, function);
     std::cout << output << std::endl;
@@ -39,6 +40,10 @@ int main(int argc, char *argv[])
 
 	std::cout << "executing dumpObjects" << std::endl;
 	RVExtension(output, 1024, function4);
+	std::cout << output << std::endl;
+
+	std::cout << "loading player data" << std::endl;
+	RVExtension(output, 1024, function5);
 	std::cout << output << std::endl;
 
     return 0;

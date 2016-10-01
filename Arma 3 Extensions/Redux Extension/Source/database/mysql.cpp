@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <boost/format.hpp>
 #include "database/mysql.hpp"
+#include "utils/uuid.hpp"
 
 db_handler::db_handler() {
 	this->hostname = "";
@@ -45,6 +46,16 @@ void db_handler::connect(std::string hostname, std::string user,
 		mysql_close(connection);
 	} else {
 		printf("created connection \n");
+	}
+
+	return;
+}
+
+void db_handler::rawquery(std::string query) {
+	if (mysql_real_query(connection, query.c_str(), query.size())) {
+		throw std::runtime_error(
+				"error while executing query: "
+						+ std::string(mysql_error(connection)));
 	}
 
 	return;
@@ -98,8 +109,8 @@ std::vector< std::vector<std::string> > db_handler::verbosetest(std::string quer
 	fieldcount = mysql_num_fields(result);
 	rowcount = mysql_num_rows(result);
 
-	printf("fieldcount = %d\n", fieldcount);
-	printf("rowcount = %d\n", rowcount);
+	printf("fieldcount = %d\n", (int)fieldcount);
+	printf("rowcount = %d\n", (int)rowcount);
 
 	std::vector< std::vector<std::string> > resultmatrix (rowcount, std::vector<std::string>(fieldcount));
 
@@ -195,8 +206,8 @@ std::vector< std::vector<std::string> > db_handler::dumpObjects() {
 	fieldcount = mysql_num_fields(result);
 	rowcount = mysql_num_rows(result);
 
-	printf("fieldcount = %d\n", fieldcount);
-	printf("rowcount = %d\n", rowcount);
+	printf("fieldcount = %d\n", (int)fieldcount);
+	printf("rowcount = %d\n", (int)rowcount);
 
 	std::vector< std::vector<std::string> > resultmatrix (rowcount, std::vector<std::string>(fieldcount));
 
@@ -240,4 +251,86 @@ std::vector< std::vector<std::string> > db_handler::dumpObjects() {
 	mysql_free_result(result);
 
 	return resultmatrix;
+}
+
+std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	unsigned int fieldcount;
+	unsigned long long int rowcount;
+
+	// player info
+	std::string playeruuid = "";
+	std::string death_persistent_variables_uuid = "";
+	std::string friendlist = "";
+
+	std::string queryplayerinfo =
+	str(boost::format{"SELECT HEX(`actualplayer`.`uuid`), \
+						HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`), \
+						GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR '\", \"') AS friendlist \
+						FROM `player` actualplayer \
+						LEFT JOIN `player_on_world_has_death_persistent_variables` \
+						ON `actualplayer`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid` \
+						AND `player_on_world_has_death_persistent_variables`.`world_uuid` =  CAST(0x%s AS BINARY) \
+						LEFT JOIN `player_is_friend_with_player` \
+						ON `actualplayer`.`uuid` = `player_is_friend_with_player`.`player1_uuid` \
+						LEFT JOIN `player` friendplayer \
+						ON `player_is_friend_with_player`.`player2_uuid` = `friendplayer`.`uuid` \
+						WHERE `actualplayer`.`steamid` = \"%s\" \
+						GROUP BY `actualplayer`.`uuid`"} % worlduuid % steamid);
+
+	char typearrayplayerinfo[] = {
+			1, // HEX(`actualplayer`.`uuid`)
+			1, // HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`)
+			2, // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+	};
+
+	printf("%s\n", queryplayerinfo.c_str());
+
+	this->rawquery(queryplayerinfo, &result);
+
+	rowcount = mysql_num_rows(result);
+
+	printf("rowcount = %d\n", (int)rowcount);
+
+	if (rowcount > 0) {
+		row = mysql_fetch_row(result);
+
+		// should be always true, if not we have a huge bug
+		if (row[0] != NULL) {
+			playeruuid = row[0];
+		}
+
+		if (row[1] != NULL) {
+			death_persistent_variables_uuid = row[1];
+		}
+
+		if (row[2] != NULL) {
+			friendlist = "\"" ;
+			friendlist += row[2];
+			friendlist += "\"";
+		}
+	}
+
+	mysql_free_result(result);
+
+	if (playeruuid == "") {
+		playeruuid = orderedUUID();
+		queryplayerinfo =
+			str(boost::format{"INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, `firstlogin`, \
+								`firstnick`, `lastlogin`, `lastnick`, `bancount`, `banreason`, \
+								`banbegindate`, `banenddate`) \
+								VALUES (CAST(0x%s AS BINARY), \"%s\", \
+										\"unused\", NOW(), \"%s\", NOW(), \"%s\", \
+										'0', NULL, NULL, NULL)"} % playeruuid % steamid % nickname % nickname);
+	} else {
+		queryplayerinfo =
+					str(boost::format{"UPDATE `player` SET `lastlogin` = NOW(), `lastnick` = \"%s\" \
+										WHERE `player`.`uuid` = CAST(0x%s AS BINARY)"} % nickname % playeruuid);
+	}
+	printf("%s\n", queryplayerinfo.c_str());
+
+	this->rawquery(queryplayerinfo);
+
+	return "[\"" + playeruuid + "\", \"" + death_persistent_variables_uuid + "\", [" + friendlist + "]]";
 }
