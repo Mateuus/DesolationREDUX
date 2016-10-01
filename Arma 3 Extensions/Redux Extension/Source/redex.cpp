@@ -114,8 +114,10 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 
 std::string redex::initdb(boost::property_tree::ptree &dbcall) {
 	int poolsize = dbcall.get<int>("poolsize");
+	std::string worlduuid = dbcall.get<std::string>("worlduuid");
 
-	poolsize = dbconnection.spawnThreads(poolsize);
+	//poolsize =
+	dbconnection.spawnHandler(poolsize, worlduuid);
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", [\"" + std::to_string(poolsize) + "\", \"Threads spawned\"]]";
 }

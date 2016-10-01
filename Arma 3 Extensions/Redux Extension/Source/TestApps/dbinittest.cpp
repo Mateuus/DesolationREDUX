@@ -13,8 +13,10 @@ int main(int argc, char *argv[])
 	std::string uuid;
 	std::string functionstring;
     char output[1024];
-    const char function[] = "{ \"dllfunction\": \"initdb\", \"dllarguments\": {  \"poolsize\": 4 } }";
+    const char function[] = "{ \"dllfunction\": \"initdb\", \"dllarguments\": {  \"poolsize\": 4, \"worlduuid\": \"11e66ac33a4ccd1c82c510bf48883ace\" } }";
     const char function2[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dbVersion\", \"dbarguments\": {  } } }";
+    const char function3[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dbgCall\", \"dbarguments\": {  } } }";
+    const char function4[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"dumpObjects\", \"dbarguments\": {  } } }";
     std::cout << "trying to spawn 4 threads" << std::endl;
     RVExtension(output, 1024, function);
     std::cout << output << std::endl;
@@ -30,6 +32,14 @@ int main(int argc, char *argv[])
     	RVExtension(output, 1024, function2);
     	std::cout << output << std::endl;
     }
+
+    std::cout << "executing an debug call" << std::endl;
+	RVExtension(output, 1024, function3);
+	std::cout << output << std::endl;
+
+	std::cout << "executing dumpObjects" << std::endl;
+	RVExtension(output, 1024, function4);
+	std::cout << output << std::endl;
 
     return 0;
 }
