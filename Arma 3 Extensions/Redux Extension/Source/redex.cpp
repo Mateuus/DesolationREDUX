@@ -33,10 +33,19 @@ redex::~redex() {
 std::string redex::processCallExtension(const char *function, int outputSize) {
 	std::string returnString;
 	std::stringstream functionstream;
-	functionstream << function;
 
 	// NEEDED to make sure there is room for the last '\0'
 	outputSize -= 1;
+
+	for (unsigned int i = 0; function[i] != 0; i++) {
+		switch(function[i]) {
+			case '"': functionstream << "\\\""; break;
+			case '\'': functionstream << "\""; break;
+			default: functionstream << function[i]; break;
+		}
+	}
+
+	printf("INPUT: %s\n", functionstream.str().c_str());
 
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(functionstream, pt);

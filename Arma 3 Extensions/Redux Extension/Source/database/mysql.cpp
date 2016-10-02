@@ -114,7 +114,7 @@ std::vector< std::vector<std::string> > db_handler::verbosetest(std::string quer
 
 	std::vector< std::vector<std::string> > resultmatrix (rowcount, std::vector<std::string>(fieldcount));
 
-	while(field = mysql_fetch_field(result))
+	while((field = mysql_fetch_field(result)) != NULL)
 	{
 		printf("%s; ", field->name);
 	}

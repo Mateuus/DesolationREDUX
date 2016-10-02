@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	std::string uuid;
 	std::string functionstring;
     char output[128];
-    const char function[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"echo\", \"dbarguments\": {  \"echostring\": \"The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\" } } }";
+    const char function[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'echo', 'dbarguments': {  'echostring': 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.' } } }";
     RVExtension(output, 128, function);
 
     uuid = output;
@@ -21,9 +21,9 @@ int main(int argc, char *argv[])
     std::cout << output << std::endl;
 
     while (strncmp(output, PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG, 20) != 0) {
-    	functionstring = "{ \"dllfunction\": \"rcvmsg\", \"dllarguments\": {  \"msguuid\": \"";
+    	functionstring = "{ 'dllfunction': 'rcvmsg', 'dllarguments': {  'msguuid': '";
     	functionstring += uuid;
-		functionstring += "\" } }";
+		functionstring += "' } }";
 		RVExtension(output, 128, functionstring.c_str());
 		std::cout << output << std::endl;
 	}
