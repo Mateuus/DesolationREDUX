@@ -21,11 +21,42 @@ dbcon::dbcon() {
 				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DEBUG_CALL),
 						std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
-							std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
-	dbfunctions.insert(
 					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER),
 							std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_AV_CHARS),
+							std::make_tuple(boost::bind(&dbcon::loadAvChars, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LINK_CHARS),
+							std::make_tuple(boost::bind(&dbcon::linkChars, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR),
+							std::make_tuple(boost::bind(&dbcon::loadChar, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR),
+							std::make_tuple(boost::bind(&dbcon::createChar, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_CHAR),
+							std::make_tuple(boost::bind(&dbcon::updateChar, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR),
+							std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT),
+							std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT),
+							std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
+							std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_OBJECT),
+							std::make_tuple(boost::bind(&dbcon::locupdateObject, this, _1, _2), SYNC_MAGIC)));
+	dbfunctions.insert(
+					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
+							std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
+
 
 	boost::asio::io_service::work work(DBioService);
 
@@ -206,35 +237,7 @@ std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, db_handle
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + version + "\"]";
 }
 
-std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string matrix;
-	bool placecommaone = false;
-	bool placecommatwo = false;
 
-	//std::vector< std::vector<std::string> > resultmatrix = dbhandler->verbosetest("SELECT hex(uuid), classname, priority, timelastused, timecreated, visible, accesscode, locked, hex(player_uuid), hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz FROM `object` WHERE player_uuid = CAST(0x11E66B045F432626B28510BF48883ACE AS BINARY) OR player_uuid = CAST(0x11E66ABC1942138D82C510BF48883ACE AS BINARY)");
-	std::vector< std::vector<std::string> > resultmatrix = dbhandler->dumpObjects();
-	matrix = "[";
-	for (auto& row : resultmatrix) {
-		if (placecommaone) {
-			matrix += ",";
-		}
-		matrix += "[";
-		placecommatwo = false;
-		for (auto& value : row) {
-			if (placecommatwo) {
-				matrix += ", ";
-			}
-			//matrix += "\"" + value + "\"";
-			matrix += value;
-			placecommatwo = true;
-		}
-		matrix += "]";
-		placecommaone = true;
-	}
-	matrix += "]";
-
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + matrix + "]";
-}
 
 std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string nickname = dbarguments.get<std::string>("nickname");
@@ -242,4 +245,74 @@ std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handl
 	std::string playerinfo = dbhandler->loadPlayer(nickname, steamid);
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + playerinfo + "]";
+}
+
+std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::locupdateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	return "not implemented";
+}
+
+std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+        std::string matrix;
+        bool placecommaone = false;
+        bool placecommatwo = false;
+
+        //std::vector< std::vector<std::string> > resultmatrix = dbhandler->verbosetest("SELECT hex(uuid), classname, priority, timelastused, timecreated, visible, accesscode, locked, hex(player_uuid), hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz FROM `object` WHERE player_uuid = CAST(0x11E66B045F432626B28510BF48883ACE AS BINARY) OR player_uuid = CAST(0x11E66ABC1942138D82C510BF48883ACE AS BINARY)");
+        std::vector< std::vector<std::string> > resultmatrix = dbhandler->dumpObjects();
+        matrix = "[";
+        for (auto& row : resultmatrix) {
+                if (placecommaone) {
+                        matrix += ",";
+                }
+                matrix += "[";
+                placecommatwo = false;
+                for (auto& value : row) {
+                        if (placecommatwo) {
+                                matrix += ", ";
+                        }
+                        //matrix += "\"" + value + "\"";
+                        matrix += value;
+                        placecommatwo = true;
+                }
+                matrix += "]";
+                placecommaone = true;
+        }
+        matrix += "]";
+
+        return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + matrix + "]";
 }
