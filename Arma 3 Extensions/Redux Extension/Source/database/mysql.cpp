@@ -421,12 +421,75 @@ std::string db_handler::updateChar(std::string charuuid, std::string animationst
 		std::string inventoryvest, std::string inventorybackpack, std::string uniform, std::string vest,
 		std::string backpack, std::string headgear, std::string googles, std::string primaryweapon,
 		std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon) {
-	return "not implemented";
+
+	std::string query = str(
+			boost::format { "UPDATE `characterview` "
+					"SET `animationstate` = \"%s\", "
+					"`direction` = %s, "
+					"`positiontype` = %s, "
+					"`positionx` = %s, "
+					"`positiony` = %s, "
+					"`positionz` = %s "
+					" WHERE `characterview`.`uuid` = CAST(0x%s AS BINARY);" } % animationstate % direction
+					% positiontype % positionx % positiony % positionz % charuuid);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	query = str(
+			boost::format { "UPDATE `characterview` "
+					"SET `classname` = \"%s\", "
+					"`hitpoints` = \"%s\", "
+					"`variables` = \"%s\", "
+					"`textures` = \"%s\", "
+					"`inventoryuniform` = \"%s\", "
+					"`inventoryvest` = \"%s\", "
+					"`inventorybackpack` = \"%s\", "
+					"`uniform` = \"%s\", "
+					"`vest` = \"%s\", "
+					"`backpack` = \"%s\", "
+					"`headgear` = \"%s\", "
+					"`googles` = \"%s\", "
+					"`primaryweapon` = \"%s\", "
+					"`secondaryweapon` = \"%s\", "
+					"`handgun` = \"%s\", "
+					"`tools` = \"%s\", "
+					"`currentweapon` = \"%s\" "
+					" WHERE `characterview`.`uuid` = CAST(0x%s AS BINARY);" } % classname % hitpoints % variables
+					% textures % inventoryuniform % inventoryvest % inventorybackpack % uniform % vest % backpack
+					% headgear % googles % primaryweapon % secondaryweapon % handgun % tools % currentweapon
+					% charuuid);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	query = str(boost::format { "UPDATE `characterview` "
+			"SET `persistentvariables` = \"%s\" "
+			"WHERE `characterview`.`uuid` = CAST(0x%s AS BINARY);" } % persistentvariables % charuuid);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	return charuuid;
 }
 
 std::string db_handler::locupdateChar(std::string charuuid, std::string animationstate, float direction,
 		int positiontype, float positionx, float positiony, float positionz) {
-	return "not implemented";
+	std::string query = str(
+			boost::format { "UPDATE `characterview` "
+					"SET `animationstate` = \"%s\", "
+					"`direction` = %s, "
+					"`positiontype` = %s, "
+					"`positionx` = %s, "
+					"`positiony` = %s, "
+					"`positionz` = %s "
+					" WHERE `characterview`.`uuid` = CAST(0x%s AS BINARY);" } % animationstate % direction
+					% positiontype % positionx % positiony % positionz % charuuid);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	return charuuid;
 }
 
 std::string db_handler::loadObject(std::string objectuuid) {
