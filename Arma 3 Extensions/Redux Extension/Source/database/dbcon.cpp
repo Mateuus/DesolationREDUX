@@ -246,20 +246,26 @@ std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handl
 std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
 
-	return "not implemented";
+	std::string result = dbhandler->loadAvChars(playeruuid);
+
+	return result;
 }
 
 std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
 	std::string variabuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABUUID);
 
-	return "not implemented";
+	std::string result = dbhandler->linkChars(playeruuid, variabuuid);
+
+	return result;
 }
 
 std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
 
-	return "not implemented";
+	std::string result = dbhandler->loadChar(playeruuid);
+
+	return result;
 }
 
 std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -288,7 +294,12 @@ std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handl
 	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
 	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
 
-	return "not implemented";
+	std::string result = dbhandler->createChar(playeruuid, animationstate, direction, positiontype, positionx,
+			positiony, positionz, classname, hitpoints, variables, persistentvariables, textures, inventoryuniform,
+			inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
+			secondaryweapon, tools, currentweapon);
+
+	return result;
 }
 
 std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -317,7 +328,12 @@ std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handl
 	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
 	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
 
-	return "not implemented";
+	std::string result = dbhandler->updateChar(charuuid, animationstate, direction, positiontype, positionx,
+				positiony, positionz, classname, hitpoints, variables, persistentvariables, textures, inventoryuniform,
+				inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
+				secondaryweapon, tools, currentweapon);
+
+	return result;
 }
 
 std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -329,13 +345,18 @@ std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_ha
 	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
 	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
 
-	return "not implemented";
+	std::string result = dbhandler->locupdateChar(charuuid, animationstate, direction, positiontype, positionx,
+					positiony, positionz);
+
+	return result;
 }
 
 std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 
-	return "not implemented";
+	std::string result = dbhandler->loadObject(objectuuid);
+
+	return result;
 }
 
 std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -363,7 +384,12 @@ std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_han
 	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
 	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
 	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
-	return "not implemented";
+
+	std::string result = dbhandler->createObject(classname, priority, visible, accesscode, locked, player_uuid,
+			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
+			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
+
+	return result;
 }
 
 std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -393,7 +419,12 @@ std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_han
 	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
 	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
 
-	return "not implemented";
+	std::string result = dbhandler->updateObject(objectuuid, classname, priority, visible, accesscode, locked,
+			player_uuid, hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks,
+			magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony,
+			positionz);
+
+	return result;
 }
 
 std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
