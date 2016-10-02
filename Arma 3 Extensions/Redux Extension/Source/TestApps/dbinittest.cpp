@@ -25,79 +25,79 @@ int main(int argc, char *argv[])
     const char function10[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadObject', 'dbarguments': { 'objectuuid': '11e66b045d8ced8aab0c10bf48883ace' } } }";
     const char function11[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'updateObject', 'dbarguments': { 'objectuuid': '11e66b045d8ced8aab0c10bf48883ace' } } }";
     std::cout << "trying to spawn 4 threads" << std::endl;
-    std::cout << function << std::endl;
+    std::cout << "JSON: " << function << std::endl;
     RVExtension(output, 1024, function);
-    std::cout << output << std::endl;
+    std::cout << output << std::endl  << std::endl << std::endl;
 
     usleep(500);
 
     std::cout << "trying to spawn threads again! (should fail)" << std::endl;
     RVExtension(output, 1024, function);
-    std::cout << output << std::endl;
+    std::cout << output << std::endl  << std::endl << std::endl;
 
     std::cout << "trying to get db version several times" << std::endl;
-    std::cout << function2 << std::endl;
+    std::cout << "JSON: " << function2 << std::endl;
     for (int i = 0; i < 8; i++) {
     	RVExtension(output, 1024, function2);
-    	std::cout << output << std::endl;
+    	std::cout << output << std::endl  << std::endl << std::endl;
     }
 
     usleep(500);
 
     std::cout << "executing an debug call" << std::endl;
-    std::cout << function3 << std::endl;
+    std::cout << "JSON: " << function3 << std::endl;
 	RVExtension(output, 1024, function3);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
 	std::cout << "executing dumpObjects" << std::endl;
-	std::cout << function4 << std::endl;
+	std::cout << "JSON: " << function4 << std::endl;
 	RVExtension(output, 1024, function4);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
 	std::cout << "loading player data" << std::endl;
-	std::cout << function5 << std::endl;
+	std::cout << "JSON: " << function5 << std::endl;
 	RVExtension(output, 1024, function5);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-	std::cout << function6 << std::endl;
+	std::cout << "JSON: " << function6 << std::endl;
 	RVExtension(output, 1024, function6);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-	std::cout << function7 << std::endl;
+	std::cout << "JSON: " << function7 << std::endl;
 	RVExtension(output, 1024, function7);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-	std::cout << function8 << std::endl;
+	std::cout << "JSON: " << function8 << std::endl;
 	RVExtension(output, 1024, function8);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-	std::cout << function9 << std::endl;
+	std::cout << "JSON: " << function9 << std::endl;
 	RVExtension(output, 1024, function9);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-	std::cout << function10 << std::endl;
+	std::cout << "JSON: " << function10 << std::endl;
 	RVExtension(output, 1024, function10);
-	std::cout << output << std::endl;
+	std::cout << output << std::endl  << std::endl << std::endl;
 
 	usleep(500);
 
-//	std::cout << function11 << std::endl;
+//	std::cout << "JSON: " << function11 << std::endl;
 //	RVExtension(output, 1024, function11);
-//	std::cout << output << std::endl;
+//	std::cout << output << std::endl  << std::endl << std::endl;
 //
 //	usleep(500);
 

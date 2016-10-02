@@ -1,5 +1,6 @@
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
+#include <boost/property_tree/ini_parser.hpp>
 #include <cassert>
 #include <exception>
 #include <stdexcept>
@@ -71,12 +72,20 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 
 	if (!poolinitialized) {
 		int i;
-		std::string hostname = "192.168.1.11";
-		std::string user = "root";
-		std::string password = "rootuserpwd";
-		std::string database = "desolationredux";
+		std::string hostname;
+		std::string user;
+		std::string password;
+		std::string database;
 		unsigned int port = 0;
 		db_handler *syncdbhandler;
+		boost::property_tree::ptree configtree;
+		boost::property_tree::ini_parser::read_ini("redex.ini", configtree);
+
+		hostname = configtree.get<std::string>("dbhostname");
+		user = configtree.get<std::string>("dbuser");
+		password = configtree.get<std::string>("dbpassword");
+		database = configtree.get<std::string>("database");
+		port = configtree.get<unsigned int>("dbport");
 
 		if (!syncdbhandlerpool.is_lock_free()) {
 			throw std::runtime_error("syncdbhandlerpool is not lock free");
