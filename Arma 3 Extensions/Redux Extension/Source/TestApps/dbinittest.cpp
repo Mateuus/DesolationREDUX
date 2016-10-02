@@ -20,11 +20,10 @@ int main(int argc, char *argv[])
     const char function5[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"loadPlayer\", \"dbarguments\": { \"nickname\": \"Lego\", \"steamid\": \"76561198025362180\"  } } }";
     const char function6[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"loadAvChars\", \"dbarguments\": { \"playeruuid\": \"11e66abc1942138d82c510bf48883ace\" } } }";
     const char function7[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"loadChar\", \"dbarguments\": { \"playeruuid\": \"11e66abc1942138d82c510bf48883ace\" } } }";
-    const char function8[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"updateChar\", \"dbarguments\": { \"objectuuid\": \"11e66ac3076d214682c510bf48883ace\", \"animationstate\": \"VAR_ANIMATIONSTATE\",  \"direction\": \"23.5\", \"positiontype\": \"0\", \"positionx\": \"21.42\", \"positiony\": \"666.9\", \"positionz\": \"133.7\", \"classname\": \"sampleclass\", \"hitpoints\": \"[]\", \"variables\": \"[]\", \"persistentvariables\": \"[]\", \"textures\": \"[]\", \"inventoryuniform\": \"[]\", \"inventoryvest\": \"[]\", \"inventorybackpack\": \"[]\", \"uniform\": \"someuniform\", \"vest\": \"somevest\", \"backpack\": \"somebackpack\", \"headgear\": \"someheadgear\", \"googles\": \"somegoogles\", \"primaryweapon\": \"[\\\"someprimaryweapon\\\", [\\\"someattachment\\\"]]\", \"secondaryweapon\": \"[\\\"somesecondaryweapon\\\", [\\\"someattachment\\\"]]\", \"handgun\": \"[\\\"somehandgunweapon\\\", [\\\"someattachment\\\"]]\", \"tools\": \"[]\", \"currentweapon\": \"someprimaryweapon\" } } }";
-    const char function9[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"locupdateChar\", \"dbarguments\": { \"objectuuid\": \"11e66ac3076d25dc82c510bf48883ace\", \"animationstate\": \"VAR_ANIMATIONSTATE\",  \"direction\": \"23.5\", \"positiontype\": \"0\", \"positionx\": \"21.42\", \"positiony\": \"666.9\", \"positionz\": \"133.7\"  } } }";
+    const char function8[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"updateChar\", \"dbarguments\": { \"charuuid\": \"11e66ac3076d214682c510bf48883ace\", \"animationstate\": \"VAR_ANIMATIONSTATE\",  \"direction\": \"23.5\", \"positiontype\": \"0\", \"positionx\": \"21.42\", \"positiony\": \"666.9\", \"positionz\": \"133.7\", \"classname\": \"sampleclass\", \"hitpoints\": \"[]\", \"variables\": \"[]\", \"persistentvariables\": \"[]\", \"textures\": \"[]\", \"inventoryuniform\": \"[]\", \"inventoryvest\": \"[]\", \"inventorybackpack\": \"[]\", \"uniform\": \"someuniform\", \"vest\": \"somevest\", \"backpack\": \"somebackpack\", \"headgear\": \"someheadgear\", \"googles\": \"somegoogles\", \"primaryweapon\": \"[\\\"someprimaryweapon\\\", [\\\"someattachment\\\"]]\", \"secondaryweapon\": \"[\\\"somesecondaryweapon\\\", [\\\"someattachment\\\"]]\", \"handgun\": \"[\\\"somehandgunweapon\\\", [\\\"someattachment\\\"]]\", \"tools\": \"[]\", \"currentweapon\": \"someprimaryweapon\" } } }";
+    const char function9[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"locupdateChar\", \"dbarguments\": { \"charuuid\": \"11e66ac3076d25dc82c510bf48883ace\", \"animationstate\": \"VAR_ANIMATIONSTATE\",  \"direction\": \"23.5\", \"positiontype\": \"0\", \"positionx\": \"21.42\", \"positiony\": \"666.9\", \"positionz\": \"133.7\"  } } }";
     const char function10[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"loadObject\", \"dbarguments\": { \"objectuuid\": \"11e66b045d8ced8aab0c10bf48883ace\" } } }";
     const char function11[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"updateObject\", \"dbarguments\": { \"objectuuid\": \"11e66b045d8ced8aab0c10bf48883ace\" } } }";
-    const char function12[] = "{ \"dllfunction\": \"dbcall\", \"dllarguments\": {  \"dbfunction\": \"locupdateObject\", \"dbarguments\": { \"objectuuid\": \"11e66b045d8ced8aab0c10bf48883ace\" } } }";
     std::cout << "trying to spawn 4 threads" << std::endl;
     std::cout << function << std::endl;
     RVExtension(output, 1024, function);
@@ -96,17 +95,11 @@ int main(int argc, char *argv[])
 
 	usleep(500);
 
-	std::cout << function11 << std::endl;
-	RVExtension(output, 1024, function11);
-	std::cout << output << std::endl;
-
-	usleep(500);
-
-	std::cout << function12 << std::endl;
-	RVExtension(output, 1024, function12);
-	std::cout << output << std::endl;
-
-	usleep(500);
+//	std::cout << function11 << std::endl;
+//	RVExtension(output, 1024, function11);
+//	std::cout << output << std::endl;
+//
+//	usleep(500);
 
 
     return 0;

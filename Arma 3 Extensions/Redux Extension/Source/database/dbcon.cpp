@@ -12,51 +12,47 @@ dbcon::dbcon() {
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_UUID),
 					std::make_tuple(boost::bind(&dbcon::getUUID, this, _1, _2), HANDLELESS_MAGIC)));
 	dbfunctions.insert(
-				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ECHO_STRING),
-						std::make_tuple(boost::bind(&dbcon::echo, this, _1, _2), HANDLELESS_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ECHO_STRING),
+					std::make_tuple(boost::bind(&dbcon::echo, this, _1, _2), HANDLELESS_MAGIC)));
 	dbfunctions.insert(
-				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_DB_VERSION),
-						std::make_tuple(boost::bind(&dbcon::dbVersion, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_DB_VERSION),
+					std::make_tuple(boost::bind(&dbcon::dbVersion, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DEBUG_CALL),
-						std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DEBUG_CALL),
+					std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER),
-							std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER),
+					std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_AV_CHARS),
-							std::make_tuple(boost::bind(&dbcon::loadAvChars, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_AV_CHARS),
+					std::make_tuple(boost::bind(&dbcon::loadAvChars, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LINK_CHARS),
-							std::make_tuple(boost::bind(&dbcon::linkChars, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LINK_CHARS),
+					std::make_tuple(boost::bind(&dbcon::linkChars, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR),
-							std::make_tuple(boost::bind(&dbcon::loadChar, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR),
+					std::make_tuple(boost::bind(&dbcon::loadChar, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR),
-							std::make_tuple(boost::bind(&dbcon::createChar, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR),
+					std::make_tuple(boost::bind(&dbcon::createChar, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_CHAR),
-							std::make_tuple(boost::bind(&dbcon::updateChar, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_CHAR),
+					std::make_tuple(boost::bind(&dbcon::updateChar, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR),
-							std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR),
+					std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT),
-							std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT),
+					std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT),
-							std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT),
+					std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
-							std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), SYNC_MAGIC)));
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
+					std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_OBJECT),
-							std::make_tuple(boost::bind(&dbcon::locupdateObject, this, _1, _2), SYNC_MAGIC)));
-	dbfunctions.insert(
-					std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
-							std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
-
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
+					std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
 
 	boost::asio::io_service::work work(DBioService);
 
@@ -240,50 +236,163 @@ std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, db_handle
 
 
 std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string nickname = dbarguments.get<std::string>("nickname");
-	std::string steamid = dbarguments.get<std::string>("steamid");
+	std::string nickname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_NICKNAME);
+	std::string steamid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_STEAMID);
 	std::string playerinfo = dbhandler->loadPlayer(nickname, steamid);
 
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + playerinfo + "]";
 }
 
 std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+
 	return "not implemented";
 }
 
 std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string variabuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABUUID);
+
 	return "not implemented";
 }
 
 std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+
 	return "not implemented";
 }
 
 std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
+	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
+	std::string hitpoints = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HITPOINTS);
+	std::string variables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABLES);
+	std::string persistentvariables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PERSISTENTVARIABLES);
+	std::string textures = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TEXTURES);
+	std::string inventoryuniform = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYUNIFORM);
+	std::string inventoryvest = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYVEST);
+	std::string inventorybackpack = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYBACKPACK);
+	std::string uniform = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_UNIFORM);
+	std::string vest = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VEST);
+	std::string backpack = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_BACKPACK);
+	std::string headgear = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HEADGEAR);
+	std::string googles = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_GOOGLES);
+	std::string primaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PRIMARYWEAPON);
+	std::string secondaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_SECONDARYWEAPON);
+	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
+	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
+
 	return "not implemented";
 }
 
 std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
+	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
+	std::string hitpoints = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HITPOINTS);
+	std::string variables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABLES);
+	std::string persistentvariables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PERSISTENTVARIABLES);
+	std::string textures = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TEXTURES);
+	std::string inventoryuniform = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYUNIFORM);
+	std::string inventoryvest = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYVEST);
+	std::string inventorybackpack = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_INVENTORYBACKPACK);
+	std::string uniform = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_UNIFORM);
+	std::string vest = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VEST);
+	std::string backpack = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_BACKPACK);
+	std::string headgear = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HEADGEAR);
+	std::string googles = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_GOOGLES);
+	std::string primaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PRIMARYWEAPON);
+	std::string secondaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_SECONDARYWEAPON);
+	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
+	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
+
 	return "not implemented";
 }
 
 std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
+
 	return "not implemented";
 }
 
 std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
+
 	return "not implemented";
 }
 
 std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
+	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
+	int visible = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_VISIBLE);
+	std::string accesscode = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE);
+	int locked = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_LOCKED);
+	std::string player_uuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
+	std::string hitpoints = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HITPOINTS);
+	float damage = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DAMAGE);
+	float fuel = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUEL);
+	float fuelcargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUELCARGO);
+	float repaircargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO);
+	std::string items = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ITEMS);
+	std::string magazines = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINES);
+	std::string weapons = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_WEAPONS);
+	std::string backpacks = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_BACKPACKS);
+	std::string magazinesturret = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET);
+	std::string variables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABLES);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	std::string textures = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TEXTURES);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
 	return "not implemented";
 }
 
 std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	return "not implemented";
-}
+	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
+	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
+	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
+	int visible = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_VISIBLE);
+	std::string accesscode = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE);
+	int locked = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_LOCKED);
+	std::string player_uuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
+	std::string hitpoints = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HITPOINTS);
+	float damage = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DAMAGE);
+	float fuel = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUEL);
+	float fuelcargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUELCARGO);
+	float repaircargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO);
+	std::string items = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ITEMS);
+	std::string magazines = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINES);
+	std::string weapons = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_WEAPONS);
+	std::string backpacks = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_BACKPACKS);
+	std::string magazinesturret = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET);
+	std::string variables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABLES);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	std::string textures = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TEXTURES);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
 
-std::string dbcon::locupdateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	return "not implemented";
 }
 
