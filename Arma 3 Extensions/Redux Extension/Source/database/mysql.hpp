@@ -6,6 +6,7 @@
 #include <map>
 #include <queue>
 #include <vector>
+#include "constants.hpp"
 
 class db_handler {
 	// https://dev.mysql.com/doc/connector-cpp/en/connector-cpp-examples-complete-example-1.html

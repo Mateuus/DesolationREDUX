@@ -257,7 +257,7 @@ std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_hand
 
 	std::string result = dbhandler->loadAvChars(playeruuid);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
 }
 
 std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -266,7 +266,7 @@ std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handle
 
 	std::string result = dbhandler->linkChars(playeruuid, variabuuid);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
 }
 
 std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -274,7 +274,7 @@ std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler
 
 	std::string result = dbhandler->loadChar(playeruuid);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
 }
 
 std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {

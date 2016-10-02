@@ -151,24 +151,24 @@ std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
 	std::string friendlist = "";
 
 	std::string queryplayerinfo =
-	str(boost::format{"SELECT HEX(`actualplayer`.`uuid`), \
-						HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`), \
-						GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR '\", \"') AS friendlist \
-						FROM `player` actualplayer \
-						LEFT JOIN `player_on_world_has_death_persistent_variables` \
-						ON `actualplayer`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid` \
-						AND `player_on_world_has_death_persistent_variables`.`world_uuid` =  CAST(0x%s AS BINARY) \
-						LEFT JOIN `player_is_friend_with_player` \
-						ON `actualplayer`.`uuid` = `player_is_friend_with_player`.`player1_uuid` \
-						LEFT JOIN `player` friendplayer \
-						ON `player_is_friend_with_player`.`player2_uuid` = `friendplayer`.`uuid` \
-						WHERE `actualplayer`.`steamid` = \"%s\" \
-						GROUP BY `actualplayer`.`uuid`"} % worlduuid % steamid);
+	str(boost::format{"SELECT HEX(`actualplayer`.`uuid`), "
+			"HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`), "
+			"GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR '\", \"') AS friendlist "
+			"FROM `player` actualplayer "
+			"LEFT JOIN `player_on_world_has_death_persistent_variables` "
+			" ON `actualplayer`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid` "
+			" AND `player_on_world_has_death_persistent_variables`.`world_uuid` =  CAST(0x%s AS BINARY) "
+			"LEFT JOIN `player_is_friend_with_player` "
+			" ON `actualplayer`.`uuid` = `player_is_friend_with_player`.`player1_uuid` "
+			" LEFT JOIN `player` friendplayer "
+			" ON `player_is_friend_with_player`.`player2_uuid` = `friendplayer`.`uuid` "
+			"WHERE `actualplayer`.`steamid` = \"%s\" "
+			"GROUP BY `actualplayer`.`uuid`"} % worlduuid % steamid);
 
 	char typearrayplayerinfo[] = {
 			1, // HEX(`actualplayer`.`uuid`)
 			1, // HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`)
-			2, // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+			2  // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
 	};
 
 	printf("%s\n", queryplayerinfo.c_str());
@@ -203,12 +203,12 @@ std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
 	if (playeruuid == "") {
 		playeruuid = orderedUUID();
 		queryplayerinfo =
-			str(boost::format{"INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, `firstlogin`, \
-								`firstnick`, `lastlogin`, `lastnick`, `bancount`, `banreason`, \
-								`banbegindate`, `banenddate`) \
-								VALUES (CAST(0x%s AS BINARY), \"%s\", \
-										\"unused\", NOW(), \"%s\", NOW(), \"%s\", \
-										'0', NULL, NULL, NULL)"} % playeruuid % steamid % nickname % nickname);
+			str(boost::format{"INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, "
+								"`firstlogin`, `firstnick`, `lastlogin`, `lastnick`, "
+								"`bancount`, `banreason`, `banbegindate`, `banenddate`) "
+								"VALUES (CAST(0x%s AS BINARY), \"%s\", \"unused\", NOW(), "
+								"\"%s\", NOW(), \"%s\", '0', NULL, NULL, NULL)"}
+								% playeruuid % steamid % nickname % nickname);
 	} else {
 		queryplayerinfo =
 					str(boost::format{"UPDATE `player` SET `lastlogin` = NOW(), `lastnick` = \"%s\" \
@@ -222,15 +222,229 @@ std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
 }
 
 std::string db_handler::loadAvChars(std::string playeruuid) {
-	return "not implemented";
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	unsigned int fieldcount;
+	unsigned long long int rowcount;
+	bool printcommaone = false;
+	bool printcommatwo = false;
+
+	// char info
+	std::string charinfo = "";
+
+	std::string querycharinfo =
+			str(
+					boost::format {
+							"SELECT HEX(`death_persistent_variables`.`uuid`), "
+									"`death_persistent_variables`.`persistentvariables`, `world`.`name`, `world`.`map` "
+									"FROM `world_is_linked_to_world` "
+									"INNER JOIN `player_on_world_has_death_persistent_variables` "
+									" ON `world_is_linked_to_world`.`world_uuid2` = `player_on_world_has_death_persistent_variables`.`world_uuid` "
+									"INNER JOIN `death_persistent_variables` "
+									" ON `death_persistent_variables`.`uuid` = `player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid` "
+									"INNER JOIN `world` "
+									" ON `world`.`uuid` = `world_is_linked_to_world`.`world_uuid2` "
+									"WHERE `world_is_linked_to_world`.`world_uuid1` = CAST(0x%s AS BINARY) "
+									" AND `player_on_world_has_death_persistent_variables`.`player_uuid` = CAST(0x%s AS BINARY)" }
+							% worlduuid % playeruuid);
+
+	char typearray[] = {
+			1, // HEX(`death_persistent_variables`.`uuid`)
+			0, // `death_persistent_variables`.`persistentvariables`
+			1, // `world`.`name`
+			1  // `world`.`map`
+			};
+
+	printf("%s\n", querycharinfo.c_str());
+
+	this->rawquery(querycharinfo, &result);
+
+	fieldcount = mysql_num_fields(result);
+	rowcount = mysql_num_rows(result);
+
+	printf("fieldcount = %d\n", (int) fieldcount);
+	printf("rowcount = %d\n", (int) rowcount);
+
+	charinfo = "[";
+
+	for (int rowpos = 0; rowpos < rowcount; rowpos++) {
+		row = mysql_fetch_row(result);
+
+		charinfo += "[";
+		if (printcommaone) {
+			charinfo += ", ";
+		}
+
+		for (int fieldpos = 0; fieldpos < fieldcount; fieldpos++) {
+			if (printcommatwo) {
+				charinfo += ", ";
+			}
+			switch (typearray[fieldpos]) {
+			case 1:
+				charinfo += "\"";
+				break;
+			case 2:
+				charinfo += "[";
+				if (row[fieldpos] != NULL)
+					charinfo += "\"";
+				break;
+			default:
+				charinfo += "";
+			}
+
+			if (row[fieldpos] != NULL) {
+				charinfo += row[fieldpos];
+			} else {
+				charinfo += "";
+			}
+
+			switch (typearray[fieldpos]) {
+			case 1:
+				charinfo += "\"";
+				break;
+			case 2:
+				if (row[fieldpos] != NULL)
+					charinfo += "\"";
+				charinfo += "]";
+				break;
+			}
+			printcommatwo = true;
+		}
+		charinfo += "]";
+		printcommaone = true;
+	}
+	charinfo += "]";
+
+	return charinfo;
 }
 
 std::string db_handler::linkChars(std::string playeruuid, std::string variabuuid) {
-	return "not implemented";
+	std::string query = str(
+			boost::format { "INSERT INTO `player_on_world_has_death_persistent_variables` "
+					"(`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) "
+					"VALUES (0x%s AS BINARY), CAST(0x%s AS BINARY), CAST(0x%s AS BINARY))"
+					} % playeruuid % worlduuid % variabuuid);
+
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	return playeruuid;
 }
+
 std::string db_handler::loadChar(std::string playeruuid) {
-	return "not implemented";
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	unsigned int fieldcount;
+	unsigned long long int rowcount;
+	bool printcomma = false;
+
+	// char info
+	std::string charinfo = "";
+
+	std::string querycharinfo = str(boost::format {
+		    "SELECT HEX(`character`.`uuid`), `animationstate`, "
+			"`direction`, `positiontype`, `positionx`, `positiony`, "
+			"`positionz`, `classname`, `hitpoints`, `variables`, "
+			"`persistentvariables`, `textures`, `inventoryuniform`, "
+			"`inventoryvest`, `inventorybackpack`, `uniform`, `vest`, "
+			"`backpack`, `headgear`, `googles`, `primaryweapon`, "
+			"`secondaryweapon`, `handgun`, `tools`, `currentweapon` "
+			"FROM `player_on_world_has_character` "
+			"INNER JOIN `character`  "
+			" ON `player_on_world_has_character`.`character_uuid` = `character`.`uuid` "
+			"INNER JOIN `charactershareables` "
+			" ON `character`.`charactershareables_uuid` = `charactershareables`.`uuid` "
+			"INNER JOIN `death_persistent_variables` "
+			" ON `charactershareables`.`death_persistent_variables_uuid` = `death_persistent_variables`.`uuid` "
+			"WHERE `player_on_world_has_character`.`player_uuid` = CAST(0x%s AS BINARY) "
+			" AND `player_on_world_has_character`.`world_uuid` =  CAST(0x%s AS BINARY) "
+			" AND `player_on_world_has_character`.`killinfo_uuid` IS NULL" } % playeruuid % worlduuid);
+
+	char typearray[] = {
+			1, // HEX(`character`.`uuid`)
+			1, // `animationstate`
+			0, // `direction`
+			0, // `positiontype`
+			0, // `positionx`
+			0, // `positiony`
+			0, // `positionz`
+			1, // `classname`
+			0, // `hitpoints`
+			0, // `variables`
+			0, // `persistentvariables`
+			0, // `textures`
+			0, // `inventoryuniform`
+			0, // `inventoryvest`
+			0, // `inventorybackpack`
+			1, // `uniform`
+			1, // `vest`
+			1, // `backpack`
+			1, // `headgear`
+			1, // `googles`
+			0, // `primaryweapon`
+			0, // `secondaryweapon`
+			0, // `handgun`
+			0, // `tools`
+			1  // `currentweapon`
+	};
+
+	printf("%s\n", querycharinfo.c_str());
+
+	this->rawquery(querycharinfo, &result);
+
+	fieldcount = mysql_num_fields(result);
+	rowcount = mysql_num_rows(result);
+
+	printf("rowcount = %d\n", (int) rowcount);
+
+	charinfo = "[";
+	if (rowcount > 0) {
+		row = mysql_fetch_row(result);
+		for (int fieldpos = 0; fieldpos < fieldcount; fieldpos++) {
+			if (printcomma) {
+				charinfo += ", ";
+			}
+			switch (typearray[fieldpos]) {
+			case 1:
+				charinfo += "\"";
+				break;
+			case 2:
+				charinfo += "[";
+				if (row[fieldpos] != NULL)
+					charinfo += "\"";
+				break;
+			default:
+				charinfo += "";
+			}
+
+			if (row[fieldpos] != NULL) {
+				charinfo += row[fieldpos];
+			} else {
+				charinfo += "";
+			}
+
+			switch (typearray[fieldpos]) {
+			case 1:
+				charinfo += "\"";
+				break;
+			case 2:
+				if (row[fieldpos] != NULL)
+					charinfo += "\"";
+				charinfo += "]";
+				break;
+			}
+			printcomma = true;
+		}
+	}
+	charinfo += "]";
+	printf("%s\n", charinfo.c_str());
+
+	mysql_free_result(result);
+
+	return charinfo;
 }
+
 
 std::string db_handler::createChar(std::string playeruuid, std::string animationstate, float direction,
 		int positiontype, float positionx, float positiony, float positionz, std::string classname,
@@ -518,26 +732,24 @@ std::vector< std::vector<std::string> > db_handler::dumpObjects() {
 	unsigned int fieldcount;
 	unsigned long long int rowcount;
 	std::string query =
-	str(boost::format{"SELECT HEX(`object`.`uuid`), HEX(`world_has_objects`.`parentobject_uuid`), \
-		       `object`.`classname`, `object`.`priority`, \
-		       `object`.`visible`, `object`.`accesscode`, `object`.`locked`, \
-		       HEX(`object`.`player_uuid`), `object`.`hitpoints`, `object`.`damage`, \
-		       `object`.`fuel`, `object`.`fuelcargo`, `object`.`repaircargo`, \
-		       `object`.`items`, `object`.`magazines`, `object`.`weapons`, \
-		       `object`.`backpacks`, `object`.`magazinesturret`, `object`.`variables`, \
-		       `object`.`animationstate`, `object`.`textures`, `object`.`direction`, \
-		       `object`.`positiontype`, `object`.`positionx`, `object`.`positiony`, \
-		       `object`.`positionz`, GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist \
-		  FROM `world_has_objects` \
-		  INNER JOIN `object` \
-		    ON `world_has_objects`.`object_uuid` = `object`.`uuid` \
-		  LEFT JOIN `player_is_friend_with_player` \
-		    ON `object`.`player_uuid` = `player_is_friend_with_player`.`player1_uuid` \
-		  LEFT JOIN `player` \
-		    ON `player_is_friend_with_player`.`player2_uuid` = `player`.`uuid` \
-		  WHERE `world_has_objects`.`world_uuid` = CAST(0x%s AS BINARY) \
-		  GROUP BY `object`.`uuid` \
-		  ORDER BY `object`.priority ASC, `world_has_objects`.`parentobject_uuid` ASC"} % worlduuid);
+	str(boost::format{"SELECT HEX(`object`.`uuid`), HEX(`world_has_objects`.`parentobject_uuid`), "
+						"`object`.`classname`, `object`.`priority`, `object`.`visible`, `object`.`accesscode`, "
+						"`object`.`locked`, HEX(`object`.`player_uuid`), `object`.`hitpoints`, `object`.`damage`, "
+						"`object`.`fuel`, `object`.`fuelcargo`, `object`.`repaircargo`, `object`.`items`, "
+						"`object`.`magazines`, `object`.`weapons`, `object`.`backpacks`, `object`.`magazinesturret`, "
+						"`object`.`variables`, `object`.`animationstate`, `object`.`textures`, `object`.`direction`, "
+						"`object`.`positiontype`, `object`.`positionx`, `object`.`positiony`, `object`.`positionz`, "
+						"GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist "
+						"FROM `world_has_objects` "
+						"INNER JOIN `object` "
+						" ON `world_has_objects`.`object_uuid` = `object`.`uuid` "
+						"LEFT JOIN `player_is_friend_with_player` "
+						" ON `object`.`player_uuid` = `player_is_friend_with_player`.`player1_uuid` "
+						"LEFT JOIN `player` "
+						" ON `player_is_friend_with_player`.`player2_uuid` = `player`.`uuid` "
+						"WHERE `world_has_objects`.`world_uuid` = CAST(0x%s AS BINARY) "
+						"GROUP BY `object`.`uuid` "
+						"ORDER BY `object`.priority ASC, `world_has_objects`.`parentobject_uuid` ASC"} % worlduuid);
 
 	char typearray[] = {
 			1, // HEX(`object`.`uuid`)
@@ -566,12 +778,10 @@ std::vector< std::vector<std::string> > db_handler::dumpObjects() {
 			0, // `object`.`positionx`
 			0, // `object`.`positiony`
 			0, // `object`.`positionz`
-			2, // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+			2  // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
 	};
 
 	printf("%s\n", query.c_str());
-	printf("%s\n", this->worlduuid.c_str());
-	printf("%s\n", this->hostname.c_str());
 
 	//this->rawquery("SELECT HEX(uuid) FROM `world` WHERE uuid = CAST(0x11e66ac83e75277882c510bf48883ace AS BINARY)", &result);
 	this->rawquery(query, &result);
