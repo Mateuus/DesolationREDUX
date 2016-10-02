@@ -253,7 +253,7 @@ std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handl
 }
 
 std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 
 	std::string result = dbhandler->loadAvChars(playeruuid);
 
@@ -261,7 +261,7 @@ std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_hand
 }
 
 std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 	std::string variabuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABUUID);
 
 	std::string result = dbhandler->linkChars(playeruuid, variabuuid);
@@ -270,7 +270,7 @@ std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handle
 }
 
 std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 
 	std::string result = dbhandler->loadChar(playeruuid);
 
@@ -278,7 +278,7 @@ std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler
 }
 
 std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYERUUID);
+	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
 	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
 	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
@@ -359,7 +359,7 @@ std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_ha
 	std::string result = dbhandler->locupdateChar(charuuid, animationstate, direction, positiontype, positionx,
 					positiony, positionz);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -367,7 +367,7 @@ std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handl
 
 	std::string result = dbhandler->loadObject(objectuuid);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
 }
 
 std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -400,7 +400,7 @@ std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_han
 			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
 			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -435,7 +435,7 @@ std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_han
 			magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony,
 			positionz);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {

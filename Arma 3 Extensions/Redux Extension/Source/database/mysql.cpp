@@ -707,7 +707,120 @@ std::string db_handler::locupdateChar(std::string charuuid, std::string animatio
 }
 
 std::string db_handler::loadObject(std::string objectuuid) {
-	return "not implemented";
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	unsigned int fieldcount;
+	unsigned long long int rowcount;
+	bool printcommatwo = false;
+
+	// char info
+	std::string objectinfo = "";
+
+	std::string query = str(boost::format {
+			"SELECT HEX(`object`.`uuid`), HEX(`world_has_objects`.`parentobject_uuid`), "
+					"`object`.`classname`, `object`.`priority`, `object`.`visible`, `object`.`accesscode`, "
+					"`object`.`locked`, HEX(`object`.`player_uuid`), `object`.`hitpoints`, `object`.`damage`, "
+					"`object`.`fuel`, `object`.`fuelcargo`, `object`.`repaircargo`, `object`.`items`, "
+					"`object`.`magazines`, `object`.`weapons`, `object`.`backpacks`, `object`.`magazinesturret`, "
+					"`object`.`variables`, `object`.`animationstate`, `object`.`textures`, `object`.`direction`, "
+					"`object`.`positiontype`, `object`.`positionx`, `object`.`positiony`, `object`.`positionz`, "
+					"GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist "
+					"FROM `world_has_objects` "
+					"INNER JOIN `object` "
+					" ON `world_has_objects`.`object_uuid` = `object`.`uuid` "
+					"LEFT JOIN `player_is_friend_with_player` "
+					" ON `object`.`player_uuid` = `player_is_friend_with_player`.`player1_uuid` "
+					"LEFT JOIN `player` "
+					" ON `player_is_friend_with_player`.`player2_uuid` = `player`.`uuid` "
+					"WHERE `world_has_objects`.`object_uuid` = CAST(0x%s AS BINARY) "
+					"GROUP BY `object`.`uuid` "
+					"ORDER BY `object`.priority ASC, `world_has_objects`.`parentobject_uuid` ASC" } % objectuuid);
+
+	char typearray[] = { 1, // HEX(`object`.`uuid`)
+			1, // HEX(`world_has_objects`.`parentobject_uuid`)
+			1, // `object`.`classname`
+			0, // `object`.`priority`
+			0, // `object`.`visible`
+			1, // `object`.`accesscode`
+			0, // `object`.`locked`
+			1, // HEX(`object`.`player_uuid`)
+			0, // `object`.`hitpoints`
+			0, // `object`.`damage`
+			0, // `object`.`fuel`
+			0, // `object`.`fuelcargo`
+			0, // `object`.`repaircargo`
+			0, // `object`.`items`
+			0, // `object`.`magazines`
+			0, // `object`.`weapons`
+			0, // `object`.`backpacks`
+			0, // `object`.`magazinesturret`
+			0, // `object`.`variables`
+			0, // `object`.`animationstate`
+			0, // `object`.`textures`
+			0, // `object`.`direction`
+			0, // `object`.`positiontype`
+			0, // `object`.`positionx`
+			0, // `object`.`positiony`
+			0, // `object`.`positionz`
+			2  // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+			};
+
+	printf("%s\n", query.c_str());
+
+	//this->rawquery("SELECT HEX(uuid) FROM `world` WHERE uuid = CAST(0x11e66ac83e75277882c510bf48883ace AS BINARY)", &result);
+	this->rawquery(query, &result);
+
+	fieldcount = mysql_num_fields(result);
+	rowcount = mysql_num_rows(result);
+
+	printf("fieldcount = %d\n", (int) fieldcount);
+	printf("rowcount = %d\n", (int) rowcount);
+
+	objectinfo = "[";
+	if (rowcount > 0) {
+		row = mysql_fetch_row(result);
+
+		for (int fieldpos = 0; fieldpos < fieldcount; fieldpos++) {
+			if (printcommatwo) {
+				objectinfo += ", ";
+			}
+			switch (typearray[fieldpos]) {
+			case 1:
+				objectinfo += "\"";
+				break;
+			case 2:
+				objectinfo += "[";
+				if (row[fieldpos] != NULL)
+					objectinfo += "\"";
+				break;
+			default:
+				objectinfo += "";
+			}
+
+			if (row[fieldpos] != NULL) {
+				objectinfo += row[fieldpos];
+			} else {
+				objectinfo += "";
+			}
+
+			switch (typearray[fieldpos]) {
+			case 1:
+				objectinfo += "\"";
+				break;
+			case 2:
+				if (row[fieldpos] != NULL)
+					objectinfo += "\"";
+				objectinfo += "]";
+				break;
+			}
+			printcommatwo = true;
+		}
+	}
+	objectinfo += "]";
+
+	mysql_free_result(result);
+
+	return objectinfo;
 }
 
 std::string db_handler::createObject(std::string classname, int priority, int visible, std::string accesscode,
@@ -715,7 +828,53 @@ std::string db_handler::createObject(std::string classname, int priority, int vi
 		float repaircargo, std::string items, std::string magazines, std::string weapons, std::string backpacks,
 		std::string magazinesturret, std::string variables, std::string animationstate, std::string textures,
 		float direction, int positiontype, float positionx, float positiony, float positionz) {
-	return "not implemented";
+
+	std::string objectuuid = orderedUUID();
+	std::string query;
+
+	if (player_uuid == "") {
+		query = str(
+				boost::format { "INSERT INTO `object` (`uuid`, `classname`, `priority`, `timelastused`, "
+						"`timecreated`, `visible`, `accesscode`, `locked`, `player_uuid`, `hitpoints`, "
+						"`damage`, `fuel`, `fuelcargo`, `repaircargo`, `items`, `magazines`, `weapons`, "
+						"`backpacks`, `magazinesturret`, `variables`, `animationstate`, `textures`, "
+						"`direction`, `positiontype`, `positionx`, `positiony`, `positionz`) "
+						"VALUES (CAST(0x%s AS BINARY), \"%s\", %s, now(), "
+						"now(), %s, \"%s\", %s, NULL, \"%s\", "
+						"%s, %s, %s, %s, \"%s\", \"%s\", \"%s\", "
+						"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", "
+						"%s, %s, %s, %s, %s)" } % objectuuid % classname % priority % visible % accesscode % locked
+						% hitpoints % damage % fuel % fuelcargo % repaircargo % items % magazines % weapons % backpacks
+						% magazinesturret % variables % animationstate % textures % direction % positiontype % positionx
+						% positiony % positionz);
+	} else {
+		query = str(
+				boost::format { "INSERT INTO `object` (`uuid`, `classname`, `priority`, `timelastused`, "
+						"`timecreated`, `visible`, `accesscode`, `locked`, `player_uuid`, `hitpoints`, "
+						"`damage`, `fuel`, `fuelcargo`, `repaircargo`, `items`, `magazines`, `weapons`, "
+						"`backpacks`, `magazinesturret`, `variables`, `animationstate`, `textures`, "
+						"`direction`, `positiontype`, `positionx`, `positiony`, `positionz`) "
+						"VALUES (CAST(0x%s AS BINARY), \"%s\", %s, now(), "
+						"now(), %s, \"%s\", %s, CAST(0x%s AS BINARY), \"%s\", "
+						"%s, %s, %s, %s, \"%s\", \"%s\", \"%s\", "
+						"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", "
+						"%s, %s, %s, %s, %s)" } % objectuuid % classname % priority % visible % accesscode % locked
+						% player_uuid % hitpoints % damage % fuel % fuelcargo % repaircargo % items % magazines
+						% weapons % backpacks % magazinesturret % variables % animationstate % textures % direction
+						% positiontype % positionx % positiony % positionz);
+	}
+
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	query = str(boost::format { "INSERT INTO `world_has_objects` (`world_uuid`, `object_uuid`) "
+			"VALUES (CAST(0x%s AS BINARY), CAST(0x%s AS BINARY))" } % worlduuid % objectuuid);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	return objectuuid;
 }
 
 std::string db_handler::updateObject(std::string objectuuid, std::string classname, int priority, int visible,
@@ -723,7 +882,80 @@ std::string db_handler::updateObject(std::string objectuuid, std::string classna
 		float fuelcargo, float repaircargo, std::string items, std::string magazines, std::string weapons,
 		std::string backpacks, std::string magazinesturret, std::string variables, std::string animationstate,
 		std::string textures, float direction, int positiontype, float positionx, float positiony, float positionz) {
-	return "not implemented";
+
+	std::string query;
+
+		if (player_uuid == "") {
+			query = str(
+					boost::format { "UPDATE `object` "
+									"SET `classname` = \"%s\", "
+									"    `priority` = %s, "
+									"    `visible` = \"%s\","
+									"    `accesscode` = \"%s\", "
+									"    `locked` = \"%s\", "
+									"    `player_uuid` = NULL, "
+									"    `hitpoints` = \"%s\", "
+									"    `damage` = %s, "
+									"    `fuel` = %s, "
+									"    `fuelcargo` = %s, "
+									"    `repaircargo` = %s, "
+									"    `items` = \"%s\", "
+									"    `magazines` = \"%s\", "
+									"    `weapons` = \"%s\", "
+									"    `backpacks` = \"%s\", "
+									"    `magazinesturret` = \"%s\", "
+									"    `variables` = \"%s\", "
+									"    `animationstate` = \"%s\", "
+									"    `textures` = \"%s\", "
+									"    `direction` = %s, "
+									"    `positiontype` = %s, "
+									"    `positionx` = %s, "
+									"    `positiony` = %s, "
+									"    `positionz` = %s "
+									"WHERE `object`.`uuid` = CAST(0x%s AS BINARY);" }
+									% classname % priority % visible % accesscode % locked
+									% hitpoints % damage % fuel % fuelcargo % repaircargo % items % magazines
+									% weapons % backpacks % magazinesturret % variables % animationstate % textures % direction
+									% positiontype % positionx % positiony % positionz % objectuuid);
+		} else {
+			query = str(
+					boost::format { "UPDATE `object` "
+									"SET `classname` = \"%s\", "
+									"    `priority` = %s, "
+									"    `visible` = \"%s\","
+									"    `accesscode` = \"%s\", "
+									"    `locked` = \"%s\", "
+									"    `player_uuid` = CAST(0x%s AS BINARY), "
+									"    `hitpoints` = \"%s\", "
+									"    `damage` = %s, "
+									"    `fuel` = %s, "
+									"    `fuelcargo` = %s, "
+									"    `repaircargo` = %s, "
+									"    `items` = \"%s\", "
+									"    `magazines` = \"%s\", "
+									"    `weapons` = \"%s\", "
+									"    `backpacks` = \"%s\", "
+									"    `magazinesturret` = \"%s\", "
+									"    `variables` = \"%s\", "
+									"    `animationstate` = \"%s\", "
+									"    `textures` = \"%s\", "
+									"    `direction` = %s, "
+									"    `positiontype` = %s, "
+									"    `positionx` = %s, "
+									"    `positiony` = %s, "
+									"    `positionz` = %s "
+									"WHERE `object`.`uuid` = CAST(0x%s AS BINARY);" }
+									% classname % priority % visible % accesscode % locked
+									% player_uuid % hitpoints % damage % fuel % fuelcargo % repaircargo % items % magazines
+									% weapons % backpacks % magazinesturret % variables % animationstate % textures % direction
+									% positiontype % positionx % positiony % positionz % objectuuid);
+		}
+
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query);
+
+		return objectuuid;
 }
 
 std::vector< std::vector<std::string> > db_handler::dumpObjects() {

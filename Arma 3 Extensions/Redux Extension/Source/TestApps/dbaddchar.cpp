@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 	std::string uuid;
 	std::string functionstring;
 	std::string playeruuid;
+	std::string objectuuid;
     char output[1024];
     const char function[] = "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': 4, 'worlduuid': '11e66ac33a4ccd1c82c510bf48883ace' } }";
 
@@ -69,7 +70,51 @@ int main(int argc, char *argv[])
 	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createChar', 'dbarguments': { 'playeruuid': '";
 	functionstring += playeruuid + "', 'animationstate': 'VAR_ANIMATIONSTATE',  'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7', 'classname': 'sampleclass', 'hitpoints': '[]', 'variables': '[]', 'persistentvariables': '[]', 'textures': '[]', 'inventoryuniform': '[]', 'inventoryvest': '[]', 'inventorybackpack': '[]', 'uniform': 'someuniform', 'vest': 'somevest', 'backpack': 'somebackpack', 'headgear': 'someheadgear', 'googles': 'somegoogles', 'primaryweapon': '[\"someprimaryweapon\", [\"someattachment\"]]', 'secondaryweapon': '[\"somesecondaryweapon\", [\"someattachment\"]]', 'handgun': '[\"somehandgunweapon\", [\"someattachment\"]]', 'tools': '[]', 'currentweapon': 'someprimaryweapon' } } }";
 
-	std::cout << "loading player data" << std::endl;
+	std::cout << "creating character data" << std::endl;
+	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	RVExtension(output, 1024, functionstring.c_str());
+	std::cout << output << std::endl ;
+
+	usleep(500);
+
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createObject', 'dbarguments': { 'classname': '";
+	functionstring += randomstring(8) + "', 'priority': 2, 'visible': 1, 'accesscode': '', 'locked': 0, 'playeruuid': '";
+	functionstring += playeruuid + "', 'hitpoints': '[]',  'damage': 0.1, 'fuel': 0.9, 'fuelcargo': 0.0, 'repaircargo': 0.0, ";
+	functionstring += "'items': '[]', 'magazines': '[]', 'weapons': '[]', 'backpacks': '[]', 'magazinesturret': '[]', 'variables': '[]', ";
+	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
+
+	std::cout << "creating object data" << std::endl;
+	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	RVExtension(output, 1024, functionstring.c_str());
+	std::cout << output << std::endl ;
+
+	objectuuid = output;
+	objectuuid = objectuuid.substr(9, 32);
+	std::cout << "OBJECTUUID: " << objectuuid << std::endl  << std::endl << std::endl;
+
+	usleep(500);
+
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'updateObject', 'dbarguments': { 'objectuuid': '";
+	functionstring += objectuuid + "', 'classname': '";
+	functionstring += randomstring(8) + "', 'priority': 2, 'visible': 1, 'accesscode': '', 'locked': 0, 'playeruuid': '";
+	functionstring += playeruuid + "', 'hitpoints': '[]',  'damage': 0.1, 'fuel': 0.9, 'fuelcargo': 0.0, 'repaircargo': 0.0, ";
+	functionstring += "'items': '[]', 'magazines': '[]', 'weapons': '[]', 'backpacks': '[]', 'magazinesturret': '[]', 'variables': '[]', ";
+	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
+
+	std::cout << "update object data" << std::endl;
+	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	RVExtension(output, 1024, functionstring.c_str());
+	std::cout << output << std::endl ;
+
+	usleep(500);
+
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createObject', 'dbarguments': { 'classname': '";
+	functionstring += randomstring(8) + "', 'priority': 2, 'visible': 1, 'accesscode': '', 'locked': 0, 'playeruuid': '";
+	functionstring += "', 'hitpoints': '[]',  'damage': 0.1, 'fuel': 0.9, 'fuelcargo': 0.0, 'repaircargo': 0.0, ";
+	functionstring += "'items': '[]', 'magazines': '[]', 'weapons': '[]', 'backpacks': '[]', 'magazinesturret': '[]', 'variables': '[]', ";
+	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
+
+	std::cout << "creating object data without owner" << std::endl;
 	std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
 	std::cout << output << std::endl ;
