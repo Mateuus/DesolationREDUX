@@ -30,13 +30,13 @@ public:
 			std::string variables, std::string persistentvariables, std::string textures, std::string inventoryuniform,
 			std::string inventoryvest, std::string inventorybackpack, std::string uniform, std::string vest,
 			std::string backpack, std::string headgear, std::string googles, std::string primaryweapon,
-			std::string secondaryweapon, std::string tools, std::string currentweapon);
+			std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon);
 	std::string updateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
 			float positionx, float positiony, float positionz, std::string classname, std::string hitpoints,
 			std::string variables, std::string persistentvariables, std::string textures, std::string inventoryuniform,
 			std::string inventoryvest, std::string inventorybackpack, std::string uniform, std::string vest,
 			std::string backpack, std::string headgear, std::string googles, std::string primaryweapon,
-			std::string secondaryweapon, std::string tools, std::string currentweapon);
+			std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon);
 	std::string locupdateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
 			float positionx, float positiony, float positionz);
 

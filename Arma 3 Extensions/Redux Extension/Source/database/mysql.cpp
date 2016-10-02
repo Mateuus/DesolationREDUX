@@ -237,8 +237,182 @@ std::string db_handler::createChar(std::string playeruuid, std::string animation
 		std::string hitpoints, std::string variables, std::string persistentvariables, std::string textures,
 		std::string inventoryuniform, std::string inventoryvest, std::string inventorybackpack, std::string uniform,
 		std::string vest, std::string backpack, std::string headgear, std::string googles, std::string primaryweapon,
-		std::string secondaryweapon, std::string tools, std::string currentweapon) {
-	return "not implemented";
+		std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon) {
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	unsigned int fieldcount;
+	unsigned long long int rowcount;
+
+	// char info
+	std::string charuuid = "";
+	std::string death_persistent_variables_uuid = "";
+	std::string shareable_variables_uuid = "";
+
+	/* for testing purpose, check if there is an existing character, if yes return its uuid */
+	std::string query = str(boost::format { "SELECT HEX(`character_uuid`) "
+			"FROM `player_on_world_has_character` "
+			"WHERE `player_on_world_has_character`.`player_uuid` = CAST(0x%s AS BINARY) "
+			"AND `player_on_world_has_character`.`world_uuid` =  CAST(0x%s AS BINARY) "
+			"AND `player_on_world_has_character`.`killinfo_uuid` IS NULL" } % playeruuid % worlduuid);
+
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query, &result);
+
+	rowcount = mysql_num_rows(result);
+
+	printf("rowcount = %d\n", (int) rowcount);
+
+	if (rowcount > 0) {
+		row = mysql_fetch_row(result);
+
+		if (row[0] != NULL) {
+			charuuid = row[0];
+		}
+	}
+
+	mysql_free_result(result);
+
+	if (charuuid == "") {
+		/* get the uuid for the Death Persistent Variables */
+		query = str(boost::format { "SELECT `death_persistent_variables_uuid` "
+				"FROM `player_on_world_has_death_persistent_variables` "
+				"WHERE `player_uuid` = CAST(0x%s AS BINARY) "
+				"AND `world_uuid` = CAST(0x%s AS BINARY)" } % playeruuid % worlduuid);
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query, &result);
+
+		rowcount = mysql_num_rows(result);
+
+		printf("rowcount = %d\n", (int) rowcount);
+
+		if (rowcount > 0) {
+			row = mysql_fetch_row(result);
+
+			if (row[0] != NULL) {
+				death_persistent_variables_uuid = row[0];
+			}
+		}
+
+		mysql_free_result(result);
+
+		/* if there are no Death Persistent Variables create some*/
+		if (death_persistent_variables_uuid == "") {
+			death_persistent_variables_uuid = orderedUUID();
+
+			query = str(
+					boost::format { "INSERT INTO `death_persistent_variables` (`uuid`, `persistentvariables`) "
+							"VALUES (CAST(0x%s AS BINARY), \"%s\"); " } % death_persistent_variables_uuid
+							% persistentvariables);
+			printf("%s\n", query.c_str());
+
+			this->rawquery(query);
+
+			query = str(boost::format { "INSERT INTO `player_on_world_has_death_persistent_variables` "
+					"(`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) "
+					"VALUES (CAST(0x%s AS BINARY), "
+					"CAST(0x%s AS BINARY), "
+					"CAST(0x%s AS BINARY));" } % playeruuid % worlduuid % death_persistent_variables_uuid);
+			printf("%s\n", query.c_str());
+
+			this->rawquery(query);
+		}
+
+		/* get alive linked character shareables */
+		query = str(boost::format { "SELECT HEX(`charactershareables`.`uuid`) "
+				"FROM `player_on_world_has_character` "
+				"INNER JOIN `character` "
+				"ON `player_on_world_has_character`.`character_uuid` = `character`.`uuid` "
+				"INNER JOIN `charactershareables` "
+				"ON `character`.`charactershareables_uuid` = `charactershareables`.`uuid` "
+				"WHERE `player_on_world_has_character`.`player_uuid` = CAST(0x%s AS BINARY) "
+				"AND `player_on_world_has_character`.`killinfo_uuid` IS NULL "
+				"AND `player_on_world_has_character`.`world_uuid` IN  ( "
+				"SELECT `world_uuid` "
+				"FROM `player_on_world_has_death_persistent_variables` "
+				"WHERE `death_persistent_variables_uuid` = CAST(0x%s AS BINARY) "
+				") LIMIT 1" } % playeruuid % death_persistent_variables_uuid);
+
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query, &result);
+
+		rowcount = mysql_num_rows(result);
+
+		printf("rowcount = %d\n", (int) rowcount);
+
+		if (rowcount > 0) {
+			row = mysql_fetch_row(result);
+
+			if (row[0] != NULL) {
+				shareable_variables_uuid = row[0];
+			}
+		}
+
+		mysql_free_result(result);
+
+		/* if there are no Death Persistent Variables create some*/
+		if (shareable_variables_uuid == "") {
+			shareable_variables_uuid = orderedUUID();
+
+			query = str(
+					boost::format { "INSERT INTO `charactershareables` (`uuid`, `classname`, `hitpoints`, "
+							"`variables`, `death_persistent_variables_uuid`, `textures`, "
+							"`inventoryuniform`, `inventoryvest`, `inventorybackpack`, "
+							" `uniform`, `vest`, `backpack`, "
+							"`headgear`, `googles`, `primaryweapon`, "
+							"`secondaryweapon`, `handgun`, `tools`, "
+							"`currentweapon`) "
+							"VALUES (CAST(0x%s AS BINARY), "
+							"\"%s\", \"%s\", "
+							"\"%s\", CAST(0x%s AS BINARY), "
+							"\"%s\", \"%s\", "
+							"\"%s\", \"%s\", "
+							"\"%s\", \"%s\", \"%s\", "
+							"\"%s\", \"%s\", \"%s\", "
+							"\"%s\", \"%s\", \"%s\", "
+							"\"%s\")" } % shareable_variables_uuid % classname % hitpoints % variables
+							% death_persistent_variables_uuid % textures % inventoryuniform % inventoryvest
+							% inventorybackpack % uniform % vest % backpack % headgear % googles % primaryweapon
+							% secondaryweapon % handgun % tools % currentweapon);
+
+			printf("%s\n", query.c_str());
+
+			this->rawquery(query);
+		}
+
+		/* add character world specific data */
+		/* add character to world */
+		charuuid = orderedUUID();
+
+		query = str(
+				boost::format { "INSERT INTO `character` (`uuid`, `animationstate`, `direction`, "
+						"`positiontype`, `positionx`, `positiony`, "
+						"`positionz`, `charactershareables_uuid`) "
+						"VALUES (CAST(0x%s AS BINARY), "
+						"\"%s\", %s, "
+						"%s, %s, %s, "
+						"%s, CAST(0x%s AS BINARY)); " } % charuuid % animationstate % direction % positiontype
+						% positionx % positiony % positionz % shareable_variables_uuid);
+
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query);
+		query = str(boost::format { "INSERT INTO `player_on_world_has_character` (`player_uuid`, `world_uuid`, "
+				"`character_uuid`, `killinfo_uuid`) "
+				"VALUES (CAST(0x%s AS BINARY), "
+				"CAST(0x%s AS BINARY), "
+				"CAST(0x%s AS BINARY), "
+				"NULL)" } % playeruuid % worlduuid % charuuid);
+
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query);
+
+	}
+
+	return charuuid;
 }
 
 std::string db_handler::updateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
@@ -246,7 +420,7 @@ std::string db_handler::updateChar(std::string charuuid, std::string animationst
 		std::string variables, std::string persistentvariables, std::string textures, std::string inventoryuniform,
 		std::string inventoryvest, std::string inventorybackpack, std::string uniform, std::string vest,
 		std::string backpack, std::string headgear, std::string googles, std::string primaryweapon,
-		std::string secondaryweapon, std::string tools, std::string currentweapon) {
+		std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon) {
 	return "not implemented";
 }
 

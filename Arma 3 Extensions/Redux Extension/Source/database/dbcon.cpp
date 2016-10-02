@@ -300,15 +300,16 @@ std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handl
 	std::string googles = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_GOOGLES);
 	std::string primaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PRIMARYWEAPON);
 	std::string secondaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_SECONDARYWEAPON);
+	std::string handgun = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HANDGUN);
 	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
 	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
 
 	std::string result = dbhandler->createChar(playeruuid, animationstate, direction, positiontype, positionx,
 			positiony, positionz, classname, hitpoints, variables, persistentvariables, textures, inventoryuniform,
 			inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
-			secondaryweapon, tools, currentweapon);
+			secondaryweapon, handgun, tools, currentweapon);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -334,15 +335,16 @@ std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handl
 	std::string googles = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_GOOGLES);
 	std::string primaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PRIMARYWEAPON);
 	std::string secondaryweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_SECONDARYWEAPON);
+	std::string handgun = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HANDGUN);
 	std::string tools = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TOOLS);
 	std::string currentweapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON);
 
 	std::string result = dbhandler->updateChar(charuuid, animationstate, direction, positiontype, positionx,
 				positiony, positionz, classname, hitpoints, variables, persistentvariables, textures, inventoryuniform,
 				inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
-				secondaryweapon, tools, currentweapon);
+				secondaryweapon, handgun, tools, currentweapon);
 
-	return result;
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {

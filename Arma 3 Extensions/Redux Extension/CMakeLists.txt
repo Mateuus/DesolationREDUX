@@ -40,6 +40,7 @@ FIND_PACKAGE(Boost
              1.54.0
              COMPONENTS thread
                         system
+                        random
              REQUIRED)
 
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}) 

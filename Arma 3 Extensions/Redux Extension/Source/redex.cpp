@@ -39,7 +39,7 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 
 	for (unsigned int i = 0; function[i] != 0; i++) {
 		switch(function[i]) {
-			case '"': functionstream << "\\\""; break;
+			case '"': functionstream << "\\\\\\\""; break;
 			case '\'': functionstream << "\""; break;
 			default: functionstream << function[i]; break;
 		}
