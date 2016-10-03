@@ -1,3 +1,5 @@
+#include "constants.hpp"
+
 class CfgPatches
 {
 	class DesoDB {};

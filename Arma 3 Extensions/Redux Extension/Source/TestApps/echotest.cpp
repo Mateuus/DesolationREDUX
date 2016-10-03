@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 	std::string functionstring;
     char output[128];
     const char function[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'echo', 'dbarguments': {  'echostring': 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.' } } }";
+    std::cout << "SENDING JOSN: " << function << std::endl;
     RVExtension(output, 128, function);
 
     uuid = output;
@@ -41,6 +42,7 @@ int main(int argc, char *argv[])
     	functionstring = "{ 'dllfunction': 'rcvmsg', 'dllarguments': {  'msguuid': '";
     	functionstring += uuid;
 		functionstring += "' } }";
+		std::cout << "SENDING JOSN: " << functionstring << std::endl;
 		RVExtension(output, 128, functionstring.c_str());
 		std::cout << output << std::endl;
 	}
