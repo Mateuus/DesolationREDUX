@@ -18,8 +18,18 @@ call ds_fnc_initHealthSys;
 
 //asks the server to spawn us
 
-if((uiNamespace getVariable ["DS_LOADOUTDATA",[]]) isEqualTo []) then {
-	uiNamespace setVariable ["DS_LOADOUTDATA",[(profileNamespace getVariable ["DS_Default_Uniform","U_C_Poor_2"]),(profileNamespace getVariable ["DS_Default_Headgear","H_StrawHat"]),(profileNamespace getVariable ["DS_Default_Goggles","G_Aviator"])]];
-};
+// get client custom loadout data
+_clientLoadoutData = uiNamespace getVariable ["DS_LOADOUTDATA",[]];
 
+if(_clientLoadoutData isEqualTo []) then {	
+	// no loadout data exists in UI (joined from a3launcher?)
+	_clientLoadoutDataProfile = [];
+	_clientLoadoutDataProfile pushBack (profileNamespace getVariable ["DS_Default_Uniform","U_C_Poor_2"]);
+	_clientLoadoutDataProfile pushBack (profileNamespace getVariable ["DS_Default_Headgear","H_StrawHat"]);
+	_clientLoadoutDataProfile pushBack (profileNamespace getVariable ["DS_Default_Goggles","G_Aviator"]);
+	
+	// update UI with profile loadout data
+	uiNamespace setVariable ["DS_LOADOUTDATA",_clientLoadoutDataProfile];
+};
+// request spawn
 [player,uiNamespace getVariable "DS_LOADOUTDATA"] remoteExec ["DS_fnc_requestSpawn", 2];
