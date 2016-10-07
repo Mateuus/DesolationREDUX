@@ -33,51 +33,61 @@ dbcon::dbcon() {
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ECHO_STRING),
 					std::make_tuple(boost::bind(&dbcon::echo, this, _1, _2), HANDLELESS_MAGIC)));
 	dbfunctions.insert(
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG),
+					std::make_tuple(boost::bind(&dbcon::rcvasmsg, this, _1, _2), HANDLELESS_MAGIC)));
+	dbfunctions.insert(
+			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_SATE),
+					std::make_tuple(boost::bind(&dbcon::chkasmsg, this, _1, _2), HANDLELESS_MAGIC)));
+
+	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_RETURN_DB_VERSION),
 					std::make_tuple(boost::bind(&dbcon::dbVersion, this, _1, _2), SYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DEBUG_CALL),
-					std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::debugCall, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER),
-					std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::loadPlayer, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_AV_CHARS),
-					std::make_tuple(boost::bind(&dbcon::loadAvChars, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::loadAvChars, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LINK_CHARS),
-					std::make_tuple(boost::bind(&dbcon::linkChars, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::linkChars, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR),
-					std::make_tuple(boost::bind(&dbcon::loadChar, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::loadChar, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR),
-					std::make_tuple(boost::bind(&dbcon::createChar, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::createChar, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_CHAR),
-					std::make_tuple(boost::bind(&dbcon::updateChar, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::updateChar, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR),
-					std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT),
-					std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT),
-					std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
-					std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
-					std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), SYNC_MAGIC)));
+					std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), ASYNC_MAGIC)));
 
-	boost::asio::io_service::work work(DBioService);
+	// spawn some idle work
+	DBioServiceWork.reset( new boost::asio::io_service::work(DBioService) );
 
 	return;
 }
 
 dbcon::~dbcon() {
+	DBioServiceWork.reset(); // stop all!
+	DBioService.stop();
 	asyncthreadpool.join_all();
 	return;
 }
@@ -108,8 +118,9 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 			throw std::runtime_error("syncdbhandlerpool is not lock free");
 		}
 
-		syncdbhandlerpool.reserve(poolsize + 1);
-		for (i = 0; i < poolsize; i++) {
+		/* for the beginning we want to have some spare pool handlers */
+		syncdbhandlerpool.reserve(poolsize + 3);
+		for (i = 0; i < poolsize+2; i++) {
 			syncdbhandler = new (db_handler);
 			syncdbhandler->connect(hostname, user, password, database, port, worlduuid);
 			syncdbhandlerpool.bounded_push((intptr_t) syncdbhandler);
@@ -117,14 +128,14 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 
 		// tempsyncdbhandler.connect(hostname, user, password, database, port, worlduuid);
 
-		/* commented until async is needed
-		DBioService.set_dbinfos(hostname, user, password, database, port, worlduuid);
 		for (i = 0; i < poolsize; i++) {
 			asyncthreadpool.create_thread(
-					boost::bind(&dbcon_io_service::run, &DBioService)
+					boost::bind(static_cast<std::size_t (boost::asio::io_service::*)()>(&boost::asio::io_service::run), &DBioService)
 			);
 		}
-		*/
+
+
+
 		poolinitialized = true;
 	} else {
 		throw std::runtime_error("Threads already spawned");
@@ -203,8 +214,28 @@ std::string dbcon::syncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptr
 }
 
 std::string dbcon::asyncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments) {
-	return this->syncCall(funcinfo, dbarguments);
+	boost::property_tree::ptree copydbarguments = dbarguments;
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = PROTOCOL_IDENTIFIER_GENERATOR;
+
+	//boost::bind(&dbcon::asyncCallProcessor, this, funcinfo, dbarguments, messageIdentifier);
+	DBioService.post(boost::bind(&dbcon::asyncCallProcessor, this, funcinfo, dbarguments, messageIdentifier));
+
+	return "[\"" + PROTOCOL_MESSAGE_TYPE_ASYNC + "\", \"" + messageIdentifier + "\"]" ;
 }
+
+void dbcon::asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier) {
+	const DB_FUNCTION &func(std::get<0>(funcinfo));
+
+	std::string returnstring = this->syncCall(funcinfo, dbarguments);
+			//func(dbarguments, syncdbhandler);
+
+	msgmutex.lock();
+	msgmap.insert(std::make_pair(messageIdentifier, returnstring));
+	msgmutex.unlock();
+
+	return;
+}
+
 
 std::string dbcon::handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments) {
 	const DB_FUNCTION &func(std::get<0>(funcinfo));
@@ -218,6 +249,46 @@ std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments, db_handler 
 std::string dbcon::echo(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string echostring = dbarguments.get<std::string>("echostring");
 	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + echostring + "\"]";
+}
+
+std::string dbcon::chkasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dbarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
+	std::string returnString;
+
+	msgmutex.lock();
+	SINGLE_MESSAGE_MAP::iterator it = msgmap.find(messageIdentifier);
+	msgmutex.unlock();
+
+	// check if message object was found
+	if (it == msgmap.end()) {
+		returnString = PROTOCOL_MESSAGE_NOT_EXISTING;
+	} else {
+		returnString = PROTOCOL_MESSAGE_EXISTING;
+	}
+
+	return returnString;
+}
+
+std::string dbcon::rcvasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dbarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
+	std::string returnString;
+
+	msgmutex.lock();
+	SINGLE_MESSAGE_MAP::iterator it = msgmap.find(messageIdentifier);
+	msgmutex.unlock();
+
+	// check if message object was found
+	if (it == msgmap.end()) {
+		returnString = PROTOCOL_MESSAGE_NOT_EXISTING;
+	} else {
+		// extract message object
+		returnString = it->second;
+		msgmutex.lock();
+		msgmap.erase (it);
+		msgmutex.unlock();
+	}
+
+	return returnString;
 }
 
 std::string dbcon::debugCall(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {

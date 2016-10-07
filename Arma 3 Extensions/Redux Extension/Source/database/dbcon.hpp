@@ -22,9 +22,10 @@
 #include <map>
 #include <tuple>
 #include <cstdint>
+#include <mutex>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/function.hpp>
-#include <boost/asio/io_service.hpp>
+#include <boost/asio.hpp>
 #include <boost/lockfree/queue.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/thread/mutex.hpp>
@@ -34,37 +35,6 @@
 #include "constants.hpp"
 
 #include <stdio.h>
-
-class dbcon_io_service: public boost::asio::io_service {
-public:
-	void set_dbinfos(std::string hostname, std::string user,
-			std::string password, std::string database, unsigned int port, std::string worlduuid) {
-		this->hostname = hostname;
-		this->user = user;
-		this->password = password;
-		this->database = database;
-		this->port = port;
-		this->worlduuid = worlduuid;
-	}
-
-	std::size_t run() {
-		if (handler.get() == 0) {
-			handler.reset(new db_handler);
-			handler->connect(hostname, user, password, database, port, worlduuid);
-		}
-
-		return boost::asio::io_service::run();
-	}
-
-private:
-	boost::thread_specific_ptr<db_handler> handler;
-	std::string hostname;
-	std::string user;
-	std::string password;
-	std::string database;
-	unsigned int port;
-	std::string worlduuid;
-};
 
 class dbcon {
 public:
@@ -80,13 +50,20 @@ private:
 	DB_FUNCTIONS dbfunctions;
 
 	bool poolinitialized = false;
-	dbcon_io_service DBioService;
+	boost::asio::io_service DBioService;
+	boost::shared_ptr<boost::asio::io_service::work> DBioServiceWork;
+
 	boost::thread_group asyncthreadpool;
 	boost::mutex dbmutex;
-	boost::thread_specific_ptr<int> threadpointer;
+
+	std::mutex msgmutex;
+	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::string> SINGLE_MESSAGE_MAP;
+	SINGLE_MESSAGE_MAP msgmap;
 
 	std::string getUUID(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string echo(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
+	std::string rcvasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
+	std::string chkasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string dbVersion(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string debugCall(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 
@@ -110,6 +87,7 @@ private:
 
 	std::string syncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
 	std::string asyncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
+	void asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier);
 	std::string handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
 };
 
