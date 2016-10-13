@@ -124,10 +124,10 @@
 
 // Format Strings
 #define FORMATSTRING_INIT_DB "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': '%1', 'worlduuid': '%2' } }"
-#define FORMATSTRING_DBCALL_FUNCTION_LOAD_PLAYER "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadPlayer',  'dbarguments': { 'nickname':   '%1', 'steamid': '%2'  } } }";
-#define FORMATSTRING_DBCALL_FUNCTION_AV_CHARS    "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadAvChars', 'dbarguments': { 'playeruuid': '%1' } } }
-#define FORMATSTRING_DBCALL_FUNCTION_LINK_CHARS  "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'linkChars',   'dbarguments': { 'playeruuid': '%1', 'variabuuid': '%2' } } }
+#define FORMATSTRING_DBCALL_FUNCTION_LOAD_PLAYER "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadPlayer',  'dbarguments': { 'nickname':   '%1', 'steamid': '%2'  } } }"
+#define FORMATSTRING_DBCALL_FUNCTION_AV_CHARS    "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadAvChars', 'dbarguments': { 'playeruuid': '%1' } } }"
+#define FORMATSTRING_DBCALL_FUNCTION_LINK_CHARS  "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'linkChars',   'dbarguments': { 'playeruuid': '%1', 'variabuuid': '%2' } } }"
 #define FORMATSTRING_DBCALL_FUNCTION_LOAD_CHAR   "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadChar',    'dbarguments': { 'playeruuid': '%1' } } }"
-#define FORMATSTRING_DBCALL_FUNCTION_CREATE_CHAR "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createChar',  'dbarguments': { 'playeruuid': '%1', 'animationstate': '%2',  'direction': '%3', 'positiontype': '%4', 'positionx': '%5', 'positiony': '%6', 'positionz': '%7', 'classname': '%8', 'hitpoints': '%9', 'variables': '%10', 'persistentvariables': '%11', 'textures': '%12', 'inventoryuniform': '%13', 'inventoryvest': '%14', 'inventorybackpack': '%15', 'uniform': '%16', 'vest': '%17', 'backpack': '%18', 'headgear': '%19', 'googles': '%20', 'primaryweapon': '%21', 'secondaryweapon': '%22', 'handgun': '%23', 'tools': '%24', 'currentweapon': '%25' } } }";
+#define FORMATSTRING_DBCALL_FUNCTION_CREATE_CHAR "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createChar',  'dbarguments': { 'playeruuid': '%1', 'animationstate': '%2',  'direction': '%3', 'positiontype': '%4', 'positionx': '%5', 'positiony': '%6', 'positionz': '%7', 'classname': '%8', 'hitpoints': '%9', 'variables': '%10', 'persistentvariables': '%11', 'textures': '%12', 'inventoryuniform': '%13', 'inventoryvest': '%14', 'inventorybackpack': '%15', 'uniform': '%16', 'vest': '%17', 'backpack': '%18', 'headgear': '%19', 'googles': '%20', 'primaryweapon': '%21', 'secondaryweapon': '%22', 'handgun': '%23', 'tools': '%24', 'currentweapon': '%25' } } }"
 
 #endif /* SOURCE_CONSTANTS_HPP_ */

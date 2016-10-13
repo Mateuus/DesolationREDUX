@@ -1,7 +1,5 @@
 #include "constants.hpp"
 
-private["_request"];
-
 //_worldUUID = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
 //_poolSize = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
 

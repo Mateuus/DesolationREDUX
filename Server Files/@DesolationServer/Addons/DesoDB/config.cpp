@@ -28,6 +28,7 @@ class CfgFunctions
 			file = "DesoDB\Functions";
 			isserver = 1;
 			class spawnCharacter {};
+                        class spawnAllObjects {};
 		};
 	};
 };
