@@ -220,7 +220,7 @@ std::string dbcon::asyncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::pt
 	//boost::bind(&dbcon::asyncCallProcessor, this, funcinfo, dbarguments, messageIdentifier);
 	DBioService.post(boost::bind(&dbcon::asyncCallProcessor, this, funcinfo, dbarguments, messageIdentifier));
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_ASYNC + "\", \"" + messageIdentifier + "\"]" ;
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ASYNC) + "\", \"" + messageIdentifier + "\"]" ;
 }
 
 void dbcon::asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier) {
@@ -243,12 +243,12 @@ std::string dbcon::handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tre
 }
 
 std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + orderedUUID() + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + orderedUUID() + "\"]";
 }
 
 std::string dbcon::echo(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string echostring = dbarguments.get<std::string>("echostring");
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + echostring + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + echostring + "\"]";
 }
 
 std::string dbcon::chkasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -318,7 +318,7 @@ std::string dbcon::debugCall(boost::property_tree::ptree &dbarguments, db_handle
 	}
 	matrix += "]";
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + matrix + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + matrix + "]";
 }
 
 
@@ -327,7 +327,7 @@ std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, db_handle
 
 	version = dbhandler->querydbversion();
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + version + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + version + "\"]";
 }
 
 
@@ -337,7 +337,7 @@ std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handl
 	std::string steamid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_STEAMID);
 	std::string playerinfo = dbhandler->loadPlayer(nickname, steamid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + playerinfo + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + playerinfo + "]";
 }
 
 std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -345,7 +345,7 @@ std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_hand
 
 	std::string result = dbhandler->loadAvChars(playeruuid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
 std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -354,7 +354,7 @@ std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handle
 
 	std::string result = dbhandler->linkChars(playeruuid, variabuuid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
 std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -362,7 +362,7 @@ std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler
 
 	std::string result = dbhandler->loadChar(playeruuid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
 std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -397,7 +397,7 @@ std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handl
 			inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
 			secondaryweapon, handgun, tools, currentweapon);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -432,7 +432,7 @@ std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handl
 				inventoryvest, inventorybackpack, uniform, vest, backpack, headgear, googles, primaryweapon,
 				secondaryweapon, handgun, tools, currentweapon);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -447,7 +447,7 @@ std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_ha
 	std::string result = dbhandler->locupdateChar(charuuid, animationstate, direction, positiontype, positionx,
 					positiony, positionz);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -455,7 +455,7 @@ std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handl
 
 	std::string result = dbhandler->loadObject(objectuuid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + result + "]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
 std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -488,7 +488,7 @@ std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_han
 			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
 			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -523,7 +523,7 @@ std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_han
 			magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony,
 			positionz);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", \"" + result + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
 std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
@@ -553,5 +553,5 @@ std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_hand
         }
         matrix += "]";
 
-        return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", " + matrix + "]";
+        return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + matrix + "]";
 }

@@ -77,7 +77,7 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 		try {
 			returnString = func(dllarguments);
 		} catch (std::exception const& e) {
-			returnString = "[\"" + PROTOCOL_MESSAGE_TYPE_ERROR+ "\", \"";
+			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR)+ "\", \"";
 			returnString += e.what();
 			returnString += "\"]";
 		}
@@ -134,7 +134,7 @@ std::string redex::multipartMSGGenerator(std::string returnString, int outputSiz
 	msgmap.insert(std::make_pair(messageIdentifier, stringqueue));
 	msgmutex.unlock();
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MULTIPART + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MULTIPART) + "\", \"" + messageIdentifier + "\", \"" + firststring + "\"]";
 }
 
 
@@ -145,7 +145,7 @@ std::string redex::initdb(boost::property_tree::ptree &dbcall) {
 	//poolsize =
 	dbconnection.spawnHandler(poolsize, worlduuid);
 
-	return "[\"" + PROTOCOL_MESSAGE_TYPE_MESSAGE + "\", [\"" + std::to_string(poolsize) + "\", \"Threads spawned\"]]";
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", [\"" + std::to_string(poolsize) + "\", \"Threads spawned\"]]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
