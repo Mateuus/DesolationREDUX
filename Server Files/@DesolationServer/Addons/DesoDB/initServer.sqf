@@ -1,15 +1,16 @@
+#include "constants.hpp"
+
 private["_request"];
 
-if !(isNil Global_Var_WORLD_UUID) then {
-    DS_fnc_Send_Request = compile preprocessFileLineNumbers "path\to\sendRequest.sqf;
-    DS_fnc_spawnCharacter = compile preprocessFileLineNumbers "path\to\spawnCharacter.sqf;
-    ...
-    _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_INIT_DB + "', 'dllarguments': {  'poolsize': " + Global_Var_POOLSIZE + ", 'worlduuid': '" + Global_Var_WORLD_UUID + "' } }"
-    
-    [_request] call DS_fnc_Send_Request;
-} else {
-     // log error
-     diag_log "WORLD_UUID not set";
-            
-     // handle error, do something terrible like set the server on fire
-}
+//_worldUUID = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
+//_poolSize = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
+
+_worldUUID = Global_Var_WORLD_UUID;
+if(isNil _worldUUID) exitWith {diag_log "WORLD IDENTIFICATION IS NOT SET, THE DATABASE PLUGIN WILL NOT RUN";};
+
+_poolSize = Global_Var_POOLSIZE;
+if(isNil _worldUUID) exitWith {diag_log "THREAD POOL SIZE IS NOT SET, THE DATABASE PLUGIN WILL NOT RUN";};
+
+_request = format [FORMATSTRING_INIT_DB, _poolSize, _worldUUID];
+
+[_request] call DS_fnc_Send_Request;

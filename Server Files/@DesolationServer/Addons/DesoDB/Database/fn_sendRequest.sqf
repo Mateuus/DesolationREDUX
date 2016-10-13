@@ -1,3 +1,5 @@
+#include "..\constants.hpp"
+
 params["_request"];
 private["_response","_compiledResponse","_uuid", "_finalResponse","_return","_doswitchloop","_innerdoloop"];
 

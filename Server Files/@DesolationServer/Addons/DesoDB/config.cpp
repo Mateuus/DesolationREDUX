@@ -21,11 +21,13 @@ class CfgFunctions
 		{
 			file = "DesoDB\Database";
 			isserver = 1;
+			class sendRequest {};
 		};
 		class Functions 
 		{
 			file = "DesoDB\Functions";
 			isserver = 1;
+			class spawnCharacter {};
 		};
 	};
 };

@@ -122,6 +122,7 @@
 #define PROTOCOL_MESSAGE_EMPTY "EMPTY MESSAGE DOES EXIST"
 #define PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG "DONE GETTING CONTENT"
 
-
+// Format Strings
+#define "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': '%s', 'worlduuid': '%s' } }"
 
 #endif /* SOURCE_CONSTANTS_HPP_ */
