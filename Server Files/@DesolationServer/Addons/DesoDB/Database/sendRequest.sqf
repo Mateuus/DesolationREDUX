@@ -23,6 +23,31 @@ while{_doswitchloop} do {
         * continue as usual if it where no async string
         * _doswitchloop = true;
         */ 
+        case PROTOCOL_MESSAGE_TYPE_ASYNC
+        {
+            _uuid = _compiledResponse select 1;
+            _return = "";
+
+            /* empty uuid means function call without retuning data e.g. updates */
+            if (_uuid != "") {
+                _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } }";
+
+                _innerdoloop = true;
+                while{_innerdoloop} do {
+                    _response = "redex" callExtension _request;
+
+                    if(_response == PROTOCOL_MESSAGE_NOT_EXISTING) then {
+                        uiSleep 0.5;
+                    } else {
+                        _innerdoloop = false;
+                    };
+                };
+                
+                _compiledResponse = call compile _response;
+                
+                _doswitchloop = true;
+            };
+        };
         
         case PROTOCOL_MESSAGE_TYPE_MESSAGE:
         {
@@ -36,7 +61,7 @@ while{_doswitchloop} do {
             
             _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + ' } }"
 
-            _doloop = true;
+            _innerdoloop = true;
             while{_innerdoloop} do {
                 _response = "redex" callExtension _request;
 
