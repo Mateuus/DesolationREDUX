@@ -60,6 +60,21 @@ class CfgDifficulties {
 	};
 };
 //--- end todo
+class CfgMusic {
+	class MAD {
+		duration = 198;
+	};
+	class Defcon {
+		duration = 193;
+	};
+	class SkyNet {
+		duration = 234;
+	};
+	class Wasteland {
+		duration = 195;
+	};
+};
+
 
 class RscPicture;
 class RscButton;

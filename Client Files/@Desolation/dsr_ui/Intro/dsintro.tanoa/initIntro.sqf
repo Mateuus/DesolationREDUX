@@ -1,4 +1,10 @@
 diag_log "Starting intro";
+0 fadeMusic 0;
+
+_music = ["MAD","SkyNet","Wasteland","Track01_Proteus","Defcon"];
+addMusicEventHandler ["MusicStop",'0 fadeMusic 0;playMusic (' + str(_music) + ' select floor(random(5))); 5 fadeMusic 1;'];
+playMusic (_music select floor(random(5)));
+5 fadeMusic 1;
 cutText ["", "BLACK IN", 5]; 
 setViewDistance 200;
 showCinemaBorder false;
