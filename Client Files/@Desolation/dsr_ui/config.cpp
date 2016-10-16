@@ -1814,6 +1814,7 @@ class RscDisplayMain: RscStandardDisplay
 		
 		class NextHat: RscButtonMenuMain 
 		{
+			tooltip = "Change your starting hat";
 			class Attributes
 			{
 				align = "center";
@@ -1831,6 +1832,7 @@ class RscDisplayMain: RscStandardDisplay
 		};
 		class NextGlasses: NextHat 
 		{
+			tooltip = "Change your starting glasses";
 			text = "Change Glasses";
 			x = "safeZoneX + safezoneW - 0.4 - (pixelW * pixelGrid * 2)";
 			w = 0.4;
@@ -1840,6 +1842,7 @@ class RscDisplayMain: RscStandardDisplay
 		};
 		class NextUniform: NextHat 
 		{
+			tooltip = "Change your starting uniform";
 			text = "Change Uniform";
 			x = "safeZoneX + safezoneW - 0.4 - (pixelW * pixelGrid * 2)";
 			w = 0.4;
@@ -1870,6 +1873,7 @@ class RscDisplayMain: RscStandardDisplay
 		
 		
 		//--- PLAY tab
+		//--- editor button not working, may need to do our own
 		class Editor: RscButtonMenuMain
 		{
 			idc = 142;
@@ -1889,7 +1893,8 @@ class RscDisplayMain: RscStandardDisplay
 				shadow = 0;
 				size = 1.5;
 			};
-		};
+		}; 
+		//--- editor button not working
 		class ServerBrowser: Editor
 		{
 			idc = 105;
