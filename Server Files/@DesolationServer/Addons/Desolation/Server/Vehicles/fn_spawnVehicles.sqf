@@ -66,7 +66,13 @@ _shuffle = {
 _bikeLimit = call compile (["MaxBikes","DS"] call BASE_fnc_getCfgValue); //--- temp, to be loaded from config (TODO)
 
 //--- get all houses on the map that can spawn vehicles in them
-_housesOrdered = nearestObjects [[worldsize/2,worldsize/2],_types,worldsize];
+
+_housesOrdered = [];
+for "_x" from 0 to ceil(worldsize/5000) do {
+	for "_y" from 0 to ceil(worldsize/5000) do {
+		_housesOrdered = _housesOrdered + (nearestObjects [[_x,_y],_types,6000]);
+	};
+};
 _houses = [_housesOrdered] call _shuffle; //--- randomize the order of which houses are spawned (effectively randomizes vehicle spawning locations)
 diag_log format["Got all houses (%1)",diag_tickTime];
 

@@ -1,3 +1,12 @@
+//--- DATABASE ENTRIES (edit this)
+DB_WorldUUID = "0x11e66ac33a4ccd1c82c510bf48883ace"; // or "11e66ac33a4ccd1c82c510bf48883ace"
+DB_PoolSize = 5;
+//--- END DATABASE ENTRIES
+
+
+
+
+
 author = "DesolationREDUX";
 enableDebugConsole = 1;
 onLoadName = "Desolation";

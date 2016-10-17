@@ -3,10 +3,14 @@
 params["_request"];
 private["_response","_compiledResponse","_uuid", "_finalResponse","_return","_doswitchloop","_innerdoloop"];
 
-_response = "redex" callExtension _request;
+diag_log "DesoDB > Sending request";
+diag_log str(_request);
+_response = "libredex" callExtension _request;
+diag_log "DesoDB > Checking Response";
+diag_log _response;
 _compiledResponse = call compile _response;
 
-_switchloop = true;
+_doswitchloop = true;
 
 // do loop because there seems to be no "fall throu"
 while{_doswitchloop} do {
@@ -25,13 +29,12 @@ while{_doswitchloop} do {
         * continue as usual if it where no async string
         * _doswitchloop = true;
         */ 
-        case PROTOCOL_MESSAGE_TYPE_ASYNC
-        {
+        case PROTOCOL_MESSAGE_TYPE_ASYNC: {
             _uuid = _compiledResponse select 1;
             _return = "";
 
             /* empty uuid means function call without retuning data e.g. updates */
-            if (_uuid != "") {
+            if (_uuid != "") then {
                 _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } }";
 
                 _innerdoloop = true;
@@ -51,17 +54,15 @@ while{_doswitchloop} do {
             };
         };
         
-        case PROTOCOL_MESSAGE_TYPE_MESSAGE:
-        {
+        case PROTOCOL_MESSAGE_TYPE_MESSAGE: {
             _return = _compiledResponse select 1;
         };
         
-        case PROTOCOL_MESSAGE_TYPE_MULTIPART:
-        {
+        case PROTOCOL_MESSAGE_TYPE_MULTIPART: {
             _uuid = _compiledResponse select 1;
             _finalResponse = _compiledResponse select 2;
             
-            _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + ' } }"
+            _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + "' } }";
 
             _innerdoloop = true;
             while{_innerdoloop} do {
@@ -79,8 +80,7 @@ while{_doswitchloop} do {
             _doswitchloop = true;
         };
 
-        case PROTOCOL_MESSAGE_TYPE_ERROR:
-        {
+        case PROTOCOL_MESSAGE_TYPE_ERROR: {
             // log error
             diag_log (_compiledResponse select 1);
             
@@ -92,4 +92,4 @@ while{_doswitchloop} do {
     };
 };
 
-_return
+_return;

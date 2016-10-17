@@ -17,18 +17,27 @@ class CfgFunctions
 {
 	class DB
 	{
+		class Core 
+		{
+			file = "DesoDB";
+			isserver = 1;
+			class initServer {};
+		};
 		class Database 
 		{
 			file = "DesoDB\Database";
 			isserver = 1;
 			class sendRequest {};
+			class buildDLLRequest {};
+			class buildDBRequest {};
+			class buildRequest {};
 		};
 		class Functions 
 		{
 			file = "DesoDB\Functions";
 			isserver = 1;
-			class spawnCharacter {};
-                        class spawnAllObjects {};
+			class getWorldUUID {};
+			class getPoolSize {};
 		};
 	};
 };
