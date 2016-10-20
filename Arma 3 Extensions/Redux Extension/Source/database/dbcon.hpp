@@ -74,10 +74,12 @@ private:
 	std::string createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
+	std::string killChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 
 	std::string loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
+	std::string killObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 	std::string dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler);
 
 

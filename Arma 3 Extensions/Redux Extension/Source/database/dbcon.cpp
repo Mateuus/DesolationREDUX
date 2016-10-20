@@ -67,6 +67,9 @@ dbcon::dbcon() {
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR),
 					std::make_tuple(boost::bind(&dbcon::locupdateChar, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DECLARE_CHAR_DEATH),
+						std::make_tuple(boost::bind(&dbcon::killChar, this, _1, _2), ASYNC_MAGIC)));
+	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT),
 					std::make_tuple(boost::bind(&dbcon::loadObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
@@ -75,6 +78,9 @@ dbcon::dbcon() {
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
 					std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), ASYNC_MAGIC)));
+	dbfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DECLARE_OBJECT_DEATH),
+						std::make_tuple(boost::bind(&dbcon::killObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS),
 					std::make_tuple(boost::bind(&dbcon::dumpObjects, this, _1, _2), ASYNC_MAGIC)));
@@ -450,6 +456,18 @@ std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_ha
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
+std::string dbcon::killChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
+	std::string attackeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ATTACKER);
+	std::string type = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TYPE);
+	std::string weapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_WEAPON);
+	float distance = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DISTANCE);
+
+	std::string result = dbhandler->killChar(charuuid, attackeruuid, type, weapon, distance);
+
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
+}
+
 std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
 	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 
@@ -522,6 +540,18 @@ std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_han
 			player_uuid, hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks,
 			magazinesturret, variables, animationstate, textures, direction, positiontype, positionx, positiony,
 			positionz);
+
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
+}
+
+std::string dbcon::killObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
+	std::string attackeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ATTACKER);
+	std::string type = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TYPE);
+	std::string weapon = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_WEAPON);
+	float distance = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DISTANCE);
+
+	std::string result = dbhandler->killObject(charuuid, attackeruuid, type, weapon, distance);
 
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }

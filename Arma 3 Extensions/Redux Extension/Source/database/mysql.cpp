@@ -723,6 +723,51 @@ std::string db_handler::locupdateChar(std::string charuuid, std::string animatio
 	return charuuid;
 }
 
+std::string db_handler::killChar(std::string charuuid, std::string attackeruuid, std::string type,
+		std::string weapon, float distance) {
+	std::string killuuid = orderedUUID();
+
+	if (attackeruuid == "") {
+		attackeruuid = "NULL";
+	} else {
+		attackeruuid = "CAST(0x" + attackeruuid + " AS BINARY)";
+	}
+
+	if (type == "") {
+		type = "NULL";
+	} else {
+		type = "'" + type + "'";
+	}
+
+	if (weapon == "") {
+		weapon = "NULL";
+	} else {
+		weapon = "'" + weapon + "'";
+	}
+
+	std::string query = str(
+			boost::format {"INSERT INTO `killinfo` "
+							"(`uuid`, `date`, `attacker_uuid`, `type`, `weapon`, `distance`) "
+							"VALUES (CAST(0x%s AS BINARY), CURRENT_TIMESTAMP, %s, %s, %s, %s);" }
+							% killuuid % attackeruuid % type % weapon % distance);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	query = str(
+				boost::format {"UPDATE `player_on_world_has_character` "
+								"SET `killinfo_uuid` = CAST(0x%s AS BINARY) "
+								"WHERE `player_on_world_has_character`.`character_uuid` IN "
+								"(SELECT `character`.`uuid` FROM `character` WHERE `charactershareables_uuid` = "
+								"(SELECT `character`.`charactershareables_uuid` FROM `character` WHERE `uuid` = CAST(0x%s AS BINARY)));"}
+								% killuuid % charuuid);
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query);
+
+	return killuuid;
+}
+
 std::string db_handler::loadObject(std::string objectuuid) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
@@ -973,6 +1018,48 @@ std::string db_handler::updateObject(std::string objectuuid, std::string classna
 		this->rawquery(query);
 
 		return objectuuid;
+}
+
+std::string db_handler::killObject(std::string objectuuid, std::string attackeruuid, std::string type,
+		std::string weapon, float distance) {
+	std::string killuuid = orderedUUID();
+
+	if (attackeruuid == "") {
+		attackeruuid = "NULL";
+	} else {
+		attackeruuid = "CAST(0x" + attackeruuid + " AS BINARY)";
+	}
+
+	if (type == "") {
+		type = "NULL";
+	} else {
+		type = "'" + type + "'";
+	}
+
+	if (weapon == "") {
+		weapon = "NULL";
+	} else {
+		weapon = "'" + weapon + "'";
+	}
+
+	std::string query = str(
+			boost::format {"INSERT INTO `killinfo` "
+							"(`uuid`, `date`, `attacker_uuid`, `type`, `weapon`, `distance`) "
+							"VALUES (CAST(0x%s AS BINARY), CURRENT_TIMESTAMP, %s, %s, %s, %s);" }
+							% killuuid % attackeruuid % type % weapon % distance);
+	printf("%s\n", query.c_str());
+
+	this->rawquery(query);
+
+	query = str(
+				boost::format {"UPDATE `world_has_objects` SET `killinfo_uuid` = CAST(0x%s AS BINARY) "
+								"WHERE `world_has_objects`.`object_uuid` = CAST(0x%s AS BINARY);"}
+								% killuuid % objectuuid);
+		printf("%s\n", query.c_str());
+
+		this->rawquery(query);
+
+	return killuuid;
 }
 
 std::vector< std::vector<std::string> > db_handler::dumpObjects() {

@@ -57,6 +57,7 @@ public:
 			std::string secondaryweapon, std::string handgun, std::string tools, std::string currentweapon);
 	std::string locupdateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
 			float positionx, float positiony, float positionz);
+	std::string killChar(std::string charuuid, std::string attackeruuid, std::string type, std::string weapon, float distance);
 
 	std::string loadObject(std::string objectuuid);
 	std::string createObject(std::string classname, int priority, int visible, std::string accesscode, int locked,
@@ -70,6 +71,7 @@ public:
 			std::string weapons, std::string backpacks, std::string magazinesturret, std::string variables,
 			std::string animationstate, std::string textures, float direction, int positiontype, float positionx,
 			float positiony, float positionz);
+	std::string killObject(std::string objectuuid, std::string attackeruuid, std::string type, std::string weapon, float distance);
 	std::vector<std::vector<std::string> > dumpObjects();
 
 private:

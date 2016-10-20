@@ -57,15 +57,18 @@
 #define PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR "createChar"
 #define PROTOCOL_DBCALL_FUNCTION_UPDATE_CHAR "updateChar"
 #define PROTOCOL_DBCALL_FUNCTION_LOCATIONUPDATE_CHAR "locupdateChar"
+#define PROTOCOL_DBCALL_FUNCTION_DECLARE_CHAR_DEATH "killChar"
 
 #define PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT "loadObject"
 #define PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT "createObject"
 #define PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT "updateObject"
+#define PROTOCOL_DBCALL_FUNCTION_DECLARE_OBJECT_DEATH "killObject"
 #define PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS "dumpObjects"
 
 // Database Call Arguments
 #define PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE "accesscode"
 #define PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE "animationstate"
+#define PROTOCOL_DBCALL_ARGUMENT_ATTACKER "attackeruuid"
 #define PROTOCOL_DBCALL_ARGUMENT_BACKPACK "backpack"
 #define PROTOCOL_DBCALL_ARGUMENT_BACKPACKS "backpacks"
 #define PROTOCOL_DBCALL_ARGUMENT_CHARUUID "charuuid"
@@ -73,6 +76,7 @@
 #define PROTOCOL_DBCALL_ARGUMENT_CURRENTWEAPON "currentweapon"
 #define PROTOCOL_DBCALL_ARGUMENT_DAMAGE "damage"
 #define PROTOCOL_DBCALL_ARGUMENT_DIRECTION "direction"
+#define PROTOCOL_DBCALL_ARGUMENT_DISTANCE "distance"
 #define PROTOCOL_DBCALL_ARGUMENT_FUELCARGO "fuelcargo"
 #define PROTOCOL_DBCALL_ARGUMENT_FUEL "fuel"
 #define PROTOCOL_DBCALL_ARGUMENT_GOOGLES "googles"
@@ -101,12 +105,14 @@
 #define PROTOCOL_DBCALL_ARGUMENT_STEAMID "steamid"
 #define PROTOCOL_DBCALL_ARGUMENT_TEXTURES "textures"
 #define PROTOCOL_DBCALL_ARGUMENT_TOOLS "tools"
+#define PROTOCOL_DBCALL_ARGUMENT_TYPE "type"
 #define PROTOCOL_DBCALL_ARGUMENT_UNIFORM "uniform"
 #define PROTOCOL_DBCALL_ARGUMENT_VARIABLES "variables"
 #define PROTOCOL_DBCALL_ARGUMENT_VARIABUUID "variabuuid"
 #define PROTOCOL_DBCALL_ARGUMENT_VEST "vest"
 #define PROTOCOL_DBCALL_ARGUMENT_VISIBLE "visible"
 #define PROTOCOL_DBCALL_ARGUMENT_WEAPONS "weapons"
+#define PROTOCOL_DBCALL_ARGUMENT_WEAPON "weapon"
 #define PROTOCOL_DBCALL_ARGUMENT_WORLDUUID "worlduuid"
 
 // Message Types
@@ -121,13 +127,5 @@
 #define PROTOCOL_MESSAGE_NOT_EXISTING "MESSAGE DOES NOT EXIST"
 #define PROTOCOL_MESSAGE_EMPTY "EMPTY MESSAGE DOES EXIST"
 #define PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG "DONE GETTING CONTENT"
-
-// Format Strings
-#define FORMATSTRING_INIT_DB "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': '%1', 'worlduuid': '%2' } }"
-#define FORMATSTRING_DBCALL_FUNCTION_LOAD_PLAYER "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadPlayer',  'dbarguments': { 'nickname':   '%1', 'steamid': '%2'  } } }"
-#define FORMATSTRING_DBCALL_FUNCTION_AV_CHARS    "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadAvChars', 'dbarguments': { 'playeruuid': '%1' } } }"
-#define FORMATSTRING_DBCALL_FUNCTION_LINK_CHARS  "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'linkChars',   'dbarguments': { 'playeruuid': '%1', 'variabuuid': '%2' } } }"
-#define FORMATSTRING_DBCALL_FUNCTION_LOAD_CHAR   "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'loadChar',    'dbarguments': { 'playeruuid': '%1' } } }"
-#define FORMATSTRING_DBCALL_FUNCTION_CREATE_CHAR "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'createChar',  'dbarguments': { 'playeruuid': '%1', 'animationstate': '%2',  'direction': '%3', 'positiontype': '%4', 'positionx': '%5', 'positiony': '%6', 'positionz': '%7', 'classname': '%8', 'hitpoints': '%9', 'variables': '%10', 'persistentvariables': '%11', 'textures': '%12', 'inventoryuniform': '%13', 'inventoryvest': '%14', 'inventorybackpack': '%15', 'uniform': '%16', 'vest': '%17', 'backpack': '%18', 'headgear': '%19', 'googles': '%20', 'primaryweapon': '%21', 'secondaryweapon': '%22', 'handgun': '%23', 'tools': '%24', 'currentweapon': '%25' } } }"
 
 #endif /* SOURCE_CONSTANTS_HPP_ */
