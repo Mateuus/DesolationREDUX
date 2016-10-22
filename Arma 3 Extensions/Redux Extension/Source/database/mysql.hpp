@@ -32,7 +32,8 @@ public:
 	~db_handler();
 
 	void connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port,
-			std::string worlduuid);
+			bool whitelistonly, bool allowsteamapi, bool vaccheckban, unsigned int vacmaxcount,
+			unsigned int vacignoredays, std::string worlduuid);
 	void rawquery(std::string query);
 	void rawquery(std::string query, MYSQL_RES **result);
 
@@ -83,7 +84,16 @@ private:
 		unsigned int port;
 		std::string socket;
 		unsigned long int flag;
+
+		bool whitelistonly;
+		bool allowsteamapi;
+		bool vaccheckban;
+
+		unsigned int vacmaxcount;
+		unsigned int vacignoredays;
+
 		std::string worlduuid;
+
 };
 
 #endif /* SOURCE_MYSQL_HPP_ */

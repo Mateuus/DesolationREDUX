@@ -29,6 +29,14 @@ db_handler::db_handler() {
 	this->port = 0;
 	this->socket = "";
 	this->flag = 0;
+
+	this->whitelistonly = false;
+	this->allowsteamapi = false;
+	this->vaccheckban = false;
+
+	this->vacmaxcount = 0;
+	this->vacignoredays = 0;
+
 	this->worlduuid = "";
 
 	connection = mysql_init(NULL);
@@ -43,8 +51,9 @@ db_handler::~db_handler() {
 	return;
 }
 
-void db_handler::connect(std::string hostname, std::string user,
-		std::string password, std::string database, unsigned int port, std::string worlduuid) {
+void db_handler::connect(std::string hostname, std::string user, std::string password, std::string database,
+		unsigned int port, bool whitelistonly, bool allowsteamapi, bool vaccheckban, unsigned int vacmaxcount,
+		unsigned int vacignoredays, std::string worlduuid) {
 	this->hostname = hostname;
 	this->user = user;
 	this->password = password;
@@ -52,6 +61,14 @@ void db_handler::connect(std::string hostname, std::string user,
 	this->port = port;
 //	this->socket = NULL;
 //	this->flag = 0;
+
+	this->whitelistonly = whitelistonly;
+	this->allowsteamapi = allowsteamapi;
+	this->vaccheckban = vaccheckban;
+
+	this->vacmaxcount = vacmaxcount;
+	this->vacignoredays = vacignoredays;
+
 	this->worlduuid = worlduuid;
 
 	if (mysql_real_connect(connection, this->hostname.c_str(),

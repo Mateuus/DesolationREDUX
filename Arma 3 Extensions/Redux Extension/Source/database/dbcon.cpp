@@ -110,6 +110,13 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 		std::string password;
 		std::string database;
 		unsigned int port = 0;
+
+		bool whitelistonly;
+		bool allowsteamapi;
+		bool vaccheckban;
+		unsigned int vacmaxcount;
+		unsigned int vacignoredays;
+
 		db_handler *syncdbhandler;
 		boost::property_tree::ptree configtree;
 		boost::property_tree::ini_parser::read_ini("redex.ini", configtree);
@@ -120,6 +127,13 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 		database = configtree.get<std::string>("database");
 		port = configtree.get<unsigned int>("dbport");
 
+		whitelistonly = configtree.get<bool>("whitelistonly");
+		allowsteamapi = configtree.get<bool>("allowsteamapi");
+
+		vaccheckban = configtree.get<bool>("vaccheckban");
+		vacmaxcount = configtree.get<unsigned int>("vacmaxcount");
+		vacignoredays = configtree.get<unsigned int>("vacignoredays");
+
 		if (!syncdbhandlerpool.is_lock_free()) {
 			throw std::runtime_error("syncdbhandlerpool is not lock free");
 		}
@@ -128,7 +142,8 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 		syncdbhandlerpool.reserve(poolsize + 3);
 		for (i = 0; i < poolsize+2; i++) {
 			syncdbhandler = new (db_handler);
-			syncdbhandler->connect(hostname, user, password, database, port, worlduuid);
+			syncdbhandler->connect(hostname, user, password, database, port, whitelistonly, allowsteamapi, vaccheckban,
+					vacmaxcount, vacignoredays, worlduuid);
 			syncdbhandlerpool.bounded_push((intptr_t) syncdbhandler);
 		}
 
@@ -139,8 +154,6 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 					boost::bind(static_cast<std::size_t (boost::asio::io_service::*)()>(&boost::asio::io_service::run), &DBioService)
 			);
 		}
-
-
 
 		poolinitialized = true;
 	} else {
