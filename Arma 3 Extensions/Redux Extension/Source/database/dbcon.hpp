@@ -89,6 +89,7 @@ private:
 
 	std::string syncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
 	std::string asyncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
+	std::string quietCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
 	void asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier);
 	std::string handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments);
 };

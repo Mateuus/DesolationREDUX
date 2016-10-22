@@ -170,6 +170,10 @@ std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 			returnString = asyncCall(funcinfo, dbarguments);
 			break;
 
+		case QUIET_MAGIC:
+			returnString = quietCall(funcinfo, dbarguments);
+			break;
+
 		case HANDLELESS_MAGIC:
 			returnString = handlelessCall(funcinfo, dbarguments);
 			break;
@@ -229,19 +233,37 @@ std::string dbcon::asyncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::pt
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ASYNC) + "\", \"" + messageIdentifier + "\"]" ;
 }
 
+std::string dbcon::quietCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments) {
+	boost::property_tree::ptree copydbarguments = dbarguments;
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = "";
+
+	DBioService.post(boost::bind(&dbcon::asyncCallProcessor, this, funcinfo, dbarguments, messageIdentifier));
+
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_QUIET) + "\", \"\"]" ;
+}
+
 void dbcon::asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier) {
 	const DB_FUNCTION &func(std::get<0>(funcinfo));
 
-	std::string returnstring = this->syncCall(funcinfo, dbarguments);
-			//func(dbarguments, syncdbhandler);
+	std::string returnstring;
 
-	msgmutex.lock();
-	msgmap.insert(std::make_pair(messageIdentifier, returnstring));
-	msgmutex.unlock();
+	try {
+		returnstring = this->syncCall(funcinfo, dbarguments);
+		//func(dbarguments, syncdbhandler);
+	} catch (std::exception const& e) {
+		returnstring = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
+		returnstring += e.what();
+		returnstring += "\"]";
+	}
+
+	if (messageIdentifier != "") {
+		msgmutex.lock();
+		msgmap.insert(std::make_pair(messageIdentifier, returnstring));
+		msgmutex.unlock();
+	}
 
 	return;
 }
-
 
 std::string dbcon::handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree &dbarguments) {
 	const DB_FUNCTION &func(std::get<0>(funcinfo));
