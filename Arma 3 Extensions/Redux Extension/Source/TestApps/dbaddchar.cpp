@@ -24,6 +24,8 @@
 #include <unistd.h>
 #include <boost/random/random_device.hpp>
 #include <boost/random/uniform_int_distribution.hpp>
+#define range 11, 32
+#define cachesize 1024
 
 void RVExtension(char *output, int outputSize, const char *function);
 
@@ -53,6 +55,45 @@ std::string randomsteamid() {
 	return returnstring.str();
 }
 
+std::string receivemsg(std::string msguuid) {
+	bool loop = true;
+	std::string functionstring;
+	char output[cachesize];
+
+	std::cout << "receiving msg information of " << msguuid << std::endl;
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'chkasmsg', 'dbarguments': { 'msguuid': '";
+	functionstring += msguuid + "' } } }";
+
+	while (loop) {
+		// std::cout << "JSON: " << functionstring.c_str() << std::endl;
+		RVExtension(output, cachesize, functionstring.c_str());
+		std::cout << output << std::endl;
+		if (strncmp(output, PROTOCOL_MESSAGE_EXISTING, 22) == 0) {
+			loop = false;
+		} else {
+			usleep(5000);
+		}
+	}
+
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'rcvasmsg', 'dbarguments': { 'msguuid': '";
+	functionstring += msguuid + "' } } }";
+	std::cout << "receiving msg " << msguuid << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	RVExtension(output, cachesize, functionstring.c_str());
+
+	return std::string(output);
+}
+
+std::string handleoutput(std::string output) {
+	std::string returnmsg = output;
+	if (output.substr(2,5) == "ASYNC") {
+		returnmsg = receivemsg(output.substr(range));
+	}
+
+	return returnmsg;
+}
+
+
 int main(int argc, char *argv[])
 {
 	std::string uuid;
@@ -60,10 +101,11 @@ int main(int argc, char *argv[])
 	std::string playeruuid;
 	std::string objectuuid;
     char output[1024];
+    std::string stringoutput;
     const char function[] = "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': 4, 'worlduuid': '11e66ac33a4ccd1c82c510bf48883ace' } }";
 
     std::cout << "trying to spawn 4 threads" << std::endl;
-    std::cout << "JSON: " << function << std::endl;
+    // std::cout << "JSON: " << function << std::endl;
     RVExtension(output, 1024, function);
     std::cout << output << std::endl  << std::endl << std::endl;
 
@@ -74,12 +116,12 @@ int main(int argc, char *argv[])
     functionstring += randomsteamid() + "'  } } }";
 
 	std::cout << "loading player data" << std::endl;
-	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
-	std::cout << output << std::endl ;
+	stringoutput = handleoutput(output);
+	std::cout << stringoutput << std::endl;
 
-	playeruuid = output;
-	playeruuid = playeruuid.substr(10, 32);
+	playeruuid = stringoutput.substr(10, 32);
 	std::cout << "PLAYERUUID: " << playeruuid << std::endl  << std::endl << std::endl;
 
 	usleep(500);
@@ -88,9 +130,10 @@ int main(int argc, char *argv[])
 	functionstring += playeruuid + "', 'animationstate': 'VAR_ANIMATIONSTATE',  'direction': '-23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '-133.7', 'classname': 'sampleclass', 'hitpoints': '[]', 'variables': '[]', 'persistentvariables': '[]', 'textures': '[]', 'inventoryuniform': '[]', 'inventoryvest': '[]', 'inventorybackpack': '[]', 'uniform': 'someuniform', 'vest': 'somevest', 'backpack': 'somebackpack', 'headgear': 'someheadgear', 'googles': 'somegoogles', 'primaryweapon': '[\"someprimaryweapon\", [\"someattachment\"]]', 'secondaryweapon': '[\"somesecondaryweapon\", [\"someattachment\"]]', 'handgun': '[\"somehandgunweapon\", [\"someattachment\"]]', 'tools': '[]', 'currentweapon': 'someprimaryweapon' } } }";
 
 	std::cout << "creating character data" << std::endl;
-	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
-	std::cout << output << std::endl ;
+	stringoutput = handleoutput(output);
+	std::cout << stringoutput << std::endl << std::endl << std::endl;
 
 	usleep(500);
 
@@ -101,12 +144,12 @@ int main(int argc, char *argv[])
 	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
 
 	std::cout << "creating object data" << std::endl;
-	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
-	std::cout << output << std::endl ;
+	stringoutput = handleoutput(output);
+	std::cout << stringoutput << std::endl;
 
-	objectuuid = output;
-	objectuuid = objectuuid.substr(9, 32);
+	objectuuid = stringoutput.substr(9, 32);
 	std::cout << "OBJECTUUID: " << objectuuid << std::endl  << std::endl << std::endl;
 
 	usleep(500);
@@ -119,9 +162,10 @@ int main(int argc, char *argv[])
 	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
 
 	std::cout << "update object data" << std::endl;
-	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
-	std::cout << output << std::endl ;
+	stringoutput = handleoutput(output);
+	std::cout << stringoutput << std::endl << std::endl << std::endl;
 
 	usleep(500);
 
@@ -132,9 +176,10 @@ int main(int argc, char *argv[])
 	functionstring += "'animationstate': '[]', 'textures': '[]', 'direction': '23.5', 'positiontype': '0', 'positionx': '21.42', 'positiony': '666.9', 'positionz': '133.7' } } }";
 
 	std::cout << "creating object data without owner" << std::endl;
-	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	// std::cout << "JSON: " << functionstring.c_str() << std::endl;
 	RVExtension(output, 1024, functionstring.c_str());
-	std::cout << output << std::endl ;
+	stringoutput = handleoutput(output);
+	std::cout << stringoutput << std::endl << std::endl << std::endl;
 
     return 0;
 }

@@ -23,8 +23,36 @@
 #include "../constants.hpp"
 #include <unistd.h>
 #define range 11, 32
+#define cachesize 1024
 
 void RVExtension(char *output, int outputSize, const char *function);
+
+std::string receivemsg(std::string msguuid) {
+	bool loop = true;
+	std::string functionstring;
+	char output[cachesize];
+
+	std::cout << "receiving msg information of " << msguuid << std::endl;
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'chkasmsg', 'dbarguments': { 'msguuid': '";
+	functionstring += msguuid + "' } } }";
+
+	while (loop) {
+		std::cout << "JSON: " << functionstring.c_str() << std::endl;
+		RVExtension(output, cachesize, functionstring.c_str());
+		std::cout << output << std::endl;
+		if (strncmp(output, PROTOCOL_MESSAGE_EXISTING, 22) == 0) {
+			loop = false;
+		}
+	}
+
+	functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'rcvasmsg', 'dbarguments': { 'msguuid': '";
+	functionstring += msguuid + "' } } }";
+	std::cout << "receiving msg " << msguuid << std::endl;
+	std::cout << "JSON: " << functionstring.c_str() << std::endl;
+	RVExtension(output, cachesize, functionstring.c_str());
+
+	return std::string(output);
+}
 
 int main(int argc, char *argv[])
 {
@@ -32,7 +60,7 @@ int main(int argc, char *argv[])
 	std::string functionstring;
 	std::queue<std::string> msgqueue;
 
-    char output[1024];
+    char output[cachesize];
     const char function[] = "{ 'dllfunction': 'initdb', 'dllarguments': {  'poolsize': 4, 'worlduuid': '11e66ac33a4ccd1c82c510bf48883ace' } }";
     const char function2[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'dbVersion', 'dbarguments': {  } } }";
     const char function3[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'dbgCall', 'dbarguments': {  } } }";
@@ -46,19 +74,19 @@ int main(int argc, char *argv[])
     const char function11[] = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'updateObject', 'dbarguments': { 'objectuuid': '11e66b045d8ced8aab0c10bf48883ace' } } }";
     std::cout << "trying to spawn 4 threads" << std::endl;
     std::cout << "JSON: " << function << std::endl;
-    RVExtension(output, 1024, function);
+    RVExtension(output, cachesize, function);
     std::cout << output << std::endl  << std::endl << std::endl;
 
     usleep(500);
 
     std::cout << "trying to spawn threads again! (should fail)" << std::endl;
-    RVExtension(output, 1024, function);
+    RVExtension(output, cachesize, function);
     std::cout << output << std::endl  << std::endl << std::endl;
 
     std::cout << "trying to get db version several times" << std::endl;
     std::cout << "JSON: " << function2 << std::endl;
     for (int i = 0; i < 8; i++) {
-    	RVExtension(output, 1024, function2);
+    	RVExtension(output, cachesize, function2);
     	std::cout << output << std::endl  << std::endl << std::endl;
     }
 
@@ -66,7 +94,7 @@ int main(int argc, char *argv[])
 
     std::cout << "executing an debug call" << std::endl;
     std::cout << "JSON: " << function3 << std::endl;
-	RVExtension(output, 1024, function3);
+	RVExtension(output, cachesize, function3);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
@@ -74,7 +102,7 @@ int main(int argc, char *argv[])
 
 	std::cout << "executing dumpObjects" << std::endl;
 	std::cout << "JSON: " << function4 << std::endl;
-	RVExtension(output, 1024, function4);
+	RVExtension(output, cachesize, function4);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
@@ -82,49 +110,49 @@ int main(int argc, char *argv[])
 
 	std::cout << "loading player data" << std::endl;
 	std::cout << "JSON: " << function5 << std::endl;
-	RVExtension(output, 1024, function5);
+	RVExtension(output, cachesize, function5);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 	std::cout << "JSON: " << function6 << std::endl;
-	RVExtension(output, 1024, function6);
+	RVExtension(output, cachesize, function6);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 	std::cout << "JSON: " << function7 << std::endl;
-	RVExtension(output, 1024, function7);
+	RVExtension(output, cachesize, function7);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 	std::cout << "JSON: " << function8 << std::endl;
-	RVExtension(output, 1024, function8);
+	RVExtension(output, cachesize, function8);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 	std::cout << "JSON: " << function9 << std::endl;
-	RVExtension(output, 1024, function9);
+	RVExtension(output, cachesize, function9);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 	std::cout << "JSON: " << function10 << std::endl;
-	RVExtension(output, 1024, function10);
+	RVExtension(output, cachesize, function10);
 	std::cout << output << std::endl  << std::endl << std::endl;
 	msgqueue.push(std::string(output).substr(range));
 
 	usleep(500);
 
 //	std::cout << "JSON: " << function11 << std::endl;
-//	RVExtension(output, 1024, function11);
+//	RVExtension(output, cachesize, function11);
 //	std::cout << output << std::endl  << std::endl << std::endl;
 //
 //	usleep(500);
@@ -137,25 +165,8 @@ int main(int argc, char *argv[])
 		bool loop = true;
 	    std::string str = msgqueue.front();
 
-	    std::cout << "receiving msg information of " << str << std::endl;
-		functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'chkasmsg', 'dbarguments': { 'msguuid': '";
-		functionstring += str + "' } } }";
-
-		while (loop) {
-			std::cout << "JSON: " << functionstring.c_str() << std::endl;
-			RVExtension(output, 1024, functionstring.c_str());
-			std::cout << output << std::endl;
-			if (strncmp(output, PROTOCOL_MESSAGE_EXISTING, 22) == 0) {
-				loop = false;
-			}
-		}
-
-		functionstring = "{ 'dllfunction': 'dbcall', 'dllarguments': {  'dbfunction': 'rcvasmsg', 'dbarguments': { 'msguuid': '";
-		functionstring += str + "' } } }";
-		std::cout << "receiving msg " << str << std::endl;
-		std::cout << "JSON: " << functionstring.c_str() << std::endl;
-		RVExtension(output, 1024, functionstring.c_str());
-		std::cout << output << std::endl << std::endl << std::endl ;
+	    std::string returnmsg = receivemsg(str);
+		std::cout << returnmsg << std::endl << std::endl << std::endl ;
 
 	    msgqueue.pop();
 	}
