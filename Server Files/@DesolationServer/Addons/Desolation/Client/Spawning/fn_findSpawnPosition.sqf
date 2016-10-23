@@ -37,7 +37,7 @@ while{true} do {
 			};
 			_cJDist = true;
 		};
-		if(_cJDist) then {_jDismt = _jDist / 2; _cJDist = false;};
+		if(_cJDist) then {_jDist = _jDist / 2; _cJDist = false;};
 		while{!((getTerrainHeightASL [_randomX,_randomY]) < 1)} do {
 			if(!_east) then {
 				_randomY = _randomY - (_jDist*_multiplier);
