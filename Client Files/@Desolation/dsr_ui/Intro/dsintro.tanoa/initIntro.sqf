@@ -1,3 +1,8 @@
+
+[] spawn opx_fnc_init;
+
+/*
+
 diag_log "Starting intro";
 0 fadeMusic 0;
 
@@ -27,3 +32,4 @@ player addGoggles (profileNamespace getVariable ["DS_Default_Goggles","G_Aviator
 uiNamespace setVariable ["DS_LOADOUTDATA",[uniform player,headgear player,goggles player]];
 
 diag_log "intro started";
+*/

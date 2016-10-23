@@ -10,6 +10,26 @@ class CfgPatches
 		author[]= {"Desolation Redux Dev Team"};
 	};
 };
+
+class CfgFunctions {
+	class Intro {
+		tag = "opx";
+		class functions {
+			file = "\dsr_ui\Scripts\Intro";
+			class init {};
+			class mainMenuFadeIn {};
+			class characterCustomization {};
+			class forceCharacterCustomization {};
+			class displayQuote {};
+			class characterCustomization_changeItem {};
+			class charToMain {};
+			class mainMenu {};
+			class startMainMenu {};
+			class cinematic {};
+		};
+	};
+};
+
 //--- todo move this shit somewhere else
 class CfgMissions {
 	class Cutscenes {
@@ -60,6 +80,7 @@ class CfgDifficulties {
 	};
 };
 //--- end todo
+
 class CfgMusic {
 	class MAD {
 		duration = 198;
@@ -72,6 +93,21 @@ class CfgMusic {
 	};
 	class Wasteland {
 		duration = 195;
+	};
+	class track1
+	{
+		name = "";
+		sound[] = {"\dsr_ui\Sounds\track1.ogg", db+0, 1.0};
+	};
+	class track2
+	{
+		name = "";
+		sound[] = {"\dsr_ui\Sounds\track2.ogg", db+0, 1.0};
+	};
+	class track2_redefined
+	{
+		name = "";
+		sound[] = {"\dsr_ui\Sounds\track2_redefined.ogg", db+0, 1.0};
 	};
 };
 
@@ -106,6 +142,120 @@ class RscButtonMenuCancel;
 class RscButtonMenuSteam;
 class RscActivePicture;
 class RscButtonMenuMain;
+
+class RscTitles {
+	class transition_type1
+	{
+		idd = -1;
+		movingEnable = 1;
+		enableSimulation = 1;
+		fadeout=2;
+		fadein=2;
+		duration = 1;
+
+		class controlsBackground {};
+
+		class controls
+		{
+			class blackbackground: RscText
+			{
+				idc = -1;
+				x = 0 * safezoneW + safezoneX;
+				y = 0 * safezoneH + safezoneY;
+				w = 1 * safezoneW;
+				h = 1 * safezoneH;
+				colorBackground[] = {0,0,0,2};
+			};
+			class blackbackground2: blackbackground { };
+			class blackbackground3: blackbackground { };
+		};
+	};
+	class quoteTemplate
+	{
+		idd = -1;
+		movingEnable = 1;
+		enableSimulation = 1;
+		fadeout=1;
+		fadein=1;
+		duration = 4.5;
+		onLoad = "uiNamespace setVariable ['quoteTemplate', _this select 0]";
+
+		class controlsBackground {};
+
+		class controls
+		{
+			class textQuote: RscStructuredText
+			{
+				idc = 0;
+				x = 0.0256094 * safezoneW + safezoneX;
+				y = 0.401035 * safezoneH + safezoneY;
+				w = 0.953938 * safezoneW;
+				h = 0.175938 * safezoneH;
+			};
+			class textAuthor: RscStructuredText
+			{
+				idc = 1;
+				x = 0.309213 * safezoneW + safezoneX;
+				y = 0.576973 * safezoneH + safezoneY;
+				w = 0.381575 * safezoneW;
+				h = 0.0989651 * safezoneH;
+			};
+		};
+	};
+	class transition_type3
+	{
+		idd = -1;
+		movingEnable = 1;
+		enableSimulation = 1;
+		fadeout=2;
+		fadein=0;
+		duration = 7;
+
+		class controlsBackground {};
+
+		class controls
+		{
+			class blackbackground: RscText
+			{
+				idc = -1;
+				x = 0 * safezoneW + safezoneX;
+				y = 0 * safezoneH + safezoneY;
+				w = 1 * safezoneW;
+				h = 1 * safezoneH;
+				colorBackground[] = {0,0,0,2};
+			};
+			class blackbackground2: blackbackground { };
+			class blackbackground3: blackbackground { };
+		};
+	};
+	class transition_type2
+	{
+		idd = -1;
+		movingEnable = 1;
+		enableSimulation = 1;
+		fadeout=2;
+		fadein=0;
+		duration = 0.3;
+
+		class controlsBackground {};
+
+		class controls
+		{
+			class blackbackground: RscText
+			{
+				idc = -1;
+				x = 0 * safezoneW + safezoneX;
+				y = 0 * safezoneH + safezoneY;
+				w = 1 * safezoneW;
+				h = 1 * safezoneH;
+				colorBackground[] = {0,0,0,2};
+			};
+			class blackbackground2: blackbackground { };
+			class blackbackground3: blackbackground { };
+		};
+	};
+};
+
 
 class DS_spawnSelection {
 	idd = 4000;
@@ -209,8 +359,7 @@ class DS_spawnSelection {
 	};
 };
 
-class RscDisplayMPInterrupt: RscStandardDisplay
-{
+class RscDisplayMPInterrupt: RscStandardDisplay {
 	scriptName = "RscDisplayMPInterrupt";
 	scriptPath = "GUI";
 	onLoad = "[""onLoad"",_this,""RscDisplayMPInterrupt"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay'); _code = missionNamespace getVariable ['ds_fnc_onEscape',{}]; [_this select 0] call _code;";
@@ -788,8 +937,7 @@ class RscDisplayMPInterrupt: RscStandardDisplay
 	};
 };
 
-class RscDisplayMultiplayerSetup: RscStandardDisplay
-{
+class RscDisplayMultiplayerSetup: RscStandardDisplay {
 	scriptName = "RscDisplayMultiplayerSetup";
 	scriptPath = "GUI";
 	onLoad = "[""onLoad"",_this,""RscDisplayMultiplayerSetup"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
@@ -902,9 +1050,512 @@ class RscDisplayMultiplayerSetup: RscStandardDisplay
 	};
 };
 
+class mainMenu {
+    idd = 88001;
+    movingEnable = 0;
+    enableSimulation = 1;
+    fadein=2;
+    duration = 999999;
+    onLoad = "[] spawn opx_fnc_mainMenuFadeIn;";
 
-class RscDisplayInventory
-{
+    class controls {
+		class RscText_1001: RscText
+		{
+			idc = 1001;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.819 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0.18,0.19,0.23,0.2};
+
+		};
+		class RscText_1002: RscText
+		{
+			idc = 1002;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.764 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0.18,0.19,0.23,0.2};
+
+		};
+		class RscText_1003: RscText
+		{
+			idc = 1003;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.874 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0.18,0.19,0.23,0.2};
+
+		};
+		class RscText_1003_: RscText
+		{
+			idc = 26589;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.709 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {1,1,1,0.2};
+		};
+		class RscText_1004: RscText
+		{
+			idc = 1004;
+			text = "SURVIVE"; //--- ToDo: Localize;
+			x = -0.2898438 * safezoneW + safezoneX;
+			y = 0.709 * safezoneH + safezoneY;
+			w = 0.118594 * safezoneW;
+			h = 0.044 * safezoneH;
+			sizeEx = 0.07;
+			shadow = 2;
+		};
+		class RscText_1088: RscText
+		{
+			idc = 2791;
+			text = "MY SURVIVOR"; //--- ToDo: Localize;
+			x = -0.2898438 * safezoneW + safezoneX;
+			y = 0.764 * safezoneH + safezoneY;
+			w = 0.118594 * safezoneW;
+			h = 0.044 * safezoneH;
+			sizeEx = 0.05;
+			shadow = 2;
+		};
+		class RscText_1005: RscText
+		{
+			idc = 1005;
+			text = "OPTIONS"; //--- ToDo: Localize;
+			x = -0.2898438 * safezoneW + safezoneX;
+			y = 0.819 * safezoneH + safezoneY;
+			w = 0.118594 * safezoneW;
+			h = 0.044 * safezoneH;
+			sizeEx = 0.05;
+			shadow = 2;
+		};
+		class RscText_1006: RscText
+		{
+			idc = 1006;
+			text = "EXIT"; //--- ToDo: Localize;
+			x = -0.2898438 * safezoneW + safezoneX;
+			y = 0.874 * safezoneH + safezoneY;
+			w = 0.118594 * safezoneW;
+			h = 0.044 * safezoneH;
+			sizeEx = 0.05;
+			shadow = 2;
+		};
+		class buttonPlay: RscButtonMenu
+		{
+			idc = 2400;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.709 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class buttonCustomizeCharacter: RscButtonMenu
+		{
+			idc = 2403;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.764 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class buttonOptions: RscButtonMenu
+		{
+			idc = 2401;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.819 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class buttonExit: RscButtonMenu
+		{
+			idc = 2402;
+			x = -0.29500003 * safezoneW + safezoneX;
+			y = 0.874 * safezoneH + safezoneY;
+			w = 0.139219 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+	};
+};
+
+class characterCustomization {
+    idd = 88002;
+    movingEnable = 0;
+    enableSimulation = 1;
+    fadein=2;
+    duration = 999999;
+    onLoad = "";
+
+    class controls {
+		class RscStructuredText_1100: RscStructuredText
+		{
+			idc = -1;
+			x = 0.582503 * safezoneW + safezoneX;
+			y = 0.247089 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.00549806 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscStructuredText_1101: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscStructuredText_1102: RscStructuredText
+		{
+			idc = -1;
+			x = 0.582503 * safezoneW + safezoneX;
+			y = 0.280078 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.00549806 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscStructuredText_1103: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscStructuredText_1104: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscStructuredText_1105: RscStructuredText
+		{
+			idc = -1;
+			x = 0.582503 * safezoneW + safezoneX;
+			y = 0.401035 * safezoneH + safezoneY;
+			w = 0.170162 * safezoneW;
+			h = 0.00549806 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+
+
+
+		class d5254057924834: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&lt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonHeadgearBack: RscButtonMenu
+		{
+			idc = 8;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			sizeEx = 0.07;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class d5254345403879: RscStructuredText
+		{
+			idc = -1;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&gt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonHeadgearForward: RscButtonMenu
+		{
+			idc = 9;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class d525434354874: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&lt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonGlassesBack: RscButtonMenu
+		{
+			idc = 10;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			sizeEx = 0.07;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class d5254343257656: RscStructuredText
+		{
+			idc = -1;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&gt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonGlassesForward: RscButtonMenu
+		{
+			idc = 3;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			sizeEx = 0.07;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class d525433232324: RscStructuredText
+		{
+			idc = -1;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&gt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonClothingForward: RscButtonMenu
+		{
+			idc = 4;
+			x = 0.897044 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			sizeEx = 0.07;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class d525434: RscStructuredText
+		{
+			idc = -1;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			text = "<t align='center' size='1.5'>&lt;<t/>";
+			colorBackground[] = {0.3,0,0,1};
+		};
+		class buttonClothingBack: RscButtonMenu
+		{
+			idc = 5;
+			x = 0.752665 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.0257821 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			colorText[] = {0,0,0,1};
+			colorBackground[] = {0.3,0,0,0};
+			shadow = 2;
+			sizeEx = 0.07;
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+
+
+
+		class RscStructuredText_1106: RscStructuredText
+		{
+			idc = -1;
+			x = -0.00017268 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.252665 * safezoneW;
+			h = 0.0549806 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class RscText_1000: RscText
+		{
+			idc = -1;
+			text = "MY SURVIVOR"; //--- ToDo: Localize;
+			x = 0.0152966 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.237195 * safezoneW;
+			h = 0.0549806 * safezoneH;
+			sizeEx = 2 * 0.04;
+			shadow = 2;
+
+		};
+		class RscText_1001: RscText
+		{
+			idc = -1;
+			x = 0.0101399 * safezoneW + safezoneX;
+			y = 0.291074 * safezoneH + safezoneY;
+			w = 0.242352 * safezoneW;
+			h = 0.0439845 * safezoneH;
+			colorBackground[] = {0.18,0.19,0.23,0.4};
+		};
+		class RscText_1002: RscText
+		{
+			idc = 6;
+			text = "CONFIRM AND RETURN TO MAIN MENU"; //--- ToDo: Localize;
+			x = 0.0152959 * safezoneW + safezoneX;
+			y = 0.291074 * safezoneH + safezoneY;
+			w = 0.237195 * safezoneW;
+			h = 0.0439845 * safezoneH;
+			sizeEx = 1.2 * 0.04;
+			shadow = 2;
+		};
+		class buttonBack: RscButtonMenu
+		{
+			idc = 7;
+			x = 0.0101402 * safezoneW + safezoneX;
+			y = 0.291074 * safezoneH + safezoneY;
+			w = 0.242352 * safezoneW;
+			h = 0.0439845 * safezoneH;
+			colorBackground[] = {1,1,1,0};
+			animTextureNormal = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureOver = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureFocused = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTexturePressed = "#(argb,8,8,3)color(1,1,1,0.1)";
+		    animTextureDefault = "#(argb,8,8,3)color(1,1,1,0.1)";
+		};
+		class RscText_1003: RscStructuredText
+		{
+			idc = -1;
+			text = "<t align='center' size='1.5'>HEADGEAR<t/>"; //--- ToDo: Localize;
+			x = 0.783603 * safezoneW + safezoneX;
+			y = 0.225097 * safezoneH + safezoneY;
+			w = 0.108285 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			sizeEx = 1.2 * 0.04;
+			shadow = 2;
+		};
+		class RscText_1004: RscStructuredText
+		{
+			idc = -1;
+			text = "<t align='center' size='1.5'>GLASSES<t/>"; //--- ToDo: Localize;
+			x = 0.783603 * safezoneW + safezoneX;
+			y = 0.269082 * safezoneH + safezoneY;
+			w = 0.108285 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			sizeEx = 1.2 * 0.04;
+			shadow = 2;
+		};
+		class RscText_1005: RscStructuredText
+		{
+			idc = -1;
+			text = "<t align='center' size='1.5'>CLOTHING<t/>"; //--- ToDo: Localize;
+			x = 0.783603 * safezoneW + safezoneX;
+			y = 0.390039 * safezoneH + safezoneY;
+			w = 0.108285 * safezoneW;
+			h = 0.0329884 * safezoneH;
+			sizeEx = 1.2 * 0.04;
+			shadow = 2;
+		};
+		class RscText_1006: RscText
+		{
+			idc = -1;
+
+			x = 0.721726 * safezoneW + safezoneX;
+			y = 0.489004 * safezoneH + safezoneY;
+			w = 0.2011 * safezoneW;
+			h = 0.120957 * safezoneH;
+			colorBackground[] = {0.18,0.19,0.23,0.4};
+		};
+		class RscStructuredText_1107: RscStructuredText
+		{
+			idc = -1;
+			shadow = 0;
+
+			text = "Use the arrow keys next to the selection names to customize your character. Each new character will spawn equipped with this loadout."; //--- ToDo: Localize;
+			x = 0.726882 * safezoneW + safezoneX;
+			y = 0.5 * safezoneH + safezoneY;
+			w = 0.190788 * safezoneW;
+			h = 0.0989651 * safezoneH;
+			colorBackground[] = {-1,-1,-1,0};
+		};
+	};
+};
+
+class RscDisplayInventory {
 	scriptName = "RscDisplayInventory";
 	scriptPath = "IGUI";
 	onLoad = "[""onLoad"",_this,""RscDisplayInventory"",'IGUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
@@ -1692,8 +2343,206 @@ class RscDisplayInventory
 	};
 };
 
+class RscDisplayMain: RscStandardDisplay {
+	idd = 0;
+	scriptName = "RscDisplayMain";
+	scriptPath = "GUI";
+	onLoad = "[""onLoad"",_this,""RscDisplayMain"",'GUI'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+	onUnload = "[""onUnload"",_this,""RscDisplayMain"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
+	
+	delete Spotlight;
+	class ControlsBackground {
+		delete BackgroundLeft;
+		delete BackgroundRight;
+	};
+	class Controls
+	{
+		delete ModIcons;
+		delete B_Quit;
+		delete B_Expansions;
+		delete B_Credits;
+		delete B_Player;
+		delete B_Options;
+		delete B_SinglePlayer;
+		delete B_MissionEditor;
+		delete B_MultiPlayer;
+		delete B_SingleMission;
+		delete B_Campaign;
+		delete Date;
+		delete ModList;
+		delete TrafficLight;
+		delete Version;
+		delete Spotlight1;
+		delete Spotlight2;
+		delete Spotlight3;
+		delete BackgroundSpotlightRight;
+		delete BackgroundSpotlightLeft;
+		delete BackgroundSpotlight;
+		delete Footer;
+		delete AllMissions;
+		delete ProofsOfConcept;
+		
+		delete TitleMultiplayer;
+		delete TitleSingleplayer;
+		delete TitleTutorials;
+		delete TitleOptions;
+		
+		delete TitleIconSingleplayer;
+		delete TitleIconMultiplayer;
+		delete TitleIconTutorials;
+		delete TitleIconOptions;
+		
+		delete GroupSingleplayer;
+		delete GroupMultiplayer;
+		delete GroupTutorials;
+		delete GroupOptions;
+		
+		delete LogoApex;
+		delete Logo;
+		delete GroupSession;
+		delete TitleSession;
+		delete NewLogo;
+		delete Profile;
+		
+		class InfoMods: RscControlsGroupNoHScrollbars
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoDLCsOwned: InfoMods
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoDLCs: InfoDLCsOwned
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoNews: InfoMods
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoVersion: InfoNews
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		
+		class BackgroundBar: RscText
+		{
+			colorBackground[] = {0,0,0,0.75};
+			x = -10;
+			y = -10;
+			w = 1;
+			h = 1;
+		};
+		class BackgroundCenter: BackgroundBar
+		{
+			colorBackground[] = {0,0,0,1};
+		};
+		class BackgroundBarLeft: RscPicture
+		{
+			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayMain\gradientMods_ca.paa";
+			colorText[] = {0,0,0,1};
+			angle = 180;
+			x = -10;
+			y = -10;
+			w = 1;
+			h = 1;
+		};
+		class BackgroundBarRight: BackgroundBarLeft
+		{
+			angle = 0;
+		};
+		
+		//--- ACTIVATE ON EXIT
+		class Exit: RscButton {
+			x = -10;
+			y = -10;
+			tooltip = "Quit the game.";
+			backgroundColor[] = {0,0,0,1};
+			textColor[] = {1,1,1,1};
+		};
+		
 
-class RscDisplayMain: RscStandardDisplay
+		
+		
+		
+		//--- PLAY tab
+		//--- editor button not working, may need to do our own
+		class Editor: RscButtonMenuMain
+		{
+			idc = 142;
+			text = "$STR_A3_RscDisplayMain_ButtonEditor";
+			tooltip = "$STR_TOOLTIP_SINGLEPLAYER_EDITOR_A3";
+			x = -10;
+			y = -10;
+			w = 0.2;
+			h = 0.05;
+			show = 0;
+			onbuttonclick = "";
+			class Attributes
+			{
+				align = "center";
+				color = "#ffffff";
+				font = "PuristaLight";
+				shadow = 0;
+				size = 1.5;
+			};
+		}; 
+		//--- editor button not working
+		class ServerBrowser: Editor
+		{
+			idc = 105;
+			text = "Play Online";
+			tooltip = "Find a server to play on.";
+			onbuttonclick = "";
+		};
+		
+		//--- OPTIONS tab
+		class Video: Editor
+		{
+			idc = 301;
+			text = "$STR_A3_RscDisplayMain_ButtonVideo";
+			tooltip = "$STR_TOOLTIP_MAIN_VIDEO";
+			show = 0;
+			onbuttonclick = "";
+		};
+		class Audio: Editor
+		{
+			idc = 302;
+			text = "$STR_A3_RscDisplayMain_ButtonAudio";
+			tooltip = "$STR_TOOLTIP_MAIN_AUDIO";
+			show = 0;
+			onbuttonclick = "";
+		};
+		class Controls: Editor
+		{
+			idc = 303;
+			text = "$STR_A3_RscDisplayMain_ButtonControls";
+			tooltip = "$STR_TOOLTIP_MAIN_CONTROLS";
+			show = 0;
+			onbuttonclick = "";
+		};
+		
+		
+	};
+};
+
+
+class RscDisplayMain_OLD: RscStandardDisplay
 {
 	idd = 0;
 	scriptName = "RscDisplayMain";
@@ -1729,11 +2578,6 @@ class RscDisplayMain: RscStandardDisplay
 		delete BackgroundSpotlightRight;
 		delete BackgroundSpotlightLeft;
 		delete BackgroundSpotlight;
-		delete InfoMods;
-		delete InfoDLCsOwned;
-		delete InfoDLCs;
-		delete InfoNews;
-		delete InfoVersion;
 		delete Footer;
 		delete AllMissions;
 		delete ProofsOfConcept;
@@ -1757,6 +2601,43 @@ class RscDisplayMain: RscStandardDisplay
 		delete Logo;
 		delete GroupSession;
 		delete TitleSession;
+		
+		class InfoMods: RscControlsGroupNoHScrollbars
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoDLCsOwned: InfoMods
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoDLCs: InfoDLCsOwned
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoNews: InfoMods
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		class InfoVersion: InfoNews
+		{
+			y = -10;
+			x = -10;
+			w = 1;
+			h = 1;
+		};
+		
 		
 		class BackgroundBar: RscText
 		{
