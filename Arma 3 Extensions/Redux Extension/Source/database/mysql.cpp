@@ -89,6 +89,8 @@ void db_handler::rawquery(std::string query) {
 	if (mysql_real_query(connection, query.c_str(), query.size())) {
 		throw std::runtime_error(
 				"error while executing query: "
+						+ query
+						+ std::string(" ---- ERROR MESSAGE: ")
 						+ std::string(mysql_error(connection)));
 	}
 
@@ -99,6 +101,8 @@ void db_handler::rawquery(std::string query, MYSQL_RES **result) {
 	if (mysql_real_query(connection, query.c_str(), query.size())) {
 		throw std::runtime_error(
 				"error while executing query: "
+						+ query
+						+ std::string(" ---- ERROR MESSAGE: ")
 						+ std::string(mysql_error(connection)));
 	}
 
@@ -107,6 +111,8 @@ void db_handler::rawquery(std::string query, MYSQL_RES **result) {
 	if (*result == NULL) {
 		throw std::runtime_error(
 				"error while getting the result: "
+						+ query
+						+ std::string(" ---- ERROR MESSAGE: ")
 						+ std::string(mysql_error(connection)));
 	}
 
