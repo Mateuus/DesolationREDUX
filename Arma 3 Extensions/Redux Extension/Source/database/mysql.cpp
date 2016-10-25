@@ -529,7 +529,7 @@ std::string db_handler::createChar(std::string playeruuid, std::string animation
 
 	if (charuuid == "") {
 		/* get the uuid for the Death Persistent Variables */
-		query = str(boost::format { "SELECT `death_persistent_variables_uuid` "
+		query = str(boost::format { "SELECT HEX(`death_persistent_variables_uuid`) "
 				"FROM `player_on_world_has_death_persistent_variables` "
 				"WHERE `player_uuid` = CAST(0x%s AS BINARY) "
 				"AND `world_uuid` = CAST(0x%s AS BINARY)" } % playeruuid % worlduuid);
