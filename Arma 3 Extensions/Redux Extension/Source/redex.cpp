@@ -47,7 +47,6 @@ redex::redex() {
 	return;
 }
 redex::~redex() {
-	dbconnection.terminateHandler();
 	return;
 }
 
