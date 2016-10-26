@@ -7,6 +7,13 @@
 	License info here and copyright symbol above
 */
 params["_display"];
+
+_lastTime = missionNamespace getVariable ["DS_var_escapeTimer",diag_tickTime];
+if(diag_tickTime >= _lastTime) then {
+	missionNamespace setVariable ["DS_var_escapeTimer",diag_tickTime+60];
+	call ds_fnc_saveData;
+};
+
 if(isNil {_display}) exitWith {systemchat "ESCAPE DISPLAY NIL";};
 if(isNull _display) exitWith {systemchat "ESCAPE DISPLAY NULL";};
 

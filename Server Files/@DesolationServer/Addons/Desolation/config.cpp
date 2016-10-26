@@ -100,6 +100,7 @@ class CfgFunctions
 			file = "Desolation\Client\Inventory";
 			isclient = 1;
 			class closeButtons {};
+			class saveData {};
 			class initInvHandler {};
 			class itemClick {};
 			class setupInvEvents {};
@@ -109,7 +110,6 @@ class CfgFunctions
 			file = "Desolation\Server\Database";
 			isserver = 1;
 			class dbRequest {};
-			class dbLoadPlayerResponse {};
 			class dbOnSpawnResponse {};
 		};
 		class Server_Events {
@@ -122,8 +122,10 @@ class CfgFunctions
 		class Server_Players {
 			file = "Desolation\Server\Players";
 			isserver = 1;
+			class requestLoadSpawn {};
 			class requestFreshSpawn {};
 			class requestSpawn {};
+			class requestSave {};
 			class setupLoadout {};
 		};
 		class Server_Loot {

@@ -18,10 +18,14 @@ if !((_defaultData select 0) in _uniforms) then {_defaultData = _brokenLoadout;d
 if !((_defaultData select 1) in _hats) then {_defaultData = _brokenLoadout;diag_log "BROKEN DATA DETECTED 2";};
 if !((_defaultData select 2) in _goggles) then {_defaultData = _brokenLoadout;diag_log "BROKEN DATA DETECTED 3";};
 
+_uid = getplayeruid _client;
+
 if !(_client getVariable ["ReadyToSpawn",false]) exitWith {};
 _unit = (createGroup CIVILIAN) createUnit [typeof _client, _location, [],0, "NONE"];
 _unit allowDamage false;
 _unit hideObjectGlobal true;
+
+_unit setVariable ["pUUID",_client getVariable "pUUID"];
 
 _unit addMPEventHandler ["MPKilled", DS_fnc_onPlayerKilled];
 [_unit,[],_defaultData] call DS_fnc_setupLoadout;
@@ -29,3 +33,8 @@ _unit addMPEventHandler ["MPKilled", DS_fnc_onPlayerKilled];
 _unit hideObjectGlobal false;
 _unit allowDamage true;
 [_unit,_defaultData select 2] remoteExecCall ["DS_fnc_finishSpawn",_client];
+waitUntil{getPlayerUID _unit == _uid && (tolower(goggles _unit) == tolower(_defaultData select 2))};
+
+//--- add default values to non-presistant vars here
+NULL_CALLBACK = compileFinal "";
+["createPlayer","NULL_CALLBACK",[_unit]] call DS_fnc_dbRequest; //--- send request to database

@@ -8,7 +8,8 @@
 */
 params["_unit","_killer"];
 
-_unit spawn {
-	waitUntil{speed _unit < 1};
-	// TODO: create a blood pile below the body
+//--- if they didn't disconnect, they died
+if !(_unit getVariable ["DCed",false]) then {
+	NULL_CALLBACK = compileFinal "";
+	["killPlayer","NULL_CALLBACK",[_unit,_killer]] call DS_fnc_dbRequest; //--- send request to database
 };

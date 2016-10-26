@@ -20,6 +20,9 @@ _db_function_call = {
 			_badRequest = true;
 		};
 		_entryValue = _x select 1;
+		if(typename _entryValue == typename []) then {
+			_entryValue = str(_entryValue);
+		};
 		if(typename _entryValue == typename "") then {
 			if(_entryValue find "'" != -1) then {
 				_chars = _entryValue splitString "";
@@ -70,6 +73,9 @@ _dll_function_call = {
 			_badRequest = true;
 		};
 		_entryValue = _x select 1;
+		if(typename _entryValue == typename []) then {
+			_entryValue = str(_entryValue);
+		};
 		if(typename _entryValue == typename "") then {
 			if(_entryValue find "'" != -1) then {
 				_chars = _entryValue splitString "";

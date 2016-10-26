@@ -13,4 +13,4 @@ _playerObj setVariable ["DDATA",_this select 1];
 
 _dbIdentifier = getPlayerUID _playerObj;
 _dbCallback = "DS_fnc_dbOnSpawnResponse";
-["requestSpawnType",_dbIdentifier, _dbCallback,[_playerObj]] call DS_fnc_dbRequest; //--- send request to database
+["spawnPlayer",_dbCallback,[_playerObj]] call DS_fnc_dbRequest; //--- send request to database
