@@ -32,6 +32,7 @@ public:
 	redex();
 	~redex();
 	std::string processCallExtension(const char *function, int outputSize);
+	void terminate();
 
 private:
 	typedef boost::function<
@@ -45,6 +46,7 @@ private:
 	MESSAGE_MAP msgmap;
 
 	std::string initdb(boost::property_tree::ptree &dllarguments);
+	std::string termdb(boost::property_tree::ptree &dllarguments);
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
 	std::string chkmsg(boost::property_tree::ptree &dllarguments);

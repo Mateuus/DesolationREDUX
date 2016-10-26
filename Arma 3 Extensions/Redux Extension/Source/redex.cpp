@@ -33,6 +33,9 @@ redex::redex() {
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_INIT_DB),
 					boost::bind(&redex::initdb, this, _1)));
 	dllfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_TERMINATE_DB),
+						boost::bind(&redex::termdb, this, _1)));
+	dllfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL),
 					boost::bind(&redex::dbcall, this, _1)));
 	dllfunctions.insert(
@@ -44,7 +47,12 @@ redex::redex() {
 	return;
 }
 redex::~redex() {
+	dbconnection.terminateHandler();
 	return;
+}
+
+void redex::terminate() {
+	dbconnection.terminateHandler();
 }
 
 std::string redex::processCallExtension(const char *function, int outputSize) {
@@ -150,6 +158,12 @@ std::string redex::initdb(boost::property_tree::ptree &dbcall) {
 	dbconnection.spawnHandler(poolsize, worlduuid);
 
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", [\"" + std::to_string(poolsize) + "\", \"Threads spawned\"]]";
+}
+
+std::string redex::termdb(boost::property_tree::ptree &dbcall) {
+	dbconnection.terminateHandler();
+
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"DONE\"]";
 }
 
 std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {

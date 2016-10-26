@@ -41,6 +41,7 @@ public:
 	dbcon();
 	~dbcon();
 	int spawnHandler(unsigned int poolsize, std::string worlduuid);
+	void terminateHandler();
 	std::string processDBCall(boost::property_tree::ptree &dbcall);
 
 private:
@@ -50,6 +51,7 @@ private:
 	DB_FUNCTIONS dbfunctions;
 
 	bool poolinitialized = false;
+	bool poolcleanup = false;
 	boost::asio::io_service DBioService;
 	boost::shared_ptr<boost::asio::io_service::work> DBioServiceWork;
 

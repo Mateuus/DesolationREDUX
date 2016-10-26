@@ -92,9 +92,20 @@ dbcon::dbcon() {
 }
 
 dbcon::~dbcon() {
-	DBioServiceWork.reset(); // stop all!
-	DBioService.stop();
-	asyncthreadpool.join_all();
+	intptr_t syncdbhandlerpointer;
+	db_handler *syncdbhandler;
+
+	DBioServiceWork.reset(); // stop all idle work!
+	DBioService.stop(); // terminate all work
+	asyncthreadpool.join_all(); // get rid of all threads
+
+	// while there is an handler call disconnect
+	while (syncdbhandlerpool.pop(syncdbhandlerpointer)) {
+		syncdbhandler = (db_handler*) syncdbhandlerpointer;
+		syncdbhandler->disconnect();
+	}
+
+	poolinitialized = false;
 	return;
 }
 
@@ -163,6 +174,37 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 	return asyncthreadpool.size();
 }
 
+void dbcon::terminateHandler() {
+	intptr_t syncdbhandlerpointer;
+	db_handler *syncdbhandler;
+
+	// prevent new requests
+	poolcleanup = true;
+
+	DBioServiceWork.reset(); // stop all idle work!
+
+	// wait until all jobs are finished
+	while (!DBioService.stopped()) {
+		boost::thread::yield();
+	}
+
+	// should not  ne needed
+	DBioService.stop();
+
+	// get rid of all threads
+	asyncthreadpool.join_all();
+
+	// while there is an handler call disconnect
+	while (syncdbhandlerpool.pop(syncdbhandlerpointer)) {
+		syncdbhandler = (db_handler*) syncdbhandlerpointer;
+		syncdbhandler->disconnect();
+	}
+
+	poolcleanup = false;
+	poolinitialized = false;
+	return;
+}
+
 std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 	std::string returnString;
 
@@ -173,26 +215,34 @@ std::string dbcon::processDBCall(boost::property_tree::ptree &dbcall) {
 	if (it != dbfunctions.end()) {
 		DB_FUNCTION_INFO funcinfo = it->second;
 
-		switch (std::get<1>(funcinfo))
-		{
-		case SYNC_MAGIC:
-			returnString = syncCall(funcinfo, dbarguments);
-			break;
-
-		case ASYNC_MAGIC:
-			returnString = asyncCall(funcinfo, dbarguments);
-			break;
-
-		case QUIET_MAGIC:
-			returnString = quietCall(funcinfo, dbarguments);
-			break;
-
-		case HANDLELESS_MAGIC:
+		if (std::get<1>(funcinfo) == HANDLELESS_MAGIC) {
 			returnString = handlelessCall(funcinfo, dbarguments);
-			break;
+		} else {
 
-		default:
-			throw std::runtime_error("unknown function class");
+			if (!poolinitialized) {
+				throw std::runtime_error("db handler pool not initialized");
+			}
+
+			if (poolcleanup) {
+				throw std::runtime_error("db handler pool is about to be terminated, will not add an new request");
+			}
+
+			switch (std::get<1>(funcinfo)) {
+			case SYNC_MAGIC:
+				returnString = syncCall(funcinfo, dbarguments);
+				break;
+
+			case ASYNC_MAGIC:
+				returnString = asyncCall(funcinfo, dbarguments);
+				break;
+
+			case QUIET_MAGIC:
+				returnString = quietCall(funcinfo, dbarguments);
+				break;
+
+			default:
+				throw std::runtime_error("unknown function class");
+			}
 		}
 	} else {
 		throw std::runtime_error("Don't know dbfunction: " + dbfunction);
@@ -208,29 +258,21 @@ std::string dbcon::syncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptr
 	intptr_t syncdbhandlerpointer;
 	db_handler *syncdbhandler;
 
-	std::string version;
+	// try to get an db handler
+	while (!syncdbhandlerpool.pop(syncdbhandlerpointer)) {
+		printf("i am in a loop! :( \n");
+	}
+	try {
+		syncdbhandler = (db_handler*) syncdbhandlerpointer;
 
-	if (poolinitialized) {
+		returnString = func(dbarguments, syncdbhandler);
 
-		// try to get an db handler
-		while (!syncdbhandlerpool.pop(syncdbhandlerpointer)) {
-			printf("i am in a loop! :( \n");
-		}
-		try {
-			//	syncdbhandler = &tempsyncdbhandler;
-			syncdbhandler = (db_handler*) syncdbhandlerpointer;
-
-			returnString = func(dbarguments, syncdbhandler);
-
-			// return handler to the pool
-			syncdbhandlerpool.bounded_push(syncdbhandlerpointer);
-		} catch (std::exception const& e) {
-			// allways return the handler
-			syncdbhandlerpool.bounded_push(syncdbhandlerpointer);
-			throw std::runtime_error(e.what());
-		}
-	} else {
-		throw std::runtime_error("db handler pool not initialized");
+		// return handler to the pool
+		syncdbhandlerpool.bounded_push(syncdbhandlerpointer);
+	} catch (std::exception const& e) {
+		// always return the handler
+		syncdbhandlerpool.bounded_push(syncdbhandlerpointer);
+		throw std::runtime_error(e.what());
 	}
 
 	return returnString;

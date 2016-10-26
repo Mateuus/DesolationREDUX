@@ -34,6 +34,7 @@ public:
 	void connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port,
 			bool whitelistonly, bool allowsteamapi, bool vaccheckban, unsigned int vacmaxcount,
 			unsigned int vacignoredays, std::string worlduuid);
+	void disconnect();
 	void rawquery(std::string query);
 	void rawquery(std::string query, MYSQL_RES **result);
 

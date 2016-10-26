@@ -85,6 +85,11 @@ void db_handler::connect(std::string hostname, std::string user, std::string pas
 	return;
 }
 
+void db_handler::disconnect() {
+	mysql_close(connection);
+	return;
+}
+
 void db_handler::rawquery(std::string query) {
 	if (mysql_real_query(connection, query.c_str(), query.size())) {
 		throw std::runtime_error(
