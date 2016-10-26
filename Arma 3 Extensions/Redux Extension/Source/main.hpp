@@ -51,7 +51,7 @@ redex extension;
 			case DLL_THREAD_DETACH:
 			break;
 			case DLL_PROCESS_DETACH:
-				extension->terminate();
+				extension.terminate();
 			break;
 		}
 		return TRUE;
