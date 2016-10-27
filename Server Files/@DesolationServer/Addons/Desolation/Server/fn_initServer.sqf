@@ -35,6 +35,8 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
 // start Item Spawns
 [] spawn DS_fnc_lootManager;
+// start Airdrops
+[] spawn DS_fnc_initAirdrops;
 
 //--- start subsystems
 [] spawn DS_fnc_simManager;

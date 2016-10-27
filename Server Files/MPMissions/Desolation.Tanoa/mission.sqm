@@ -29,6 +29,8 @@ addons[]=
 	"A3_Characters_F",
 	"dsr_weapons",
 	"dsr_actions",
+	"dsr_objects",
+	"CAAir_E_c130j",
 	"CAWheeled_2_MMT"
 };
 class AddonsMetaData

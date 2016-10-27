@@ -36,6 +36,7 @@ class CfgFunctions
 			file = "Desolation\Client\Functions";
 			isclient = 1;
 			class infoText {};
+			class receiveTransmition {};
 		};
 		class Client_Actions {
 			file = "Desolation\Client\Actions";
@@ -112,6 +113,15 @@ class CfgFunctions
 			class dbRequest {};
 			class dbOnSpawnResponse {};
 		};
+		class Server_Airdrop {
+			file = "Desolation\Server\Airdrop";
+			isserver = 1;
+			class addCrateItems {};
+			class DoDrop {};
+			class initAirdrops {};
+			class spawnCrate {};
+			class genCrateItems {};
+		};
 		class Server_Events {
 			file = "Desolation\Server\Events";
 			isserver = 1;
@@ -161,6 +171,81 @@ class CfgFunctions
 			file = "Desolation\Server";
 			isserver = 1;
 			class initServer {};
+		};
+	};
+};
+class CfgAirdropSpawns {
+	class MedicDrop {
+		name = "Medical Drop";
+		weapons[] = {
+			
+		};
+		magazines[] = {
+			"dsr_item_antibiotic",
+			"dsr_item_bloodbag_full",
+			"dsr_item_bandage",
+			"dsr_item_defibrillator",
+			"dsr_item_disinfectant",
+			"dsr_item_painkillers"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		backpacks[] = {
+			
+		};
+	};
+	class BuildingDrop {
+		name = "Building Supplies Drop";
+		weapons[] = {
+			
+		};
+		magazines[] = {
+			"dsr_item_log",
+			"dsr_item_portablegenerator",
+			"dsr_item_campinglight",
+			"dsr_item_campingchair",
+			"dsr_item_sleepingmat",
+			"dsr_item_ducttape",
+			"dsr_item_matches",
+			"dsr_item_metalwire",
+			"dsr_item_grinder",
+			"dsr_item_hammer",
+			"dsr_item_saw",
+			"dsr_item_sleepingbag",
+			"dsr_item_pillow"
+		};
+		items[] = {
+			
+		};
+		backpacks[] = {
+			"B_Kitbag_mcamo"
+		};
+	};
+	class FoodDrop {
+		name = "Food Supplies Drop";
+		weapons[] = {
+			
+		};
+		magazines[] = {
+			"dsr_item_beans",
+			"dsr_item_cereal",
+			"dsr_item_powderedmilk",
+			"dsr_item_rice",
+			"dsr_item_bacon",
+			"dsr_item_waterbottle_full",
+			"dsr_item_canteen_full",
+			"dsr_item_spirit",
+			"dsr_item_franta",
+			"dsr_item_canopener",
+			"dsr_item_waterpurificationtablets",
+			"dsr_item_vitamins"
+		};
+		items[] = {
+			
+		};
+		backpacks[] = {
+			
 		};
 	};
 };

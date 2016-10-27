@@ -6,6 +6,8 @@
 	
 	License info here and copyright symbol above
 */
+
+_ignore = ["DSR_C130J_F","O_PARACHUTE_02_F","DSR_CRATE_AIRDROP_F"];
 while{true} do {
 	_toLock = [];
 	_toLockNIDS = [];
@@ -20,23 +22,26 @@ while{true} do {
 		_inLockRange = _inLockRange - _inUnlockRange;
 		
 		{
-			
-			_nid = netid _x;
-			_i = _toLockNIDS find _nid;
-			if(_i != -1) then {
-				_toLock deleteAt _i;
-				_toLockNIDS deleteAt _i;
-			};
-			if !(_nid in _toUnlockNIDS) then {
-				_toUnlockNIDS pushBack _nid;
-				_toUnlock pushBack _x;
+			if !(toUpper(typeof _x) in _ignore) then {  
+				_nid = netid _x;
+				_i = _toLockNIDS find _nid;
+				if(_i != -1) then {
+					_toLock deleteAt _i;
+					_toLockNIDS deleteAt _i;
+				};
+				if !(_nid in _toUnlockNIDS) then {
+					_toUnlockNIDS pushBack _nid;
+					_toUnlock pushBack _x;
+				};
 			};
 		} forEach _inUnlockRange;
 		{
-			_nid = netid _x;
-			if !(_nid in _toUnlockNIDS) then {
-				_toLock pushBack _x;
-				_toLockNIDS pushBack _nid;
+			if !(toUpper(typeof _x) in _ignore) then {  
+				_nid = netid _x;
+				if !(_nid in _toUnlockNIDS) then {
+					_toLock pushBack _x;
+					_toLockNIDS pushBack _nid;
+				};
 			};
 		} forEach _inLockRange;
 	} forEach allPlayers;
