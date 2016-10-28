@@ -85,6 +85,7 @@ private:
 		unsigned int port;
 		std::string socket;
 		unsigned long int flag;
+		my_bool reconnect = 1;
 
 		bool whitelistonly;
 		bool allowsteamapi;

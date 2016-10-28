@@ -71,6 +71,8 @@ void db_handler::connect(std::string hostname, std::string user, std::string pas
 
 	this->worlduuid = worlduuid;
 
+	mysql_options(connection, MYSQL_OPT_RECONNECT, &reconnect);
+
 	if (mysql_real_connect(connection, this->hostname.c_str(),
 			this->user.c_str(), this->password.c_str(), this->database.c_str(),
 			this->port, this->socket.c_str(), this->flag) == NULL) {
