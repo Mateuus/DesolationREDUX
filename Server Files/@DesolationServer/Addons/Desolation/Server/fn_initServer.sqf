@@ -40,3 +40,18 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
 //--- start subsystems
 [] spawn DS_fnc_simManager;
+
+
+
+//--- DEBUG (monitor thread counts)
+[] spawn {
+	while{true} do {
+		_threads = Diag_activeScripts;
+		NUM_THREADS = (_threads select 0) + (_threads select 1) - 1;
+		
+		if(NUM_THREADS > 13) then {
+			diag_log ("ERROR: CANT KEEP UP! To many threads running on the server - " + str(NUM_THREADS));
+		};
+		uiSleep 0.5;
+	};
+};

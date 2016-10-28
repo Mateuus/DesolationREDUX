@@ -42,17 +42,8 @@ if !(_send isEqualTo []) then {
 
 _group move _location;
 waitUntil{(_plane distance2D _location) < 500};
-_send = [];
-{
-	if("ItemRadio" in (assignedItems _x)) then {
-		_send pushBack _x;
-	};
-} forEach allPlayers;
-
-if !(_send isEqualTo []) then {
-	"DropTheLoad" remoteExec["playMusic",_send];
-};
-waitUntil{(_plane distance2D _location) < 100};
+["DropTheLoad","MUSIC"] call DS_fnc_playOverRadio;
+waitUntil{(_plane distance2D _location) < 100}; //--- sometimes the plane misses this distance ???
 _pos = getposATL _plane;
 _pos = _pos vectorAdd [0,0,-10];
 
