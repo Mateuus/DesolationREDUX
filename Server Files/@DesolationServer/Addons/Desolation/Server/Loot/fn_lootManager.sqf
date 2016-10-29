@@ -1,27 +1,22 @@
 /*
-	Desolation Redux loot manager
-	by: @_Lystic
+	Desolation Redux
+	2016 Desolation Dev Team
 
-	Description: Handles loot spawning for the server & parses the config values
+	License info here and copyright symbol above
 */
+private["_buildingTypes","_MinPiles","_DoRespawn","_RespawnTimeS","_Config_Options","_lChance","_sChance","_tChance","_gChance","_data","_all_buildings","_cfg","_name","_buildingsToSpawn","_buildingsToDespawn","_buildingsNotToDespawn","_houses","_nearest_building","_nearest_building_type","_last_nearest","_hasVar","_isSpawned","_savedLoot","_spawnTime","_doFreshSpawn","_x"];
 
-
-_getCFGValue = {
-	params["_entry"];
-	(call compile ([_entry,"DS"] call BASE_fnc_getCfgValue));
-};
-
-if !(["SpawnLoot"] call _getCFGValue) exitWith {diag_log "<Loot Manager>: Loot spawning turned off";};
+if !(["SpawnLoot"] call DS_fnc_getConfigValue) exitWith {diag_log "<Loot Manager>: Loot spawning turned off";};
 
 diag_log "<Loot Manager>: Parsing config entries";
 
 //--- Parse config entries
 _buildingTypes = getArray(configFile >> "CfgItemSpawns" >> "buildingTypes");
 //--- Parse User Defined Config Entries
-_MinPiles = ["MinPiles"] call _getCFGValue;
+_MinPiles = ["MinPiles"] call DS_fnc_getConfigValue;
 
-_DoRespawn = ["RespawnLoot"] call _getCFGValue;
-_RespawnTimeS = (["RespawnTime"] call _getCFGValue)*60;
+_DoRespawn = ["RespawnLoot"] call DS_fnc_getConfigValue;
+_RespawnTimeS = (["RespawnTime"] call DS_fnc_getConfigValue)*60;
 
 
 _Config_Options = [];

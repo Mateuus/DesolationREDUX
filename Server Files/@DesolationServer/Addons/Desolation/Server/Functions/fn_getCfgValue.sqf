@@ -4,7 +4,5 @@
 
 	License info here and copyright symbol above
 */
-
-//--- TODO spawn zombies
-
-call DS_fnc_startMasterBrain;
+params["_entry"];
+(call compile ([_entry,"DS"] call BASE_fnc_getCfgValue));

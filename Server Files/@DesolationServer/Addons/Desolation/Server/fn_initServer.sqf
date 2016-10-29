@@ -1,9 +1,7 @@
 /*
-	fn_initServer
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
 
@@ -21,21 +19,25 @@ if !(_debug) then {
 addMissionEventHandler ["PlayerDisconnected", DS_fnc_playerDisconnected];
 addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
+// vehicle spawn calculations
+_dbSpawnData = []; //--- get this from the database spawning system
+diag_log ("Spawned " + str(count(_dbSpawnData)) + " vehicles from the database");
+_randomSpawnCount = (["NumVehicles"] call DS_fnc_getCfgValue) - count(_dbSpawnData);
 
 
-// start Vehicle Spawns
-[] spawn {
-	_vehCount = 0; //--- get this from the database spawning system
-	diag_log ("Spawned " + str(_vehCount) + " vehicles from the database");
-	_randomSpawnCount = (call compile (["NumVehicles","DS"] call BASE_fnc_getCfgValue)) - _vehCount;
-	[_randomSpawnCount] call DS_fnc_spawnVehicles; //--- spawn 1000 vehicles (TODO: take into account database vehicles & the cfg entry for vehicle spawn count)
-};
+// start vehicle spawns
+[_randomSpawnCount,_dbSpawnData] spawn DS_fnc_spawnVehicles;
+
+// start helicrash spawns
+[] spawn DS_fnc_spawnCrashes;
+
 // start zombie spawns
 [] spawn DS_fnc_spawnZombies;
 
-// start Item Spawns
+// start item spawns
 [] spawn DS_fnc_lootManager;
-// start Airdrops
+
+// start airdrops
 [] spawn DS_fnc_initAirdrops;
 
 //--- start subsystems

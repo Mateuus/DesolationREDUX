@@ -1,3 +1,9 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+
+	License info here and copyright symbol above
+*/
 params["_pos","_cItems"];
 
 _chute = "O_Parachute_02_F" createVehicle _pos;

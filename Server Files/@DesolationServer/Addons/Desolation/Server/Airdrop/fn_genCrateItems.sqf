@@ -1,3 +1,9 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+
+	License info here and copyright symbol above
+*/
 _config = configFile >> "CfgAirdropSpawns";
 _config = _config select floor(random(count(_config)));
 

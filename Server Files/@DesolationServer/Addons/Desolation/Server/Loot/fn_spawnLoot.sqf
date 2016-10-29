@@ -1,11 +1,12 @@
 /*
-	Desolation Redux loot spawner
-	by: @_Lystic
+	Desolation Redux
+	2016 Desolation Dev Team
 
-	Description: Handles loot spawning on buildings
+	License info here and copyright symbol above
 */
 
-	params["_building","_MinPiles","_buildingTypes","_Config_Options","_savedLoot"];
+params["_building","_MinPiles","_buildingTypes","_Config_Options","_savedLoot"];
+private["_building_type","_positions","_building_table","_loot_rarity","_loot_types","_Config","_ConfigEntry","_lChance","_sChance","_tChance","_gChance","_spawn_positions","_pos","_bLootPiles","_object","_number_of_items_in_pile","_spawnedGear","_spawnedCount","_type","_max","_roll","_value","_exit","_index","_count","_limit","_rarity","_itemArray","_item","_class","_mags","_mag"];
 
 _building_type = typeof(_building);
 

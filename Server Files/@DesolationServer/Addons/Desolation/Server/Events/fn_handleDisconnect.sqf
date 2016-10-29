@@ -1,9 +1,7 @@
 /*
-	fn_handleDisconnect
-	
 	Desolation Redux
 	2016 Desolation Dev Team
-	By Kegan
+
 	License info here and copyright symbol above
 */
 

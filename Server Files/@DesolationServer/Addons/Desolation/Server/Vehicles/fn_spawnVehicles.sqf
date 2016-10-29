@@ -1,12 +1,17 @@
 /*
-	fn_spawnVehicles
-
 	Desolation Redux
 	2016 Desolation Dev Team
 
 	License info here and copyright symbol above
 */
-params["_numVtoSpawn"];
+params["_numVtoSpawn","_dbSpawnData"];
+private["_types","_data","_config","_cfg","_locations","_directions","_type","_houses","_index","_hData","_vehicles","_bikeLimit","_housesOrdered","_houses","_lIndex","_v","_vDir","_posagl","_posasl","_tv","_hitpoints","_value"];
+
+{
+	//TODO DATABASE SPAWNING
+} forEach _dbSpawnData;
+
+
 
 diag_log ("Spawning " + str(_numVtoSpawn) + " vehicles.");
 
@@ -52,15 +57,6 @@ for "_i" from 0 to count(_config)-1 do {
 };
 
 diag_log format["Getting all houses on map (%1)",diag_tickTime];
-_shuffle = {
-	params["_array"];
-	private ["_newArray"];
-	_newArray = [];
-	while{count(_array) > 0} do {
-		_newArray pushBack (_array deleteAt floor(random(count(_array))));
-	};
-	_newArray
-};
 
 
 _bikeLimit = call compile (["MaxBikes","DS"] call BASE_fnc_getCfgValue); //--- temp, to be loaded from config (TODO)
@@ -73,7 +69,7 @@ for "_x" from 0 to ceil(worldsize/5000) do {
 		_housesOrdered = _housesOrdered + (nearestObjects [[_x,_y],_types,6000]);
 	};
 };
-_houses = [_housesOrdered] call _shuffle; //--- randomize the order of which houses are spawned (effectively randomizes vehicle spawning locations)
+_houses = [_housesOrdered] call DS_fnc_shuffleArray; //--- randomize the order of which houses are spawned (effectively randomizes vehicle spawning locations)
 diag_log format["Got all houses (%1)",diag_tickTime];
 
 

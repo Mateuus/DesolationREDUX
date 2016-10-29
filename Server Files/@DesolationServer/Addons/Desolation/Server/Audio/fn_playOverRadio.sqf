@@ -1,10 +1,11 @@
 /*
-	Desolation Redux loot manager
-	by: @_Lystic
+	Desolation Redux
+	2016 Desolation Dev Team
 
-	Description: Handles loot spawning for the server & parses the config values
+	License info here and copyright symbol above
 */
 params["_parameter","_type"];
+private["_send"];
 
 if(_type == "MUSIC") then {
 	_send = [];

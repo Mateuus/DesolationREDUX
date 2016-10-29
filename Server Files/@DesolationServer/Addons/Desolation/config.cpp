@@ -153,7 +153,7 @@ class CfgFunctions
 		class Server_Crashes {
 			file = "Desolation\Server\Crashes";
 			isserver = 1;
-			class createC130Crash {};
+			class spawnCrashes {};
 		};
 		class Server_Zombies {
 			file = "Desolation\Server\Zombies";
@@ -166,6 +166,12 @@ class CfgFunctions
 			isserver = 1;
 			class spawnVehicles {};
 			class simManager {};
+		};
+		class Server_Functions {
+			file = "Desolation\Server\Functions";
+			isserver = 1;
+			class getCfgValue {};
+			class shuffleArray {};
 		};
 		class Server {
 			file = "Desolation\Server";

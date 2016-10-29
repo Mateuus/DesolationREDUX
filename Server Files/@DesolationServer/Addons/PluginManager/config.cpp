@@ -41,6 +41,7 @@ class CfgFunctions {
 			isclient = 1;
 			file = "PluginManager\Client";
 			class getCfgValue {};
+			class randomAreaLocation {};
 			class addEventHandler {};
 			class removeEventHandler {};
 			class initEventHandlers {};

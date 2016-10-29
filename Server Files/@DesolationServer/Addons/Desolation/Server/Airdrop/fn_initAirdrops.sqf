@@ -1,3 +1,11 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+
+	License info here and copyright symbol above
+*/
+private["_location","_x","_y","_height","_cItems"];
+
 diag_log "AIRDROPS > Initialized";
 while{true} do {
 	_location = [0,0];

@@ -1,11 +1,10 @@
 /*
-	fn_simManager
-	
 	Desolation Redux
 	2016 Desolation Dev Team
-	
+
 	License info here and copyright symbol above
 */
+private["_ignore","_toLock","_toLockNIDS","_toUnlock","_toUnlockNIDS","_inLockRange","_inUnlockRange","_nid","_i","_redamage"];
 
 _ignore = ["DSR_C130J_F","O_PARACHUTE_02_F","DSR_CRATE_AIRDROP_F"];
 while{true} do {

@@ -1,12 +1,12 @@
 /*
-	fn_requestFreshSpawn
-	
 	Desolation Redux
 	2016 Desolation Dev Team
-	
+
 	License info here and copyright symbol above
 */
 params["_client","_location"];
+private["_brokenLoadout","_defaultData","_hats","_goggles","_uniforms","_uid","_unit"];
+
 _brokenLoadout = ["U_C_Poor_2","H_StrawHat","G_Aviator"];
 _defaultData = _client getVariable ["DDATA",_brokenLoadout];
 

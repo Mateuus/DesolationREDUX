@@ -1,12 +1,11 @@
 /*
-	Desolation Redux loot spawner
-	by: @_Lystic
+	Desolation Redux
+	2016 Desolation Dev Team
 
-	Description: Handles loot spawning on buildings
+	License info here and copyright symbol above
 */
-
 params["_building"];
-
+private["_bLootPiles","_getLoot","_savedLoot","_data"];
 
 _bLootPiles = (_building getVariable ["LOOT_PILES",[]]) - [objNull]; //--- get all remaining loot piles
 

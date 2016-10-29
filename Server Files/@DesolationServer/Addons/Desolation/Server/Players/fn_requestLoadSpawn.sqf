@@ -1,5 +1,11 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+
+	License info here and copyright symbol above
+*/
 params["_data","_client"];
-private["_unit"];
+private["_unit","_anim","_dir","_x","_y","_z","_class","_hitpoints","_nonpersvars","_persvars","_textures","_invuniform","_invvest","_invbackpack","_uniform","_vest","_backpack","_headgear","_goggles","_primary","_secondary","_handgun","_tools","_currentWeapon","_loadout","_name","_damage"];
 
 
 _anim = _data deleteAt 0;

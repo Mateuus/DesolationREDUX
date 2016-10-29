@@ -1,13 +1,10 @@
 /*
-	fn_setupLoadout
-	
 	Desolation Redux
 	2016 Desolation Dev Team
-	
+
 	License info here and copyright symbol above
 */
 params["_unit",["_equipmentArray",[]],["_defaultData",[]]];
-
 
 if !(_equipmentArray isEqualTo []) then
 {
