@@ -14,7 +14,9 @@ _crate attachTo [_chute,[0,0,-1]];
 _smoke = objNull;
 _flare = objNull;
 
-while{((getposatl _chute) select 2) > 4 && ((getposasl _chute) select 2) > 4} do {
+_exitLoop = {((getposatl _chute) select 2) > 4 && ((getposasl _chute) select 2) > 4};
+
+while{true} do {
 	_chutepos = round(getposatl _chute select 2);
 	
 	_smoke1 = "SmokeShellRed" createVehicle (getposatl _crate);
@@ -22,15 +24,20 @@ while{((getposatl _chute) select 2) > 4 && ((getposasl _chute) select 2) > 4} do
 	_smoke1 attachTo [_chute,[0,0,0]];
 	_flare1 attachTo [_chute,[0,0,0]];
 	
-	uiSleep 3;
+	_time = diag_tickTime + 3;
+	waitUntil{diag_tickTime > _time || call _exitLoop};
 	
 	if(!isNull _flare) then { deleteVehicle _flare; };
 	if(!isNull _smoke) then { deleteVehicle _smoke; };
 	_flare = _flare1;
 	_smoke = _smoke1;
 	
-	uiSleep 7;
+	if(call _exitLoop) exitWith {}
 	
+	_time = diag_tickTime + 7;
+	waitUntil{diag_tickTime > _time || call _exitLoop};
+	
+	if(call _exitLoop) exitWith {}
 	if(round(getposatl _chute select 0) == _chutepos) exitWith {}; //--- chute stuck in tree
 };
 
