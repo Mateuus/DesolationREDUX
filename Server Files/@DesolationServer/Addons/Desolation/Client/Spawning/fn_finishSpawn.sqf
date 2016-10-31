@@ -1,6 +1,4 @@
 /*
-	fn_finishSpawn
-	
 	Desolation Redux
 	2016 Desolation Dev Team
 	

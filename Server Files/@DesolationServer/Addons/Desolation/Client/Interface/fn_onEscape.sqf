@@ -1,11 +1,10 @@
 /*
-	fn_onEscape
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 params["_display"];
 
 _lastTime = missionNamespace getVariable ["DS_var_escapeTimer",diag_tickTime];

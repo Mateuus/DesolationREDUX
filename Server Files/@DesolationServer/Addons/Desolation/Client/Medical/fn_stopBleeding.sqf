@@ -1,7 +1,10 @@
 /*
-	Stops the player from bleeding (on bandage)
-
+	Desolation Redux
+	2016 Desolation Dev Team
+	
+	License info here and copyright symbol above
 */
+
 
 {
 	[player,_x] remoteExec ["DS_fnc_removeBleedSource",-2];

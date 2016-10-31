@@ -1,12 +1,10 @@
 /*
-	fn_onEffectTick
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
-//--- effects from low blood
+
 if(DS_var_Blood <= 0) then {
 	player setDamage 1;
 } else {

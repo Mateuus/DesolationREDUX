@@ -1,11 +1,10 @@
 /*
-	fn_itemClick
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 disableSerialization;
 params["_params"];
 call ds_fnc_closebuttons;

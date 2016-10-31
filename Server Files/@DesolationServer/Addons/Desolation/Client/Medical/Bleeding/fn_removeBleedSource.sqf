@@ -1,3 +1,9 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+	
+	License info here and copyright symbol above
+*/
 params["_unit","_selection"];
 private["_bleedsourcedata","_sources","_bsourcesinfo","_i","_GLOBAL_BLEEDDATA","_select"];
 

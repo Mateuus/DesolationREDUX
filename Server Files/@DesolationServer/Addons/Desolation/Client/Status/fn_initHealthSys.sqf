@@ -1,11 +1,10 @@
 /*
-	fn_initHealthSys
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 DS_var_Blood = 27500;
 DS_var_isBleeding = false;
 DS_var_Thirst = 100;

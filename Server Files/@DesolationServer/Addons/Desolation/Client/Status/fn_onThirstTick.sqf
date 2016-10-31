@@ -1,12 +1,10 @@
 /*
-	fn_onThirstTick
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
-//2400 between drinks
+
 
 _dThirst = 1/18; //--- (100 total thirst) (30 min till dehyration)
 

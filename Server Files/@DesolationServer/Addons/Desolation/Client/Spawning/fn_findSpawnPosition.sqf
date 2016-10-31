@@ -1,11 +1,10 @@
 /*
-	fn_findSpawnPosition
-	
 	Desolation Redux
 	2016 Desolation Dev Team
 	
 	License info here and copyright symbol above
 */
+
 
 params["_regionData",["_east",false],["_flip",false]];
 private["_spawnPos","_minX","_minY","_maxX","_maxY","_randomX","_randomY","_jDist","_cJDist","_pos","_others"];

@@ -1,11 +1,10 @@
 /*
-	fn_onBleedTick
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 params["_sourcesinfo"];
 // each bleed source / level increases loss by 5 per second
 

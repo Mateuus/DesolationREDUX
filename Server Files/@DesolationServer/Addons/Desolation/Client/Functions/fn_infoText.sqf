@@ -1,20 +1,10 @@
 /*
-	fn_infoText
-	
 	Desolation Redux
 	2016 Desolation Dev Team
 	
 	License info here and copyright symbol above
-
-	File: infoText.sqf
-	Author: Karel Moricky
-
-	Description:
-	Info with some ffect.
-
-	Parameter(s):
-	_this: Array containing lines of text (String)
 */
+
 
 ([] call bis_fnc_rscLayer) cutrsc ["rscInfoText","plain"];
 

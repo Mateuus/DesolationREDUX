@@ -6,12 +6,14 @@ _data deleteAt (count(_data)-1);
 _data pushBack "dirty";
 _newItem = _data joinString "_";
 
-if(({toLower(_x) == toLower(_classname)} count (magazines player)) > 0) then {
-	if([] call ds_fnc_doAction) then {
-		if(({toLower(_x) == toLower(_classname)} count (magazines player)) > 0) then {
-			//--- perhaps look up effects TODO
-			player removeMagazine _classname;
-			player addMagazine _newItem;
-		};
+_success = {
+	systemchat "Filled with water";
+};
+_failure = {
+	private["_type"];
+	_type = _this select 0;
+	if(_type != "Player Moved") then {
+		systemchat _type;
 	};
 };
+[_classname,true,_success,_failure,_newItem] call DS_fnc_useItem;

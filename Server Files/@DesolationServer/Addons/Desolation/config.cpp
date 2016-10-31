@@ -42,6 +42,7 @@ class CfgFunctions
 			file = "Desolation\Client\Actions";
 			isclient = 1;
 			class doAction {};
+			class useItem {};
 			class drink {};
 			class eat {};
 			class fillblood {};

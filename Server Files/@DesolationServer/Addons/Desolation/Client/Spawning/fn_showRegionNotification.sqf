@@ -1,11 +1,10 @@
 /*
-	fn_showRegionNotification
-	
 	Desolation Redux
 	2016 Desolation Dev Team
 	
 	License info here and copyright symbol above
 */
+
 uiSleep 2; //--- wait for blackscreen to exit
 _locationChecks = ["NameVillage","NameCity","NameCityCapital"];
 _distance = 9999999;

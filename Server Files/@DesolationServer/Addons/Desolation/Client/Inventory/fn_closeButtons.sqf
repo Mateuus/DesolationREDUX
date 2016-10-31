@@ -1,11 +1,10 @@
 /*
-	fn_closeButtons
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 disableSerialization;
 _buttons = uiNamespace getVariable ["ds_var_itemButtons",[]];
 {

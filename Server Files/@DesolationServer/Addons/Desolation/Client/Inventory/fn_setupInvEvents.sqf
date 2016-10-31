@@ -1,11 +1,10 @@
 /*
-	fn_setupInvEvents
-
 	Desolation Redux
 	2016 Desolation Dev Team
-
+	
 	License info here and copyright symbol above
 */
+
 disableSerialization;
 waitUntil{!isNull findDisplay 602 || !DS_var_InvOpen};
 

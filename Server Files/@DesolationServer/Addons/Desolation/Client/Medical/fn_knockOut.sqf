@@ -1,3 +1,9 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+	
+	License info here and copyright symbol above
+*/
 params["_time",["_tickCallback",{false}],["_tickCallbackParams",[]]];
 player setUnconscious true;
 10481 cutText ["","BLACK OUT",3];
