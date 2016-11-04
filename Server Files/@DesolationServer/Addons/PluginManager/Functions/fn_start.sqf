@@ -35,4 +35,6 @@ _this spawn {
 			[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
 		};
 	} forEach _fnclist;
+	
+	call BASE_fnc_initActions;
 };

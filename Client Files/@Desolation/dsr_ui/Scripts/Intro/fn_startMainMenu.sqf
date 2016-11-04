@@ -14,4 +14,4 @@ createDialog "mainMenu";
 }];
 
 ((findDisplay 88001) displayCtrl 2402) buttonSetAction "ctrlActivate ((findDisplay 0) displayCtrl (getNumber(configFile >> 'RscDisplayMain' >> 'Controls' >> 'Exit' >> 'idc')));";
-((findDisplay 88001) displayCtrl 2400) buttonSetAction "ctrlActivate ((findDisplay 0) displayCtrl 105);";
+((findDisplay 88001) displayCtrl 2400) buttonSetAction "closeDialog 0;ctrlActivate ((findDisplay 0) displayCtrl 105);";

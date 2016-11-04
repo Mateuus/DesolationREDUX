@@ -32,12 +32,12 @@ while{true} do {
 	_flare = _flare1;
 	_smoke = _smoke1;
 	
-	if(call _exitLoop) exitWith {}
+	if(call _exitLoop) exitWith {};
 	
 	_time = diag_tickTime + 7;
 	waitUntil{diag_tickTime > _time || call _exitLoop};
 	
-	if(call _exitLoop) exitWith {}
+	if(call _exitLoop) exitWith {};
 	if(round(getposatl _chute select 0) == _chutepos) exitWith {}; //--- chute stuck in tree
 };
 

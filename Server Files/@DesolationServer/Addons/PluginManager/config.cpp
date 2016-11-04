@@ -31,6 +31,7 @@ class CfgFunctions {
 			};			
 			class compileCfg {};
 			class setupEvents {};
+			class initActions {};
 			class start 
 			{
 				preInit = 1;
@@ -45,6 +46,7 @@ class CfgFunctions {
 			class addEventHandler {};
 			class removeEventHandler {};
 			class initEventHandlers {};
+			class startActionManager {};
 		};
 	};
 };

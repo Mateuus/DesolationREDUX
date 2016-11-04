@@ -11,6 +11,44 @@ class Plugins
 		tag = "DS";
 	};
 }
+class CfgPluginActions {
+	class RepairCars {
+		class Actions {
+			class RepairEngine {
+				distance = 5;
+				text = "Repair Engine";
+				action = "hint 'repairing engine';";
+				condition = "_cursor getHitPointDamage 'HitEngine' > 0";
+			};
+			class RepairBody {
+				distance = 5;
+				text = "Repair Body";
+				action = "hint 'repairing body';";
+				condition = "_cursor getHitPointDamage 'HitBody' > 0";
+			};
+			class RepairFueltank {
+				distance = 5;
+				text = "Repair Fuel Tank";
+				action = "hint 'repairing fuel tank';";
+				condition = "_cursor getHitPointDamage 'HitFuel' > 0";
+			};
+			class RepairGlass {
+				distance = 5;
+				text = "Repair Glass";
+				action = "hint 'repairing glass';";
+				condition = "(_cursor getHitPointDamage 'HitRGlass' > 0) || (_cursor getHitPointDamage 'HitLGlass' > 0) || (_cursor getHitPointDamage 'HitGlass1' > 0)";
+			};
+			class RepairWheels {
+				distance = 5;
+				text = "Repair Glass";
+				action = "hint 'repairing wheels';";
+				condition = "(_cursor getHitPointDamage 'HitLFWheel' > 0) || (_cursor getHitPointDamage 'HitRFWheel' > 0) || (_cursor getHitPointDamage 'HitLBWheel' > 0) || (_cursor getHitPointDamage 'HitRBWheel' > 0)";
+			};
+		};
+		condition = "_cursor isKindOf 'LandVehicle'";
+		text = "Repair Vehicle";
+	};
+};
 class CfgFunctions
 {
 	class DS

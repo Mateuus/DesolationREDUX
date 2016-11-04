@@ -51,8 +51,8 @@ _randomSpawnCount = (["NumVehicles"] call DS_fnc_getCfgValue) - count(_dbSpawnDa
 		_threads = Diag_activeScripts;
 		NUM_THREADS = (_threads select 0) + (_threads select 1) - 1;
 		
-		if(NUM_THREADS > 13) then {
-			diag_log ("ERROR: CANT KEEP UP! To many threads running on the server - " + str(NUM_THREADS));
+		if(NUM_THREADS > 13 && diag_fps < 40) then {
+			diag_log ("ERROR: CANT KEEP UP! To many threads running on the server - " + str(NUM_THREADS) + " - FPS: " + str(diag_fps));
 		};
 		uiSleep 0.5;
 	};
