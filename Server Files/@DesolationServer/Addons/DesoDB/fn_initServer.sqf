@@ -13,11 +13,3 @@ _request = ["initdb",[["poolsize",_poolSize],["worlduuid",_worldUUID]]] call DB_
 diag_log "DesoDB > Dll Request";
 diag_log _request;
 [_request] call DB_fnc_sendRequest;
-
-[] spawn {
-	diag_log "Starting DB test";
-	uiSleep 10;
-	diag_log "TESTING DB CONNECTION";
-	_request = ["dbVersion"] call DB_fnc_buildDBRequest;
-	diag_log ([_request] call DB_fnc_sendRequest);
-};

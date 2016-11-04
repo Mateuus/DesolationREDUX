@@ -75,51 +75,54 @@ diag_log format["Got all houses (%1)",diag_tickTime];
 
 diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 {
-	if(_numVtoSpawn == 0) exitWith {};
-	_type = tolower typeof _x;
-	_index = _types find _type;
-	if(_index != -1) then {
-		_hData = _data select _index;
-		_locations = _hData select 0;
-		_directions = _hData select 1;
-		_vehicles = _hData select 2;
+	if !(_x getVariable ["SpawnedV",false]) then {
+		_x setVariable ["SpawnedV",true];
+		if(_numVtoSpawn == 0) exitWith {};
+		_type = tolower typeof _x;
+		_index = _types find _type;
+		if(_index != -1) then {
+			_hData = _data select _index;
+			_locations = _hData select 0;
+			_directions = _hData select 1;
+			_vehicles = _hData select 2;
 
-		if(_bikeLimit == 0) then {_vehicles = _vehicles - ["MMT_Civ"];}; //---vehicles is case sensitive
+			if(_bikeLimit == 0) then {_vehicles = _vehicles - ["MMT_Civ"];}; //---vehicles is case sensitive
 
-		_lIndex = floor(random(count(_locations))); //--- get location index
+			_lIndex = floor(random(count(_locations))); //--- get location index
 
-		_v = _vehicles select floor(random(count(_vehicles))); //--- get vehicle type we are spawning
-		if(!isNil {_v}) then {
+			_v = _vehicles select floor(random(count(_vehicles))); //--- get vehicle type we are spawning
+			if(!isNil {_v}) then {
 
-			if(toLower(_v) == "mmt_civ") then {_bikeLimit = _bikeLimit - 1;};
+				if(toLower(_v) == "mmt_civ") then {_bikeLimit = _bikeLimit - 1;};
 
-			_location = _locations select _lIndex; //--- get offset of the spawn position
-			_direction = _directions select _lIndex; //--- get vehicle direction additive
+				_location = _locations select _lIndex; //--- get offset of the spawn position
+				_direction = _directions select _lIndex; //--- get vehicle direction additive
 
-			_vDir = (getdir _x) + _direction;
+				_vDir = (getdir _x) + _direction;
 
-			_posagl = _x modelToWorld _location;
-			_posasl = AGLtoASL _posagl;
+				_posagl = _x modelToWorld _location;
+				_posasl = AGLtoASL _posagl;
 
-			_tv = _v createVehicle _posagl;
-			clearItemCargo _tv;
-			_hitpoints = (getAllHitPointsDamage _tv) select 0;
-			{
-				if(_x != "" && _x != "HitFuel" && _x != "HitFuelTank" && _x != "HitBody") then {
-					_value = random(1);
-					_tv setHitPointDamage [_x,_value];
-				};
-				if(_x == "HitBody") then {
-					_value = random(0.5);
-					_tv setHitPointDamage [_x,_value];
-				};
-			} forEach _hitpoints;
-			_tv enableSimulationGlobal false;
-			_tv setposasl _posasl;
-			_tv setdir _vDir;
-			_numVtoSpawn = _numVtoSpawn - 1;
+				_tv = _v createVehicle _posagl;
+				clearItemCargo _tv;
+				_hitpoints = (getAllHitPointsDamage _tv) select 0;
+				{
+					if(_x != "" && _x != "HitFuel" && _x != "HitFuelTank" && _x != "HitBody") then {
+						_value = random(1);
+						_tv setHitPointDamage [_x,_value];
+					};
+					if(_x == "HitBody") then {
+						_value = random(0.5);
+						_tv setHitPointDamage [_x,_value];
+					};
+				} forEach _hitpoints;
+				_tv enableSimulationGlobal false;
+				_tv setposasl _posasl;
+				_tv setdir _vDir;
+				_numVtoSpawn = _numVtoSpawn - 1;
+			};
+			//--- TODO: EnableSimulationGlobal system
 		};
-		//--- TODO: EnableSimulationGlobal system
 	};
 } forEach _houses;
 

@@ -15,37 +15,32 @@ class CfgPluginActions {
 	class RepairCars {
 		class Actions {
 			class RepairEngine {
-				distance = 5;
 				text = "Repair Engine";
-				action = "hint 'repairing engine';";
-				condition = "_cursor getHitPointDamage 'HitEngine' > 0";
+				action = "systemchat 'repairing engine';";
+				condition = "call DS_fnc_CheckEngine";
 			};
 			class RepairBody {
-				distance = 5;
 				text = "Repair Body";
-				action = "hint 'repairing body';";
-				condition = "_cursor getHitPointDamage 'HitBody' > 0";
+				action = "systemchat 'repairing body';";
+				condition = "call DS_fnc_CheckBody";
 			};
 			class RepairFueltank {
-				distance = 5;
 				text = "Repair Fuel Tank";
-				action = "hint 'repairing fuel tank';";
-				condition = "_cursor getHitPointDamage 'HitFuel' > 0";
+				action = "systemchat 'repairing fuel tank';";
+				condition = "call DS_fnc_CheckFueltank";
 			};
 			class RepairGlass {
-				distance = 5;
 				text = "Repair Glass";
-				action = "hint 'repairing glass';";
-				condition = "(_cursor getHitPointDamage 'HitRGlass' > 0) || (_cursor getHitPointDamage 'HitLGlass' > 0) || (_cursor getHitPointDamage 'HitGlass1' > 0)";
+				action = "systemchat 'repairing glass';";
+				condition = "call DS_fnc_CheckGlass";
 			};
 			class RepairWheels {
-				distance = 5;
-				text = "Repair Glass";
-				action = "hint 'repairing wheels';";
-				condition = "(_cursor getHitPointDamage 'HitLFWheel' > 0) || (_cursor getHitPointDamage 'HitRFWheel' > 0) || (_cursor getHitPointDamage 'HitLBWheel' > 0) || (_cursor getHitPointDamage 'HitRBWheel' > 0)";
+				text = "Repair Wheels";
+				action = "systemchat 'repairing wheels';";
+				condition = "call DS_fnc_CheckWheels";
 			};
 		};
-		condition = "_cursor isKindOf 'LandVehicle'";
+		condition = "_cursor isKindOf 'LandVehicle' && player distance _cursor < 5";
 		text = "Repair Vehicle";
 	};
 };
@@ -76,8 +71,8 @@ class CfgFunctions
 			class infoText {};
 			class receiveTransmition {};
 		};
-		class Client_Actions {
-			file = "Desolation\Client\Actions";
+		class Client_Actions_Items {
+			file = "Desolation\Client\Actions\Items";
 			isclient = 1;
 			class doAction {};
 			class useItem {};
@@ -96,6 +91,15 @@ class CfgFunctions
 			class usepainkillers {};
 			class usevitamins {};
 			class usewpt {};
+		};
+		class Client_Actions_Repair {
+			file = "Desolation\Client\Actions\Repair";
+			isclient = 1;
+			class CheckBody {};
+			class CheckEngine {};
+			class CheckFueltank {};
+			class CheckGlass {};
+			class CheckWheels {};
 		};
 		class Client_Interface {
 			file = "Desolation\Client\Interface";
