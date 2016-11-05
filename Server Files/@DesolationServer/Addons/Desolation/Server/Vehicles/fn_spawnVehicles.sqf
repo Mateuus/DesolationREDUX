@@ -112,7 +112,7 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 						_tv setHitPointDamage [_x,_value];
 					};
 					if(_x == "HitBody") then {
-						_value = random(0.5);
+						_value = random(0.4);
 						_tv setHitPointDamage [_x,_value];
 					};
 				} forEach _hitpoints;

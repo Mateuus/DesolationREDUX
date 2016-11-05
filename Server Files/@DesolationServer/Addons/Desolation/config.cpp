@@ -5533,7 +5533,7 @@ class CfgVehicleSpawns {
 			directions[] = {88.727,272.412};
 		};
 		class Land_FuelStation_02_workshop_F {
-			locations[] = {{-2.76379,2.68311,-1.46458}
+			locations[] = {{-2.76379,2.68311,-1.36458}
 			};
 			directions[] = {178.493};
 		};
