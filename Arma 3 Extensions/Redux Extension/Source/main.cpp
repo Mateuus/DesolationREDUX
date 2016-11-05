@@ -20,7 +20,13 @@
 void RVExtension(char *output, int outputSize, const char *function)
 {
 	try {
-		std::string returnString = extension.processCallExtension(function, outputSize);
+#ifdef DEBUG
+		testfile << "REQUEST " << function << std::endl;
+#endif
+		std::string returnString = extension->processCallExtension(function, outputSize);
+#ifdef DEBUG
+		testfile << "RETURN " << returnString << std::endl;
+#endif
 		strncpy(output, returnString.c_str(), outputSize);
 		return;
 	} catch (std::exception const& e) {
@@ -28,5 +34,8 @@ void RVExtension(char *output, int outputSize, const char *function)
 		errstr += e.what();
 		errstr += "\"]";
 		strncpy(output, errstr.c_str(), outputSize);
+#ifdef DEBUG
+		testfile << "ERROR " << errstr << std::endl;
+#endif
 	}
 }

@@ -25,13 +25,80 @@
 		#define RVExtension __stdcall RVExtension
 #endif
 
+#ifdef DEBUG
+#include <fstream>
+#include <mutex>
+#endif
+
 #include <sstream>
 #include <string>
 #include <string.h>            // strcmp, strncpy
 
 #include "constants.hpp"
 #include "redex.hpp"
-redex extension;
+redex * extension = 0;
+
+#ifdef DEBUG
+std::mutex ThreadMutex;
+int attachedThreadCount = 0;
+std::ofstream testfile;
+#endif
+
+static void init(void)
+{
+#ifdef DEBUG
+    testfile.open("LibRedExLogFile.txt", std::ios::out | std::ios::trunc);
+    testfile << "starting init" << std::endl;
+    testfile.flush();
+#endif
+
+    if (extension == 0) {
+        extension = new redex();
+    }
+
+#ifdef DEBUG
+    testfile << "done init" << std::endl;
+    testfile.flush();
+#endif
+}
+
+static void destroy(void)
+{
+#ifdef DEBUG
+    testfile << "starting destroy" << std::endl;
+#endif
+    
+    if (extension != 0) {
+#ifdef DEBUG
+        testfile << "deleting object" << std::endl;
+#endif
+        delete extension;
+#ifdef DEBUG
+        testfile << "resetting pointer" << std::endl;
+#endif
+        extension = 0;
+    }
+
+#ifdef DEBUG
+    testfile << "done destroy" << std::endl;
+    testfile.flush();
+    testfile.close();
+#endif
+}
+
+#if defined(__linux__)
+        static void __attribute__((constructor))
+        extensioninit(void)
+        {
+            init();
+        }
+
+        static void __attribute__((destructor))
+        extensiondestroy(void)
+        {
+            destroy();
+        }
+#endif
 
 #ifndef __linux__
 	#define WIN32_LEAN_AND_MEAN    // Exclude rarely-used stuff from Windows headers
@@ -40,22 +107,38 @@ redex extension;
 		#include <boost/config/compiler/visualc.hpp>
 	#endif
 
-	BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
-	{
-		switch (ul_reason_for_call)
-		{
-			case DLL_PROCESS_ATTACH:
-			break;
-			case DLL_THREAD_ATTACH:
-			break;
-			case DLL_THREAD_DETACH:
-			break;
-			case DLL_PROCESS_DETACH:
-				extension.terminate();
-			break;
-		}
-		return TRUE;
-	}
+        BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
+        {
+                switch (ul_reason_for_call)
+                {
+                        case DLL_PROCESS_ATTACH:
+				init();
+                        break;
+                        case DLL_THREAD_ATTACH:
+#ifdef DEBUG
+				ThreadMutex.lock();
+				attachedThreadCount++;
+				testfile << "done thread attach Threadcount: " << attachedThreadCount << std::endl;
+				testfile.flush();
+				ThreadMutex.unlock();
+#endif
+                        break;
+                        case DLL_THREAD_DETACH:
+#ifdef DEBUG
+				ThreadMutex.lock();
+				attachedThreadCount--;
+				testfile << "done thread detach Threadcount: " << attachedThreadCount << std::endl;
+				testfile.flush();
+				ThreadMutex.unlock();
+#endif
+                        break;
+                        case DLL_PROCESS_DETACH:
+				destroy();
+                        break;
+                }
+                return TRUE;
+        }
+
 
 	#ifdef __cplusplus
 		extern "C" {

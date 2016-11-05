@@ -97,7 +97,8 @@ dbcon::~dbcon() {
 
 	DBioServiceWork.reset(); // stop all idle work!
 	DBioService.stop(); // terminate all work
-	asyncthreadpool.join_all(); // get rid of all threads
+	// commented because of a bug with boost thread pool if join_all gets executed in process detach
+	//asyncthreadpool.join_all(); // get rid of all threads
 
 	// while there is an handler call disconnect
 	while (syncdbhandlerpool.pop(syncdbhandlerpointer)) {

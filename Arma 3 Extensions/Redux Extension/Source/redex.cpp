@@ -52,6 +52,8 @@ redex::~redex() {
 
 void redex::terminate() {
 	dbconnection.terminateHandler();
+
+	return;
 }
 
 std::string redex::processCallExtension(const char *function, int outputSize) {
