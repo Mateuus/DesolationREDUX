@@ -208,6 +208,7 @@ class CfgFunctions
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;
 			class spawnVehicles {};
+			class spawnFromDB {};
 			class simManager {};
 		};
 		class Server_Functions {

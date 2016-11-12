@@ -4,16 +4,38 @@
 
 	License info here and copyright symbol above
 */
-params["_numVtoSpawn","_dbSpawnData"];
 private["_types","_data","_config","_cfg","_locations","_directions","_type","_houses","_index","_hData","_vehicles","_bikeLimit","_housesOrdered","_houses","_lIndex","_v","_vDir","_posagl","_posasl","_tv","_hitpoints","_value"];
 
+
+
+
+_dbSpawnData = ["getObjects"] call DS_fnc_dbRequest;
+_numVtoSpawn = (["NumVehicles"] call DS_fnc_getCfgValue);
+
+_len = count(_dbSpawnData);
+
+_tvs = [];
+diag_log "Spawning DB objects";
 {
-	//TODO DATABASE SPAWNING
+	_data = _x call DS_fnc_spawnFromDB;
+	_object = _data select 0;
+	_tvs pushBack _object;
+	_priority = _data select 1;
+	if(_priority >= 10000) then {
+		_numVtoSpawn = _numVtoSpawn - 1;
+	};
+	diag_log ("Spawned object #" + str(_forEachIndex+1) + " of " + str(_len));
 } forEach _dbSpawnData;
-
-
-
-diag_log ("Spawning " + str(_numVtoSpawn) + " vehicles.");
+diag_log "DONE";
+if(_numVtoSpawn <= 0) exitWith {
+	diag_log "No more vehicles need to be spawned";
+	uiSleep 3;
+	{	
+		_x enableSimulationGlobal false;
+	} forEach _tvs;
+	diag_log "Done spawning vehicles";
+};
+diag_log ("Spawning " + str(_numVtoSpawn) + " more vehicles.");
 
 _types = [];
 _data = [];
@@ -66,7 +88,7 @@ _bikeLimit = call compile (["MaxBikes","DS"] call BASE_fnc_getCfgValue); //--- t
 _housesOrdered = [];
 for "_x" from 0 to ceil(worldsize/5000) do {
 	for "_y" from 0 to ceil(worldsize/5000) do {
-		_housesOrdered = _housesOrdered + (nearestObjects [[_x,_y],_types,6000]);
+		_housesOrdered = _housesOrdered + (nearestObjects [[_x*5000,_y*5000],_types,6000]);
 	};
 };
 _houses = [_housesOrdered] call DS_fnc_shuffleArray; //--- randomize the order of which houses are spawned (effectively randomizes vehicle spawning locations)
@@ -74,6 +96,7 @@ diag_log format["Got all houses (%1)",diag_tickTime];
 
 
 diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
+
 {
 	if !(_x getVariable ["SpawnedV",false]) then {
 		_x setVariable ["SpawnedV",true];
@@ -116,14 +139,18 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 						_tv setHitPointDamage [_x,_value];
 					};
 				} forEach _hitpoints;
-				_tv enableSimulationGlobal false;
 				_tv setposasl _posasl;
 				_tv setdir _vDir;
+				_tvs pushBack _tv;
 				_numVtoSpawn = _numVtoSpawn - 1;
+				["spawnVehicle","",[_tv]] call DS_fnc_dbRequest;
 			};
-			//--- TODO: EnableSimulationGlobal system
 		};
 	};
 } forEach _houses;
-
+diag_log ("Spawned" + str(count(_tvs)) + " vehicle(s)");
+uiSleep 3;
+{
+	_x enableSimulationGlobal false;
+} forEach _tvs;
 diag_log "Done spawning vehicles";

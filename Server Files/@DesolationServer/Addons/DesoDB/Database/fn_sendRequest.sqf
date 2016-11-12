@@ -48,7 +48,7 @@ while{_doswitchloop} do {
 
                 _innerdoloop = true;
                 while{_innerdoloop} do {
-                    _response = "redex" callExtension _request;
+                    _response = "libredex" callExtension _request;
 
                     if(_response == PROTOCOL_MESSAGE_NOT_EXISTING) then {
                         uiSleep 0.5;
@@ -72,10 +72,11 @@ while{_doswitchloop} do {
             _finalResponse = _compiledResponse select 2;
             
             _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + "' } }";
-
+			
+			diag_log "Receiving multipart message";
             _innerdoloop = true;
             while{_innerdoloop} do {
-                _response = "redex" callExtension _request;
+                _response = "libredex" callExtension _request;
 
                 if(_response != PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG) then {
                     _finalResponse = _finalResponse + _response;
@@ -85,7 +86,7 @@ while{_doswitchloop} do {
             };
             
             _compiledResponse = call compile _finalResponse;
-            
+            diag_log "Message received";
             _doswitchloop = true;
         };
 

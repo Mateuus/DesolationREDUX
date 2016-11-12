@@ -9,7 +9,10 @@
 
 params["_type",["_callback",""],["_callbackParam",[]]];
 
+_return = "";
 switch(_type)do{
+	// Player Databasing
+	
 	//--- called on spawn request
 	case "spawnPlayer":{
 		_playerObj = _callbackParam select 0;
@@ -204,4 +207,234 @@ switch(_type)do{
 		_response = [_request] call DB_fnc_sendRequest;
 		_playerObj setVariable ["cUUID",_response];
 	};
+	
+	case "getObjects": {
+		_request = [PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS,[]] call DB_fnc_buildDBRequest;
+		_return = [_request] call DB_fnc_sendRequest;
+	};
+	
+	// Vehicle Databasing
+	//--- called on new vehicle spawn
+	case "spawnVehicle": {
+		_vehicle = _callbackParam select 0;
+		
+		_className = typeof _vehicle;
+		_priority = 10001;
+		_accesscode = "";
+		_locked = 0;
+		_visible = 1;
+		_player_uuid = "";
+		_hitpoints = getAllHitPointsDamage _vehicle;
+		_damage = damage _vehicle;
+		_fuel = fuel _vehicle;
+		_fuelcargo = getFuelCargo _vehicle;
+		if(isNil {_fuelcargo}) then {_fuelcargo = 0;};
+		if(str(_fuelcargo) find "-1" == 0) then {
+			_fuelcargo = 0;
+		};
+		_repaircargo = getRepairCargo _vehicle;
+		if(isNil {_repaircargo}) then {_repaircargo = 0;};
+		if(str(_repaircargo) find "-1" == 0) then {
+			_repaircargo = 0;
+		};
+		_items = [];  //todo
+		_magazines = [];  //todo
+		_weapons = []; // todo
+		_backpacks = []; // todo
+		_magazinesturrent = []; // todo
+		_variables = [vectorUp _vehicle];
+		_animation_sources = [];
+		_textures = [];
+		_direction = getDir _vehicle;
+		_positionType = 1;
+		_position = getPosATL _vehicle;
+		
+		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
+			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
+			[PROTOCOL_DBCALL_ARGUMENT_VISIBLE,_visible],
+			[PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE, _accesscode],
+			[PROTOCOL_DBCALL_ARGUMENT_LOCKED,_locked],
+			[PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID,_player_uuid],
+			[PROTOCOL_DBCALL_ARGUMENT_HITPOINTS,_hitpoints],
+			[PROTOCOL_DBCALL_ARGUMENT_DAMAGE,_damage],
+			[PROTOCOL_DBCALL_ARGUMENT_FUEL,_fuel],
+			[PROTOCOL_DBCALL_ARGUMENT_FUELCARGO,_fuelcargo],
+			[PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO,_repaircargo],
+			[PROTOCOL_DBCALL_ARGUMENT_ITEMS,_items],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINES,_magazines],
+			[PROTOCOL_DBCALL_ARGUMENT_WEAPONS, _weapons],
+			[PROTOCOL_DBCALL_ARGUMENT_BACKPACKS, _backpacks],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET, _magazinesturrent],
+			[PROTOCOL_DBCALL_ARGUMENT_VARIABLES, _variables],
+			[PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE, _animation_sources],
+			[PROTOCOL_DBCALL_ARGUMENT_TEXTURES, _textures],
+			[PROTOCOL_DBCALL_ARGUMENT_DIRECTION, _direction],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE, _positionType],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONX, _position select 0],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONY, _position select 1],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONZ, _position select 2]
+		]] call DB_fnc_buildDBRequest;
+		_objectUUID = [_request] call DB_fnc_sendRequest;
+		_vehicle setVariable ["oUUID",_objectUUID];
+	};
+	//--- called on vehicle save
+	case "updateVehicle": {
+		_vehicle = _callbackParam select 0;
+		//--- request a locality switch from the owning client & transfer back upon completion? (maybe needed)
+		_object_uuid = _vehicle getVariable ["oUUID",""];
+		_className = typeof _vehicle;
+		_priority = 500;
+		_accesscode = "";
+		_locked = 0;
+		_player_uuid = "";
+		_hitpoints = getAllHitPointsDamage _vehicle;
+		_damage = damage _vehicle;
+		_fuel = fuel _vehicle;
+		_fuelcargo = getFuelCargo _vehicle;
+		if(isNil {_fuelcargo}) then {_fuelcargo = 0;};
+		if(str(_fuelcargo) find "-1" == 0) then {
+			_fuelcargo = 0;
+		};
+		_repaircargo = getRepairCargo _vehicle;
+		if(isNil {_repaircargo}) then {_repaircargo = 0;};
+		if(str(_repaircargo) find "-1" == 0) then {
+			_repaircargo = 0;
+		};
+		_items = [];  //todo
+		_magazines = [];  //todo
+		_weapons = []; // todo
+		_backpacks = []; // todo
+		_magazinesturrent = []; // todo
+		_variables = [vectorUp _vehicle];
+		_animation_sources = [];
+		_textures = [];
+		_direction = getDir _vehicle;
+		_positionType = 1;
+		_position = getPosATL _vehicle;
+		
+		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+			[PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID,_object_uuid],
+			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
+			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
+			[PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE, _accesscode],
+			[PROTOCOL_DBCALL_ARGUMENT_LOCKED,_locked],
+			[PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID,_player_uuid],
+			[PROTOCOL_DBCALL_ARGUMENT_HITPOINTS,_hitpoints],
+			[PROTOCOL_DBCALL_ARGUMENT_DAMAGE,_damage],
+			[PROTOCOL_DBCALL_ARGUMENT_FUEL,_fuel],
+			[PROTOCOL_DBCALL_ARGUMENT_FUELCARGO,_fuelcargo],
+			[PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO,_repaircargo],
+			[PROTOCOL_DBCALL_ARGUMENT_ITEMS,_items],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINES,_magazines],
+			[PROTOCOL_DBCALL_ARGUMENT_WEAPONS, _weapons],
+			[PROTOCOL_DBCALL_ARGUMENT_BACKPACKS, _backpacks],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET, _magazinesturrent],
+			[PROTOCOL_DBCALL_ARGUMENT_VARIABLES, _variables],
+			[PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE, _animation_sources],
+			[PROTOCOL_DBCALL_ARGUMENT_TEXTURES, _textures],
+			[PROTOCOL_DBCALL_ARGUMENT_DIRECTION, _direction],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE, _positionType],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONX, _position select 0],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONY, _position select 1],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONZ, _position select 2]
+		]] call DB_fnc_buildDBRequest;
+		[_request] call DB_fnc_sendRequest;
+	};
+	//--- called on vehicle death
+	case "destroyVehicle": {
+		_vehicle = _callbackParam select 0;
+		
+		_object_uuid = _vehicle getVariable ["oUUID",""];
+		
+		_killerObj = _callbackParam select 1;
+		
+		_killerUUID = "";
+		_type = "Unknown";
+		_weapon = "";
+		_distance = 0;
+		
+		if(!isNull _killerObj && isPlayer _killerObj) then {
+			_killerUUID = _killerObj getVariable ["cUUID",""];
+			_weapon = "TODO: get weapon"; 
+			_distance = _killerObj distance _playerObj;
+			_type = "Killed";
+		};
+		
+		
+		_request = [PROTOCOL_DBCALL_FUNCTION_DECLARE_OBJECT_DEATH,[
+			[PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID,_object_uuid],
+			[PROTOCOL_DBCALL_ARGUMENT_ATTACKER,_killerUUID],
+			[PROTOCOL_DBCALL_ARGUMENT_TYPE,_type],
+			[PROTOCOL_DBCALL_ARGUMENT_WEAPON,_weapon],
+			[PROTOCOL_DBCALL_ARGUMENT_DISTANCE,_distance]
+		]] call DB_fnc_buildDBRequest;
+		[_request] call DB_fnc_sendRequest;
+	};
+	
+	// Building Databasing
+	//--- TODO
+	case "spawnBuilding": {
+		_building = _callbackParam select 0;
+		
+		_className = typeof _vehicle;
+		_priority = 1001;
+		_visible = 1;
+		_accesscode = "";
+		_locked = 0;
+		_player_uuid = "";
+		_hitpoints = getAllHitPointsDamage _vehicle;
+		_damage = damage _vehicle;
+		_fuel = fuel _vehicle;
+		_fuelcargo = getFuelCargo _vehicle;
+		if(isNil {_fuelcargo}) then {_fuelcargo = 0;};
+		if(str(_fuelcargo) find "-1" == 0) then {
+			_fuelcargo = 0;
+		};
+		_repaircargo = getRepairCargo _vehicle;
+		if(isNil {_repaircargo}) then {_repaircargo = 0;};
+		if(str(_repaircargo) find "-1" == 0) then {
+			_repaircargo = 0;
+		};
+		_items = [];  //todo
+		_magazines = [];  //todo
+		_weapons = []; // todo
+		_backpacks = []; // todo
+		_magazinesturrent = []; // todo
+		_variables = [vectorUp _vehicle];
+		_animation_sources = [];
+		_textures = [];
+		_direction = getDir _vehicle;
+		_positionType = 1;
+		_position = getPosATL _vehicle;
+		
+		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
+			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
+			[PROTOCOL_DBCALL_ARGUMENT_VISIBLE,_visible],
+			[PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE, _accesscode],
+			[PROTOCOL_DBCALL_ARGUMENT_LOCKED,_locked],
+			[PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID,_player_uuid],
+			[PROTOCOL_DBCALL_ARGUMENT_HITPOINTS,_hitpoints],
+			[PROTOCOL_DBCALL_ARGUMENT_DAMAGE,_damage],
+			[PROTOCOL_DBCALL_ARGUMENT_FUEL,_fuel],
+			[PROTOCOL_DBCALL_ARGUMENT_FUELCARGO,_fuelcargo],
+			[PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO,_repaircargo],
+			[PROTOCOL_DBCALL_ARGUMENT_ITEMS,_items],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINES,_magazines],
+			[PROTOCOL_DBCALL_ARGUMENT_WEAPONS, _weapons],
+			[PROTOCOL_DBCALL_ARGUMENT_BACKPACKS, _backpacks],
+			[PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET, _magazinesturrent],
+			[PROTOCOL_DBCALL_ARGUMENT_VARIABLES, _variables],
+			[PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE, _animation_sources],
+			[PROTOCOL_DBCALL_ARGUMENT_TEXTURES, _textures],
+			[PROTOCOL_DBCALL_ARGUMENT_DIRECTION, _direction],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE, _positionType],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONX, _position select 0],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONY, _position select 1],
+			[PROTOCOL_DBCALL_ARGUMENT_POSITIONZ, _position select 2]
+		]] call DB_fnc_buildDBRequest;
+		[_request] call DB_fnc_sendRequest;
+	};
 };
+_return;

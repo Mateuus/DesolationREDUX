@@ -19,14 +19,8 @@ if !(_debug) then {
 addMissionEventHandler ["PlayerDisconnected", DS_fnc_playerDisconnected];
 addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
-// vehicle spawn calculations
-_dbSpawnData = []; //--- get this from the database spawning system
-diag_log ("Spawned " + str(count(_dbSpawnData)) + " vehicles from the database");
-_randomSpawnCount = (["NumVehicles"] call DS_fnc_getCfgValue) - count(_dbSpawnData);
-
-
-// start vehicle spawns
-[_randomSpawnCount,_dbSpawnData] spawn DS_fnc_spawnVehicles;
+// start vehicle & object spawns
+[] spawn DS_fnc_spawnVehicles;
 
 // start helicrash spawns
 [] spawn DS_fnc_spawnCrashes;
