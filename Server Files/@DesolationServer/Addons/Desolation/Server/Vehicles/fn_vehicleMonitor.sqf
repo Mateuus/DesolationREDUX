@@ -17,6 +17,7 @@ while{true} do {
 				deleteVehicle _x;
 			};
 		} else {
+			["updateVehicle","",[_x]] call DS_fnc_dbRequest;
 			_newArray1 pushBack _x;
 			_newArray2 pushBack _uuid;
 		};
