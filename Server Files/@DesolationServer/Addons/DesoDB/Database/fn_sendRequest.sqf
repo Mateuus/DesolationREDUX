@@ -44,7 +44,7 @@ while{_doswitchloop} do {
 
             /* empty uuid means function call without retuning data e.g. updates */
             if (_uuid != "") then {
-                _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } }";
+                _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } } }";
 
                 _innerdoloop = true;
                 while{_innerdoloop} do {
