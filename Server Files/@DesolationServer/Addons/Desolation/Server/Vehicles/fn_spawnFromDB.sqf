@@ -13,7 +13,7 @@ if(_visible == 1) then {
 	_position = [_positionx,_positiony,_positionz];
 	
 	_object = _classname createVehicle _position;
-	
+	_object setVariable ["oUUID",_object_uuid];
 	{
 		//  todo
 	} forEach _animation_sources;
@@ -50,6 +50,6 @@ if(_visible == 1) then {
 	_object setVectorUp (_variables select 0);
 	_object setDir _direction;
 	
-	_returnData = [_object,_priority];
+	_returnData = [_object,_priority,_object_uuid];
 };
 _returnData;

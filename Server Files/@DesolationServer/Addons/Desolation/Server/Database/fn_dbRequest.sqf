@@ -249,7 +249,12 @@ switch(_type)do{
 		_positionType = 1;
 		_position = getPosATL _vehicle;
 		
-		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+		_request = [PROTOCOL_DBCALL_FUNCTION_RETURN_UUID,[]] call DB_fnc_buildDBRequest;
+		_objectUUID = [_request] call DB_fnc_sendRequest;
+		_vehicle setVariable ["oUUID",_objectUUID];
+		
+		_request = [PROTOCOL_DBCALL_FUNCTION_QUIET_CREATE_OBJECT,[
+			[PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID,_objectUUID],
 			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
 			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
 			[PROTOCOL_DBCALL_ARGUMENT_VISIBLE,_visible],
@@ -275,8 +280,7 @@ switch(_type)do{
 			[PROTOCOL_DBCALL_ARGUMENT_POSITIONY, _position select 1],
 			[PROTOCOL_DBCALL_ARGUMENT_POSITIONZ, _position select 2]
 		]] call DB_fnc_buildDBRequest;
-		_objectUUID = [_request] call DB_fnc_sendRequest;
-		_vehicle setVariable ["oUUID",_objectUUID];
+		[_request] spawn DB_fnc_sendRequest;
 	};
 	//--- called on vehicle save
 	case "updateVehicle": {
@@ -343,10 +347,7 @@ switch(_type)do{
 	};
 	//--- called on vehicle death
 	case "destroyVehicle": {
-		_vehicle = _callbackParam select 0;
-		
-		_object_uuid = _vehicle getVariable ["oUUID",""];
-		
+		_object_uuid = _callbackParam select 0;	
 		_killerObj = _callbackParam select 1;
 		
 		_killerUUID = "";
@@ -408,7 +409,7 @@ switch(_type)do{
 		_positionType = 1;
 		_position = getPosATL _vehicle;
 		
-		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+		_request = [PROTOCOL_DBCALL_FUNCTION_QUIET_CREATE_OBJECT,[
 			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
 			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
 			[PROTOCOL_DBCALL_ARGUMENT_VISIBLE,_visible],

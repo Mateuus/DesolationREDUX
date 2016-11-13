@@ -6,7 +6,8 @@
 */
 private["_types","_data","_config","_cfg","_locations","_directions","_type","_houses","_index","_hData","_vehicles","_bikeLimit","_housesOrdered","_houses","_lIndex","_v","_vDir","_posagl","_posasl","_tv","_hitpoints","_value"];
 
-
+DS_var_Vehicles = [];
+DS_var_VehicleUUIDS = [];
 
 
 _dbSpawnData = ["getObjects"] call DS_fnc_dbRequest;
@@ -21,6 +22,11 @@ diag_log "Spawning DB objects";
 	_object = _data select 0;
 	_tvs pushBack _object;
 	_priority = _data select 1;
+	_oUUID = _data select 2;
+	
+	DS_var_Vehicles pushback _object;
+	DS_var_VehicleUUIDS pushback _oUUID;
+	
 	if(_priority >= 10000) then {
 		_numVtoSpawn = _numVtoSpawn - 1;
 	};
@@ -34,6 +40,7 @@ if(_numVtoSpawn <= 0) exitWith {
 		_x enableSimulationGlobal false;
 	} forEach _tvs;
 	diag_log "Done spawning vehicles";
+	[] spawn DS_fnc_vehicleMonitor;
 };
 diag_log ("Spawning " + str(_numVtoSpawn) + " more vehicles.");
 
@@ -144,6 +151,12 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 				_tvs pushBack _tv;
 				_numVtoSpawn = _numVtoSpawn - 1;
 				["spawnVehicle","",[_tv]] call DS_fnc_dbRequest;
+				
+				_oUUID = _tv getVariable ["oUUID",""];
+				
+				DS_var_Vehicles pushback _tv;
+				DS_var_VehicleUUIDS pushback _oUUID;
+				
 			};
 		};
 	};
@@ -154,3 +167,4 @@ uiSleep 3;
 	_x enableSimulationGlobal false;
 } forEach _tvs;
 diag_log "Done spawning vehicles";
+[] spawn DS_fnc_vehicleMonitor;
