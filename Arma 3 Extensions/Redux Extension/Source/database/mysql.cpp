@@ -922,6 +922,20 @@ std::string db_handler::createObject(std::string classname, int priority, int vi
 		float direction, int positiontype, float positionx, float positiony, float positionz) {
 
 	std::string objectuuid = orderedUUID();
+
+	this->createObject(objectuuid, classname, priority, visible, accesscode, locked, player_uuid,
+			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
+			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
+
+	return objectuuid;
+}
+
+std::string db_handler::createObject(std::string objectuuid, std::string classname, int priority, int visible, std::string accesscode,
+		int locked, std::string player_uuid, std::string hitpoints, float damage, float fuel, float fuelcargo,
+		float repaircargo, std::string items, std::string magazines, std::string weapons, std::string backpacks,
+		std::string magazinesturret, std::string variables, std::string animationstate, std::string textures,
+		float direction, int positiontype, float positionx, float positiony, float positionz) {
+
 	std::string query;
 
 	if (player_uuid == "") {

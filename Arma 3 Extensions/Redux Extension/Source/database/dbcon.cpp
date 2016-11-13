@@ -76,6 +76,9 @@ dbcon::dbcon() {
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT),
 					std::make_tuple(boost::bind(&dbcon::createObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_QUIET_CREATE_OBJECT),
+						std::make_tuple(boost::bind(&dbcon::qcreateObject, this, _1, _2), QUIET_MAGIC)));
+	dbfunctions.insert(
 			std::make_pair(std::string(PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT),
 					std::make_tuple(boost::bind(&dbcon::updateObject, this, _1, _2), ASYNC_MAGIC)));
 	dbfunctions.insert(
@@ -581,6 +584,40 @@ std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_han
 	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
 
 	std::string result = dbhandler->createObject(classname, priority, visible, accesscode, locked, player_uuid,
+			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
+			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
+
+	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
+}
+
+std::string dbcon::qcreateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
+	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
+	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
+	int visible = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_VISIBLE);
+	std::string accesscode = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE);
+	int locked = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_LOCKED);
+	std::string player_uuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
+	std::string hitpoints = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_HITPOINTS);
+	float damage = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DAMAGE);
+	float fuel = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUEL);
+	float fuelcargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_FUELCARGO);
+	float repaircargo = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_REPAIRCARGO);
+	std::string items = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ITEMS);
+	std::string magazines = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINES);
+	std::string weapons = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_WEAPONS);
+	std::string backpacks = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_BACKPACKS);
+	std::string magazinesturret = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_MAGAZINESTURRET);
+	std::string variables = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABLES);
+	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
+	std::string textures = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TEXTURES);
+	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
+	int positiontype = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE);
+	float positionx = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONX);
+	float positiony = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONY);
+	float positionz = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_POSITIONZ);
+
+	std::string result = dbhandler->createObject(objectuuid, classname, priority, visible, accesscode, locked, player_uuid,
 			hitpoints, damage, fuel, fuelcargo, repaircargo, items, magazines, weapons, backpacks, magazinesturret,
 			variables, animationstate, textures, direction, positiontype, positionx, positiony, positionz);
 
