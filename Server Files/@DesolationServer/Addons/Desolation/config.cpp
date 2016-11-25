@@ -197,6 +197,8 @@ class CfgFunctions
 			file = "Desolation\Server\Crashes";
 			isserver = 1;
 			class spawnCrashes {};
+			class getCrashLocation {};
+			class initHeliCrashes {};
 		};
 		class Server_Zombies {
 			file = "Desolation\Server\Zombies";
@@ -217,6 +219,7 @@ class CfgFunctions
 			isserver = 1;
 			class getCfgValue {};
 			class shuffleArray {};
+			class genRandMapPos {};
 		};
 		class Server {
 			file = "Desolation\Server";
