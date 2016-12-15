@@ -26,6 +26,7 @@
 #include <boost/function.hpp>
 #include "constants.hpp"
 #include "database/dbcon.hpp"
+#include "fileio/fileio.hpp"
 
 class redex {
 public:
@@ -40,6 +41,7 @@ private:
 	typedef std::map<std::string, DLL_FUNCTION> DLL_FUNCTIONS;
 	DLL_FUNCTIONS dllfunctions;
 	dbcon dbconnection;
+	fileio fileinputoutput;
 
 	std::mutex msgmutex;
 	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::queue<std::string>> MESSAGE_MAP;
@@ -48,6 +50,7 @@ private:
 	std::string initdb(boost::property_tree::ptree &dllarguments);
 	std::string termdb(boost::property_tree::ptree &dllarguments);
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
+	std::string iocall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
 	std::string chkmsg(boost::property_tree::ptree &dllarguments);
 

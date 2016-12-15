@@ -1,7 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(REDEX)
 
-FILE(GLOB LIBSOURCES "Source/*.cpp" "Source/utils/*.cpp" "Source/database/*.cpp")
+FILE(GLOB LIBSOURCES "Source/*.cpp" "Source/utils/*.cpp" "Source/database/*.cpp" "Source/fileio/*.cpp")
 FILE(GLOB TESTSSOURCES "Source/TestApps/*.cpp")
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/Binaries)
 

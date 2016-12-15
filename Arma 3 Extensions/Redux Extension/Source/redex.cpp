@@ -233,3 +233,7 @@ std::string redex::dbcall(boost::property_tree::ptree &dllarguments) {
 	return dbconnection.processDBCall(dllarguments);
 }
 
+std::string redex::iocall(boost::property_tree::ptree &dllarguments) {
+	return fileinputoutput.processIOCall(dllarguments);
+}
+
