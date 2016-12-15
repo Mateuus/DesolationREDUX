@@ -1,0 +1,72 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, SM_Zombz_System">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,1025.000000,800.000000,1125.000000,850.000000,0.000000,"Init"};
+item1[] = {"True",8,218,1025.000000,900.000000,1125.000000,950.000000,0.000000,"True"};
+item2[] = {"Calculate_Taks",2,250,1025.000000,1000.000000,1125.000000,1050.000000,0.000000,"Calculate" \n "Taks"};
+item3[] = {"Timeout",4,218,900.000000,1000.000000,1000.000000,1050.000000,0.000000,"Timeout"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,2};
+globals[] = {0.000000,0,0,0,0,640,480,2,6,6316128,1,785.029663,1249.224976,1257.105347,709.712524,597,755,1};
+window[] = {2,-1,-1,-1,-1,610,1306,2456,-56,3,615};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "SM_Zombz_System";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "True">*/
+                                class True
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Calculate_Taks";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Calculate_Taks">*/
+                class Calculate_Taks
+                {
+                        name = "Calculate_Taks";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[] call SM_System_Run;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Calculate_Taks";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((time - SM_System_TaskTimer) >= SM_System_TaskSleep)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/
