@@ -42,6 +42,7 @@ FIND_PACKAGE(Boost
              COMPONENTS thread
                         system
                         random
+                        regex
              REQUIRED)
 
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}) 

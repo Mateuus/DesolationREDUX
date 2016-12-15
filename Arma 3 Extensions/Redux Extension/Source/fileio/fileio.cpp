@@ -16,9 +16,12 @@
  * GNU General Public License for more details.
  */
 
+#include <unistd.h>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
+#include <boost/property_tree/ini_parser.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/regex.hpp>
 #include <cassert>
 #include <exception>
 #include <stdexcept>
@@ -36,6 +39,12 @@ fileio::fileio() {
 	iofunctions.insert(
 			std::make_pair(std::string(PROTOCOL_IOCALL_FUNCTION_APPEND_FILE),
 					boost::bind(&fileio::appendFile, this, _1)));
+	iofunctions.insert(
+			std::make_pair(std::string(PROTOCOL_IOCALL_FUNCTION_PLUGINSYSTEM_GETINITORDER),
+					boost::bind(&fileio::GetInitOrder, this, _1)));
+	iofunctions.insert(
+				std::make_pair(std::string(PROTOCOL_IOCALL_FUNCTION_PLUGINSYSTEM_GETCFGFILE),
+						boost::bind(&fileio::GetCfgFile, this, _1)));
 
     boost::property_tree::ptree configtree;
     boost::property_tree::json_parser::read_json("redex.json", configtree);
@@ -83,6 +92,118 @@ std::string fileio::processIOCall(boost::property_tree::ptree &iocall) {
 	}
 
 	return returnString;
+}
+
+std::string fileio::GetInitOrder(boost::property_tree::ptree &ioarguments) {
+#if defined(__linux__)
+	std::string filename = "@DesolationServer/Config/pluginlist.cfg";
+	if (access(filename.c_str(), F_OK) == -1) {
+		std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
+	}
+#else
+	std::string filename = "@DesolationServer\\Config\\PluginList.cfg";
+#endif
+
+	if (access(filename.c_str(), F_OK) != -1) {
+		int charpos, linenum;
+		std::string returnString = "[";
+		std::ifstream infile(filename);
+		std::string line;
+
+		linenum = 0;
+		while (std::getline(infile, line)) {
+			std::istringstream iss(line);
+
+			// remove comments
+			boost::regex commentexpression("\\s*#.*");
+			line = boost::regex_replace(line, commentexpression, "");
+
+			// skip empty lines
+			boost::regex nonEmptyLineRegex("\\S");
+			boost::cmatch what;
+			if (!boost::regex_match(line.c_str(), what, nonEmptyLineRegex)) {
+				continue;
+			}
+
+			// add second " to get the string after call compile to concatinate with the remaining parts
+			charpos = 0;
+			while ((charpos = line.find("\"", charpos)) != std::string::npos) {
+				line.insert(charpos, "\"");
+				charpos += 2;
+			}
+
+			if (linenum != 0) {
+				returnString += ",";
+			}
+
+			returnString += "\"" + line + "\"";
+
+			linenum++;
+		}
+
+		returnString += "]";
+
+		return returnString;
+	} else {
+		throw std::runtime_error("cannot read file" + filename);
+	}
+
+	return "";
+}
+
+std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
+#if defined(__linux__)
+	std::string path = "@DesolationServer/Config/";
+#else
+	std::string path = "@DesolationServer\\Config\\";
+#endif
+	std::string returnString = "[";
+	int linenum = 0;
+
+	for (auto& item : ioarguments.get_child("configfiles")) {
+		std::string filename = item.second.get_value<std::string>();
+
+		boost::regex dirupexpression("\\.\\.");
+		filename = boost::regex_replace(filename, dirupexpression, "", boost::match_default | boost::format_all);
+
+		filename = path + filename + ".cfg";
+
+#if defined(__linux__)
+		if (access(filename.c_str(), F_OK) == -1) {
+			std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
+		}
+#endif
+
+		if (access(filename.c_str(), F_OK) != -1) {
+			boost::property_tree::ptree configtree;
+			boost::property_tree::ini_parser::read_ini(filename, configtree);
+
+			BOOST_FOREACH(boost::property_tree::ptree::value_type &val, configtree) {
+			    // val.first is the name of the child.
+			    // val.second is the child tree.
+				std::string key = val.first;
+				std::string value = val.second.get_value<std::string>();
+
+				// remove comments
+				boost::regex commentexpression("\\s*#.*");
+				value = boost::regex_replace(value, commentexpression, "");
+
+				if (linenum != 0) {
+					returnString += ",";
+				}
+
+				returnString += "[\"";
+				returnString += key;
+				returnString += "\",\"";
+				returnString += value;
+				returnString += "\"]";
+
+				linenum++;
+			}
+		}
+	}
+
+	returnString += "]";
 }
 
 std::string fileio::readFile(boost::property_tree::ptree &ioarguments) {
