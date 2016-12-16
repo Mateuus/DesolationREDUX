@@ -18,6 +18,8 @@
 #ifndef SOURCE_CONSTANTS_HPP_
 #define SOURCE_CONSTANTS_HPP_
 
+#define CONFIG_FILE_NAME "libredex.cfg"
+
 /*
  * Magic Numbers
  */

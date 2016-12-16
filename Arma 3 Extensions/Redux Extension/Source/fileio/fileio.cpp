@@ -47,7 +47,7 @@ fileio::fileio() {
 						boost::bind(&fileio::GetCfgFile, this, _1)));
 
     boost::property_tree::ptree configtree;
-    boost::property_tree::json_parser::read_json("redex.json", configtree);
+    boost::property_tree::json_parser::read_json(CONFIG_FILE_NAME, configtree);
 
 
     for (auto& item : configtree.get_child("fileio.readonce")) {

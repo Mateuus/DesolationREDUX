@@ -17,7 +17,8 @@
 
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
-#include <boost/property_tree/ini_parser.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/algorithm/string.hpp>
 #include <cassert>
 #include <exception>
 #include <stdexcept>
@@ -96,7 +97,7 @@ dbcon::dbcon() {
 
 dbcon::~dbcon() {
 	intptr_t syncdbhandlerpointer;
-	db_handler *syncdbhandler;
+	base_db_handler *syncdbhandler;
 
 	DBioServiceWork.reset(); // stop all idle work!
 	DBioService.stop(); // terminate all work
@@ -105,7 +106,7 @@ dbcon::~dbcon() {
 
 	// while there is an handler call disconnect
 	while (syncdbhandlerpool.pop(syncdbhandlerpointer)) {
-		syncdbhandler = (db_handler*) syncdbhandlerpointer;
+		syncdbhandler = (base_db_handler*) syncdbhandlerpointer;
 		syncdbhandler->disconnect();
 	}
 
@@ -120,6 +121,7 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 
 	if (!poolinitialized) {
 		int i;
+		std::string type;
 		std::string hostname;
 		std::string user;
 		std::string password;
@@ -132,22 +134,23 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 		unsigned int vacmaxcount;
 		unsigned int vacignoredays;
 
-		db_handler *syncdbhandler;
+		base_db_handler *syncdbhandler;
 		boost::property_tree::ptree configtree;
-		boost::property_tree::ini_parser::read_ini("redex.ini", configtree);
+		boost::property_tree::json_parser::read_json(CONFIG_FILE_NAME, configtree);
 
-		hostname = configtree.get<std::string>("dbhostname");
-		user = configtree.get<std::string>("dbuser");
-		password = configtree.get<std::string>("dbpassword");
-		database = configtree.get<std::string>("database");
-		port = configtree.get<unsigned int>("dbport");
+		type = configtree.get<std::string>("database.type");
+		hostname = configtree.get<std::string>("database.hostname");
+		user = configtree.get<std::string>("database.user");
+		password = configtree.get<std::string>("database.password");
+		database = configtree.get<std::string>("database.dbname");
+		port = configtree.get<unsigned int>("database.port");
 
-		whitelistonly = configtree.get<bool>("whitelistonly");
-		allowsteamapi = configtree.get<bool>("allowsteamapi");
+		whitelistonly = configtree.get<bool>("gamesettings.whitelistonly");
+		allowsteamapi = configtree.get<bool>("gamesettings.allowsteamapi");
 
-		vaccheckban = configtree.get<bool>("vaccheckban");
-		vacmaxcount = configtree.get<unsigned int>("vacmaxcount");
-		vacignoredays = configtree.get<unsigned int>("vacignoredays");
+		vaccheckban = configtree.get<bool>("gamesettings.vaccheckban");
+		vacmaxcount = configtree.get<unsigned int>("gamesettings.vacmaxcount");
+		vacignoredays = configtree.get<unsigned int>("gamesettings.vacignoredays");
 
 		if (!syncdbhandlerpool.is_lock_free()) {
 			throw std::runtime_error("syncdbhandlerpool is not lock free");
@@ -155,8 +158,15 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 
 		/* for the beginning we want to have some spare pool handlers */
 		syncdbhandlerpool.reserve(poolsize + 3);
+
 		for (i = 0; i < poolsize+2; i++) {
-			syncdbhandler = new (db_handler);
+			if (boost::iequals(type, "MYSQL")) {
+				std::cout << "creating mysql_db_handler" << std::endl;
+				syncdbhandler = new (mysql_db_handler);
+			} else {
+				syncdbhandler = new (base_db_handler);
+			}
+
 			syncdbhandler->connect(hostname, user, password, database, port, whitelistonly, allowsteamapi, vaccheckban,
 					vacmaxcount, vacignoredays, worlduuid);
 			syncdbhandlerpool.bounded_push((intptr_t) syncdbhandler);
@@ -180,7 +190,7 @@ int dbcon::spawnHandler(unsigned int poolsize, std::string worlduuid) {
 
 void dbcon::terminateHandler() {
 	intptr_t syncdbhandlerpointer;
-	db_handler *syncdbhandler;
+	base_db_handler *syncdbhandler;
 
 	// prevent new requests
 	poolcleanup = true;
@@ -200,7 +210,7 @@ void dbcon::terminateHandler() {
 
 	// while there is an handler call disconnect
 	while (syncdbhandlerpool.pop(syncdbhandlerpointer)) {
-		syncdbhandler = (db_handler*) syncdbhandlerpointer;
+		syncdbhandler = (base_db_handler*) syncdbhandlerpointer;
 		syncdbhandler->disconnect();
 	}
 
@@ -260,14 +270,14 @@ std::string dbcon::syncCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptr
 	std::string returnString;
 
 	intptr_t syncdbhandlerpointer;
-	db_handler *syncdbhandler;
+	base_db_handler *syncdbhandler;
 
 	// try to get an db handler
 	while (!syncdbhandlerpool.pop(syncdbhandlerpointer)) {
 		printf("i am in a loop! :( \n");
 	}
 	try {
-		syncdbhandler = (db_handler*) syncdbhandlerpointer;
+		syncdbhandler = (base_db_handler*) syncdbhandlerpointer;
 
 		returnString = func(dbarguments, syncdbhandler);
 
@@ -329,16 +339,16 @@ std::string dbcon::handlelessCall(DB_FUNCTION_INFO funcinfo, boost::property_tre
 	return func(dbarguments, NULL);
 }
 
-std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::getUUID(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + orderedUUID() + "\"]";
 }
 
-std::string dbcon::echo(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::echo(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string echostring = dbarguments.get<std::string>("echostring");
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + echostring + "\"]";
 }
 
-std::string dbcon::chkasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::chkasmsg(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dbarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
 	std::string returnString;
 
@@ -356,7 +366,7 @@ std::string dbcon::chkasmsg(boost::property_tree::ptree &dbarguments, db_handler
 	return returnString;
 }
 
-std::string dbcon::rcvasmsg(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::rcvasmsg(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dbarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
 	std::string returnString;
 
@@ -378,7 +388,7 @@ std::string dbcon::rcvasmsg(boost::property_tree::ptree &dbarguments, db_handler
 	return returnString;
 }
 
-std::string dbcon::debugCall(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::debugCall(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string matrix;
 	bool placecommaone = false;
 	bool placecommatwo = false;
@@ -409,7 +419,7 @@ std::string dbcon::debugCall(boost::property_tree::ptree &dbarguments, db_handle
 }
 
 
-std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string version;
 
 	version = dbhandler->querydbversion();
@@ -419,7 +429,7 @@ std::string dbcon::dbVersion(boost::property_tree::ptree &dbarguments, db_handle
 
 
 
-std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string nickname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_NICKNAME);
 	std::string steamid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_STEAMID);
 	std::string playerinfo = dbhandler->loadPlayer(nickname, steamid);
@@ -427,7 +437,7 @@ std::string dbcon::loadPlayer(boost::property_tree::ptree &dbarguments, db_handl
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + playerinfo + "]";
 }
 
-std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 
 	std::string result = dbhandler->loadAvChars(playeruuid);
@@ -435,7 +445,7 @@ std::string dbcon::loadAvChars(boost::property_tree::ptree &dbarguments, db_hand
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
-std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 	std::string variabuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_VARIABUUID);
 
@@ -444,7 +454,7 @@ std::string dbcon::linkChars(boost::property_tree::ptree &dbarguments, db_handle
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
-std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 
 	std::string result = dbhandler->loadChar(playeruuid);
@@ -452,7 +462,7 @@ std::string dbcon::loadChar(boost::property_tree::ptree &dbarguments, db_handler
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
-std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string playeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID);
 	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
 	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
@@ -487,7 +497,7 @@ std::string dbcon::createChar(boost::property_tree::ptree &dbarguments, db_handl
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
 	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
 	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
@@ -522,7 +532,7 @@ std::string dbcon::updateChar(boost::property_tree::ptree &dbarguments, db_handl
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
 	std::string animationstate = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE);
 	float direction = dbarguments.get<float>(PROTOCOL_DBCALL_ARGUMENT_DIRECTION);
@@ -537,7 +547,7 @@ std::string dbcon::locupdateChar(boost::property_tree::ptree &dbarguments, db_ha
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::killChar(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::killChar(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CHARUUID);
 	std::string attackeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ATTACKER);
 	std::string type = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TYPE);
@@ -549,7 +559,7 @@ std::string dbcon::killChar(boost::property_tree::ptree &dbarguments, db_handler
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 
 	std::string result = dbhandler->loadObject(objectuuid);
@@ -557,7 +567,7 @@ std::string dbcon::loadObject(boost::property_tree::ptree &dbarguments, db_handl
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", " + result + "]";
 }
 
-std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
 	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
 	int visible = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_VISIBLE);
@@ -590,7 +600,7 @@ std::string dbcon::createObject(boost::property_tree::ptree &dbarguments, db_han
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::qcreateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::qcreateObject(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
 	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
@@ -624,7 +634,7 @@ std::string dbcon::qcreateObject(boost::property_tree::ptree &dbarguments, db_ha
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string objectuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 	std::string classname = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_CLASSNAME);
 	int priority = dbarguments.get<int>(PROTOCOL_DBCALL_ARGUMENT_PRIORITY);
@@ -659,7 +669,7 @@ std::string dbcon::updateObject(boost::property_tree::ptree &dbarguments, db_han
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::killObject(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::killObject(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
 	std::string charuuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID);
 	std::string attackeruuid = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_ATTACKER);
 	std::string type = dbarguments.get<std::string>(PROTOCOL_DBCALL_ARGUMENT_TYPE);
@@ -671,7 +681,7 @@ std::string dbcon::killObject(boost::property_tree::ptree &dbarguments, db_handl
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"" + result + "\"]";
 }
 
-std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, db_handler *dbhandler) {
+std::string dbcon::dumpObjects(boost::property_tree::ptree &dbarguments, base_db_handler *dbhandler) {
         std::string matrix;
         bool placecommaone = false;
         bool placecommatwo = false;

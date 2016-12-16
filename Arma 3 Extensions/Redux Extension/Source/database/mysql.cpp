@@ -21,7 +21,7 @@
 #include "database/mysql.hpp"
 #include "utils/uuid.hpp"
 
-db_handler::db_handler() {
+mysql_db_handler::mysql_db_handler() {
 	this->hostname = "";
 	this->user = "";
 	this->password = "";
@@ -42,16 +42,16 @@ db_handler::db_handler() {
 	connection = mysql_init(NULL);
 
 	if (connection == NULL) {
-		throw std::runtime_error("problem while initializing db_handler: " + std::string(mysql_error(connection)));
+		throw std::runtime_error("problem while initializing mysql_db_handler: " + std::string(mysql_error(connection)));
 	}
 }
 
-db_handler::~db_handler() {
+mysql_db_handler::~mysql_db_handler() {
 	mysql_close(connection);
 	return;
 }
 
-void db_handler::connect(std::string hostname, std::string user, std::string password, std::string database,
+void mysql_db_handler::connect(std::string hostname, std::string user, std::string password, std::string database,
 		unsigned int port, bool whitelistonly, bool allowsteamapi, bool vaccheckban, unsigned int vacmaxcount,
 		unsigned int vacignoredays, std::string worlduuid) {
 	this->hostname = hostname;
@@ -77,7 +77,7 @@ void db_handler::connect(std::string hostname, std::string user, std::string pas
 			this->user.c_str(), this->password.c_str(), this->database.c_str(),
 			this->port, this->socket.c_str(), this->flag) == NULL) {
 		throw std::runtime_error(
-				"connection problem while initializing db_handler: "
+				"connection problem while initializing mysql_db_handler: "
 						+ std::string(mysql_error(connection)));
 		mysql_close(connection);
 	} else {
@@ -87,12 +87,12 @@ void db_handler::connect(std::string hostname, std::string user, std::string pas
 	return;
 }
 
-void db_handler::disconnect() {
+void mysql_db_handler::disconnect() {
 	mysql_close(connection);
 	return;
 }
 
-void db_handler::rawquery(std::string query) {
+void mysql_db_handler::rawquery(std::string query) {
 	if (mysql_real_query(connection, query.c_str(), query.size())) {
 		throw std::runtime_error(
 				"error while executing query: "
@@ -104,7 +104,7 @@ void db_handler::rawquery(std::string query) {
 	return;
 }
 
-void db_handler::rawquery(std::string query, MYSQL_RES **result) {
+void mysql_db_handler::rawquery(std::string query, MYSQL_RES **result) {
 	if (mysql_real_query(connection, query.c_str(), query.size())) {
 		throw std::runtime_error(
 				"error while executing query: "
@@ -126,7 +126,7 @@ void db_handler::rawquery(std::string query, MYSQL_RES **result) {
 	return;
 }
 
-std::string db_handler::querydbversion() {
+std::string mysql_db_handler::querydbversion() {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	std::string version;
@@ -142,7 +142,7 @@ std::string db_handler::querydbversion() {
 	return version;
 }
 
-std::vector< std::vector<std::string> > db_handler::verbosetest(std::string query) {
+std::vector< std::vector<std::string> > mysql_db_handler::verbosetest(std::string query) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	MYSQL_FIELD *field;
@@ -186,7 +186,7 @@ std::vector< std::vector<std::string> > db_handler::verbosetest(std::string quer
 	return resultmatrix;
 }
 
-std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
+std::string mysql_db_handler::loadPlayer(std::string nickname, std::string steamid) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	unsigned int fieldcount;
@@ -268,7 +268,7 @@ std::string db_handler::loadPlayer(std::string nickname, std::string steamid) {
 	return "[\"" + playeruuid + "\", \"" + death_persistent_variables_uuid + "\", [" + friendlist + "]]";
 }
 
-std::string db_handler::loadAvChars(std::string playeruuid) {
+std::string mysql_db_handler::loadAvChars(std::string playeruuid) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	unsigned int fieldcount;
@@ -365,7 +365,7 @@ std::string db_handler::loadAvChars(std::string playeruuid) {
 	return charinfo;
 }
 
-std::string db_handler::linkChars(std::string playeruuid, std::string variabuuid) {
+std::string mysql_db_handler::linkChars(std::string playeruuid, std::string variabuuid) {
 	std::string query = str(
 			boost::format { "INSERT INTO `player_on_world_has_death_persistent_variables` "
 					"(`player_uuid`, `world_uuid`, `death_persistent_variables_uuid`) "
@@ -379,7 +379,7 @@ std::string db_handler::linkChars(std::string playeruuid, std::string variabuuid
 	return playeruuid;
 }
 
-std::string db_handler::loadChar(std::string playeruuid) {
+std::string mysql_db_handler::loadChar(std::string playeruuid) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	unsigned int fieldcount;
@@ -493,7 +493,7 @@ std::string db_handler::loadChar(std::string playeruuid) {
 }
 
 
-std::string db_handler::createChar(std::string playeruuid, std::string animationstate, float direction,
+std::string mysql_db_handler::createChar(std::string playeruuid, std::string animationstate, float direction,
 		int positiontype, float positionx, float positiony, float positionz, std::string classname,
 		std::string hitpoints, std::string variables, std::string persistentvariables, std::string textures,
 		std::string inventoryuniform, std::string inventoryvest, std::string inventorybackpack, std::string uniform,
@@ -676,7 +676,7 @@ std::string db_handler::createChar(std::string playeruuid, std::string animation
 	return charuuid;
 }
 
-std::string db_handler::updateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
+std::string mysql_db_handler::updateChar(std::string charuuid, std::string animationstate, float direction, int positiontype,
 		float positionx, float positiony, float positionz, std::string classname, std::string hitpoints,
 		std::string variables, std::string persistentvariables, std::string textures, std::string inventoryuniform,
 		std::string inventoryvest, std::string inventorybackpack, std::string uniform, std::string vest,
@@ -734,7 +734,7 @@ std::string db_handler::updateChar(std::string charuuid, std::string animationst
 	return charuuid;
 }
 
-std::string db_handler::locupdateChar(std::string charuuid, std::string animationstate, float direction,
+std::string mysql_db_handler::locupdateChar(std::string charuuid, std::string animationstate, float direction,
 		int positiontype, float positionx, float positiony, float positionz) {
 	std::string query = str(
 			boost::format { "UPDATE `characterview` "
@@ -753,7 +753,7 @@ std::string db_handler::locupdateChar(std::string charuuid, std::string animatio
 	return charuuid;
 }
 
-std::string db_handler::killChar(std::string charuuid, std::string attackeruuid, std::string type,
+std::string mysql_db_handler::killChar(std::string charuuid, std::string attackeruuid, std::string type,
 		std::string weapon, float distance) {
 	std::string killuuid = orderedUUID();
 
@@ -798,7 +798,7 @@ std::string db_handler::killChar(std::string charuuid, std::string attackeruuid,
 	return killuuid;
 }
 
-std::string db_handler::loadObject(std::string objectuuid) {
+std::string mysql_db_handler::loadObject(std::string objectuuid) {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	unsigned int fieldcount;
@@ -915,7 +915,7 @@ std::string db_handler::loadObject(std::string objectuuid) {
 	return objectinfo;
 }
 
-std::string db_handler::createObject(std::string classname, int priority, int visible, std::string accesscode,
+std::string mysql_db_handler::createObject(std::string classname, int priority, int visible, std::string accesscode,
 		int locked, std::string player_uuid, std::string hitpoints, float damage, float fuel, float fuelcargo,
 		float repaircargo, std::string items, std::string magazines, std::string weapons, std::string backpacks,
 		std::string magazinesturret, std::string variables, std::string animationstate, std::string textures,
@@ -930,7 +930,7 @@ std::string db_handler::createObject(std::string classname, int priority, int vi
 	return objectuuid;
 }
 
-std::string db_handler::createObject(std::string objectuuid, std::string classname, int priority, int visible, std::string accesscode,
+std::string mysql_db_handler::createObject(std::string objectuuid, std::string classname, int priority, int visible, std::string accesscode,
 		int locked, std::string player_uuid, std::string hitpoints, float damage, float fuel, float fuelcargo,
 		float repaircargo, std::string items, std::string magazines, std::string weapons, std::string backpacks,
 		std::string magazinesturret, std::string variables, std::string animationstate, std::string textures,
@@ -983,7 +983,7 @@ std::string db_handler::createObject(std::string objectuuid, std::string classna
 	return objectuuid;
 }
 
-std::string db_handler::updateObject(std::string objectuuid, std::string classname, int priority, int visible,
+std::string mysql_db_handler::updateObject(std::string objectuuid, std::string classname, int priority, int visible,
 		std::string accesscode, int locked, std::string player_uuid, std::string hitpoints, float damage, float fuel,
 		float fuelcargo, float repaircargo, std::string items, std::string magazines, std::string weapons,
 		std::string backpacks, std::string magazinesturret, std::string variables, std::string animationstate,
@@ -1064,7 +1064,7 @@ std::string db_handler::updateObject(std::string objectuuid, std::string classna
 		return objectuuid;
 }
 
-std::string db_handler::killObject(std::string objectuuid, std::string attackeruuid, std::string type,
+std::string mysql_db_handler::killObject(std::string objectuuid, std::string attackeruuid, std::string type,
 		std::string weapon, float distance) {
 	std::string killuuid = orderedUUID();
 
@@ -1106,7 +1106,7 @@ std::string db_handler::killObject(std::string objectuuid, std::string attackeru
 	return killuuid;
 }
 
-std::vector< std::vector<std::string> > db_handler::dumpObjects() {
+std::vector< std::vector<std::string> > mysql_db_handler::dumpObjects() {
 	MYSQL_RES *result;
 	MYSQL_ROW row;
 	unsigned int fieldcount;
