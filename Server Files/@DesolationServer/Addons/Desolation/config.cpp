@@ -200,12 +200,6 @@ class CfgFunctions
 			class getCrashLocation {};
 			class initHeliCrashes {};
 		};
-		class Server_Zombies {
-			file = "Desolation\Server\Zombies";
-			isserver = 1;
-			class spawnZombies {};
-			class startMasterBrain {};
-		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;

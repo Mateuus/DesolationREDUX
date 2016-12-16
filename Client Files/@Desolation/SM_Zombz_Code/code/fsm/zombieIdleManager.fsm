@@ -1,0 +1,217 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZombieIdleManager">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,1125.000000,900.000000,1225.000000,950.000000,0.000000,"Init"};
+item1[] = {"Client",4,218,1125.000000,975.000000,1225.000000,1025.000000,0.000000,"Client"};
+item2[] = {"Not_Client",4,218,1250.000000,900.000000,1350.000000,950.000000,0.000000,"Not-Client"};
+item3[] = {"Calculate_All_Zo",2,4346,1125.000000,1050.000000,1225.000000,1100.000000,0.000000,"Calculate" \n "All" \n "Zombies"};
+item4[] = {"End",1,250,1250.000000,975.000000,1350.000000,1025.000000,0.000000,"End"};
+item5[] = {"Timeout",4,218,1250.000000,1050.000000,1350.000000,1100.000000,0.000000,"Timeout"};
+link0[] = {0,1};
+link1[] = {0,2};
+link2[] = {1,3};
+link3[] = {2,4};
+link4[] = {3,5};
+link5[] = {5,3};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,920.611328,1463.949585,1267.831055,855.658447,1236,949,1};
+window[] = {2,-1,-1,-1,-1,888,276,1426,222,3,1254};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "ZombieIdleManager";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_Client">*/
+                                class Not_Client
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(hasInterface)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Client">*/
+                                class Client
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Calculate_All_Zo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"hasInterface"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Calculate_All_Zo">*/
+                class Calculate_All_Zo
+                {
+                        name = "Calculate_All_Zo";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"""Checking idle zombies"" call SM_Util_Log;" \n
+                         "if !(SM_IdleZombies isEqualTo []) then" \n
+                         "{" \n
+                         "	_deleted = [];" \n
+                         "" \n
+                         "	""Calculating idle zombies"" call SM_Util_Log;" \n
+                         "	{" \n
+                         "		format [""Calculating zombie with netID %1"",_x] call SM_Util_Log;" \n
+                         "		_zombie = objectFromNetID _x;" \n
+                         "		if (!(isNull _zombie) && (alive _zombie) && (local _zombie)) then" \n
+                         "		{" \n
+                         "			if ((diag_ticktime - (_zombie getVariable [""SM_LastTargetCheck"",0])) >= SM_ZombieIdleDelay) then" \n
+                         "			{" \n
+                         "				if ((diag_ticktime - (_zombie getVariable [""SM_ZombieSoundDelayMoan"",0])) >= SM_ZombieSoundDelayMoan) then" \n
+                         "				{" \n
+                         "					_moan = selectRandom SM_MoanArray;" \n
+                         "					[_zombie,_moan] remoteExecCall [""SM_Say3D"", -2];" \n
+                         "					_zombie setVariable [""SM_ZombieSoundDelayMoan"",diag_ticktime];" \n
+                         "				};" \n
+                         "				if (SM_FiredNearEVHEnabled) then" \n
+                         "				{" \n
+                         "					if ((_zombie getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
+                         "					{" \n
+                         "						_evhID = _zombie addEventHandler [""FiredNear"",{ _this call SM_FiredNear }];" \n
+                         "						_zombie setVariable [""SM_ZombieOnFiredEVH"",_evhid];" \n
+                         "					};" \n
+                         "				};" \n
+                         "				if ((_zombie getVariable [""SM_ZombieFindFiredNear"",[]]) isEqualTo []) then" \n
+                         "				{" \n
+                         "					_target = _zombie call SM_ZombieFindTarget;			" \n
+                         "					if !(isNull _target) then" \n
+                         "					{" \n
+                         "						if (!(_target isEqualTo player) && (isPlayer _target)) then" \n
+                         "						{" \n
+                         "							[""passZombie"",[(netID _target),(netID _zombie)]] call SM_Network_SendMessage;" \n
+                         "							_zombie setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "							_zombie setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "							_deleted pushback _forEachIndex;" \n
+                         "							_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
+                         "							if !(_firedEVH isEqualTo -1) then" \n
+                         "							{" \n
+                         "								_zombie removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "								_zombie setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
+                         "							};" \n
+                         "						}" \n
+                         "						else" \n
+                         "						{" \n
+                         "							_isRunning = _zombie getVariable [""SM_FSMRunning"", -1];" \n
+                         "							if (_isRunning isEqualTo -1) then" \n
+                         "							{" \n
+                         "								""Creating an FSM for an zombie."" call SM_Util_Log;" \n
+                         "								_zombieHandle = _zombie execFSM ""SM_Zombz_Code\code\fsm\zombieBrain1.fsm"";" \n
+                         "								_zombie setVariable [""SM_FSMRunning"", _zombieHandle];" \n
+                         "								_zombie setVariable [""SM_AlreadyRunning"", (getPlayerUID player), true];" \n
+                         "								_zombie setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "								_zombie setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "								_zombie setVariable [""SM_LastLocalCheck"",nil];" \n
+                         "								_deleted pushback _forEachIndex;" \n
+                         "							};" \n
+                         "						};" \n
+                         "					}" \n
+                         "					else" \n
+                         "					{" \n
+                         "						_pos = _zombie call SM_ZombieFindPositionWander;" \n
+                         "						_zombie doMove _pos;" \n
+                         "					};" \n
+                         "				}" \n
+                         "				else" \n
+                         "				{" \n
+                         "					_pos = _zombie call SM_ZombieFindFiredNear;" \n
+                         "					if !(_pos isEqualTo []) then" \n
+                         "					{" \n
+                         "						_zombie doMove _pos;" \n
+                         "						_zombie setVariable [""SM_LastTargetCheck"",diag_ticktime];" \n
+                         "					};" \n
+                         "				};" \n
+                         "			};" \n
+                         "		}" \n
+                         "		else" \n
+                         "		{" \n
+                         "			if !(isNull _zombie) then" \n
+                         "			{" \n
+                         "				if (!(local _zombie) && (alive _zombie)) then" \n
+                         "				{" \n
+                         "					[""UpdateLocality"",[_x,(netID player)]] call SM_Network_SendMessage;" \n
+                         "				}" \n
+                         "				else" \n
+                         "				{" \n
+                         "					_deleted pushBack _forEachIndex;" \n
+                         "					_zombie setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "					_zombie setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "					_deleted pushback _forEachIndex;" \n
+                         "					_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
+                         "					if !(_firedEVH isEqualTo -1) then" \n
+                         "					{" \n
+                         "						_zombie removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "						_zombie setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
+                         "					};" \n
+                         "				};" \n
+                         "			}" \n
+                         "			else" \n
+                         "			{" \n
+                         "				_deleted pushBack _forEachIndex;" \n
+                         "			};" \n
+                         "		};" \n
+                         "	} forEach SM_IdleZombies;" \n
+                         "" \n
+                         "	if !(_deleted isEqualTo []) then" \n
+                         "	{" \n
+                         "		{" \n
+                         "			SM_IdleZombies deleteAt (_x - _forEachIndex);" \n
+                         "		} forEach _deleted;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         """Idle zombies check finished"" call SM_Util_Log;" \n
+                         "" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Calculate_All_Zo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) >= 1.5"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "End",
+        };
+};
+/*%FSM</COMPILE>*/

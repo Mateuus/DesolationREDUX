@@ -1,0 +1,1068 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZombieBrain">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,4346,1200.000000,125.000000,1300.000000,175.000000,0.000000,"init"};
+item1[] = {"true",8,218,1200.000000,200.000000,1300.000000,250.000000,0.000000,"true"};
+item2[] = {"alive",2,250,1200.000000,425.000000,1300.000000,475.000000,0.000000,"alive"};
+item3[] = {"true",4,218,1200.000000,500.000000,1300.000000,550.000000,0.000000,"true"};
+item4[] = {"false",4,218,1325.000000,425.000000,1425.000000,475.000000,0.000000,"false"};
+item5[] = {"end",1,250,1325.000000,500.000000,1425.000000,550.000000,0.000000,"end"};
+item6[] = {"firedNear",2,250,1200.000000,575.000000,1300.000000,625.000000,0.000000,"firedNear"};
+item7[] = {"false",4,218,1200.000000,650.000000,1300.000000,700.000000,0.000000,"false"};
+item8[] = {"true",4,218,1075.000000,575.000000,1175.000000,625.000000,0.000000,"true"};
+item9[] = {"local_target",2,250,1200.000000,725.000000,1300.000000,775.000000,0.000000,"local target"};
+item10[] = {"false",4,218,1325.000000,725.000000,1425.000000,775.000000,0.000000,"false"};
+item11[] = {"true",4,218,1200.000000,800.000000,1300.000000,850.000000,0.000000,"true"};
+item12[] = {"null",4,218,1075.000000,700.000000,1175.000000,750.000000,0.000000,"null"};
+item13[] = {"alive_target",2,250,1200.000000,875.000000,1300.000000,925.000000,0.000000,"alive target"};
+item14[] = {"false",4,218,1325.000000,875.000000,1425.000000,925.000000,0.000000,"false"};
+item15[] = {"true",4,218,1200.000000,950.000000,1300.000000,1000.000000,0.000000,"true"};
+item16[] = {"distance",2,250,1450.000000,875.000000,1550.000000,925.000000,0.000000,"distance"};
+item17[] = {"target_type",2,250,1200.000000,1025.000000,1300.000000,1075.000000,0.000000,"target type"};
+item18[] = {"wander",2,250,950.000000,700.000000,1050.000000,750.000000,0.000000,"wander"};
+item19[] = {"moved",4,218,950.000000,350.000000,1050.000000,400.000000,0.000000,"moved"};
+item20[] = {"close",4,218,1575.000000,875.000000,1675.000000,925.000000,0.000000,"close"};
+item21[] = {"far",4,218,1450.000000,800.000000,1550.000000,850.000000,0.000000,"far"};
+item22[] = {"move",2,250,1450.000000,725.000000,1550.000000,775.000000,0.000000,"move"};
+item23[] = {"moved",4,218,1450.000000,650.000000,1550.000000,700.000000,0.000000,"moved"};
+item24[] = {"eat",2,250,1700.000000,875.000000,1800.000000,925.000000,0.000000,"eat"};
+item25[] = {"finished",4,218,1700.000000,800.000000,1800.000000,850.000000,0.000000,"finished"};
+item26[] = {"ending_anim",2,250,1575.000000,800.000000,1675.000000,850.000000,0.000000,"ending anim"};
+item27[] = {"",7,210,1821.000000,371.000000,1829.000000,379.000000,0.000000,""};
+item28[] = {"",7,210,1321.000000,371.000000,1329.000000,379.000000,0.000000,""};
+item29[] = {"",7,210,1821.000000,671.000000,1829.000000,679.000000,0.000000,""};
+item30[] = {"true",8,218,1575.000000,725.000000,1675.000000,775.000000,0.000000,"true"};
+item31[] = {"move_1",2,250,950.000000,575.000000,1050.000000,625.000000,0.000000,"move"};
+item32[] = {"distance_check",4,218,1325.000000,1025.000000,1425.000000,1075.000000,0.000000,"distance check"};
+item33[] = {"no_valid_type",4,218,1075.000000,1025.000000,1175.000000,1075.000000,0.000000,"no valid type"};
+item34[] = {"attack_anim",2,250,1450.000000,1025.000000,1550.000000,1075.000000,0.000000,"attack anim"};
+item35[] = {"sound_finished",4,218,1575.000000,1025.000000,1675.000000,1075.000000,0.000000,"sound finished"};
+item36[] = {"damage",2,250,1700.000000,1025.000000,1800.000000,1075.000000,0.000000,"damage"};
+item37[] = {"finished",4,218,1825.000000,1025.000000,1925.000000,1075.000000,0.000000,"finished"};
+item38[] = {"move_2",2,250,950.000000,1025.000000,1050.000000,1075.000000,0.000000,"move"};
+item39[] = {"Local_",2,250,1200.000000,275.000000,1300.000000,325.000000,0.000000,"Local?"};
+item40[] = {"false",4,218,1075.000000,275.000000,1175.000000,325.000000,0.000000,"false"};
+item41[] = {"true",4,218,1200.000000,350.000000,1300.000000,400.000000,0.000000,"true"};
+item42[] = {"not_alive",4,218,1325.000000,275.000000,1425.000000,325.000000,0.000000,"not alive"};
+item43[] = {"move_to_pos",2,250,825.000000,350.000000,925.000000,400.000000,0.000000,"move to pos"};
+item44[] = {"surface_is__wate",4,218,700.000000,500.000000,800.000000,550.000000,0.000000,"surface is " \n "water"};
+item45[] = {"",7,210,646.000000,521.000000,654.000000,528.999939,0.000000,""};
+item46[] = {"surface_is__not",4,218,700.000000,350.000000,800.000000,400.000000,0.000000,"surface is " \n "not water"};
+item47[] = {"",7,210,908.500000,721.000000,916.500000,729.000000,0.000000,""};
+item48[] = {"",7,210,908.500000,596.000000,916.500000,604.000000,0.000000,""};
+item49[] = {"",7,210,908.500000,1046.000000,916.500000,1054.000000,0.000000,""};
+item50[] = {"wander_1",2,250,825.000000,500.000000,925.000000,550.000000,0.000000,"wander"};
+item51[] = {"",7,210,1871.000000,671.000000,1879.000000,679.000000,0.000000,""};
+item52[] = {"",7,210,1621.000000,671.000000,1629.000000,679.000000,0.000000,""};
+item53[] = {"eat_delay",4,218,1700.000000,950.000000,1800.000000,1000.000000,0.000000,"eat delay"};
+item54[] = {"_",8,218,825.000000,425.000000,925.000000,475.000000,0.000000,""};
+item55[] = {"timeout",2,250,950.000000,425.000000,1050.000000,475.000000,0.000000,"timeout"};
+item56[] = {"da_a_sleep",4,218,1075.000000,425.000000,1175.000000,475.000000,0.000000,"da a sleep"};
+item57[] = {"",7,210,645.999939,596.000000,654.000000,604.000000,0.000000,""};
+item58[] = {"",7,210,646.000000,371.000000,654.000000,379.000000,0.000000,""};
+item59[] = {"not_player",4,218,1075.000000,750.000000,1175.000000,800.000000,0.000000,"not player"};
+item60[] = {"move_to_non_player",2,250,950.000000,750.000000,1050.000000,800.000000,0.000000,"move to non" \n "player object"};
+item61[] = {"",7,210,908.500000,771.000061,916.500000,779.000000,0.000000,""};
+item62[] = {"nil_pos",4,218,600.000000,275.000000,700.000000,325.000000,0.000000,"nil pos"};
+item63[] = {"",7,210,1008.500000,296.000000,1016.500000,304.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,39};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {3,6};
+link5[] = {4,5};
+link6[] = {6,7};
+link7[] = {6,8};
+link8[] = {7,9};
+link9[] = {8,31};
+link10[] = {9,10};
+link11[] = {9,11};
+link12[] = {9,12};
+link13[] = {9,59};
+link14[] = {10,5};
+link15[] = {11,13};
+link16[] = {12,18};
+link17[] = {13,14};
+link18[] = {13,15};
+link19[] = {14,16};
+link20[] = {15,17};
+link21[] = {16,20};
+link22[] = {16,21};
+link23[] = {17,32};
+link24[] = {17,33};
+link25[] = {18,47};
+link26[] = {19,55};
+link27[] = {20,24};
+link28[] = {21,22};
+link29[] = {22,23};
+link30[] = {23,52};
+link31[] = {24,25};
+link32[] = {24,53};
+link33[] = {25,26};
+link34[] = {26,30};
+link35[] = {27,28};
+link36[] = {28,2};
+link37[] = {29,27};
+link38[] = {30,52};
+link39[] = {31,48};
+link40[] = {32,34};
+link41[] = {33,38};
+link42[] = {34,35};
+link43[] = {35,36};
+link44[] = {36,37};
+link45[] = {37,51};
+link46[] = {38,49};
+link47[] = {39,40};
+link48[] = {39,41};
+link49[] = {39,42};
+link50[] = {40,39};
+link51[] = {41,2};
+link52[] = {42,5};
+link53[] = {43,19};
+link54[] = {44,50};
+link55[] = {45,44};
+link56[] = {45,58};
+link57[] = {46,43};
+link58[] = {47,48};
+link59[] = {48,57};
+link60[] = {49,61};
+link61[] = {50,54};
+link62[] = {51,29};
+link63[] = {52,29};
+link64[] = {53,24};
+link65[] = {54,43};
+link66[] = {55,56};
+link67[] = {56,2};
+link68[] = {57,45};
+link69[] = {58,46};
+link70[] = {58,62};
+link71[] = {59,60};
+link72[] = {60,61};
+link73[] = {61,47};
+link74[] = {62,63};
+link75[] = {63,2};
+globals[] = {0.000000,0,0,0,0,640,480,2,133,6316128,1,589.865723,1742.916504,1410.608154,-242.330185,662,949,1};
+window[] = {2,-1,-1,-1,-1,848,182,1332,182,3,680};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "ZombieBrain";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_zombie = objectFromNetID _this;" \n
+                         "" \n
+                         "_zombieDefaultSpeed = getAnimSpeedCoef _zombie;" \n
+                         "_ZombieIsFaster = false;" \n
+                         "" \n
+                         "_zombieLoop = 0;" \n
+                         "" \n
+                         "_aliveZombie = true;" \n
+                         "_lastZombiePosCount = 0;" \n
+                         "_civilian = [];" \n
+                         "_target = objnull;" \n
+                         "_lastTargetCheck = diag_ticktime;" \n
+                         "" \n
+                         "_throwArray = SM_ThrowArray;" \n
+                         "_vehicleHitArray = SM_VehicleHitArray;" \n
+                         "_screamArray = SM_ScreamArray;" \n
+                         "_moanArray = SM_MoanArray;" \n
+                         "_eatingArray = SM_EatingArray;" \n
+                         "_jumpArray = SM_JumpArray;" \n
+                         "_aggressiveArray = SM_AggressiveArray;" \n
+                         "_attackArray = SM_AttackArray;" \n
+                         "" \n
+                         "/*_class = getText (configFile >> ""CfgVehicles"" >> (typeof _zombie) >> ""moves"");" \n
+                         "if (_class isEqualTo ""CfgRyanZombiesMovesMaleSdrCrawler"") then " \n
+                         "{" \n
+                         "	_aggressiveArray = SM_CrawlerAggressiveArray;" \n
+                         "	_attackArray = SM_CrawlerAttackArray;" \n
+                         "	_eatingArray = SM_CrawlerEatArray;" \n
+                         "};*/" \n
+                         "" \n
+                         "_attempt = -1;" \n
+                         "" \n
+                         "if (SM_FiredNearEVHEnabled) then" \n
+                         "{" \n
+                         "	_evhID = _zombie addEventHandler [""FiredNear"",{ _this call SM_FiredNear }];" \n
+                         "	_zombie setVariable [""SM_ZombieOnFiredEVH"",_evhid];" \n
+                         "};" \n
+                         "" \n
+                         "_soundLast = diag_ticktime;" \n
+                         "_safeZoneCheckLast = diag_ticktime;" \n
+                         "_nullCount = 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Local_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "alive">*/
+                class alive
+                {
+                        name = "alive";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"if !(isNull _zombie) then" \n
+                         "{" \n
+                         "	_aliveZombie = alive _zombie;" \n
+                         "}" \n
+                         "else" \n
+                         "{" \n
+                         "	_aliveZombie = false;" \n
+                         "};" \n
+                         "_pass = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "false">*/
+                                class false
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_pass = false;" \n
+                                         "((isNull _zombie) || !(_alivezombie) || !(local _zombie))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="firedNear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((_alivezombie) && (local _zombie))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end">*/
+                class end
+                {
+                        name = "end";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"if (alive _zombie) then" \n
+                         "{" \n
+                         "	_zombie setAnimSpeedCoef _zombieDefaultSpeed;" \n
+                         "	_zombie setVariable [""SM_FSMRunning"",-1];" \n
+                         "	_zombie setVariable [""SM_AlreadyRunning"","""",true];" \n
+                         "	_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"",0];" \n
+                         "	_zombie removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "	if (SM_Debug) then" \n
+                         "	{" \n
+                         "		""Zombie FSM ended"" call SM_Util_log;" \n
+                         "	};" \n
+                         "" \n
+                         "	if (_pass) then" \n
+                         "	{" \n
+                         "		[""UpdateLocality"",[(netID _zombie),(netID _target)]] call SM_Network_SendMessage;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "true"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "firedNear">*/
+                class firedNear
+                {
+                        name = "firedNear";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_firedNear = _zombie getVariable [""SM_FiredNear"",[]];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="move_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_firedNear isEqualTo [])"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "false">*/
+                                class false
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="local_target";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_firedNear isEqualTo [])"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "local_target">*/
+                class local_target
+                {
+                        name = "local_target";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_isvisible = false;" \n
+                         "if ((isNull _target) || !(alive _target) || (diag_ticktime - _lastTargetCheck) >= 5) then" \n
+                         "{" \n
+                         "	_target = _zombie call SM_ZombieFindTarget;" \n
+                         "	_lastTargetCheck = diag_ticktime;" \n
+                         "}" \n
+                         "else" \n
+                         "{" \n
+                         "	if (isPlayer _target) then" \n
+                         "	{" \n
+                         "		_isvisible = (_target distance _zombie) <= _distance;" \n
+                         "		_isvisible = _isvisible && [(vehicle _target), ""VIEW"", _zombie] checkVisibility [eyePos (vehicle _target), eyePos _zombie] > 0;" \n
+                         "		_isvisible = _isvisible && !((vehicle _target) getVariable [""SM_HasZombieGuts"",false]);" \n
+                         "		_isvisible = _isvisible && !((vehicle _target) getVariable [""SM_HasBeenEaten"",false]);" \n
+                         "		_isvisible = _isvisible && !(isObjectHidden (vehicle _target));" \n
+                         "" \n
+                         "		if ((_isvisible) && (_target isKindOf ""Man"")) then" \n
+                         "		{" \n
+                         "			_detectionnumber = 0;" \n
+                         "			_detected = false;" \n
+                         "			switch (stance _target) do " \n
+                         "			{" \n
+                         "				case ""STAND"": { _detectionnumber = _detectionnumber + 0.50 };" \n
+                         "				case ""CROUCH"": { _detectionnumber = _detectionnumber + 0.35 };" \n
+                         "				case ""PRONE"": { _detectionnumber = _detectionnumber + 0.15 };" \n
+                         "				default { _detectionnumber = _detectionnumber + 0 };" \n
+                         "			};" \n
+                         "" \n
+                         "			//Distance" \n
+                         "			_distanceCheck = _zombie distance _target;" \n
+                         "			_detectionnumber = _detectionnumber + (_distanceCheck call" \n
+                         "			{" \n
+                         "				_distanceCheck = _this;" \n
+                         "				if (_distanceCheck < 5) exitWith { 1 };" \n
+                         "				if (_distanceCheck >= 5 && _distanceCheck < 10) exitWith { 0.50 };" \n
+                         "				if (_distanceCheck >= 10 && _distanceCheck < 20) exitWith { 0.40 };" \n
+                         "				if (_distanceCheck >= 20 && _distanceCheck < 35) exitWith { 0.30 };" \n
+                         "				if (_distanceCheck >= 35 && _distanceCheck < 50) exitWith { 0.25 };" \n
+                         "				if (_distanceCheck >= 50 && _distanceCheck < 100) exitWith { 0.20 };" \n
+                         "				if (_distanceCheck >= 100 && _distanceCheck < 500) exitWith { 0.15 };" \n
+                         "				if (_distanceCheck >= 500) exitWith { 0.10 };" \n
+                         "			});" \n
+                         "" \n
+                         "			//Random Chance" \n
+                         "			_randomAddition = (random 0.25);" \n
+                         "" \n
+                         "			_detectionnumber = _detectionnumber + _randomAddition;" \n
+                         "" \n
+                         "			//Player is in front or not" \n
+                         "			_isInFront = [_zombie,_target] call SM_IsInfrontOf;" \n
+                         "" \n
+                         "			if (_isInFront) then {_detectionnumber = _detectionnumber + 0.25};" \n
+                         "" \n
+                         "" \n
+                         "			if (1 < _detectionnumber) then { _detected = true; };" \n
+                         "" \n
+                         "			_isvisible = _detected && _isvisible;" \n
+                         "		};" \n
+                         "	};" \n
+                         "" \n
+                         "	if !(_isvisible) then" \n
+                         "	{" \n
+                         "		_target = _zombie call SM_ZombieFindTarget;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="alive_target";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((local _target) && !(isNull _target) && (isPlayer _target))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "null">*/
+                                class null
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="wander";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(isNull _target)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "not_player">*/
+                                class not_player
+                                {
+                                        itemno = 59;
+                                        priority = 0.000000;
+                                        to="move_to_non_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isPlayer _target)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "false">*/
+                                class false
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!(local _target) && !(isNull _target) && (isPlayer _target))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"_pass = true;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "alive_target">*/
+                class alive_target
+                {
+                        name = "alive_target";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_aliveTarget = alive _target;" \n
+                         "_nullCount = 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="target_type";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_aliveTarget)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "false">*/
+                                class false
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="distance";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_aliveTarget)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "distance">*/
+                class distance
+                {
+                        name = "distance";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"_distanceTarget = _zombie distance _target;" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "far">*/
+                                class far
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="move";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_distanceTarget > 2)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "close">*/
+                                class close
+                                {
+                                        itemno = 20;
+                                        priority = 0.000000;
+                                        to="eat";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_distanceTarget < 2)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"_zombie disableAI ""ANIM"";" \n
+                                         "_zombie setdir (_zombie getDir _target);" \n
+                                         "[_zombie, ""AinvPercMstpSnonWnonDnon""] remoteExecCall [""SM_ZombieDoMove""];"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "target_type">*/
+                class target_type
+                {
+                        name = "target_type";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"_distance = (vehicle _target) call SM_FetchVehicleSize;" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no_valid_type">*/
+                                class no_valid_type
+                                {
+                                        itemno = 33;
+                                        priority = 0.000000;
+                                        to="move_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _timeout) > 0.5) "/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "distance_check">*/
+                                class distance_check
+                                {
+                                        itemno = 32;
+                                        priority = 0.000000;
+                                        to="attack_anim";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((_zombie distance _target) <= _distance)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wander">*/
+                class wander
+                {
+                        name = "wander";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"_pos = _zombie call SM_ZombieFindPositionWander;" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "surface_is__not">*/
+                                class surface_is__not
+                                {
+                                        itemno = 46;
+                                        priority = 0.000000;
+                                        to="move_to_pos";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "nil_pos">*/
+                                class nil_pos
+                                {
+                                        itemno = 62;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(isNil ""_pos"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "surface_is__wate">*/
+                                class surface_is__wate
+                                {
+                                        itemno = 44;
+                                        priority = 0.000000;
+                                        to="wander_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move">*/
+                class move
+                {
+                        name = "move";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"_pos = getPosATL _target;" \n
+                         "_zombie moveTo _pos;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "moved">*/
+                                class moved
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if ((diag_ticktime - _soundLast) >= SM_ZombieSoundDelayAggressive) then" \n
+                                         "{" \n
+                                         "	_moan = selectRandom _moanArray; " \n
+                                         "	[_zombie,_moan] remoteExecCall [""SM_Say3D"", -2];" \n
+                                         "	_soundLast = diag_ticktime;" \n
+                                         "};" \n
+                                         "((movetoCompleted _zombie) || (moveToFailed _zombie) || (diag_ticktime - _timeout) >= SM_ZombieTargetPosMemory)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "eat">*/
+                class eat
+                {
+                        name = "eat";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"if ((random 3) >= 1) then" \n
+                         "{" \n
+                         "	_Eating = selectRandom _eatingArray;" \n
+                         "	[_zombie,_Eating] remoteExecCall [""SM_Say3D"", -2];" \n
+                         "};" \n
+                         "_eatSoundLast = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "eat_delay">*/
+                                class eat_delay
+                                {
+                                        itemno = 53;
+                                        priority = 0.000000;
+                                        to="eat";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _eatSoundLast) >= SM_ZombieEatSoundDelay)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "finished">*/
+                                class finished
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="ending_anim";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _timeout) > SM_ZombieEat)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "ending_anim">*/
+                class ending_anim
+                {
+                        name = "ending_anim";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"_zombie enableAI ""ANIM"";" \n
+                         "[_zombie, ""AinvPercMstpSnonWnonDnon_AmovPercMstpSnonWnonDnon""] remoteExecCall [""SM_ZombieDoMove"", -2];" \n
+                         "_target setVariable [""SM_HasBeenEaten"",true,true];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_1">*/
+                class move_1
+                {
+                        name = "move_1";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"_distance = 1000;" \n
+                         "_pos = getPosATL _zombie;" \n
+                         "" \n
+                         "{" \n
+                         "	_distanceEnemy = _zombie distance _x;" \n
+                         "	if (_distanceEnemy <= _distance) then" \n
+                         "	{" \n
+                         "		_distance = _distanceEnemy;" \n
+                         "		_pos = _x;" \n
+                         "	};" \n
+                         "} forEach _firedNear;" \n
+                         "" \n
+                         "_timeout = diag_ticktime;" \n
+                         "" \n
+                         "_zombie setVariable [""SM_FiredNear"",[]];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "surface_is__not">*/
+                                class surface_is__not
+                                {
+                                        itemno = 46;
+                                        priority = 0.000000;
+                                        to="move_to_pos";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "nil_pos">*/
+                                class nil_pos
+                                {
+                                        itemno = 62;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(isNil ""_pos"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "surface_is__wate">*/
+                                class surface_is__wate
+                                {
+                                        itemno = 44;
+                                        priority = 0.000000;
+                                        to="wander_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "attack_anim">*/
+                class attack_anim
+                {
+                        name = "attack_anim";
+                        itemno = 34;
+                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombie,(vehicle _target),_soundLast,_attackArray,_aggressiveArray] call SM_ZombieStartAttack;" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "sound_finished">*/
+                                class sound_finished
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="damage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _timeout) >= 0.3)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "damage">*/
+                class damage
+                {
+                        name = "damage";
+                        itemno = 36;
+                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombie,(vehicle _target),_soundLast,_aggressiveArray,_screamArray,_vehicleHitArray,_distance] call SM_ZombieAttackTarget;" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "finished">*/
+                                class finished
+                                {
+                                        itemno = 37;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(((diag_ticktime - _timeout) - SM_AttackSpeed) >= 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_2">*/
+                class move_2
+                {
+                        name = "move_2";
+                        itemno = 38;
+                        init = /*%FSM<STATEINIT""">*/"if ((diag_ticktime - _soundLast) >= SM_ZombieSoundDelayAggressive) then" \n
+                         "{" \n
+                         "	_Aggressive = selectRandom _AggressiveArray;" \n
+                         "	[_zombie,_Aggressive] remoteExecCall [""SM_Say3D"", -2];" \n
+                         "	_soundLast = diag_ticktime;" \n
+                         "};" \n
+                         "" \n
+                         "_pos = getPosATL _target;" \n
+                         "" \n
+                         "_zombie doWatch _target;" \n
+                         "" \n
+                         "_timeout = diag_ticktime;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "surface_is__not">*/
+                                class surface_is__not
+                                {
+                                        itemno = 46;
+                                        priority = 0.000000;
+                                        to="move_to_pos";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "nil_pos">*/
+                                class nil_pos
+                                {
+                                        itemno = 62;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(isNil ""_pos"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "surface_is__wate">*/
+                                class surface_is__wate
+                                {
+                                        itemno = 44;
+                                        priority = 0.000000;
+                                        to="wander_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Local_">*/
+                class Local_
+                {
+                        name = "Local_";
+                        itemno = 39;
+                        init = /*%FSM<STATEINIT""">*/"_zombiePassed = false;" \n
+                         "if ((diag_ticktime - _soundLast) > 10) then" \n
+                         "{" \n
+                         "	_target = vehicle player;" \n
+                         "	_zombiePassed = true;" \n
+                         "};" \n
+                         "if (isServer) then" \n
+                         "{" \n
+                         "	_zombiePassed = true;" \n
+                         "	_zombie setDamage 1;" \n
+                         "	deleteVehicle _zombie;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 41;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(local _zombie)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "not_alive">*/
+                                class not_alive
+                                {
+                                        itemno = 42;
+                                        priority = 0.000000;
+                                        to="end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_zombiePassed)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"_pass = true;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "false">*/
+                                class false
+                                {
+                                        itemno = 40;
+                                        priority = 0.000000;
+                                        to="Local_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(local _zombie)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_pos">*/
+                class move_to_pos
+                {
+                        name = "move_to_pos";
+                        itemno = 43;
+                        init = /*%FSM<STATEINIT""">*/"_zombie moveTo _pos;" \n
+                         "_timeout = diag_ticktime;" \n
+                         "_runLoopCheck = diag_ticktime;" \n
+                         "_lastSpeedCheck = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "moved">*/
+                                class moved
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="timeout";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_canFinish = false;" \n
+                                         "if ((diag_tickTime - _runLoopCheck) > 0.5) then" \n
+                                         "{" \n
+                                         "	if ((diag_ticktime - _soundLast) >= SM_ZombieSoundDelayMoan) then" \n
+                                         "	{" \n
+                                         "		_moan = selectRandom _MoanArray;" \n
+                                         "		[_zombie,_moan] remoteExecCall [""SM_Say3D"", -2];" \n
+                                         "		_soundLast = diag_ticktime;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	_distance = 1000;" \n
+                                         "	if !(isNull _target) then" \n
+                                         "	{" \n
+                                         "		_distance = _zombie distance _target;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	if ((SM_ZombieSpeedIncreaseEnabled) && (diag_ticktime - _lastSpeedCheck) >= 3) then" \n
+                                         "	{" \n
+                                         "		[_zombie,_zombieDefaultSpeed] call SM_ZombieCalculateSpeed;" \n
+                                         "		_lastSpeedCheck = diag_ticktime;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	if ((diag_ticktime - _safeZoneCheckLast) >= 5) then" \n
+                                         "	{" \n
+                                         "		if (_zombie call SM_IsSafezoneNear) then " \n
+                                         "		{" \n
+                                         "			_zombie setDamage 1;" \n
+                                         "		};" \n
+                                         "		_safeZoneCheckLast = diag_ticktime;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	_canFinish = ((movetoCompleted _zombie) || (moveToFailed _zombie) || ((diag_ticktime - _timeout) >= SM_ZombieTargetPosMemory) || (_distance <= 10) || !(alive _zombie));" \n
+                                         "	_runLoopCheck = diag_ticktime;" \n
+                                         "};" \n
+                                         "_canFinish"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wander_1">*/
+                class wander_1
+                {
+                        name = "wander_1";
+                        itemno = 50;
+                        init = /*%FSM<STATEINIT""">*/"_pos = _zombie call SM_ZombieFindPositionWander;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 54;
+                                        priority = 0.000000;
+                                        to="move_to_pos";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "timeout">*/
+                class timeout
+                {
+                        name = "timeout";
+                        itemno = 55;
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "da_a_sleep">*/
+                                class da_a_sleep
+                                {
+                                        itemno = 56;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _timeout) > 0.3)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_non_player">*/
+                class move_to_non_player
+                {
+                        name = "move_to_non_player";
+                        itemno = 60;
+                        init = /*%FSM<STATEINIT""">*/"_pos = getposATL _target;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "surface_is__not">*/
+                                class surface_is__not
+                                {
+                                        itemno = 46;
+                                        priority = 0.000000;
+                                        to="move_to_pos";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "nil_pos">*/
+                                class nil_pos
+                                {
+                                        itemno = 62;
+                                        priority = 0.000000;
+                                        to="alive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(isNil ""_pos"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "surface_is__wate">*/
+                                class surface_is__wate
+                                {
+                                        itemno = 44;
+                                        priority = 0.000000;
+                                        to="wander_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(surfaceIsWater _pos)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "end",
+        };
+};
+/*%FSM</COMPILE>*/
