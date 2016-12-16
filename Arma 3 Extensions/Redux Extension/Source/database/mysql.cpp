@@ -196,11 +196,14 @@ std::string mysql_db_handler::loadPlayer(std::string nickname, std::string steam
 	std::string playeruuid = "";
 	std::string death_persistent_variables_uuid = "";
 	std::string friendlist = "";
+	std::string banned = "false";
+	std::string banreason = "unknown";
 
 	std::string queryplayerinfo =
 	str(boost::format{"SELECT HEX(`actualplayer`.`uuid`), "
 			"HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`), "
-			"GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR '\", \"') AS friendlist "
+			"GROUP_CONCAT(`friendplayer`.`steamid` SEPARATOR '\", \"') AS friendlist, "
+		    "(CASE WHEN (NOW() < `actualplayer`.`banenddate`) THEN \"true\" ELSE \"false\" END) AS BANNED, `actualplayer`.`banreason`"
 			"FROM `player` actualplayer "
 			"LEFT JOIN `player_on_world_has_death_persistent_variables` "
 			" ON `actualplayer`.`uuid` = `player_on_world_has_death_persistent_variables`.`player_uuid` "
@@ -215,7 +218,9 @@ std::string mysql_db_handler::loadPlayer(std::string nickname, std::string steam
 	char typearrayplayerinfo[] = {
 			1, // HEX(`actualplayer`.`uuid`)
 			1, // HEX(`player_on_world_has_death_persistent_variables`.`death_persistent_variables_uuid`)
-			2  // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+			2, // GROUP_CONCAT(`player`.`steamid` SEPARATOR '\", \"') AS friendlist
+			0, // (CASE WHEN (NOW() < `actualplayer`.`banenddate`) THEN "true" ELSE "false" END) AS BANNED`
+			0  // `actualplayer`.`banreason
 	};
 
 	printf("%s\n", queryplayerinfo.c_str());
@@ -243,29 +248,56 @@ std::string mysql_db_handler::loadPlayer(std::string nickname, std::string steam
 			friendlist += row[2];
 			friendlist += "\"";
 		}
+
+		if (row[3] != NULL) {
+			banned = row[3];
+		}
+		if (row[4] != NULL) {
+			banreason = row[4];
+		}
 	}
 
 	mysql_free_result(result);
 
-	if (playeruuid == "") {
-		playeruuid = orderedUUID();
-		queryplayerinfo =
-			str(boost::format{"INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, "
-								"`firstlogin`, `firstnick`, `lastlogin`, `lastnick`, "
-								"`bancount`, `banreason`, `banbegindate`, `banenddate`) "
-								"VALUES (CAST(0x%s AS BINARY), \"%s\", \"unused\", NOW(), "
-								"\"%s\", NOW(), \"%s\", '0', NULL, NULL, NULL)"}
-								% playeruuid % steamid % nickname % nickname);
-	} else {
-		queryplayerinfo =
-					str(boost::format{"UPDATE `player` SET `lastlogin` = NOW(), `lastnick` = \"%s\" \
-										WHERE `player`.`uuid` = CAST(0x%s AS BINARY)"} % nickname % playeruuid);
+	if (banned == "false") {
+		if (playeruuid == "") {
+			playeruuid = orderedUUID();
+			queryplayerinfo =
+				str(boost::format{"INSERT INTO `player` (`uuid`, `steamid`, `battleyeid`, "
+									"`firstlogin`, `firstnick`, `lastlogin`, `lastnick`, "
+									"`bancount`, `banreason`, `banbegindate`, `banenddate`) "
+									"VALUES (CAST(0x%s AS BINARY), \"%s\", \"unused\", NOW(), "
+									"\"%s\", NOW(), \"%s\", '0', NULL, NULL, NULL)"}
+									% playeruuid % steamid % nickname % nickname);
+		} else {
+			queryplayerinfo =
+						str(boost::format{"UPDATE `player` SET `lastlogin` = NOW(), `lastnick` = \"%s\" \
+											WHERE `player`.`uuid` = CAST(0x%s AS BINARY)"} % nickname % playeruuid);
+		}
+		printf("%s\n", queryplayerinfo.c_str());
+
+		this->rawquery(queryplayerinfo);
+
+		if (whitelistonly) {
+			std::string querywhitelist =
+				str(boost::format{"SELECT * FROM `whitelist` "
+						"WHERE `whitelist`.`world_uuid` = CAST(0x%s AS BINARY) "
+						" AND `whitelist`.`player_uuid` = CAST(0x%s AS BINARY) "} % worlduuid % playeruuid);
+
+				this->rawquery(querywhitelist, &result);
+
+				rowcount = mysql_num_rows(result);
+
+				if (rowcount < 1) {
+					banned = "true";
+					banreason = "not whitelisted";
+				}
+
+				mysql_free_result(result);
+		}
 	}
-	printf("%s\n", queryplayerinfo.c_str());
 
-	this->rawquery(queryplayerinfo);
-
-	return "[\"" + playeruuid + "\", \"" + death_persistent_variables_uuid + "\", [" + friendlist + "]]";
+	return "[\"" + playeruuid + "\", \"" + death_persistent_variables_uuid + "\", [" + friendlist + "], [" + banned + ", \"" + banreason +"\"]]";
 }
 
 std::string mysql_db_handler::loadAvChars(std::string playeruuid) {
