@@ -53,7 +53,7 @@ if !((player distance _zombie) > 1000) then
 				{
 					_detectionnumber = random 0.50;
 				};
-
+				
 				_detectionnumber = _detectionnumber + (_tmpDistace call
 				{
 					_distanceCheck = _this;

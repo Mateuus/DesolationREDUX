@@ -4,6 +4,8 @@
 
 	License info here and copyright symbol above
 */
+
+//TODO: this updates like every 5 minutes or some shit, why is it updating????
 while{true} do {
 	uiSleep 60*15;
 	_newArray1 = [];

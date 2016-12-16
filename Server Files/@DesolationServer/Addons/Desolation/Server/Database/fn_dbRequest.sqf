@@ -289,6 +289,7 @@ switch(_type)do{
 		_object_uuid = _vehicle getVariable ["oUUID",""];
 		_className = typeof _vehicle;
 		_priority = 500;
+		_visible = 1;
 		_accesscode = "";
 		_locked = 0;
 		_player_uuid = "";
@@ -321,6 +322,7 @@ switch(_type)do{
 			[PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID,_object_uuid],
 			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
 			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],
+			[PROTOCOL_DBCALL_ARGUMENT_VISIBLE,_visible],
 			[PROTOCOL_DBCALL_ARGUMENT_ACCESSCODE, _accesscode],
 			[PROTOCOL_DBCALL_ARGUMENT_LOCKED,_locked],
 			[PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID,_player_uuid],
