@@ -20,7 +20,7 @@ diag_log _response;
 _compiledResponse = call compile _response;
 
 _doswitchloop = true;
-
+_return = "";
 // do loop because there seems to be no "fall throu"
 while{_doswitchloop} do {
     _doswitchloop = false;
@@ -100,6 +100,11 @@ while{_doswitchloop} do {
             _return = "error";
         };
     };
+};
+
+if(isNil {_return}) exitWith {
+	diag_log ("DB RESPONSE > NIL RETURN");
+	"";
 };
 diag_log ("DB RESPONSE > " + str(_return));
 _return;
