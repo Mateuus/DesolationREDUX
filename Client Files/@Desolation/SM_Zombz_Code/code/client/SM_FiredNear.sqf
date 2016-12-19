@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_zombie","_fired","_zombiePosition","_firedPosition","_zombieVariable"];
+private ["_zombie","_fired","_zombiePosition","_firedPosition","_zombieVariable"];
 _zombie = _this select 0;
 _fired = _this select 7;
 if !(isPlayer _fired) exitWith {};

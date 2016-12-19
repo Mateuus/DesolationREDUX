@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_zombie = _this;
+private _zombie = _this;
 
 ["GutVariable",(netID _zombie)] call SM_Network_SendMessage;
 

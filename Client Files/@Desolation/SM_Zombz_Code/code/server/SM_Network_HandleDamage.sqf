@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_zombie = objectFromNetId (_this select 0);
+private _zombie = objectFromNetId (_this select 0);
 if(isNull _zombie) exitWith
 {
 	"Error fetching zombie to explode head" call SM_Util_Log;

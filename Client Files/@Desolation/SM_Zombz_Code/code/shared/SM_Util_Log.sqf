@@ -9,7 +9,7 @@
 
 if (SM_Debug) then
 {
-	private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+	private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz_code" >> "version");
 	diag_log format["SM_Zombz %1: %2", _version, _this];
 
 	if (hasInterface) then

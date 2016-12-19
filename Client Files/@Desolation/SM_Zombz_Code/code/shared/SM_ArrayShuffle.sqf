@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_cnt"];
+private ["_cnt"];
 _cnt = count _this;
 for "_i" from 1 to _cnt do
 {

@@ -7,6 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
+// Not me.
 if (SM_System_TasksDelay isEqualTo []) then
 {
 	SM_System_TasksDelay = [10];

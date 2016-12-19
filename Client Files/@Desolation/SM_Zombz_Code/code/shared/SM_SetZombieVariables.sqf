@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_zombie","_face","_group"];
+private ["_zombie","_face","_group"];
 _zombie = _this;
 
 if (isServer) then

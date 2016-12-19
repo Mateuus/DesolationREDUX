@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_group","_zone","_inZone","_zombiesToSpawn","_minDistance","_maxDistance","_zombieMinDistance","_zombieMaxDistance","_maxZombies","_zombieClasses","_group","_player","_currentZombies","_currentZombieSpawned","_zombiesToPass","_isValid","_data","_town","_zombiePos","_minSpawn","_randomPos","_random","_zombie","_passed","_inZone","_zone","_spawnDelay"];
+private ["_group","_zone","_inZone","_zombiesToSpawn","_minDistance","_maxDistance","_zombieMinDistance","_zombieMaxDistance","_maxZombies","_zombieClasses","_group","_player","_currentZombies","_currentZombieSpawned","_zombiesToPass","_isValid","_data","_town","_zombiePos","_minSpawn","_randomPos","_random","_zombie","_passed","_inZone","_zone","_spawnDelay"];
 _group = grpNull;
 _zone = -2;
 

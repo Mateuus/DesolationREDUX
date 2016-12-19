@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_zombie", objNull],["_target", objNull],["_soundLast", diag_tickTime],["_aggressiveArray", []],["_screamArray", []],["_vehicleHitArray", []],"_soundPitch","_aggressiveSound","_soundLast","_distance","_alive","_uncon","_count","_index","_damage","_screamSound","_vehicleHit","_vel","_dir","_targetInfection"];
+params [["_zombie", objNull],["_target", objNull],["_soundLast", diag_tickTime],["_aggressiveArray", []],["_screamArray", []],["_vehicleHitArray", []],"_soundPitch","_aggressiveSound","_soundLast","_distance","_alive","_uncon","_count","_index","_damage","_screamSound","_vehicleHit","_vel","_dir","_targetInfection"];
 
 if ((animationState _zombie) isEqualTo "unconscious") exitWith { _soundLast };
 if !(_zombie isKindOf "SM_Zombz_Base") exitWith { _soundLast };

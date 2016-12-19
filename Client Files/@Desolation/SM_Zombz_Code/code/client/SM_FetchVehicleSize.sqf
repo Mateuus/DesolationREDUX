@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_dif0","_dif1","_distance"];
+private ["_dif0","_dif1","_distance"];
 _dif0 = (boundingBoxReal _this) select 0;
 _dif1 = (boundingBoxReal _this) select 1;
 _distance = ((_dif0 distance2D _dif1) / 2);

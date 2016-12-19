@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_zombie = objectFromNetId _this;
+private _zombie = objectFromNetId _this;
 _zombie setVariable ["SM_HasBeenGutted",true,true];
 
 true

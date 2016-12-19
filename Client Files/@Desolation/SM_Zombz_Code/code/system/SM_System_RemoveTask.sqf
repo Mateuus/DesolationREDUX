@@ -7,6 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
+// Not me.
 params[["_id", 0],"_result","_threadIndex"];
 _result = false;
 _threadIndex = [SM_System_Tasks, _id] call SM_System_FindTask;

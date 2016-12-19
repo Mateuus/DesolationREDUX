@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_player = objectFromNetId (_this select 0);
+private _player = objectFromNetId (_this select 0);
 
 if (isNull _player) exitWith 
 {

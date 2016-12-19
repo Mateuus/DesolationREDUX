@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_zombie","_pos","_distance","_dir"];
+private ["_zombie","_pos","_distance","_dir"];
 _zombie = _this;
 _pos = getPosATL _zombie;
 _distance = 10;

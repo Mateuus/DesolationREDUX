@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_target","_zombie","_targets","_passed","_distance","_eaten","_isvisible","_var1","_var2","_var3","_detected","_tmpDistace"];
+private ["_target","_zombie","_targets","_passed","_distance","_eaten","_isvisible","_var1","_var2","_var3","_detected","_tmpDistace"];
 _target = objNull;
 _zombie = _this;
 
@@ -53,7 +53,7 @@ if !((player distance _zombie) > 1000) then
 				{
 					_detectionnumber = random 0.50;
 				};
-				
+
 				_detectionnumber = _detectionnumber + (_tmpDistace call
 				{
 					_distanceCheck = _this;

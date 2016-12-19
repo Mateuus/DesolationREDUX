@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_message = _this;
+private _message = _this;
 if!(_this isEqualType "") then
 {
 	switch(SM_NotificatonType) do

@@ -1,14 +1,29 @@
-/**
- * The Forsaken Survivors Community
- * www.theforsakensurvivors.co.uk
- * © 2016 The Forsaken Survivors Community
- *
- * This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
- * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
- */
+/*
+Desolation Redux
+2016 Desolation Dev Team
 
-SM_SoundDistance = ["SM_SoundDistance", 30] call SM_ConfigFetch;
+License info here and copyright symbol above
+*/
+
+private["_version"];
+_version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+diag_log format["SM_Zombz %1: Starting postInit!", _version];
+
+if !(isMultiplayer) exitWith {};
+
+SM_System_ThreadID = 420;
+SM_System_Tasks = [];
+SM_System_TasksDelay = [];
+SM_System_TaskTimer = time;
+[] call SM_System_AdjustTask;
+[] call SM_System_InitializeTasks;
+
 SM_Debug =  ["SM_Debug", false] call SM_ConfigFetch;
+SM_ExileEnabled = (isClass (configFile >> "CfgPatches" >> "exile_client"));
+SM_EpochEnabled = (isClass (configFile >> "CfgPatches" >> "A3_epoch_code"));
+
+SM_ZombieAgroRange = 200;
+SM_SoundDistance = ["SM_SoundDistance", 30] call SM_ConfigFetch;
 SM_ZombieDamagePlayer = ["SM_ZombieDamagePlayer", 0.15] call SM_ConfigFetch;
 SM_ZombieDamagePlayerStrength = ["SM_ZombieDamagePlayerStrength", 1] call SM_ConfigFetch;
 SM_ZombieDamageCarStrength = ["SM_ZombieDamageCarStrenth", 1.5] call SM_ConfigFetch;
@@ -21,7 +36,6 @@ SM_BleedingEnabled = ["SM_BleedingEnabled", true] call SM_ConfigFetch;
 SM_BleedTime = ["SM_BleedTime", 20] call SM_ConfigFetch;
 SM_BleedChanceHigh = ["SM_BleedChanceHigh", 100] call SM_ConfigFetch;
 SM_BleedChanceLow = ["SM_BleedChanceLow", 90] call SM_ConfigFetch;
-SM_ZombieAgroRange = 200;
 SM_ZombieTargetPosMemory = ["SM_ZombieTargetPosMemory", 7.5] call SM_ConfigFetch;
 SM_ZombieSoundDelayAggressive = ["SM_ZombieSoundDelayAggressive", 3] call SM_ConfigFetch;
 SM_ZombieSoundDelayMoan = ["SM_ZombieSoundDelayMoan", 15] call SM_ConfigFetch;
@@ -49,8 +63,6 @@ SM_VehicleHitArray = ["SM_VehicleHitArray", []] call SM_ConfigFetch;
 SM_ZombieBiteArray = ["SM_ZombieBiteArray", []] call SM_ConfigFetch;
 SM_ZombieInBuildingSpeedDevidor = ["SM_ZombieInBuildingSpeedDevidor", 3] call SM_ConfigFetch;
 SM_FiredNearEVHEnabled = ["SM_FiredNearEVHEnabled", true] call SM_ConfigFetch;
-SM_ExileEnabled = (isClass (configFile >> "CfgPatches" >> "exile_client"));
-SM_EpochEnabled = (isClass (configFile >> "CfgPatches" >> "A3_epoch_code"));
 SM_UserSafezoneCheckMarkerObjects = ["SM_UserSafezoneCheckMarkerObjects", ""] call SM_ConfigFetch;
 SM_UserSafezoneCheck = ["SM_UserSafezoneCheck", false] call SM_ConfigFetch;
 SM_UserSafezoneCheckType = ["SM_UserSafezoneCheckType", 1] call SM_ConfigFetch;
@@ -68,4 +80,9 @@ SM_SetVelocityOnHit = ["SM_SetVelocityOnHit", false] call SM_ConfigFetch;
 SM_ZombieIdleDelay = ["SM_ZombieIdleDelay", 3] call SM_ConfigFetch;
 SM_ImmunityLength = ["SM_ImmunityLength", 420] call SM_ConfigFetch;
 
-true
+SM_IdleZombies = [];
+execFSM "SM_Zombz_Code\code\fsm\zombieIdleManager.fsm";
+
+SM_InfectionThreadID = [SM_InfectionDelay,SM_InfectionThread,[],true,"Infection thread, deals the damage"] call SM_System_AddTask;
+
+"SM_ClientNetworkMessage" addPublicVariableEventHandler compileFinal "(_this select 1) call SM_Network_HandleMessage";

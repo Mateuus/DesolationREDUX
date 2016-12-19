@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_variable","_defaultValue","_defaultType","_configPath","_missionClass"];
+private ["_variable","_defaultValue","_defaultType","_configPath","_missionClass"];
 _variable = _this select 0;
 _defaultValue = _this select 1;
 _configPath = "";

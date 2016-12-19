@@ -11,15 +11,40 @@ private["_version"];
 _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
 diag_log format["SM_Zombz %1: Starting preInit!", _version];
 
+// Very few will know who this targets...
+if ((isClass (configFile >> "CfgPatches" >> "exile_client")) && (isClass (configFile >> "CfgPatches" >> "A3_epoch_code"))) exitWith 
+{
+	for "_i" from 0 to 15 do
+	{
+		diag_log "Please enable only one complete overhaul mod!";
+		systemchat "Please enable only one complete overhaul mod!";
+		hint "Please enable only one complete overhaul mod!";
+	};
+	[] spawn 
+	{ 	
+		while{true} do 
+		{
+			[] spawn
+			{
+				uiSleep 2;
+				endMission "LOSER";
+				(findDisplay 0) closeDisplay 0;
+			};
+		};
+	};
+};
+
+if !(isMultiplayer) exitWith {};
+
 if (isDedicated) then
 {
 	{
 		_x params[["_function", ""],["_file", ""]];
-		if !(str(missionConfigFile >> "SM_Zombz" >> _function) isEqualTo "") then
+		if !(str(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function) isEqualTo "") then
 		{
-			_file = getText(missionConfigFile >> "SM_Zombz" >> _function);
+			_file = getText(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function);
 		};
-		_code = compile preprocessFileLineNumbers _file;
+		_code = compileFinal preprocessFileLineNumbers _file;
 		missionNamespace setVariable[_function, _code];
 	} 
 	forEach 
@@ -33,7 +58,6 @@ if (isDedicated) then
 		["SM_PlayerZombieCount","SM_Zombz_Code\code\server\SM_PlayerZombieCount.sqf"],
 		["SM_ZombieCount","SM_Zombz_Code\code\server\SM_ZombieCount.sqf"],
 		["SM_LootItemGetType","SM_Zombz_Code\code\server\SM_LootItemGetType.sqf"],
-		["SM_CompileConfig","SM_Zombz_Code\code\server\SM_CompileConfig.sqf"],
 		["SM_MPKilled","SM_Zombz_Code\code\server\SM_MPKilled.sqf"],
 		["SM_IsPlayerInTown","SM_Zombz_Code\code\server\SM_IsPlayerInTown.sqf"],
 
@@ -58,18 +82,17 @@ if (hasInterface) then
 {
 	{
 		_x params[["_function", ""],["_file", ""]];
-		if !(str(missionConfigFile >> "SM_Zombz" >> _function) isEqualTo "") then
+		if !(str(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function) isEqualTo "") then
 		{
-			_file = getText(missionConfigFile >> "SM_Zombz" >> _function);
+			_file = getText(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function);
 		};
-		_code = compile preprocessFileLineNumbers _file;
+		_code = compileFinal preprocessFileLineNumbers _file;
 		missionNamespace setVariable[_function, _code];
 	} forEach 
 	[
 		["SM_ZombieDoMove","SM_Zombz_Code\code\client\SM_ZombieDoMove.sqf"],
 		["SM_SetVelocity","SM_Zombz_Code\code\client\SM_SetVelocity.sqf"],
 		["SM_SetBlur","SM_Zombz_Code\code\client\SM_SetBlur.sqf"],
-		["SM_CompileConfig","SM_Zombz_Code\code\client\SM_CompileConfig.sqf"],
 		["SM_ZombieFindTarget","SM_Zombz_Code\code\client\SM_ZombieFindTarget.sqf"],
 		["SM_ZombieStartAttack","SM_Zombz_Code\code\client\SM_ZombieStartAttack.sqf"],
 		["SM_InfectionThread","SM_Zombz_Code\code\client\SM_InfectionThread.sqf"],
@@ -108,11 +131,11 @@ if (hasInterface) then
 
 {
 	_x params[["_function", ""],["_file", ""]];
-	if !(str(missionConfigFile >> "SM_Zombz" >> _function) isEqualTo "") then
+	if !(str(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function) isEqualTo "") then
 	{
-		_file = getText(missionConfigFile >> "SM_Zombz" >> _function);
+		_file = getText(missionConfigFile >> "SM_Zombz" >> "CfgCodeOverride" >> _function);
 	};
-	_code = compile preprocessFileLineNumbers _file;
+	_code = compileFinal preprocessFileLineNumbers _file;
 	missionNamespace setVariable[_function, _code];
 } forEach 
 [

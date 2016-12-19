@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-if(player getVariable ["SM_HasZombieGuts",false]) exitWith {};
+if (player getVariable ["SM_HasZombieGuts",false]) exitWith {};
 ["AddGuts",[(netid player)]] call SM_Network_SendMessage;
 
 [] call SM_ScreenAddBlood;

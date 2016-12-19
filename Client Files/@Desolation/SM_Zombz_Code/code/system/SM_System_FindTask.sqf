@@ -7,6 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
+// Not me.
 private["_haystack","_needle","_result","_i","_q"];
 _haystack = _this select 0;
 _needle = _this select 1;

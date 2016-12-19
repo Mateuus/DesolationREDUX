@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_object",objNull],["_sound",""]];
+params [["_object",objNull],["_sound",""]];
 if (!(_sound isEqualTo "") && !(isNull _object) && !(isNil "SM_SoundDistance")) then
 {
 	_object say3D [_sound, SM_SoundDistance];

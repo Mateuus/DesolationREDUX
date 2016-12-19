@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_zombie", objNull],"_owner","_ownerPlayer","_zombieInfo","_zombieCount","_zombiesArray","_killer","_amount","_score","_killSummary","_chance","_count","_lootToAdd","_lootHolder","_cargoType","_magazineClassNames","_magazineClassName"];
+params [["_zombie", objNull],"_owner","_ownerPlayer","_zombieInfo","_zombieCount","_zombiesArray","_killer","_amount","_score","_killSummary","_chance","_count","_lootToAdd","_lootHolder","_cargoType","_magazineClassNames","_magazineClassName"];
 DeadZombieBodys pushBack [(netId _zombie), diag_tickTime];
 SM_CurrentZombieCount = (SM_CurrentZombieCount - 1);
 _owner = _zombie getVariable ["SM_ZombieOwner", ""];
@@ -118,9 +118,9 @@ if (SM_MinChanceOfLoot > (random SM_MaxChanceOfLoot)) then
 	} forEach _lootToAdd;
 };
 
-if(SM_NotificationEnabled) then
+if (SM_NotificationEnabled) then
 {
-	if!(isNil "_amount") then
+	if !(isNil "_amount") then
 	{
 		[_killer, "Notification", _amount] call SM_Network_SendMessage;
 	};

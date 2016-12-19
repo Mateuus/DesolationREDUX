@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_player","_currentZombiesArray","_currentZombies","_currentZombieSpawned","_deletedZombies","_deleted","_zombie"];
+private ["_player","_currentZombiesArray","_currentZombies","_currentZombieSpawned","_deletedZombies","_deleted","_zombie"];
 _player = _this;
 _currentZombiesArray = _player getVariable ["SM_CurrentZombies", [0, []]];
 if (_currentZombiesArray isEqualTo [0, []]) exitWith { _currentZombiesArray };

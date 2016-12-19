@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_zombieClasses","_zombieMaxDistance","_zombieMinDistance","_maxDistance","_minDistance","_zombiesToSpawn","_inZone","_zone","_hordeChance","_group","_player","_currentZombies","_currentZombieSpawned","_zombiesToPass","_isValid","_data","_zombiePos","_minSpawn","_randomPos","_random","_zombie","_passed","_marker"];
+private ["_zombieClasses","_zombieMaxDistance","_zombieMinDistance","_maxDistance","_minDistance","_zombiesToSpawn","_inZone","_zone","_hordeChance","_group","_player","_currentZombies","_currentZombieSpawned","_zombiesToPass","_isValid","_data","_zombiePos","_minSpawn","_randomPos","_random","_zombie","_passed","_marker"];
 
 "player Check" call SM_Util_Log;
 if !(count (allPlayers - entities "HeadlessClient_F") > 0) exitWith { true }; 

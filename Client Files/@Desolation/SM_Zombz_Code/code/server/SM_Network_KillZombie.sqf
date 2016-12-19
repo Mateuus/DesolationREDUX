@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-_zombie = objectFromNetId _this;
+private _zombie = objectFromNetId _this;
 
 if (isNull _zombie) exitWith {};
 if (isPlayer _zombie) exitWith {};

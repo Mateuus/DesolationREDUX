@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_position","_isNear","_config","_buildingJammerRange","_nearJammers","_nearBases"];
+private ["_position","_isNear","_config","_buildingJammerRange","_nearJammers","_nearBases"];
 _position = _this;
 _isNear = false;
 

@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_zombie","_target","_soundLast","_attackArray","_aggressiveArray","_uncon","_random","_aggressive","_attack"];
+private ["_zombie","_target","_soundLast","_attackArray","_aggressiveArray","_uncon","_random","_aggressive","_attack"];
 _zombie = _this select 0;
 _soundLast = _this select 2;
 _target = _this select 1;

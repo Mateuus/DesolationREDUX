@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_object",objNull],["_vel",[]]];
+params [["_object",objNull],["_vel",[]]];
 if (!(isNull _object) && !(_vel isEqualTo [])) then
 {
 	_object setVelocity _vel;

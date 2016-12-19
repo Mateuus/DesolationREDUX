@@ -7,7 +7,8 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_itemClassName","_cargoType","_itemType"];
+// Not me.
+private ["_itemClassName","_cargoType","_itemType"];
 _itemClassName = _this;
 _cargoType = 4;
 _itemType = [_itemClassName] call BIS_fnc_itemType;

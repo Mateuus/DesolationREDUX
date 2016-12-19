@@ -7,12 +7,13 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_type", ""],["_data", []]];
+// Very basic network system...
+params [["_type", ""],["_data", []]];
 switch (_type) do
 {
 	case "ZombieReceive":
 	{
-		_data call SM_Network_ZombieReceive;
+		_data spawn SM_Network_ZombieReceive;
 	};
 	case "ExplodeHead":
 	{

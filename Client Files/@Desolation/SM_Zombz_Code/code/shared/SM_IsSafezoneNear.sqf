@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-private["_position","_isNear","_nearSafeZones"];
+private ["_position","_isNear","_nearSafeZones"];
 _position = _this;
 _isNear = false;
 

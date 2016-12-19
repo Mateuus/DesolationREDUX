@@ -7,6 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
+// Not me.
 params[["_interval", 0],["_code", {}],["_params", []],["_persistive", false],["_name", "NotSet"],"_threadID"];
 _threadID = SM_System_ThreadID;
 SM_System_Tasks pushBack [_interval, time, _code, _params, _threadID, _persistive, _name];

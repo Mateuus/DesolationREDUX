@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_player", objNull],["_messageType", ""],["_data", []]];
+params [["_player", objNull],["_messageType", ""],["_data", []]];
 
 if (isNull _player) exitWith { false };
 

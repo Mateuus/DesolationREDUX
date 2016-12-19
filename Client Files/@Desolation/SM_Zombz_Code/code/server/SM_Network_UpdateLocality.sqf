@@ -7,7 +7,7 @@
  * To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
  */
 
-params[["_zombieNetId", ""],["_targetNetId", ""],"_zombie","_target","_alreadyRunning","_targetGroup","_owner","_zombieInfo","_count","_zombieArray","_targetData","_array","_passed"];
+params [["_zombieNetId", ""],["_targetNetId", ""],"_zombie","_target","_alreadyRunning","_targetGroup","_owner","_zombieInfo","_count","_zombieArray","_targetData","_array","_passed"];
 _zombie = objectFromNetId _zombieNetId;
 _target = objectFromNetId _targetNetId;
 
@@ -48,24 +48,18 @@ if (alive _zombie) then
 		[_target, "ZombieReceive", [(netId _zombie)]] call SM_Network_SendMessage;
 	};
 
-	[_zombie] joinSilent _group;
-	_group setGroupOwner (owner _target);
-
-	[_target, "ZombieReceive", [(netId _zombie)]] call SM_Network_SendMessage;
-
-	_owner = objectFromNetId (_zombie getVariable ["SM_ZombieOwner", ""]);
+	_owner = objectFromNetId (_zombie getVariable ["SM_ZombieOwner", _targetNetId]);
 	if !(isNull _owner) then
 	{ 
 		_zombieInfo = _owner getVariable ["SM_CurrentZombies", [0, []]];
 		_count = _zombieInfo select 0;
 		_count = _count - 1;
 		_zombieArray = _zombieInfo select 1;
+		_index = [_zombieArray, (netid _zombie)] call SM_System_FindTask;
+		if !(_index isEqualTo -1) then
 		{
-			if (_x isEqualTo (netId _zombie)) exitWith
-			{
-				_zombieArray deleteAt _forEachIndex;
-			};
-		} forEach _zombieArray;
+			_zombieArray deleteAt _index;
+		};
 
 		if !(_count isEqualTo (count _zombieArray)) then
 		{
@@ -80,6 +74,12 @@ if (alive _zombie) then
 		};
 		_owner setVariable ["SM_CurrentZombies", [_count, _zombieArray]];
 	};
+
+	[_zombie] joinSilent _group;
+	_group setGroupOwner (owner _target);
+	_zombie setVariable ["SM_ZombieOwner", netId _target];
+
+	[_target, "ZombieReceive", [(netId _zombie)]] call SM_Network_SendMessage;
 
 	_targetData = _target getVariable ["SM_CurrentZombies", [0, []]];
 	_count = _targetData select 0;
