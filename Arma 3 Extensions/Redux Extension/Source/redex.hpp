@@ -27,6 +27,7 @@
 #include "constants.hpp"
 #include "database/dbcon.hpp"
 #include "fileio/fileio.hpp"
+#include "datetime/datetime.hpp"
 
 class redex {
 public:
@@ -42,6 +43,7 @@ private:
 	DLL_FUNCTIONS dllfunctions;
 	dbcon dbconnection;
 	fileio fileinputoutput;
+	datetime datetimeobj;
 
 	std::mutex msgmutex;
 	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::queue<std::string>> MESSAGE_MAP;
@@ -51,6 +53,7 @@ private:
 	std::string termdb(boost::property_tree::ptree &dllarguments);
 	std::string dbcall(boost::property_tree::ptree &dllarguments);
 	std::string iocall(boost::property_tree::ptree &dllarguments);
+	std::string dtcall(boost::property_tree::ptree &dllarguments);
 	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
 	std::string chkmsg(boost::property_tree::ptree &dllarguments);
 

@@ -39,6 +39,12 @@ redex::redex() {
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL),
 					boost::bind(&redex::dbcall, this, _1)));
 	dllfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_IO_CALL),
+						boost::bind(&redex::iocall, this, _1)));
+	dllfunctions.insert(
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DT_CALL),
+						boost::bind(&redex::dtcall, this, _1)));
+	dllfunctions.insert(
 				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE),
 						boost::bind(&redex::rcvmsg, this, _1)));
 	dllfunctions.insert(
@@ -237,3 +243,6 @@ std::string redex::iocall(boost::property_tree::ptree &dllarguments) {
 	return fileinputoutput.processIOCall(dllarguments);
 }
 
+std::string redex::dtcall(boost::property_tree::ptree &dllarguments) {
+	return datetimeobj.processDTCall(dllarguments);
+}
