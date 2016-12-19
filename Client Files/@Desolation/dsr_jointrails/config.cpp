@@ -5,6 +5,7 @@ class CfgPatches
 		fileName = "dsr_jointrails.pbo";
 		requiredAddons[] = {
 			"A3_Weapons_F",
+			"A3_Weapons_F_Exp",
 			"A3_Weapons_F_Mark",
 			"A3_Weapons_F_EPA_LongRangeRifles_DMR_01",
 			"A3_Weapons_F_Mark_LongRangeRifles_DMR_02",
@@ -23,17 +24,13 @@ class CfgPatches
 			"A3_Weapons_F_Rifles_Mk20",
 			"A3_Weapons_F_Rifles_MX",
 			"A3_Weapons_F_Rifles_TRG20",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"A3_Weapons_F_Pistols_PDW2000",
+			"A3_Weapons_F_Rifles_Vector",
+			"A3_Weapons_F_Rifles_SMG_02",
+			"A3_Weapons_F_Exp_SMGs_SMG_05",
+			"A3_Weapons_F_Exp_Machineguns_LMG_03",
+			"A3_Weapons_F_Exp_LongRangeRifles_DMR_07",
+			"A3_Weapons_F_Exp_Rifles_AK12"
 		};
 		requiredVersion = 0.1;
 		units[] = {};
@@ -41,10 +38,33 @@ class CfgPatches
 		vehicles[] = {};
 		author[]= {"Desolation Redux Dev Team"};
 	};
+	
+	
+	//asdg support
+	class asdg_jointrails
+	{
+		units[] = {};
+		weapons[] = {};
+		requiredVersion = 1.44;
+		requiredAddons[] = {"A3_Weapons_F","A3_Weapons_F_Mark"};
+		author[] = {"SDG Compatability for Desolation Redux Joint Rails"};
+	};
+	class asdg_jointmuzzles
+	{
+		units[] = {};
+		weapons[] = {};
+		requiredVersion = 1.44;
+		requiredAddons[] = {"A3_Weapons_F","A3_Weapons_F_Mark"};
+		author[] = {"ASDG Compatability for Desolation Redux Joint Rails"};
+	};
 };
 
+//--- class imports
+class CowsSlot;
+class PointerSlot;
+
 //--- slot information
-class DSR_JR_SlotInfo {
+class DSR_JR_SlotInfo : CowsSlot {
 	access = 0;
 	scope = 0;
 	displayName = "";
@@ -55,12 +75,13 @@ class DSR_JR_SlotInfo {
 	iconPinpoint = "Center";
 };
 class DSR_JR_FrontSlot: DSR_JR_SlotInfo {
+	compatibleItems[] = {"acc_flashlight","acc_pointer_IR"};
 	linkProxy = "\A3\data_f\proxies\weapon_slots\SIDE";
-	iconPicture = "\A3\Weapons_F\Data\UI\attachments_side.paa";
+	iconPicture = "\A3\Weapons_F\data\UI\attachment_side.paa";
 };
 class DSR_JR_MuzzleSlot: DSR_JR_SlotInfo {
 	linkProxy = "\A3\data_f\proxies\weapon_slots\MUZZLE";
-	iconPicture = "\A3\Weapons_F\Data\UI\attachments_side.paa";
+	iconPicture = "\A3\Weapons_F\Data\UI\attachment_muzzle.paa";
 };
 class DSR_JR_UnderSlot: DSR_JR_SlotInfo {
 	linkProxy = "\A3\Data_F_Mark\Proxies\Weapon_Slots\UNDERBARREL";
@@ -68,8 +89,9 @@ class DSR_JR_UnderSlot: DSR_JR_SlotInfo {
 	iconPinpoint = "Bottom";
 };
 class DSR_JR_OpticSlot: DSR_JR_SlotInfo {
+	
 	linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-	iconPicture = "\A3\Weapons_F\Data\UI\attachments_top.paa";
+	iconPicture = "\A3\Weapons_F\Data\UI\attachment_top.paa";
 	iconPinpoint = "Bottom";
 };
 //--- base classes
@@ -118,13 +140,27 @@ class asdg_MuzzleSlot_762MG : DSR_JR_MUZZLE_762LMG {};
 class CfgWeapons
 {
 	//--- base imports
-	class Rifle_Base_F;
+	class Rifle;
+	
 	
 	//--- base import buildoff (used for some items but not all)
+	class Rifle_Base_F: Rifle
+	{
+		class WeaponSlotsInfo;
+	};
 	class Rifle_Long_Base_F : Rifle_Base_F 
 	{
 		class WeaponSlotsInfo;
 	};
+	class Rifle_Short_Base_F: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class arifle_AK12_base_F: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	
 	
 	//--- base weapon classes
 	class DMR_01_base_F: Rifle_Long_Base_F
@@ -184,6 +220,30 @@ class CfgWeapons
 		class WeaponSlotsInfo;
 	};
 	class Tavor_base_F: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class pdw2000_base_F: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class SMG_01_Base: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class SMG_02_base_F: Rifle_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class SMG_05_base_F: Rifle_Short_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class LMG_03_base_F: Rifle_Long_Base_F
+	{
+		class WeaponSlotsInfo;
+	};
+	class DMR_07_base_F: Rifle_Long_Base_F
 	{
 		class WeaponSlotsInfo;
 	};
@@ -684,12 +744,12 @@ class CfgWeapons
 				iconPosition[] = {0,0.4};
 				iconScale = 0.2;
 			};
-			class CowsSlot: asdg_OpticRail1913_short
+			class CowsSlot: DSR_JR_OPTIC_SHORT
 			{
 				iconPosition[] = {0.45,0.28};
 				iconScale = 0.2;
 			};
-			class PointerSlot: asdg_FrontSideRail
+			class PointerSlot: DSR_JR_FrontSlot
 			{
 				iconPosition[] = {0.25,0.4};
 				iconScale = 0.25;
@@ -705,17 +765,191 @@ class CfgWeapons
 				iconPosition[] = {0.1,0.4};
 				iconScale = 0.2;
 			};
-			class CowsSlot: asdg_OpticRail1913_short
+			class CowsSlot: DSR_JR_OPTIC_SHORT
 			{
 				iconPosition[] = {0.45,0.28};
 				iconScale = 0.2;
 			};
-			class PointerSlot: asdg_FrontSideRail
+			class PointerSlot: DSR_JR_FrontSlot
 			{
 				iconPosition[] = {0.25,0.4};
 				iconScale = 0.25;
 			};
 		};
 	};
-	
+	class hgun_PDW2000_F: pdw2000_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_9MILSMG
+			{
+				iconPosition[] = {0.0,0.45};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.5,0.4};
+				iconScale = 0.15;
+			};
+		};
+	};
+	class SMG_01_F: SMG_01_Base
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_45ACPSMG
+			{
+				iconPosition[] = {0.1,0.4};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.4,0.3};
+				iconScale = 0.2;
+			};
+		};
+	};
+	class SMG_02_F: SMG_02_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_9MILSMG
+			{
+				iconPosition[] = {0.08,0.4};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.45,0.27};
+				iconScale = 0.2;
+			};
+			class PointerSlot: DSR_JR_FrontSlot
+			{
+				iconPosition[] = {0.28,0.4};
+				iconScale = 0.25;
+			};
+		};
+	};
+	class SMG_05_F: SMG_05_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_9MILSMG
+			{
+				iconPosition[] = {0.05,0.35};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+			class PointerSlot: DSR_JR_FrontSlot
+			{
+				iconPosition[] = {0.25,0.35};
+				iconScale = 0.25;
+			};
+		};
+	};
+	class LMG_03_F: LMG_03_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_556
+			{
+				iconPosition[] = {0,0.4};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.57,0.28};
+				iconScale = 0.2;
+			};
+			class PointerSlot: DSR_JR_FrontSlot
+			{
+				iconPosition[] = {0.38,0.42};
+				iconScale = 0.25;
+			};
+		};
+	};
+	class srifle_DMR_07_blk_F: DMR_07_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class CowsSlot: DSR_JR_OPTIC_LONG
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+		};
+	};
+	class srifle_DMR_07_hex_F: DMR_07_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class CowsSlot: DSR_JR_OPTIC_LONG
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+		};
+	};
+	class srifle_DMR_07_ghex_F: DMR_07_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class CowsSlot: DSR_JR_OPTIC_LONG
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+		};
+	};
+	class arifle_AK12_F: arifle_AK12_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_762
+			{
+				iconPosition[] = {0.0,0.35};
+				iconScale = 0.2;
+			};
+			class PointerSlot: DSR_JR_FrontSlot
+			{
+				iconPosition[] = {0.3,0.35};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+			class UnderBarrelSlot: DSR_JR_UnderSlot
+			{
+				iconPosition[] = {0.35,0.7};
+				iconScale = 0.3;
+			};
+		};
+	};
+	class arifle_AK12_GL_base_F: arifle_AK12_base_F
+	{
+		class WeaponSlotsInfo: WeaponSlotsInfo
+		{
+			class MuzzleSlot: DSR_JR_MUZZLE_762
+			{
+				iconPosition[] = {0.0,0.35};
+				iconScale = 0.2;
+			};
+			class PointerSlot: DSR_JR_FrontSlot
+			{
+				iconPosition[] = {0.3,0.35};
+				iconScale = 0.2;
+			};
+			class CowsSlot: DSR_JR_OPTIC
+			{
+				iconPosition[] = {0.45,0.28};
+				iconScale = 0.2;
+			};
+		};
+	};
 };
