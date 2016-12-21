@@ -19,7 +19,11 @@
 #define SOURCE_MAIN_HPP_
 
 #ifdef __MINGW32__
-		#define RVExtension __stdcall _RVExtension
+	#if _WIN64
+			#define RVExtension __stdcall RVExtension
+	#else
+			#define RVExtension __stdcall _RVExtension
+	#endif
 #endif
 #ifdef _MSC_VER
 		#define RVExtension __stdcall RVExtension
