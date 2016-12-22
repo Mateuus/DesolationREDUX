@@ -96,7 +96,7 @@ std::string fileio::processIOCall(boost::property_tree::ptree &iocall) {
 
 std::string fileio::GetInitOrder(boost::property_tree::ptree &ioarguments) {
 #if defined(__linux__)
-	std::string filename = "@DesolationServer/Config/pluginlist.cfg";
+	std::string filename = "@DesolationServer/Config/PluginList.cfg";
 	if (access(filename.c_str(), F_OK) == -1) {
 		std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
 	}
@@ -119,9 +119,9 @@ std::string fileio::GetInitOrder(boost::property_tree::ptree &ioarguments) {
 			line = boost::regex_replace(line, commentexpression, "");
 
 			// skip empty lines
-			boost::regex nonEmptyLineRegex("\\S");
+			boost::regex EmptyLineRegex("^\\s*$");
 			boost::cmatch what;
-			if (!boost::regex_match(line.c_str(), what, nonEmptyLineRegex)) {
+			if (boost::regex_match(line.c_str(), what, EmptyLineRegex)) {
 				continue;
 			}
 
@@ -145,7 +145,7 @@ std::string fileio::GetInitOrder(boost::property_tree::ptree &ioarguments) {
 
 		return returnString;
 	} else {
-		throw std::runtime_error("cannot read file" + filename);
+		throw std::runtime_error("cannot read file " + filename);
 	}
 
 	return "";
@@ -158,7 +158,8 @@ std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
 	std::string path = "@DesolationServer\\Config\\";
 #endif
 	std::string returnString = "[";
-	int linenum = 0;
+	int filenum = 0;
+	int itemnum = 0;
 
 	for (auto& item : ioarguments.get_child("configfiles")) {
 		std::string filename = item.second.get_value<std::string>();
@@ -173,11 +174,16 @@ std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
 			std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
 		}
 #endif
+		if (filenum != 0) {
+			returnString += ",";
+		}
+		returnString += "[";
 
 		if (access(filename.c_str(), F_OK) != -1) {
 			boost::property_tree::ptree configtree;
 			boost::property_tree::ini_parser::read_ini(filename, configtree);
 
+			itemnum = 0;
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &val, configtree) {
 			    // val.first is the name of the child.
 			    // val.second is the child tree.
@@ -188,7 +194,7 @@ std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
 				boost::regex commentexpression("\\s*#.*");
 				value = boost::regex_replace(value, commentexpression, "");
 
-				if (linenum != 0) {
+				if (itemnum != 0) {
 					returnString += ",";
 				}
 
@@ -198,12 +204,15 @@ std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
 				returnString += value;
 				returnString += "\"]";
 
-				linenum++;
+				itemnum++;
 			}
 		}
-	}
 
+		returnString += "]";
+		filenum++;
+	}
 	returnString += "]";
+	return returnString;
 }
 
 std::string fileio::readFile(boost::property_tree::ptree &ioarguments) {
