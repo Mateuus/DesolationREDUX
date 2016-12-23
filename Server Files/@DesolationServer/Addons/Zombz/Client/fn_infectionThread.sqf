@@ -31,7 +31,7 @@ if (_infection > 0) then
 	};
 	_damage = damage player;
 
-	_infectionDamage = ["infectionDamage","SM"] call BASE_fnc_getCfgValue;
+	_infectionDamage = ["infectionDamage","SM"] call SM_fnc_getCfgValue;
 
 	switch true do
 	{

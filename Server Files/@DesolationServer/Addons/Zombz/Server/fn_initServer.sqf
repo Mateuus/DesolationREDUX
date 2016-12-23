@@ -11,7 +11,7 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-if !(["Enabled","SM"] call BASE_fnc_getCfgValue) exitWith {};
+if !(["Enabled","SM"] call SM_fnc_getCfgValue) exitWith {};
 
 private _version = getText(configFile >> "CfgPatches" >> "DSR_SM_Zombz" >> "version");
 diag_log format["DSR_SM_Zombz %1: Starting Init!", _version];

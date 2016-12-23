@@ -11,8 +11,8 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-_maxZombies = ["maxZombies","SM"] call BASE_fnc_getCfgValue;
-_townTypes = ["townTypes","SM"] call BASE_fnc_getCfgValue;
+_maxZombies = ["maxZombies","SM"] call SM_fnc_getCfgValue;
+_townTypes = ["townTypes","SM"] call SM_fnc_getCfgValue;
 _zombieClasses = getArray (configFile >> "ZombieSettings" >> "zombieClasses");
 
 _leftOverZombies = _maxZombies;

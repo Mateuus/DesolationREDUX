@@ -23,7 +23,7 @@ if !(_class isKindOf "SM_Zombz_Base") exitWith {};
 
 try
 {
-	_buildingSpawnChance = ["buildingSpawnChance","SM"] call BASE_fnc_getCfgValue;
+	_buildingSpawnChance = ["buildingSpawnChance","SM"] call SM_fnc_getCfgValue;
 	if ((random 100) < _buildingSpawnChance) then
 	{
 		_nearbuildings = _center nearObjects ["House",15];

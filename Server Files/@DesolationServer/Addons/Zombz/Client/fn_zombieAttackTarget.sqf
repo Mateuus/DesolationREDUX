@@ -78,7 +78,7 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 		_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
 		[_target, _screamSound] remoteExecCall ["Say3D", -2];
 
-		_velocityEnabled = ["velocityEnabled","SM"] call BASE_fnc_getCfgValue;
+		_velocityEnabled = ["velocityEnabled","SM"] call SM_fnc_getCfgValue;
 		if (SM_SetVelocityOnHit) then
 		{
 			_vel = velocity _target;
@@ -86,21 +86,21 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 			[(vehicle _target), [((_vel select 0) + ((sin _dir) * 1)), ((_vel select 1) + ((cos _dir) * 1)), ((_vel select 2) + (random 1))]] call SM_fnc_targetSetVelocity;
 		};
 		
-		_bleedEnabled = ["bleedEnabled","SM"] call BASE_fnc_getCfgValue;
+		_bleedEnabled = ["bleedEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_bleedEnabled) then
 		{
-			_bleedChance = ["bleedChance","SM"] call BASE_fnc_getCfgValue;
+			_bleedChance = ["bleedChance","SM"] call SM_fnc_getCfgValue;
 			if (_bleedChance > random 100) then
 			{
 				_target setBleedingRemaining 20;
 			};
 		};
 
-		_infectionEnabled = ["infectionEnabled","SM"] call BASE_fnc_getCfgValue;
+		_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_infectionEnabled) then
 		{
 			if (_target getVariable ["SM_InfectionImmune", false]) exitWith {};
-			_infectionChance = ["infectionChance","SM"] call BASE_fnc_getCfgValue;
+			_infectionChance = ["infectionChance","SM"] call SM_fnc_getCfgValue;
 			if (_infectionChance > random 100) then
 			{
 				_targetInfection = _target getVariable ["SM_InfectionDOT", 0];

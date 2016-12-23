@@ -58,6 +58,7 @@ class CfgFunctions
 			file = "Zombz\shared";
 			isclient = true;
 			class Log {};
+			class getCfgValue {};
 			class onMPKilled {};
 		};
 	};
