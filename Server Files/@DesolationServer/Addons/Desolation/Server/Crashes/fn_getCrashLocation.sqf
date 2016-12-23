@@ -14,8 +14,8 @@ _variableNameLocations = format ["DS_HeliCrash_%1_locations",_crashtype];
 _desiredLocations = missionNamespace getVariable _variableNameLocations;
 _foundLocations = [];
 
-while {(count _foundLocations) < 0} {
-	_mapPos = [true,false] call DS_fnc_GetRandMapPos;
+while {(count _foundLocations) < 0} do {
+	_mapPos = [true, false] call DS_fnc_GetRandMapPos;
 	_foundLocations = nearestLocations [_mapPos, _desiredLocations, _maxSearchDist];
 };
 
