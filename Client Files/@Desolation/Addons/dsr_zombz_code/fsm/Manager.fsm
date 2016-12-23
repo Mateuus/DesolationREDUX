@@ -2,26 +2,21 @@
 /*%FSM<HEAD>*/
 /*
 item0[] = {"Init",2,250,1125.000000,875.000000,1225.000000,925.000000,0.000000,"Init"};
-item1[] = {"Infection",4,4314,1175.000000,950.000000,1275.000000,1000.000000,0.000000,"Infection"};
-item2[] = {"ZombieIdleCheck",4,218,1075.000000,950.000000,1175.000000,1000.000000,0.000000,"ZombieIdleCheck"};
-item3[] = {"",7,210,1045.999878,1020.999878,1054.000000,1029.000000,0.000000,""};
-item4[] = {"",7,210,1121.000000,1020.999695,1129.000000,1029.000244,0.000000,""};
-item5[] = {"",7,210,1221.000000,1020.999695,1229.000000,1029.000244,0.000000,""};
-item6[] = {"",7,210,1046.000000,896.000000,1054.000000,904.000061,0.000000,""};
-item7[] = {"Init_1",0,250,1125.000000,725.000000,1225.000000,775.000000,0.000000,"Init"};
-item8[] = {"True",8,218,1125.000000,800.000000,1225.000000,850.000000,0.000000,"True"};
+item1[] = {"Infection",4,218,1125.000000,950.000000,1225.000000,1000.000000,0.000000,"Infection"};
+item2[] = {"",7,210,1096.000000,1021.000000,1104.000122,1029.000000,0.000000,""};
+item3[] = {"",7,210,1171.000000,1020.999695,1179.000000,1029.000244,0.000000,""};
+item4[] = {"",7,210,1096.000000,896.000000,1104.000000,904.000061,0.000000,""};
+item5[] = {"Init_1",0,250,1125.000000,725.000000,1225.000000,775.000000,0.000000,"Init"};
+item6[] = {"True",8,218,1125.000000,800.000000,1225.000000,850.000000,0.000000,"True"};
 link0[] = {0,1};
-link1[] = {0,2};
-link2[] = {1,5};
-link3[] = {2,4};
-link4[] = {3,6};
-link5[] = {4,3};
-link6[] = {5,4};
-link7[] = {6,0};
-link8[] = {7,8};
-link9[] = {8,0};
+link1[] = {1,3};
+link2[] = {2,4};
+link3[] = {3,2};
+link4[] = {4,0};
+link5[] = {5,6};
+link6[] = {6,0};
 globals[] = {0.000000,0,0,0,0,640,480,2,24,6316128,1,635.102417,1492.739502,1290.752441,632.260010,1236,949,1};
-window[] = {2,-1,-1,-1,-1,744,242,1392,78,3,1254};
+window[] = {2,-1,-1,-1,-1,770,104,1254,104,3,1254};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -37,17 +32,6 @@ class FSM
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
-                                /*%FSM<LINK "ZombieIdleCheck">*/
-                                class ZombieIdleCheck
-                                {
-                                        itemno = 2;
-                                        priority = 0.000000;
-                                        to="Init";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) > 1"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_zombieIdleCheck;"/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
                                 /*%FSM<LINK "Infection">*/
                                 class Infection
                                 {
@@ -66,7 +50,7 @@ class FSM
                 class Init_1
                 {
                         name = "Init_1";
-                        itemno = 7;
+                        itemno = 5;
                         init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -74,7 +58,7 @@ class FSM
                                 /*%FSM<LINK "True">*/
                                 class True
                                 {
-                                        itemno = 8;
+                                        itemno = 6;
                                         priority = 0.000000;
                                         to="Init";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
