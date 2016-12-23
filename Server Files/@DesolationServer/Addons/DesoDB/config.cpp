@@ -30,6 +30,7 @@ class CfgFunctions
 			class sendRequest {};
 			class buildDLLRequest {};
 			class buildDBRequest {};
+			class buildIORequest {};
 			class buildRequest {};
 		};
 		class Functions 

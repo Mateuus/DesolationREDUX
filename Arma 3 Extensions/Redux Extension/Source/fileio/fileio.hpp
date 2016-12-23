@@ -19,6 +19,7 @@
 #ifndef SOURCE_FILEIO_HPP_
 #define SOURCE_FILEIO_HPP_
 
+#include <algorithm>
 #include <string>
 #include <map>
 #include <tuple>
@@ -45,6 +46,8 @@ private:
 	std::string readFile(boost::property_tree::ptree &ioarguments);
 	std::string writeFile(boost::property_tree::ptree &ioarguments);
 	std::string appendFile(boost::property_tree::ptree &ioarguments);
+	std::string GetInitOrder(boost::property_tree::ptree &ioarguments);
+	std::string GetCfgFile(boost::property_tree::ptree &ioarguments);
 };
 
 

@@ -24,12 +24,13 @@
 #include <queue>
 #include <vector>
 #include "constants.hpp"
+#include "database/base.hpp"
 
-class db_handler {
+class mysql_db_handler: virtual public base_db_handler {
 	// https://dev.mysql.com/doc/connector-cpp/en/connector-cpp-examples-complete-example-1.html
 public:
-	db_handler();
-	~db_handler();
+	mysql_db_handler();
+	~mysql_db_handler();
 
 	void connect(std::string hostname, std::string user, std::string password, std::string database, unsigned int port,
 			bool whitelistonly, bool allowsteamapi, bool vaccheckban, unsigned int vacmaxcount,

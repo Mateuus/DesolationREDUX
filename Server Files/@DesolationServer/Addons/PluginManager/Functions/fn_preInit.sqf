@@ -9,12 +9,15 @@ diag_log "<PluginManager>: Preinit Called";
 
 diag_log format["<PluginManager>: Broadcasted %1 functions",count(_functions_forclients)];
 
-//--- broadcast config settings 
-call BASE_fnc_compileCfg; 
-
 //--- compile initialization list of files
+_request = ["GetInitOrder"] call DB_fnc_buildIORequest;
+diag_log _request;
+_order = call compile ([_request] call DB_fnc_sendRequest);
 
-_order = call compile ("Config" callExtension "GetInitOrder");
+//--- broadcast config settings 
+[_order] call BASE_fnc_compileCfg; 
+
+
 
 diag_log format["<PluginManager>: Loading %1 plugins",count(_order)];
 
