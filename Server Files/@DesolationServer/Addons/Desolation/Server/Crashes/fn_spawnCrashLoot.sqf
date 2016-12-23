@@ -1,3 +1,9 @@
+/*
+	Desolation Redux
+	2016 Desolation Dev Team
+
+	License info here and copyright symbol above
+*/
 
 //PLEASE NOTE: Lootcrate spawning is only temporary and will be replaced with random loot piles/ lootable crew corpses...
 
@@ -18,25 +24,30 @@ _lootcrate = "Box_NATO_Wps_F" createVehicle _lootCratePos;
 
 //place weapons in crate
 if !(count _weaponLoot > 0) then {
-{
-_lootcrate addWeaponCargoGlobal[_x,1];
-}foreach _weaponLoot;
+	{
+		_lootcrate addWeaponCargoGlobal [_x, 1];
+	}foreach _weaponLoot;
 };
 
 //place mags in crate
 if !(count _magazineLoot > 0) then {
-{
-_lootcrate addMagazineCargoGlobal [_x, 3];
-}foreach _magazineLoot;};
+	{
+		_lootcrate addMagazineCargoGlobal [_x, 3];
+	}foreach _magazineLoot;
+};
 
 //place items in crate
 if !(count _itemLoot > 0) then {
-{
-_lootcrate addItemCargoGlobal [_x, 1];
-}foreach _itemLoot;};
+	{
+		_lootcrate addItemCargoGlobal [_x, 1];
+	}foreach _itemLoot;
+};
 
 //place backpacks in crate
 if !(count _backpackLoot > 0) then {
-{
-_lootcrate addbackpackCargoGlobal [_x, 1];
-}foreach _backpackLoot;};
+	{
+		_lootcrate addbackpackCargoGlobal [_x, 1];
+	}foreach _backpackLoot;
+};
+
+true
