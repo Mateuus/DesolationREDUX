@@ -23,5 +23,9 @@
 **/*.out
 **/*.app
 
+# Archives
+**/*.rar
+**/*.zip
+
 # ARMA binary files
 **/*.pbo

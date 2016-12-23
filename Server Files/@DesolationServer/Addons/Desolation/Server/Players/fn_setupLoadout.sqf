@@ -25,8 +25,6 @@ else
 	removeUniform _unit;
 	removeGoggles _unit;
 	
-	diag_log ("Giving unit: " + str(_defaultData));
-	
 	_unit addUniform (_defaultData select 0);
 	_unit addHeadgear (_defaultData select 1);
 	

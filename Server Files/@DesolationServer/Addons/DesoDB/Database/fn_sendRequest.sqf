@@ -3,20 +3,7 @@
 params["_request",["_isScheduled",true]];
 private["_response","_compiledResponse","_uuid", "_finalResponse","_return","_doswitchloop","_innerdoloop"];
 
-diag_log "DesoDB > Sending request";
-_size = 1000;
-_len = count(_request);
-for "_i" from 0 to ceil(_len/_size) do {
-	if(_i == ceil(_len/_size)) then {
-		diag_log (_request select [_i*_size]);
-	} else {
-		diag_log (_request select [_i*_size,_size]);
-	};
-};
-
 _response = "libredex" callExtension _request;
-diag_log "DesoDB > Checking Response";
-diag_log _response;
 _compiledResponse = call compile _response;
 
 _doswitchloop = true;
@@ -106,5 +93,4 @@ if(isNil {_return}) exitWith {
 	diag_log ("DB RESPONSE > NIL RETURN");
 	"";
 };
-diag_log ("DB RESPONSE > " + str(_return));
 _return;

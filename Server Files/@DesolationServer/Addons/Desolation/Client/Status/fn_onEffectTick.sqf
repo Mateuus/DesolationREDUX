@@ -11,7 +11,7 @@ if(DS_var_Blood <= 0) then {
 
 	_bloodPercent = 50 + (DS_var_Blood / 550);
 	if(_bloodPercent < 50) then {
-		diag_log "BLOOD ERROR WAT THE FUK???";
+		diag_log "Error: Blood falling into the negatives";
 	} else {
 		if(_bloodPercent < 65) then {
 			if(random(100) < 5 && (lifeState player != "INCAPACITATED") && ((diag_tickTime - DS_var_lastKnockout) > 5)) then {

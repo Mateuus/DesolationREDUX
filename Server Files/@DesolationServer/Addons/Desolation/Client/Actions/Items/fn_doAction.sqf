@@ -18,7 +18,7 @@ _event = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 _time = diag_tickTime + 6;
 player playActionNow (_actions select _action);
 waitUntil{diag_tickTime >= _time || ds_var_cancelAction};
-player switchMove "amovpknlmstpsraswrfldnon";
+[player,"amovpknlmstpsraswrfldnon"] remoteExecCall ["switchMove",-2];
 (findDisplay 46) displayRemoveEventHandler ["KeyDown",_event];
 ds_var_doingAction = false;
 if(ds_var_cancelAction) exitWith {false};

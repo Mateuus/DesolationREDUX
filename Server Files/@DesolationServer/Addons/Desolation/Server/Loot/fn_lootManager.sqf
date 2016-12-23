@@ -132,20 +132,17 @@ while{true} do {
 			_x setVariable ["SpawnedTime",diag_tickTime];
 			_x setVariable ["SavedLoot",[]];
 			_x setVariable ["IsSpawnedLoot",true];
-			diag_log ("Spawning loot @ " + typeof(_x));
 			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
 		} else {
 			if(!_isSpawned) then {
-				diag_log ("Respawning loot @ " + typeof(_x));
 				[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
 			};
 		};
 	} forEach _buildingsToSpawn;
 	{
 		if !(_x in _buildingsNotToDespawn) then {
-			diag_log ("Despawning loot @ " + typeof(_x)); //--- running on non-spawned buildings?
 			_x setVariable ["IsSpawnedLoot",false];
-			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //--- despawns once?
+			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];
 		};
 	} forEach _buildingsToDespawn;
 

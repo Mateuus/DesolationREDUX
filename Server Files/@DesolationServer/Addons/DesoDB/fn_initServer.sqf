@@ -10,6 +10,6 @@ diag_log ("DesoDB > World UUID: " + _worldUUID);
 diag_log ("DesoDB > Pool Size: " + str(_poolSize));
 
 _request = ["initdb",[["poolsize",_poolSize],["worlduuid",_worldUUID]]] call DB_fnc_buildDLLRequest;
-diag_log "DesoDB > Dll Request";
+diag_log "DesoDB > Init DB Request";
 diag_log _request;
 [_request] call DB_fnc_sendRequest;
