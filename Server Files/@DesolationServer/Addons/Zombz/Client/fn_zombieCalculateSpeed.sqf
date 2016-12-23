@@ -34,7 +34,7 @@ if !(isNull _building) then
 	{
 		_zombieIsInBuilding = true;
 		_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
-		_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed / SM_ZombieInBuildingSpeedDevidor);
+		_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed / 2);
 		_zombieAgent setVariable ["SM_WasInBuilding", true, true];
 	};
 };
@@ -52,7 +52,7 @@ if (SM_ZombiesFastClose) then
 {
 	if !(isNull _target) then
 	{
-		if ((_zombieAgent distance2D _target) >= SM_ZombieSpeedDistance) then
+		if ((_zombieAgent distance2D _target) >= 35) then
 		{
 			_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
 			_zombieAgent setVariable ["SM_zombieIsFaster", false];
@@ -61,7 +61,7 @@ if (SM_ZombiesFastClose) then
 		{
 			if !(_zombieisFaster) then
 			{
-				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * SM_ZombieSpeedMultiplyer);
+				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
 				_zombieAgent setVariable ["SM_zombieIsFaster", true];
 			};
 		};
@@ -70,7 +70,7 @@ if (SM_ZombiesFastClose) then
 	{
 		if !(_zombieisFaster) then
 		{
-			_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * SM_ZombieSpeedMultiplyer);
+			_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
 			_zombieAgent setVariable ["SM_zombieIsFaster", true];
 		};
 	};
@@ -79,7 +79,7 @@ if !(SM_ZombiesFastClose) then
 {
 	if !(isNull _target) then
 	{
-		if ((_zombieAgent distance2D _target) <= SM_ZombieSpeedDistance) then
+		if ((_zombieAgent distance2D _target) <= 35) then
 		{
 			_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
 			_zombieAgent setVariable ["SM_zombieIsFaster", false];
@@ -88,7 +88,7 @@ if !(SM_ZombiesFastClose) then
 		{
 			if !(_zombieisFaster) then
 			{
-				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * SM_ZombieSpeedMultiplyer);
+				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
 				_zombieAgent setVariable ["SM_zombieIsFaster", true];
 			};
 		};
@@ -97,7 +97,7 @@ if !(SM_ZombiesFastClose) then
 	{
 		if !(_zombieisFaster) then
 		{
-			_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * SM_ZombieSpeedMultiplyer);
+			_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
 			_zombieAgent setVariable ["SM_zombieIsFaster", true];
 		};
 	};
