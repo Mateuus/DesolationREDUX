@@ -25,7 +25,7 @@ _spawnDirection = random 360;
 _spawnPos = [(_crashPos select 0) + sin(_dir)*_mapsize, (_crashPos select 1) + cos(_dir)*_mapsize,_spawnAlt];
 
 _heli = _heliType createVehicle _spawnPos;
-	(group _heli) move [_crashPos, 0];
+	(group _heli) move _crashPos;
 	(group _heli) setSpeedMode "full";
 	waituntil{(_heli distance2d _crashPos) < 50};
 _wreckPos = [_heli,_wreckClass,_smokeSize,_smokepos,_wreckSmoke] call DS_fnc_heliCrashAnim;
