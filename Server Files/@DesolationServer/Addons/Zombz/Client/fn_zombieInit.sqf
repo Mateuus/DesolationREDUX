@@ -27,6 +27,7 @@ if (_zombies isEqualTo []) exitWith {};
 			[
 				"Local",
 				{ 
+					systemchat "Zombie Ownership Changed";
 					_zombieAgent = _this select 0;
 					_local = _this select 1;
 					if (_local) then
