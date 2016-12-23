@@ -9,7 +9,7 @@
 
 class CfgPatches
 {
-	class SM_Zombz_Code
+	class DSR_Zombz_Code
 	{
 		requiredVersion = 1;
 		requiredAddons[] = {};
@@ -17,6 +17,6 @@ class CfgPatches
 		weapons[] = {};
 		magazines[] = {};
 		ammo[] = {};
-		version = "v0.4.1";
+		version = "v0.0.2";
 	};
 };

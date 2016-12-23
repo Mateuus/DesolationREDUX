@@ -13,7 +13,7 @@ License info here and copyright symbol above
 
 if !(["Enabled","SM"] call SM_fnc_getCfgValue) exitWith {};
 
-private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+private _version = getText(configFile >> "CfgPatches" >> "DSR_Zombz_code" >> "version");
 diag_log format["SM_Zombz %1: Starting Init!", _version];
 
 if !(isMultiplayer) exitWith 
