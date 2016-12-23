@@ -196,9 +196,11 @@ class CfgFunctions
 		class Server_Crashes {
 			file = "Desolation\Server\Crashes";
 			isserver = 1;
-			/*class spawnCrashes {};
+			class spawnCrashes {};
+			class crashSmoke {};
+			class spawnCrashLoot {};
 			class getCrashLocation {};
-			class initHeliCrashes {};*/
+			class initHeliCrashes {};
 		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
