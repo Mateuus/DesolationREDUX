@@ -114,6 +114,12 @@ std::string fileio::GetInitOrder(boost::property_tree::ptree &ioarguments) {
 		while (std::getline(infile, line)) {
 			std::istringstream iss(line);
 
+			int i = 0;
+			while ((i = line.find("\"", i)) != std::string::npos) {
+				line.insert(i, "\"");
+				i += 2;
+			}
+
 			// remove comments
 			boost::regex commentexpression("\\s*#.*");
 			line = boost::regex_replace(line, commentexpression, "");
@@ -189,6 +195,18 @@ std::string fileio::GetCfgFile(boost::property_tree::ptree &ioarguments) {
 			    // val.second is the child tree.
 				std::string key = val.first;
 				std::string value = val.second.get_value<std::string>();
+				int i = 0;
+
+				while ((i = key.find("\"", i)) != std::string::npos) {
+					key.insert(i, "\"");
+					i += 2;
+				}
+
+				i = 0;
+				while ((i = value.find("\"", i)) != std::string::npos) {
+					value.insert(i, "\"");
+					i += 2;
+				}
 
 				// remove comments
 				boost::regex commentexpression("\\s*#.*");
