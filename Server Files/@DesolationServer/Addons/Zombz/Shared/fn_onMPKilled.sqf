@@ -29,7 +29,7 @@ if ((hasInterface) && (_killer isEqualTo player)) then
 {
 	if ((netId _zombieAgent) in SM_IdleZombies) then
 	{
-		_index = [SM_IdleZombies, (netId _zombieAgent)] call SM_fnc_findZombie;
+		_index = [SM_IdleZombies, (netId _zombieAgent)] call SM_fnc_findIndex;
 
 		// This should almost never return -1, due to we know it's in it, because the check above said so...
 		// You never know with arma...
