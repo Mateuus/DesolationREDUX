@@ -30,6 +30,7 @@ addons[]=
 	"dsr_weapons",
 	"dsr_actions",
 	"dsr_objects",
+	"sm_zombz",
 	"CAAir_E_c130j",
 	"CAWheeled_2_MMT"
 };
