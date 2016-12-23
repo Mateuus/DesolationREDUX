@@ -54,6 +54,7 @@ if (_zombies isEqualTo []) exitWith {};
 							// Just incase this is being transfered from another target.
 							if (isObjectHidden _zombieAgent) then
 							{
+								systemchat "unhiding zombie";
 								_zombieAgent hideObjectGlobal false;
 								_zombieAgent enableSimulationGlobal true;
 							};
