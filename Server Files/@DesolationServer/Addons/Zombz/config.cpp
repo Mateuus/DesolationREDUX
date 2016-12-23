@@ -38,6 +38,7 @@ class CfgFunctions
 			class bloodEffect {};
 			class screenAddBlood {};
 			class screenRemoveBlood {};
+			class zombieFindFiredNear {};
 		};
 
 		class Server 

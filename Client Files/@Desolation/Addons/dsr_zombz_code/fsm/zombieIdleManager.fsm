@@ -17,7 +17,7 @@ link5[] = {3,6};
 link6[] = {5,3};
 link7[] = {6,4};
 globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,920.611328,1463.949585,1267.831055,855.658447,1236,949,1};
-window[] = {2,-1,-1,-1,-1,796,130,1280,130,3,1254};
+window[] = {2,-1,-1,-1,-1,718,52,1202,52,3,1254};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -83,7 +83,7 @@ class FSM
                          "			_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
                          "			if (_firedNearEnabled) then" \n
                          "			{" \n
-                         "				if ((_zombie getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
+                         "				if ((_zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
                          "				{" \n
                          "					_evhID = _zombieAgent addEventHandler [""FiredNear"",{ _this call SM_fnc_zombieFiredNear }];" \n
                          "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"", _evhid];" \n
