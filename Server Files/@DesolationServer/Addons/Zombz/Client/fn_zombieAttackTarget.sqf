@@ -18,7 +18,7 @@ if ((animationState _zomieAgent) isEqualTo "unconscious") exitWith { _soundLast 
 if ((diag_tickTime - _soundLast) >= 3) then
 {
 	_aggressiveSound = selectRandom _aggressiveArray; 
-	[_zomieAgent, _aggressiveSound] remoteExecCall ["SM_Say3D", -2];
+	[_zomieAgent, _aggressiveSound] remoteExecCall ["Say3D", -2];
 	_soundLast = diag_tickTime;
 };
 
@@ -53,7 +53,7 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 					if ((random 5) < 1) then
 					{
 						_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
-						[_x, _screamSound] remoteExecCall ["SM_Say3D", -2];
+						[_x, _screamSound] remoteExecCall ["Say3D", -2];
 					};
 					_x setDamage ((damage _x) + (0.15 / 25));
 				} foreach (crew vehicle _target); 	
@@ -61,9 +61,10 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 		};
 
 		_vehicleHit = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_VehicleHitArray"));
-		[_zomieAgent, _vehicleHit] remoteExecCall ["SM_Say3D", -2];
+		[_zomieAgent, _vehicleHit] remoteExecCall ["Say3D", -2];
 
-		if (SM_SetVelocityOnHit) then
+		_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
+		if (_infectionEnabled) then
 		{
 			_vel = velocity (vehicle _target);
 			_dir = direction _zomieAgent;
@@ -79,7 +80,7 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 		[_target, _screamSound] remoteExecCall ["Say3D", -2];
 
 		_velocityEnabled = ["velocityEnabled","SM"] call SM_fnc_getCfgValue;
-		if (SM_SetVelocityOnHit) then
+		if (_velocityEnabled) then
 		{
 			_vel = velocity _target;
 			_dir = direction _zomieAgent;

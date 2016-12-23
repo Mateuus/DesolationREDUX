@@ -15,7 +15,7 @@ params ["_zombieAgent","_soundLast","_target"];
 
 if ((animationState _zombieAgent) isEqualTo "unconscious") exitWith { _soundLast };
 
-if ((diag_ticktime - _soundLast) >= SM_ZombieSoundDelayAggressive) then
+if ((diag_ticktime - _soundLast) >= 3) then
 {
 	_aggressive = selectRandom _aggressiveArray; 
 	[_zombieAgent, _aggressive] remoteExecCall ["Say3D", -2];

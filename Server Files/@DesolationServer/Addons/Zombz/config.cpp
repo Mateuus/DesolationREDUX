@@ -41,6 +41,7 @@ class CfgFunctions
 			class zombieFindFiredNear {};
 			class findIndex {};
 			class zombieCalculateSpeed {};
+			class zombieFindPositionWander {};
 		};
 
 		class Server 

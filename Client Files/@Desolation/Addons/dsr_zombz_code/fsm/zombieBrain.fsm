@@ -155,7 +155,7 @@ class FSM
                         itemno = 0;
                         init = /*%FSM<STATEINIT""">*/"_zombieAgent = _this;" \n
                          "" \n
-                         "_firedNearEnabled = [""firedNearEnabled"",""SM""] call BASE_fnc_getCfgValue;" \n
+                         "_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
                          "if (_firedNearEnabled) then" \n
                          "{" \n
                          "	if !((_zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
@@ -451,7 +451,7 @@ class FSM
                                          "			_distance = _zombieAgent distance _target;" \n
                                          "		};" \n
                                          "" \n
-                                         "		_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call BASE_fnc_getCfgValue;" \n
+                                         "		_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call SM_fnc_getCfgValue;" \n
                                          "		if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 3) then" \n
                                          "		{" \n
                                          "			[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
