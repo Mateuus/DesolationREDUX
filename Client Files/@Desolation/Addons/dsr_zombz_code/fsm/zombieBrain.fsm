@@ -23,7 +23,7 @@ item18[] = {"Nil_Pos",4,218,750.000000,800.000000,850.000000,850.000000,0.000000
 item19[] = {"Null_Target",4,218,1125.000000,1175.000000,1225.000000,1225.000000,0.000000,"Null Target"};
 item20[] = {"End_FSM_Idle",1,250,1250.000000,1175.000000,1350.000000,1225.000000,0.000000,"End" \n "FSM" \n "Idle"};
 item21[] = {"Not_Player",4,218,875.000000,1175.000000,975.000000,1225.000000,0.000000,"Not" \n "Player"};
-item22[] = {"Get_Target_Posit",2,4346,750.000000,1175.000000,850.000000,1225.000000,0.000000,"Get" \n "Target" \n "Position"};
+item22[] = {"Get_Target_Posit",2,250,750.000000,1175.000000,850.000000,1225.000000,0.000000,"Get" \n "Target" \n "Position"};
 item23[] = {"True",8,218,625.000000,950.000000,725.000000,1000.000000,0.000000,"True"};
 item24[] = {"Target_Is_Player",4,218,1000.000000,1250.000000,1100.000000,1300.000000,0.000000,"Target" \n "Is" \n "Player"};
 item25[] = {"Not_Local_Target",4,218,1125.000000,1325.000000,1225.000000,1375.000000,0.000000,"Not" \n "Local" \n "Target"};
@@ -39,7 +39,7 @@ item34[] = {"eat_delay",4,218,1625.000000,1475.000000,1725.000000,1525.000000,0.
 item35[] = {"",7,210,1421.000000,1158.500000,1429.000000,1166.500000,0.000000,""};
 item36[] = {"eat",2,250,1500.000000,1475.000000,1600.000000,1525.000000,0.000000,"eat"};
 item37[] = {"finished",4,218,1500.000000,1400.000000,1600.000000,1450.000000,0.000000,"finished"};
-item38[] = {"ending_anim",2,250,1500.000000,1325.000000,1600.000000,1375.000000,0.000000,"ending anim"};
+item38[] = {"ending_anim",2,4346,1500.000000,1325.000000,1600.000000,1375.000000,0.000000,"ending anim"};
 item39[] = {"true",8,218,1500.000000,1250.000000,1600.000000,1300.000000,0.000000,"true"};
 item40[] = {"",7,210,671.000000,1158.500000,679.000000,1166.500000,0.000000,""};
 item41[] = {"",7,210,1546.000000,1221.000000,1554.000000,1229.000000,0.000000,""};
@@ -140,8 +140,8 @@ link69[] = {62,63};
 link70[] = {64,25};
 link71[] = {64,65};
 link72[] = {65,27};
-globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,247.043167,1625.406372,1875.763672,706.803223,1119,949,1};
-window[] = {2,-1,-1,-1,-1,692,26,1426,26,3,1137};
+globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,698.830811,1729.049316,1890.852783,1017.146179,1119,949,1};
+window[] = {2,-1,-1,-1,-1,848,182,1582,182,3,1137};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -158,14 +158,14 @@ class FSM
                          "_firedNearEnabled = [""firedNearEnabled"",""SM""] call BASE_fnc_getCfgValue;" \n
                          "if (_firedNearEnabled) then" \n
                          "{" \n
-                         "	if !((_zombie getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
+                         "	if !((_zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
                          "	{" \n
-                         "		_evhID = _zombie addEventHandler [""FiredNear"",{ _this call SM_fnc_zombieFiredNear }];" \n
+                         "		_evhID = _zombieAgent addEventHandler [""FiredNear"",{ _this call SM_fnc_zombieFiredNear }];" \n
                          "		_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",_evhid];" \n
                          "	};" \n
                          "};" \n
                          "" \n
-                         "_zombieDefaultSpeed = getAnimSpeedCoef _zombie;" \n
+                         "_zombieDefaultSpeed = getAnimSpeedCoef _zombieAgent;" \n
                          "_target = objnull;" \n
                          "_lastTargetCheck = diag_ticktime;" \n
                          "_soundLast = diag_ticktime;" \n
@@ -254,7 +254,7 @@ class FSM
                          "_zombieAgent setVariable [""SM_FSMRunning"",nil];" \n
                          "_zombieAgent setVariable [""SM_AlreadyRunning"",nil,true];" \n
                          "" \n
-                         "_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"",0];" \n
+                         "_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",0];" \n
                          "_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
                          "_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
                          "" \n
@@ -430,7 +430,7 @@ class FSM
                                         to="Calculate_Time";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"_canFinish = false;" \n
-                                         "if (isNull _zombie) then" \n
+                                         "if (isNull _zombieAgent) then" \n
                                          "{" \n
                                          "	_canFinish = true;" \n
                                          "}" \n
@@ -454,7 +454,7 @@ class FSM
                                          "		_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call BASE_fnc_getCfgValue;" \n
                                          "		if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 3) then" \n
                                          "		{" \n
-                                         "			[_zombie,_zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
+                                         "			[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
                                          "			_lastSpeedCheck = diag_ticktime;" \n
                                          "		};" \n
                                          "" \n
@@ -526,7 +526,7 @@ class FSM
                          "_zombieAgent setVariable [""SM_FSMRunning"",nil];" \n
                          "" \n
                          "" \n
-                         "_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"", -1];" \n
+                         "_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1];" \n
                          "_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
                          "_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
                          "" \n
@@ -573,13 +573,13 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;" \n
                          "_zombieAgent setVariable [""SM_FSMRunning"",nil];" \n
                          "" \n
-                         "_firedEVH = _zombie getVariable [""SM_ZombieOnFiredEVH"",0];" \n
+                         "_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",0];" \n
                          "_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
                          "_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
                          "" \n
                          """Zombie FSM ended, passing to another target"" call SM_fnc_log;" \n
                          "" \n
-                         "[(netID _target), (netID _zombie)] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "[(netID _target), (netID _zombieAgent)] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
                          "" \n
                          "true"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -674,8 +674,8 @@ class FSM
                                         to="eat";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"(_distanceTarget < 2)"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/"_zombie disableAI ""ANIM"";" \n
-                                         "_zombie setdir (_zombie getDir _target);" \n
+                                        action=/*%FSM<ACTION""">*/"_zombieAgent disableAI ""ANIM"";" \n
+                                         "_zombieAgent setdir (_zombieAgent getDir _target);" \n
                                          "_timeout = diag_ticktime;"/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -743,7 +743,7 @@ class FSM
                          "[_zombieAgent, ""ZombieFeed""] remoteExecCall [""switchMove"", _zombieAgent];" \n
                          "_target setVariable [""SM_HasBeenEaten"", true, true];" \n
                          "" \n
-                         "_zombieAgent doMove (_zombie call SM_fnc_zombieFindPositionWander);"/*%FSM</STATEINIT""">*/;
+                         "_zombieAgent doMove (_zombieAgent call SM_fnc_zombieFindPositionWander);"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
