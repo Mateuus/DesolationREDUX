@@ -1,5 +1,4 @@
 #define true 1
-#define false 0
 
 class CfgPatches
 {
@@ -24,170 +23,42 @@ class CfgFunctions
 		{
 			file = "Zombz\Client";
 			isclient = true;
-			isserver = false;
 			class initClient {};
+			class ZombieInit {};
+			class infectionThread {};
+			class zombieFindTarget {};
+			class zombieCanSee {};
+			class zombieFiredNear {};
+			class headExplodeEffect {};
+			class fetchVehicleSize {};
+			class zombieStartAttack {};
+			class zombieAttackTarget {};
+			class targetSetVelocity {};
+			class blurEffect {};
+			class bloodEffect {};
+			class screenAddBlood {};
+			class screenRemoveBlood {};
 		};
 
 		class Server 
 		{
 			file = "Zombz\Server";
 			isserver = true;
-			isclient = false;
 			class initServer {};
+			class SpawnZombie {};
+			class SpawnZombies {};
+			class checkZombies {};
+			class zombieCleanup {};
+			class transferOwnership {};
+			class zombieExplodeHead {};
 		};
 
-		class ZombieInit
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-		
-		class SpawnZombie
-		{
-			file = "Zombz\Server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class SpawnZombies
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class Log
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = true;
-		};
-
-		class checkZombies
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class zombieCleanup
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class onMPKilled
+		class Shared
 		{
 			file = "Zombz\shared";
-			isserver = true;
 			isclient = true;
-		};
-
-		class infectionThread
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class zombieFindTarget
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class zombieCanSee
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class zombieFiredNear
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class transferOwnership
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class zombieExplodeHead
-		{
-			file = "Zombz\server";
-			isserver = true;
-			isclient = false;
-		};
-
-		class headExplodeEffect
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class fetchVehicleSize
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class zombieStartAttack
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class zombieAttackTarget
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class targetSetVelocity
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class blurEffect
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class bloodEffect
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class screenAddBlood
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
-		};
-
-		class screenRemoveBlood
-		{
-			file = "Zombz\client";
-			isclient = true;
-			isserver = false;
+			class Log {};
+			class onMPKilled {};
 		};
 	};
 };
