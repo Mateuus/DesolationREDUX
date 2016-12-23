@@ -17,7 +17,7 @@ link5[] = {3,6};
 link6[] = {5,3};
 link7[] = {6,4};
 globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,920.611328,1463.949585,1267.831055,855.658447,1236,949,1};
-window[] = {2,-1,-1,-1,-1,900,234,1384,234,3,1254};
+window[] = {2,-1,-1,-1,-1,744,78,1228,78,3,1254};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -74,7 +74,7 @@ class FSM
                          "		_zombieAgent = objectFromNetID _x;" \n
                          "		if ((diag_ticktime - (_zombieAgent getVariable [""SM_LastTargetCheck"",0])) >= 0.5) then" \n
                          "		{" \n
-                         "			if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= SM_ZombieSoundDelayMoan) then" \n
+                         "			if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= 420) then" \n
                          "			{" \n
                          "				_moan = selectRandom (getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray""));" \n
                          "				[_zombie, _moan] remoteExecCall [""Say3D"", -2];" \n
