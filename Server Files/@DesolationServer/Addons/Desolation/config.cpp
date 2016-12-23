@@ -222,6 +222,74 @@ class CfgFunctions
 		};
 	};
 };
+class CfgHeliCrashes {
+	class Settings {
+		MinTimeBetweenCrashes = 5
+		MaxTimeBetweenCrashes = 20
+		NumberOfCrashesToSpawn = 5;
+		MaxSearchDistance = 5000;
+		
+	};
+	class CrashTypes {
+		class Military {
+			HeliClass = "";
+			WreckClass = "";
+			WreckSmoke = 1; //1 for true 0 for false!
+			SpawnAltitude = 600;
+			//particle effects config (size and origin)
+			SmokePos[] = {0,0,0};
+			SmokeSize = 7;
+			
+			class loot {
+				maxLootpiles = 10;//not implemented yet
+				weapons[] = {
+				//{"classname",max amount},
+				"srifle_EBR_F",
+				};
+				magazines[] = {
+				
+				};
+				items[] = {
+				{"FirstAidKit",
+				};
+				backpacks[] = {
+			
+				};
+			};
+		};
+		
+		class Medical {
+			HeliClass = "";
+			WreckClass = "";
+			WreckSmoke = 1; //1 for true 0 for false!
+			SpawnAltitude = 600;
+			//particle effects config (size and origin)
+			SmokePos[] = {0,0,0};
+			SmokeSize = 7;
+			
+			class loot {
+				maxLootpiles = 10;//not implemented yet
+				weapons[] = {
+				};
+				magazines[] = {
+				"dsr_item_antibiotic",
+				"dsr_item_bloodbag_full",
+				"dsr_item_bandage",
+				"dsr_item_defibrillator",
+				"dsr_item_disinfectant",
+				"dsr_item_painkillers"
+				};
+				items[] = {
+				"FirstAidKit"
+				};
+				backpacks[] = {
+				};
+			};
+		};
+		
+	};
+	
+	};
 class CfgAirdropSpawns {
 	class MedicDrop {
 		name = "Medical Drop";
