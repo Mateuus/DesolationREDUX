@@ -31,7 +31,9 @@ addons[]=
 	"dsr_actions",
 	"dsr_objects",
 	"CAAir_E_c130j",
-	"CAWheeled_2_MMT"
+	"CAWheeled_2_MMT",
+	"SM_Zombz",
+	"DSR_Zombz_Code"
 };
 class AddonsMetaData
 {
