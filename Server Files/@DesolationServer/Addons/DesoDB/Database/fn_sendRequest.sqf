@@ -20,7 +20,7 @@ diag_log _response;
 _compiledResponse = call compile _response;
 
 _doswitchloop = true;
-_return = "";
+_return = _response; //fix if result does not contain a msg type header
 // do loop because there seems to be no "fall throu"
 while{_doswitchloop} do {
     _doswitchloop = false;
