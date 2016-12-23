@@ -13,12 +13,12 @@ License info here and copyright symbol above
 
 if !(["Enabled","SM"] call SM_fnc_getCfgValue) exitWith {};
 
-private _version = getText(configFile >> "CfgPatches" >> "DSR_SM_Zombz" >> "version");
-diag_log format["DSR_SM_Zombz %1: Starting Init!", _version];
+private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+diag_log format["SM_Zombz %1: Starting Init!", _version];
 
 if !(isMultiplayer) exitWith 
 {
-	diag_log format["DSR_SM_Zombz %1: Finished Init, but was exited due to not being in a multiplayer session!", _version];
+	diag_log format["SM_Zombz %1: Finished Init, but was exited due to not being in a multiplayer session!", _version];
 };
 
 // wait until the preinit for the mod has completed
@@ -33,7 +33,7 @@ SM_FailedPassedZombies = [];
 // This should only happen if there are no zombies left on the map!
 if (SM_IdleZombies isEqualTo []) exitWith
 {
-	diag_log format["DSR_SM_Zombz %1: Finished Init, but was exited due to no zombies spawned!", _version];
+	diag_log format["SM_Zombz %1: Finished Init, but was exited due to no zombies spawned!", _version];
 };
 
 // Pass all zombies to all clients.
@@ -42,4 +42,4 @@ bis_functions_mainscope setVariable ["SM_allZombies", SM_IdleZombies, true];
 // Manager FSM for Zombz.
 [] execFSM "zombz\FSM\manager.fsm";
 
-diag_log format["DSR_SM_Zombz %1: Finished Init!", _version];
+diag_log format["SM_Zombz %1: Finished Init!", _version];

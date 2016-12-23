@@ -11,12 +11,12 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-private _version = getText(configFile >> "CfgPatches" >> "DSR_SM_Zombz" >> "version");
-diag_log format["DSR_SM_Zombz %1: Starting Init!", _version];
+private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+diag_log format["SM_Zombz %1: Starting Init!", _version];
 
 if !(isMultiplayer) exitWith 
 {
-	diag_log format["DSR_SM_Zombz %1: Finished Init, but was exited due to not being in a multiplayer session!", _version];
+	diag_log format["SM_Zombz %1: Finished Init, but was exited due to not being in a multiplayer session!", _version];
 };
 
 // wait until the preinit for the mod has completed
@@ -29,6 +29,6 @@ SM_idleZombies = [];
 // Exec the manager FSM.
 [] execFSM "DSR_Zombz_Code\FSM\Manager.fsm";
 
-diag_log format["DSR_SM_Zombz %1: Finished Init!", _version];
+diag_log format["SM_Zombz %1: Finished Init!", _version];
 
 true

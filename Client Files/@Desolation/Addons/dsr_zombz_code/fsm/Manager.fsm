@@ -1,7 +1,7 @@
 /*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZombieIdleManager">*/
 /*%FSM<HEAD>*/
 /*
-item0[] = {"Init",2,250,1125.000000,875.000000,1225.000000,925.000000,0.000000,"Init"};
+item0[] = {"Init",2,4346,1125.000000,875.000000,1225.000000,925.000000,0.000000,"Init"};
 item1[] = {"Infection",4,218,1125.000000,950.000000,1225.000000,1000.000000,0.000000,"Infection"};
 item2[] = {"",7,210,1096.000000,1021.000000,1104.000122,1029.000000,0.000000,""};
 item3[] = {"",7,210,1171.000000,1020.999695,1179.000000,1029.000244,0.000000,""};
@@ -28,7 +28,7 @@ class FSM
                 {
                         name = "Init";
                         itemno = 0;
-                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
