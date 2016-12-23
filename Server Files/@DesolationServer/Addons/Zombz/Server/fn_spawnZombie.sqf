@@ -21,6 +21,8 @@ if (isNil "_center") exitWith {};
 // Make sure that the zombie class is a valid class.
 if !(_class isKindOf "SM_Zombz_Base") exitWith {};
 
+_positionToSpawnZombie = [];
+
 try
 {
 	_buildingSpawnChance = ["buildingSpawnChance","SM"] call SM_fnc_getCfgValue;
@@ -87,9 +89,6 @@ try
 	// No need to have the zombie showing if it's not doing anything.
 	_zombieAgent hideObjectGlobal true;
 
-	// Set the variable owner to the server
-	_zombieAgent setVariable ["SM_ZombieOwner", "__SERVER__"];
-
 	// Push the zombie back into a idle state.
 	SM_IdleZombies pushBack (netId _zombieAgent);
 
@@ -135,7 +134,7 @@ try
 	};
 
 	// When the zombie dies, we need to know about it!
-	_zombieAgent addMPEventHandler ["MPKilled", { _this call SM_fnc_onMPKilled}];
+	_zombieAgent addMPEventHandler ["MPKilled", { _this call SM_fnc_onMPKilled }];
 
 	_return = true;
 } 
