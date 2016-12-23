@@ -38,10 +38,4 @@ if ((hasInterface) && (_killer isEqualTo player)) then
 			SM_IdleZombies deleteAt _index;
 		};
 	};
-
-	_FSMLogic = _zombieAgent getVariable ["SM_FSMLogic",-1];
-	if (_FSMLogic != -1) then
-	{
-		_FSMLogic setFSMVariable ["SM_TermiateFSM", true];
-	};
 };
