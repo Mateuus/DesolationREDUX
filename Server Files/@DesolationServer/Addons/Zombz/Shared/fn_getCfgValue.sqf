@@ -11,5 +11,5 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-_value = call compile (_this call SM_fnc_getCfgValue);
+_value = call compile (_this call BASE_fnc_getCfgValue);
 _value;
