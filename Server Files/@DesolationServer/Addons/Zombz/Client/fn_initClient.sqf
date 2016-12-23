@@ -11,7 +11,7 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-private _version = getText(configFile >> "CfgPatches" >> "SM_Zombz" >> "version");
+private _version = getText(configFile >> "CfgPatches" >> "DSR_Zombz_code" >> "version");
 diag_log format["SM_Zombz %1: Starting Init!", _version];
 
 if !(isMultiplayer) exitWith 
