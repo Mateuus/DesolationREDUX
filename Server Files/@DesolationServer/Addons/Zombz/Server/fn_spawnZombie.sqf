@@ -22,6 +22,7 @@ if (isNil "_center") exitWith {};
 if !(_class isKindOf "SM_Zombz_Base") exitWith {};
 
 _positionToSpawnZombie = [];
+_return = false;
 
 try
 {
