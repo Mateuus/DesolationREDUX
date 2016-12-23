@@ -12,4 +12,4 @@ License info here and copyright symbol above
 */
 
 _value = call compile (_this call BASE_fnc_getCfgValue);
-_value;
+_value

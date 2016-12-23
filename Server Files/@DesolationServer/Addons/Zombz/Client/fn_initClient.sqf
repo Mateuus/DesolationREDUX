@@ -24,6 +24,8 @@ waitUntil {!isNil "SM_fnc_zombieInit"};
 
 SM_idleZombies = [];
 
+[] call SM_fnc_zombieInit;
+
 // Exec the manager FSM.
 [] execFSM "DSR_Zombz_Code\FSM\Manager.fsm";
 
