@@ -288,7 +288,7 @@ switch(_type)do{
 		//--- request a locality switch from the owning client & transfer back upon completion? (maybe needed)
 		_object_uuid = _vehicle getVariable ["oUUID",""];
 		_className = typeof _vehicle;
-		_priority = 500;
+		_priority = 10001;
 		_visible = 1;
 		_accesscode = "";
 		_locked = 0;
@@ -318,7 +318,7 @@ switch(_type)do{
 		_positionType = 1;
 		_position = getPosATL _vehicle;
 		
-		_request = [PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT,[
+		_request = [PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT,[
 			[PROTOCOL_DBCALL_ARGUMENT_OBJECTUUID,_object_uuid],
 			[PROTOCOL_DBCALL_ARGUMENT_CLASSNAME,_className],
 			[PROTOCOL_DBCALL_ARGUMENT_PRIORITY,_priority],

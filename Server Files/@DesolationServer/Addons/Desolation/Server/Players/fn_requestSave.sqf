@@ -6,7 +6,9 @@
 */
 params["_player",["_respond",true]];
 NULL_CALLBACK = compileFinal "";
-["savePlayer","NULL_CALLBACK",[_player]] call DS_fnc_dbRequest; //--- send request to database
+["savePlayer","NULL_CALLBACK",[_player]] call DS_fnc_dbRequest;
 if(_respond) then {
 	"Data saved" remoteExec ["systemChat",_player];
+} else {
+	deleteVehicle _player;
 };

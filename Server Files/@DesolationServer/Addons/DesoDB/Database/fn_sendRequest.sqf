@@ -1,6 +1,6 @@
 #include "..\constants.hpp"
 
-params["_request"];
+params["_request",["_isScheduled",true]];
 private["_response","_compiledResponse","_uuid", "_finalResponse","_return","_doswitchloop","_innerdoloop"];
 
 diag_log "DesoDB > Sending request";

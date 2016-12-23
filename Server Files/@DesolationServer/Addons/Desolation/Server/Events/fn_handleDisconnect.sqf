@@ -17,6 +17,6 @@ _unit hideObjectGlobal true;
 _unit setVariable ["DCed",true];
 if(alive _unit) then {
 	//--- if the unit DCed while alive, they are logging out, not ded
-	[_unit,false] call DS_fnc_requestSave;
-	deleteVehicle _unit;
+	[_unit,false] spawn DS_fnc_requestSave;
 };
+true; //keep the body in game while saving happens
