@@ -7,7 +7,7 @@
 
 //TODO: this updates like every 5 minutes or some shit, why is it updating????
 while{true} do {
-	uiSleep 60*30;
+	uiSleep (60*30);
 	diag_log  "Vehicle Monitor> Updating Database";
 	_newArray1 = [];
 	_newArray2 = [];

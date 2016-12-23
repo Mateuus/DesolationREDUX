@@ -1,0 +1,10 @@
+name = "Desolation Redux";
+author = "Desolation Redux Dev Team";
+action = "http://www.desolationredux.com";
+dir = "@Desolation";
+logo = "logo.paa";
+logoOver = "logo.paa";
+picture = "\dsr_ui\Assets\logo.paa";
+hidePicture = 0;
+hideName = 0;
+overview = "";
