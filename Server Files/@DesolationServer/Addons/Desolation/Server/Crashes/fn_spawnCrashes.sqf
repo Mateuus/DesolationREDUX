@@ -4,20 +4,20 @@
 
 	License info here and copyright symbol above
 */
-_numberOfCrashes = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "Settings" >> "NumberOfCrashesToSpawn");
-_maxSearchDistance = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxSearchDistance");
-_maxTime = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxTimeBetweenCrashes");
-_minTime = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "Settings" >> "MinTimeBetweenCrashes");
+_numberOfCrashes = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "NumberOfCrashesToSpawn");
+_maxSearchDistance = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxSearchDistance");
+_maxTime = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxTimeBetweenCrashes");
+_minTime = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MinTimeBetweenCrashes");
 _mapsize = call BIS_fnc_mapSize;
 for "_i" from 1 to _numberOfCrashes do
 {
-_crashType = DS_HeliCrash_CrashTypes selectRandom;
-_heliType = getText configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "HeliClass");
-_wreckClass = getText configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckClass");
-_smokepos = getArray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SmokePos");
-_smokeSize = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SmokeSize");
-_wreckSmoke = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckSmoke");
-_spawnAlt = getnumber configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
+_crashType = selectRandom DS_HeliCrash_CrashTypes;
+_heliType = getText (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "HeliClass");
+_wreckClass = getText (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckClass");
+_smokepos = getArray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SmokePos");
+_smokeSize = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SmokeSize");
+_wreckSmoke = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckSmoke");
+_spawnAlt = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
 
 _crashPos = [_crashType,_maxSearchDistance] call DS_fnc_getCrashLocation;
 _spawnDirection = random 360;

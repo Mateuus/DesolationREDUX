@@ -7,10 +7,10 @@ _crashName = _this select 1;
 //not implemented yet
 //_maxPiles = getNumber configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "maxLootpiles");
 
-_weaponLoot = getArray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "weapons");
-_magazineLoot = getArray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "magazines");
-_itemLoot = getArray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "items");
-_backpackLoot = getArray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "backpacks");
+_weaponLoot = getArray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "weapons");
+_magazineLoot = getArray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "magazines");
+_itemLoot = getArray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "items");
+_backpackLoot = getArray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "loot" >> "backpacks");
 
 
 _lootCratePos = _heliCrashPos findEmptyPosition [1, 30, "Box_NATO_Wps_F"];

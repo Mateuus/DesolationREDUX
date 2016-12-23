@@ -11,7 +11,7 @@ DS_HeliCrash_CrashTypes = [];
 _crashName = configName _x;
 _crashTypes pushBack (_crashName);
 _variableName = format ["DS_HeliCrash_%1_locations",_crashName];
-_crashLocations = getarray configClasses (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "Locations");
+_crashLocations = getarray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "Locations");
 missionNamespace setVariable [_variableName, _crashLocations];
 DS_HeliCrash_CrashTypes pushback _variableName;
 }foreach _crashTypesClasses;
