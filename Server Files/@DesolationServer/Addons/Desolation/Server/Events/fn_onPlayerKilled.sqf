@@ -9,5 +9,5 @@ params["_unit","_killer"];
 //--- if they didn't disconnect, they died
 if !(_unit getVariable ["DCed",false]) then {
 	NULL_CALLBACK = compileFinal "";
-	["killPlayer","NULL_CALLBACK",[_unit,_killer]] call DS_fnc_dbRequest; //--- send request to database
+	["killPlayer","NULL_CALLBACK",[_unit,_killer]] spawn DS_fnc_dbRequest; //--- send request to database
 };

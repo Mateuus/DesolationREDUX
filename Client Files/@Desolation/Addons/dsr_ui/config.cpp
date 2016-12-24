@@ -113,7 +113,7 @@ class CfgMusic {
 
 class CfgFontFamilies {
     // LauHoWi-a font by Dr. Wolfgang Wiebecke and Laurens Hornemann
-    class LauHoWi-a {
+    class LauHoWi_a {
             fonts[] = {
                 "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a6",
                 "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a7",
@@ -149,7 +149,7 @@ class CfgFontFamilies {
             spaceWidth = 0.7;
             spacing = 0.13;
     };
-    class LauHoWi-a-bold {
+    class LauHoWi_a_bold {
             fonts[] = {
                 "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold6",
                 "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold7",
@@ -185,7 +185,7 @@ class CfgFontFamilies {
             spaceWidth = 0.7;
             spacing = 0.13;
     };
-    class LauHoWi-a-italic {
+    class LauHoWi_a_italic {
             fonts[] = {
                 "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic6",
                 "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic7",

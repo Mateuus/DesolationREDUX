@@ -10,6 +10,6 @@ _smoke setParticleCircle [0, [0, 0, 0]];
 _smoke setParticleRandom [0, [0.25, 0.25, 0], [0, 0, 0], 0, 1, [0, 0, 0, 0.1], 0, 0];
 _smoke setParticleParams [["\A3\data_f\cl_fireD", 1, 0, 1], "", "Billboard", 1, 10, [0, 0, 2], [0, 0, 0], 0, 10, 7.85, 0.375, [_size,2*_size], [[0.9, 0.2, 0.51, 1], [0.55, 0.41, 0.25, 0]], [0.08], 1, 0, "", "",objNull];
 _smoke setDropInterval 0.005;
-if (_isWreck) then exitWith {};
+if (_isWreck) exitWith {};
 waitUntil {!alive _obj};
 deleteVehicle _smoke;
