@@ -48,23 +48,13 @@ if (_zombieAgent getVariable ["SM_WasInBuilding", false]) then
 };
 
 _zombieisFaster = _zombieAgent getVariable ["SM_zombieIsFaster", false];
-if (_zombieisFaster) then
+
+if !(isNull _target) then
 {
-	if !(isNull _target) then
+	if ((_zombieAgent distance2D _target) >= 35) then
 	{
-		if ((_zombieAgent distance2D _target) >= 35) then
-		{
-			_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
-			_zombieAgent setVariable ["SM_zombieIsFaster", false];
-		}
-		else
-		{
-			if !(_zombieisFaster) then
-			{
-				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
-				_zombieAgent setVariable ["SM_zombieIsFaster", true];
-			};
-		};
+		_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
+		_zombieAgent setVariable ["SM_zombieIsFaster", false];
 	}
 	else
 	{
@@ -74,32 +64,13 @@ if (_zombieisFaster) then
 			_zombieAgent setVariable ["SM_zombieIsFaster", true];
 		};
 	};
-};
-if !(_zombieisFaster) then
+}
+else
 {
-	if !(isNull _target) then
+	if !(_zombieisFaster) then
 	{
-		if ((_zombieAgent distance2D _target) <= 35) then
-		{
-			_zombieAgent setAnimSpeedCoef _zombieDefaultSpeed;
-			_zombieAgent setVariable ["SM_zombieIsFaster", false];
-		}
-		else
-		{
-			if !(_zombieisFaster) then
-			{
-				_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
-				_zombieAgent setVariable ["SM_zombieIsFaster", true];
-			};
-		};
-	}
-	else
-	{
-		if !(_zombieisFaster) then
-		{
-			_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
-			_zombieAgent setVariable ["SM_zombieIsFaster", true];
-		};
+		_zombieAgent setAnimSpeedCoef (_zombieDefaultSpeed * 1.5);
+		_zombieAgent setVariable ["SM_zombieIsFaster", true];
 	};
 };
 
