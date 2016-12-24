@@ -42,6 +42,7 @@ class CfgFunctions
 			class findIndex {};
 			class zombieCalculateSpeed {};
 			class zombieFindPositionWander {};
+			class zombieHandleDamage {};
 		};
 
 		class Server 
