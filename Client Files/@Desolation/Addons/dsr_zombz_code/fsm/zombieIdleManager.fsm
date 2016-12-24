@@ -16,8 +16,8 @@ link4[] = {3,5};
 link5[] = {3,6};
 link6[] = {5,3};
 link7[] = {6,4};
-globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,920.611328,1463.949585,1267.831055,855.658447,1236,949,1};
-window[] = {2,-1,-1,-1,-1,744,78,1228,78,3,1254};
+globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,830.688843,1553.871948,1314.683960,790.477234,1236,949,1};
+window[] = {2,-1,-1,-32000,-32000,983,594,1744,317,3,1254};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -72,6 +72,30 @@ class FSM
                          "	{" \n
                          "		format [""Calculating zombie with netID %1"",_x] call SM_fnc_Log;" \n
                          "		_zombieAgent = objectFromNetID _x;" \n
+                         "		_exit = false;" \n
+                         "		if !(isNull _zombieAgent) then" \n
+                         "		{" \n
+                         "			if (!(local _zombieAgent) || !(alive _zombieAgent)) then" \n
+                         "			{" \n
+                         "				_deleted pushBack _forEachIndex;" \n
+                         "				_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "				_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "				_deleted pushback _forEachIndex;" \n
+                         "				_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
+                         "				if !(_firedEVH isEqualTo -1) then" \n
+                         "				{" \n
+                         "					_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
+                         "				};" \n
+                         "				_exit = true;" \n
+                         "			};" \n
+                         "		}" \n
+                         "		else" \n
+                         "		{" \n
+                         "			_deleted pushback _forEachIndex;" \n
+                         "		};" \n
+                         "" \n
+                         "		if (_exit) exitWith {};" \n
                          "		if ((diag_ticktime - (_zombieAgent getVariable [""SM_LastTargetCheck"",0])) >= 0.5) then" \n
                          "		{" \n
                          "			if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= 420) then" \n
@@ -80,6 +104,7 @@ class FSM
                          "				[_zombieAgent, _moan] remoteExecCall [""Say3D"", -2];" \n
                          "				_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",diag_ticktime];" \n
                          "			};" \n
+                         "" \n
                          "			_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
                          "			if (_firedNearEnabled) then" \n
                          "			{" \n
@@ -89,6 +114,7 @@ class FSM
                          "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"", _evhid];" \n
                          "				};" \n
                          "			};" \n
+                         "" \n
                          "			if ((_zombieAgent getVariable [""SM_ZombieFindFiredNear"",[]]) isEqualTo []) then" \n
                          "			{" \n
                          "				_target = _zombieAgent call SM_fnc_ZombieFindTarget;			" \n
@@ -136,26 +162,6 @@ class FSM
                          "					_zombieAgent doMove _pos;" \n
                          "					_zombieAgent setVariable [""SM_LastTargetCheck"",diag_ticktime];" \n
                          "				};" \n
-                         "			};" \n
-                         "		}" \n
-                         "		else" \n
-                         "		{" \n
-                         "			if !(isNull _zombieAgent) then" \n
-                         "			{" \n
-                         "				_deleted pushBack _forEachIndex;" \n
-                         "				_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
-                         "				_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
-                         "				_deleted pushback _forEachIndex;" \n
-                         "				_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
-                         "				if !(_firedEVH isEqualTo -1) then" \n
-                         "				{" \n
-                         "					_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
-                         "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
-                         "				};" \n
-                         "			}" \n
-                         "			else" \n
-                         "			{" \n
-                         "				_deleted pushBack _forEachIndex;" \n
                          "			};" \n
                          "		};" \n
                          "	} forEach SM_IdleZombies;" \n
