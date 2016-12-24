@@ -17,7 +17,7 @@ if ((animationState _zombieAgent) isEqualTo "unconscious") exitWith { _soundLast
 
 if ((diag_ticktime - _soundLast) >= 3) then
 {
-	_aggressive = selectRandom _aggressiveArray; 
+	_aggressive = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AggressiveArray"); 
 	[_zombieAgent, _aggressive] remoteExecCall ["Say3D", -2];
 	_soundLast = diag_ticktime;
 };
@@ -30,7 +30,7 @@ _attackAnim = selectRandom ["babe_zeds_att1", "babe_zeds_att2", "babe_zeds_att3"
 
 [_zombieAgent, _attackAnim] remoteExecCall ["switchMove", -2];
 
-_attack = selectRandom _attackArray;
+_attack = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AttackArray");
 [_zombieAgent, _attack] remoteExecCall ["Say3D", -2];
 
 _soundLast

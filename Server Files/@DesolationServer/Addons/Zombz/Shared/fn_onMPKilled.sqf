@@ -22,7 +22,7 @@ if (isServer) then
 		PLACEHOLDER FOR LOOT ON ZOMBIE
 	*/
 
-	bis_functions_mainscope setVariable ["SM_DeadZombies", _zombies, objNull];
+	bis_functions_mainscope setVariable ["SM_DeadZombies", _zombies];
 };
 
 if ((hasInterface) && (_killer isEqualTo player)) then

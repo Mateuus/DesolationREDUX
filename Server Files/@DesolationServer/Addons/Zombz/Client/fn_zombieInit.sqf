@@ -100,7 +100,6 @@ if (_zombies isEqualTo []) exitWith {};
 		[
 			"HandleDamage",
 			{
-				systemchat "handling damage";
 				_this call SM_fnc_zombieHandleDamage; 
 			}
 		];
