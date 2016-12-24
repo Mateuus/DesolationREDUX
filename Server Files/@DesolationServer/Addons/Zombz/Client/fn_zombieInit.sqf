@@ -35,7 +35,7 @@ if (_zombies isEqualTo []) exitWith {};
 				true
 			};
 			
-			if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") == -1) then
+			if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") != -1) then
 			{
 				_anim = _zombieAgent getVariable "SM_ZombieAnim";
 				_zombieAgent switchMove _anim;
