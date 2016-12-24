@@ -17,7 +17,7 @@ if(alive _unit) then {
 	_unit hideObjectGlobal true;
 
 
-	diag_log ("Desolation> Saving Disconnected Player (" + _unitName + ")")
+	diag_log ("Desolation> Saving Disconnected Player (" + _unitName + ")");
 
 	_unit setVariable ["DCed",true];
 	if(alive _unit) then {
