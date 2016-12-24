@@ -48,7 +48,7 @@ if (_zombieAgent getVariable ["SM_WasInBuilding", false]) then
 };
 
 _zombieisFaster = _zombieAgent getVariable ["SM_zombieIsFaster", false];
-if (SM_ZombiesFastClose) then
+if (_zombieisFaster) then
 {
 	if !(isNull _target) then
 	{
@@ -75,7 +75,7 @@ if (SM_ZombiesFastClose) then
 		};
 	};
 };
-if !(SM_ZombiesFastClose) then
+if !(_zombieisFaster) then
 {
 	if !(isNull _target) then
 	{
