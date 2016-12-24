@@ -25,23 +25,18 @@ if (_zombies isEqualTo []) exitWith {};
 		_zombieAgent switchMove _anim;
 		_animChange = _zombieAgent addeventhandler ["AnimChanged",
 		{
-			if (!local (_this select 0)) exitwith {};
+			params ["_zombieAgent","_anm"];	
 			
-			0 = _this spawn
+			if !(alive _zombieAgent) exitwith 
 			{
-				params ["_zombieAgent", "_anm"];
-				
-				if !(alive _zombieAgent) exitwith 
-				{
-					_animChange = _zombieAgent getVariable "SM_AnimChanged";
-					_zombieAgent removeEventHandler ["AnimChanged", _animChange];
-				};
-				
-				if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") == -1) then
-				{
-					_anim = _zombieAgent getVariable "SM_ZombieAnim";
-					_zombieAgent switchMove _anim;
-				};
+				_animChange = _zombieAgent getVariable "SM_AnimChanged";
+				_zombieAgent removeEventHandler ["AnimChanged", _animChange];
+			};
+			
+			if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") == -1) then
+			{
+				_anim = _zombieAgent getVariable "SM_ZombieAnim";
+				_zombieAgent switchMove _anim;
 			};
 		}];
 		_zombieAgent setVariable ["SM_AnimChanged",_animChange];
