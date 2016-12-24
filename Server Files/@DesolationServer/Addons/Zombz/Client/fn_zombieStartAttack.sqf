@@ -11,7 +11,7 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-params ["_zombieAgent","_soundLast","_target"];
+params ["_zombieAgent","_target","_soundLast"];
 
 if ((animationState _zombieAgent) isEqualTo "unconscious") exitWith { _soundLast };
 
