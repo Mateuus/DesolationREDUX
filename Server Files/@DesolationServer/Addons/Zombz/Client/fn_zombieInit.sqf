@@ -48,7 +48,6 @@ if (_zombies isEqualTo []) exitWith {};
 			{ 
 				// But just incase, you never know with arma!
 				if (isServer) exitWith {};
-				systemchat "Zombie Ownership Changed";
 				_zombieAgent = _this select 0;
 				_local = _this select 1;
 				if (_local) then
@@ -75,7 +74,6 @@ if (_zombies isEqualTo []) exitWith {};
 						// Just incase this is being transfered from another target.
 						if (isObjectHidden _zombieAgent) then
 						{
-							systemchat "unhiding zombie";
 							[_zombieAgent, false] remoteExecCall ["hideObjectGlobal", 2];
 							[_zombieAgent, true] remoteExecCall ["enableSimulationGlobal", 2];
 						};
@@ -102,6 +100,7 @@ if (_zombies isEqualTo []) exitWith {};
 		[
 			"HandleDamage",
 			{
+				systemchat "handling damage";
 				_this call SM_fnc_zombieHandleDamage; 
 			}
 		];

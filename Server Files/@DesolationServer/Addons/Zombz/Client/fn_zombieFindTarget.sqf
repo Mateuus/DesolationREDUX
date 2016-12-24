@@ -145,4 +145,6 @@ if !((player distance _zombieAgent) > 1000) then
 	} forEach _targets;
 };
 
+systemchat format["ZombieTarget: %1", _target];
+
 _target
