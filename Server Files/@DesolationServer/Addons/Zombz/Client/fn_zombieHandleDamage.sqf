@@ -13,7 +13,7 @@ License info here and copyright symbol above
 
 params [["_victim", objNull],["_selection", ""],["_damage", 0],["_damager", objNull],"_hmd","_headExplode"];
 
-systemchat "handling damage with damage:"
+systemchat "handling damage with damage:";
 systemchat str _damage;
 if((_selection isEqualTo "head") && _damage >= 1) then
 {
