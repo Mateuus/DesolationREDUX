@@ -111,6 +111,118 @@ class CfgMusic {
 	};
 };
 
+class CfgFontFamilies {
+    // LauHoWi-a font by Dr. Wolfgang Wiebecke and Laurens Hornemann
+    class LauHoWi-a {
+            fonts[] = {
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a6",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a7",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a8",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a9",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a10",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a11",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a12",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a13",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a14",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a15",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a16",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a17",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a18",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a19",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a20",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a21",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a22",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a23",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a24",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a25",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a26",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a27",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a28",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a29",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a30",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a31",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a34",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a35",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a37",
+                "\dsr_ui\Fonts\LauHoWi-a\LauHoWi-a46"
+            };
+            spaceWidth = 0.7;
+            spacing = 0.13;
+    };
+    class LauHoWi-a-bold {
+            fonts[] = {
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold6",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold7",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold8",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold9",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold10",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold11",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold12",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold13",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold14",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold15",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold16",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold17",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold18",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold19",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold20",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold21",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold22",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold23",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold24",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold25",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold26",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold27",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold28",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold29",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold30",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold31",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold34",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold35",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold37",
+                "\dsr_ui\Fonts\LauHoWi-a-bold\LauHoWi-a-bold46"
+            };
+            spaceWidth = 0.7;
+            spacing = 0.13;
+    };
+    class LauHoWi-a-italic {
+            fonts[] = {
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic6",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic7",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic8",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic9",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic10",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic11",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic12",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic13",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic14",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic15",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic16",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic17",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic18",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic19",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic20",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic21",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic22",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic23",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic24",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic25",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic26",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic27",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic28",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic29",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic30",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic31",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic34",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic35",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic37",
+                "\dsr_ui\Fonts\LauHoWi-a-italic\LauHoWi-a-italic46"
+            };
+            spaceWidth = 0.7;
+            spacing = 0.13;
+    };
+};
+
 
 class RscPicture;
 class RscButton;
