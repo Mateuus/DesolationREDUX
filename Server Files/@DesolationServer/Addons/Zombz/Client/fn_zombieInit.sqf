@@ -76,8 +76,8 @@ if (_zombies isEqualTo []) exitWith {};
 						if (isObjectHidden _zombieAgent) then
 						{
 							systemchat "unhiding zombie";
-							_zombieAgent hideObjectGlobal false;
-							_zombieAgent enableSimulationGlobal true;
+							[_zombieAgent, false] remoteExecCall ["hideObjectGlobal", 2];
+							[_zombieAgent, true] remoteExecCall ["enableSimulationGlobal", 2];
 						};
 					};
 				}
