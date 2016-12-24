@@ -26,19 +26,7 @@ doStop _zombieAgent;
 
 _zombieAgent setDir (_zombieAgent getDir _target);
 
-_attackAnim = selectRandom 
-[
-	"ZombieStandingAttack1",
-	"ZombieStandingAttack2",
-	"ZombieStandingAttack3",
-	"ZombieStandingAttack4",
-	"ZombieStandingAttack5",
-	"ZombieStandingAttack6",
-	"ZombieStandingAttack7",
-	"ZombieStandingAttack8",
-	"ZombieStandingAttack9",
-	"ZombieStandingAttack10"
-];
+_attackAnim = selectRandom ["babe_zeds_att1", "babe_zeds_att2", "babe_zeds_att3"];
 
 [_zombieAgent, _attackAnim] remoteExecCall ["switchMove", -2];
 

@@ -19,72 +19,97 @@ if (_zombies isEqualTo []) exitWith {};
 {
 	_zombieAgent = objectFromNetId _x;
 
-	if !(isNull _zombieAgent) then
+	if (!(isNull _zombieAgent) && alive _zombieAgent) then
 	{
-		if (alive _zombieAgent) then
+		_anim = _zombieAgent getVariable "SM_ZombieAnim";
+		_zombieAgent switchMove _anim;
+		_animChange = _zombieAgent addeventhandler ["AnimChanged",
 		{
-			_zombieAgent addEventHandler 
-			[
-				"Local",
-				{ 
-					systemchat "Zombie Ownership Changed";
-					_zombieAgent = _this select 0;
-					_local = _this select 1;
-					if (_local) then
+			if (!local (_this select 0)) exitwith {};
+			
+			0 = _this spawn
+			{
+				params ["_zombieAgent", "_anm"];
+				
+				if !(alive _zombieAgent) exitwith 
+				{
+					_animChange = _zombieAgent getVariable "SM_AnimChanged";
+					_zombieAgent removeEventHandler ["AnimChanged", _animChange];
+				};
+				
+				if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") == -1) then
+				{
+					_anim = _zombieAgent getVariable "SM_ZombieAnim";
+					_zombieAgent switchMove _anim;
+				};
+			};
+		}];
+		_zombieAgent setVariable ["SM_AnimChanged",_animChange];
+
+		// I hope this holy fires on the clients that it's set on... and not the server..
+		_zombieAgent addEventHandler 
+		[
+			"Local",
+			{ 
+				// But just incase, you never know with arma!
+				if (isServer) exitWith {};
+				systemchat "Zombie Ownership Changed";
+				_zombieAgent = _this select 0;
+				_local = _this select 1;
+				if (_local) then
+				{
+					// This should almost NEVER happen!
+					if !((netId _zombieAgent) in SM_IdleZombies) then
 					{
-						// This should almost NEVER happen!
-						if !((netId _zombieAgent) in SM_IdleZombies) then
+						_zombieAgent disableAI "ALL";
+						_zombieAgent enableAI "MOVE";
+						_zombieAgent enableAI "CHECKVISIBLE";
+						_zombieAgent enableAI "PATH";
+						_zombieAgent setSpeaker "NoVoice";
+						_zombieAgent allowFleeing 0;
+
+						SM_IdleZombies pushBack (netId _zombieAgent);
+
+						_logicFSM = player getVariable ["SM_zombieIdleFSM", -1];
+						if (_logicFSM isEqualTo -1) then
 						{
-							_zombieAgent disableAI "ALL";
-							_zombieAgent enableAI "MOVE";
-							_zombieAgent enableAI "CHECKVISIBLE";
-							_zombieAgent enableAI "PATH";
-							_zombieAgent setSpeaker "NoVoice";
-							_zombieAgent allowFleeing 0;
-
-							SM_IdleZombies pushBack (netId _zombieAgent);
-
-							_logicFSM = player getVariable ["SM_zombieIdleFSM", -1];
-							if (_logicFSM isEqualTo -1) then
-							{
-								_logicFSM = execFSM "dsr_zombz_code\FSM\zombieIdleManager.fsm";
-								player setVariable ["SM_zombieIdleFSM", _logicFSM];
-							};
-
-							// Just incase this is being transfered from another target.
-							if (isObjectHidden _zombieAgent) then
-							{
-								systemchat "unhiding zombie";
-								_zombieAgent hideObjectGlobal false;
-								_zombieAgent enableSimulationGlobal true;
-							};
+							_logicFSM = execFSM "dsr_zombz_code\FSM\zombieIdleManager.fsm";
+							player setVariable ["SM_zombieIdleFSM", _logicFSM];
 						};
-					}
-					else
-					{
-						if ((netId _zombieAgent) in SM_IdleZombies) then
-						{
-							_index = [SM_IdleZombies, (netId _zombieAgent)] call SM_fnc_findIndex;
 
-							// This should not return -1, due to we know it's in it.... via the check above...
-							// You never know with arma, so error checking is almost always needed!
-							if (_index != -1) then
-							{
-								SM_IdleZombies deleteAt _index;
-							};
+						// Just incase this is being transfered from another target.
+						if (isObjectHidden _zombieAgent) then
+						{
+							systemchat "unhiding zombie";
+							_zombieAgent hideObjectGlobal false;
+							_zombieAgent enableSimulationGlobal true;
 						};
 					};
 				}
-			];
-
-			_zombieAgent addEventHandler 
-			[
-				"HandleDamage",
+				else
 				{
-					_this call SM_fnc_zombieHandleDamage; 
-				}
-			];
-		};
+					if ((netId _zombieAgent) in SM_IdleZombies) then
+					{
+						_index = [SM_IdleZombies, (netId _zombieAgent)] call SM_fnc_findIndex;
+
+						// This should not return -1, due to we know it's in it.... via the check above...
+						// You never know with arma, so error checking is almost always needed!
+						if (_index != -1) then
+						{
+							SM_IdleZombies deleteAt _index;
+						};
+					};
+				};
+			}
+		];
+
+		_zombieAgent addEventHandler 
+		[
+			"HandleDamage",
+			{
+				_this call SM_fnc_zombieHandleDamage; 
+			}
+		];
 	};
 } forEach _zombies;
 

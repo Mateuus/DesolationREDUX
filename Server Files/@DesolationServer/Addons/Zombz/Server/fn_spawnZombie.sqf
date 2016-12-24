@@ -137,6 +137,9 @@ try
 	// When the zombie dies, we need to know about it!
 	_zombieAgent addMPEventHandler ["MPKilled", { _this call SM_fnc_onMPKilled }];
 
+	_anim = selectRandom ["babe_zed_stagger", "babe_zed_stagger_bb", "babe_zed_stagger_bb2", "babe_zed_frantic", "babe_zed_limp"];
+	_zombieAgent setVariable ["SM_ZombieAnim", _anim, true];
+
 	_return = true;
 } 
 catch 

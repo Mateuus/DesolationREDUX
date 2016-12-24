@@ -17,6 +17,4 @@ _distance = 10;
 _dir = random 360;
 _distance = random (_distance * 30);
 
-_pos = [(_pos select 0) + _distance * sin _dir, (_pos select 1) + _distance * cos _dir, _pos select 2];
-
-_pos
+[(_pos select 0) + _distance * sin _dir, (_pos select 1) + _distance * cos _dir, _pos select 2]
