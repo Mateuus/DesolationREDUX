@@ -36,7 +36,7 @@ class Action_Fill { // use item
 };
 class Action_FillWater { // fill with water
 	text = "Fill %itemname%";
-	condition = "(_classname find '_empty' != 0) && !(isNil 'ds_fnc_fillwater') && (toLower(_cursor) in (missionNamespace getVariable ['DS_VAR_WATER_FILLUP_STATIONS',['Land_WaterCooler_01_new_F','Land_WaterCooler_01_old_F','and_WaterPump_01_F','Land_WaterTank_01_F','Land_WaterTank_02_F','Land_WaterTank_03_F','Land_WaterTank_04_F','Land_WaterTank_F']]))";
+	condition = "!(isNil 'ds_fnc_fillwater') && (toLower(_cursor) in (missionNamespace getVariable ['DS_VAR_WATER_FILLUP_STATIONS',['land_watercooler_01_new_f','land_watercooler_01_old_f','land_waterpump_01_f','land_watertank_01_f','land_watertank_02_f','land_watertank_03_f','land_watertank_04_f','land_watertank_f']]))";
 	action = "[_classname] spawn ds_fnc_fillwater";
 };
 class Action_FillHydrocarbon { // fill propane or butane
