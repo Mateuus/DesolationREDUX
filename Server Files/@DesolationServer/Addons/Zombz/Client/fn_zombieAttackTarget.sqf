@@ -17,8 +17,8 @@ if ((animationState _zomieAgent) isEqualTo "unconscious") exitWith { _soundLast 
 
 if ((diag_tickTime - _soundLast) >= 3) then
 {
-	_aggressiveSound = selectRandom _aggressiveArray; 
-	[_zomieAgent, _aggressiveSound] remoteExecCall ["Say3D", -2];
+	_aggressive = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AggressiveArray");
+	[_zomieAgent, _aggressive] remoteExecCall ["Say3D", -2];
 	_soundLast = diag_tickTime;
 };
 

@@ -80,6 +80,7 @@ try
 	};
 
 	if (_positionToSpawnZombie isEqualTo []) throw "Could not calculate zombie spawn position!";
+	if (surfaceIsWater _positionToSpawnZombie) throw "Failed to spawn zombie, due to the location being in water";
 
 	// create the zombie agent...
 	_zombieAgent = createAgent [_class, _positionToSpawnZombie, [], 0, "NONE"];

@@ -4,8 +4,8 @@
 item0[] = {"Init",0,250,1125.000000,900.000000,1225.000000,950.000000,0.000000,"Init"};
 item1[] = {"Client",4,218,1125.000000,975.000000,1225.000000,1025.000000,0.000000,"Client"};
 item2[] = {"Not_Client",4,218,1250.000000,900.000000,1350.000000,950.000000,0.000000,"Not-Client"};
-item3[] = {"Calculate_All_Zo",2,4346,1125.000000,1050.000000,1225.000000,1100.000000,0.000000,"Calculate" \n "All" \n "Zombies"};
-item4[] = {"End",1,250,1250.000000,975.000000,1350.000000,1025.000000,0.000000,"End"};
+item3[] = {"Calculate_All_Zo",2,250,1125.000000,1050.000000,1225.000000,1100.000000,0.000000,"Calculate" \n "All" \n "Zombies"};
+item4[] = {"End",1,4346,1250.000000,975.000000,1350.000000,1025.000000,0.000000,"End"};
 item5[] = {"Timeout",4,218,1125.000000,1125.000000,1225.000000,1175.000000,0.000000,"Timeout"};
 item6[] = {"end_FSM",4,218,1250.000000,1050.000000,1350.000000,1100.000000,0.000000,"end FSM"};
 link0[] = {0,1};
@@ -16,8 +16,8 @@ link4[] = {3,5};
 link5[] = {3,6};
 link6[] = {5,3};
 link7[] = {6,4};
-globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,830.688843,1553.871948,1314.683960,790.477234,1236,949,1};
-window[] = {2,-1,-1,-32000,-32000,983,594,1744,317,3,1254};
+globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,830.688843,1553.871948,1314.683960,790.477234,1024,949,1};
+window[] = {2,-1,-1,-1,-1,692,26,1176,26,3,1042};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -120,9 +120,10 @@ class FSM
                          "				_target = _zombieAgent call SM_fnc_ZombieFindTarget;			" \n
                          "				if !(isNull _target) then" \n
                          "				{" \n
-                         "					if (!(_target isEqualTo player) && (isPlayer _target)) then" \n
+                         "					if (!(_target isEqualTo player) && !((vehicle _target) isEqualTo (vehicle player))) then" \n
                          "					{" \n
-                         "						[(netID _target), _x] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "						[(netID vehicle _target), _x] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "						systemchat ""passing zombie to target 1"";" \n
                          "						_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
                          "						_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
                          "						_deleted pushback _forEachIndex;" \n
