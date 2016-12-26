@@ -31,6 +31,6 @@ _attackAnim = selectRandom ["babe_zeds_att1", "babe_zeds_att2", "babe_zeds_att3"
 [_zombieAgent, _attackAnim] remoteExecCall ["switchMove", -2];
 
 _attack = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AttackArray");
-[_zombieAgent, _attack] remoteExecCall ["switchMove", -2];
+[_zombieAgent, _attack] remoteExecCall ["say3D", -2];
 
 _soundLast

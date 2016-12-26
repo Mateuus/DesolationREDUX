@@ -142,7 +142,7 @@ try
 } 
 catch 
 {
-	format["Erorr spawning zombie: %1", _exception] call SM_fnc_log;
+	format["Error spawning zombie: %1", _exception] call SM_fnc_log;
 };
 
 _return
