@@ -73,14 +73,14 @@ try
 		_roads = _center nearRoads 200;
 
 		// Error checking to make sure there are roads nearby.
-		if (_roads isEqualTo []) throw "No valid roads to spawn a zombie at";
+		if (_roads isEqualTo []) throw "No valid roads to spawn a zombie on";
 
 		_center = getPosATL (selectRandom _roads);
 		_positionToSpawnZombie = [round ((_center select 0) + (_radius * (cos _angle))), round((_center select 1) + (_radius * (sin _angle)))];	
 	};
 
 	if (_positionToSpawnZombie isEqualTo []) throw "Could not calculate zombie spawn position!";
-	if (surfaceIsWater _positionToSpawnZombie) throw "Failed to spawn zombie, due to the location being in water";
+	if (surfaceIsWater _positionToSpawnZombie) throw "Zombie spawn location is in water";
 
 	// create the zombie agent...
 	_zombieAgent = createAgent [_class, _positionToSpawnZombie, [], 0, "NONE"];
@@ -137,9 +137,6 @@ try
 
 	// When the zombie dies, we need to know about it!
 	_zombieAgent addMPEventHandler ["MPKilled", { _this call SM_fnc_onMPKilled }];
-
-	_anim = selectRandom ["babe_zed_stagger", "babe_zed_stagger_bb", "babe_zed_stagger_bb2", "babe_zed_frantic", "babe_zed_limp"];
-	_zombieAgent setVariable ["SM_ZombieAnim", _anim, true];
 
 	_return = true;
 } 

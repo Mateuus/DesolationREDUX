@@ -21,30 +21,6 @@ if (_zombies isEqualTo []) exitWith {};
 
 	if (!(isNull _zombieAgent) && alive _zombieAgent) then
 	{
-		_anim = _zombieAgent getVariable "SM_ZombieAnim";
-		_zombieAgent switchMove _anim;
-		_animChange = _zombieAgent addeventhandler ["AnimChanged",
-		{
-			params ["_zombieAgent","_anm"];	
-			
-			if !(alive _zombieAgent) exitwith 
-			{
-				_animChange = _zombieAgent getVariable "SM_AnimChanged";
-				_zombieAgent removeEventHandler ["AnimChanged", _animChange];
-
-				true
-			};
-			
-			if (_anm != "Unconscious" && _anm != "Incapacitated" && ((getText (configFile >> "CfgMovesMaleSdr" >> "States" >> _anm >> "actions")) find "babe_zed_StandActions_") == -1) then
-			{
-				_anim = _zombieAgent getVariable "SM_ZombieAnim";
-				_zombieAgent switchMove _anim;
-			};
-
-			true
-		}];
-		_zombieAgent setVariable ["SM_AnimChanged",_animChange];
-
 		// I hope this holy fires on the clients that it's set on... and not the server..
 		_zombieAgent addEventHandler 
 		[
@@ -59,12 +35,17 @@ if (_zombies isEqualTo []) exitWith {};
 					// This should almost NEVER happen!
 					if !((netId _zombieAgent) in SM_IdleZombies) then
 					{
+						_zombieAgent setCombatMode "RED";
+						_zombieAgent allowFleeing 0;
+						_zombieAgent enableAttack false;
+						_zombieAgent setUnitPos "UP";
 						_zombieAgent disableAI "ALL";
+						_zombieAgent setSpeaker "NoVoice";
 						_zombieAgent enableAI "MOVE";
 						_zombieAgent enableAI "CHECKVISIBLE";
 						_zombieAgent enableAI "PATH";
-						_zombieAgent setSpeaker "NoVoice";
-						_zombieAgent allowFleeing 0;
+						_zombieAgent enableAI "ANIM";
+						_zombieAgent enableAI "TEAMSWITCH";
 
 						SM_IdleZombies pushBack (netId _zombieAgent);
 
