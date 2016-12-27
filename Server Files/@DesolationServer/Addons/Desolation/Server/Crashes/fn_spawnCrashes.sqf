@@ -34,7 +34,7 @@ for "_i" from 1 to _numberOfCrashes do
 
 	(group _heli) move _crashPos;
 	(group _heli) setSpeedMode "full";
-	waituntil {(_heli distance2d _crashPos) < 50};
+	waituntil {(_heli distance2d _crashPos) < 500};
 	_wreckPos = [_heli, _wreckClass, _smokeSize, _smokepos, _wreckSmoke] call DS_fnc_heliCrashAnim;
 	[_wreckPos, _crashType] call DS_fnc_spawnCrashLoot;
 	_waitTime = random [_minTime, (_maxTime/2), _maxTime];

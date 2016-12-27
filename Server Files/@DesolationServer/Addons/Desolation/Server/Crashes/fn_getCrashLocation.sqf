@@ -24,7 +24,8 @@ while {(count _foundLocations) < 0} do {
 };
 
 _crashLocation = getPos (selectRandom _foundLocations);
+while {!(_crashLocation isEqualto [0,0,0])} do {
 _crashPosition = [[[[_crashLocation], (_maxSearchDist/2)]], ["Out","Water"]] call BIS_fnc_randomPos;
-
+};
 
 _crashPosition
