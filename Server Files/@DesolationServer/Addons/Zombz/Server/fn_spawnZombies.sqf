@@ -58,7 +58,7 @@ if (_leftOverZombies > 0) then
 	{
 		_radius = floor (random worldSize);
 		_angle = floor (random 360);
-		_position = [_centerPos, 0, worldSize, 0, 0, 20, false] call SM_fnc_FindSafePos;
+		_position = [_centerPos, 0, worldSize/1.8, 0, 0, 20, false] call SM_fnc_FindSafePos;
 		if !(_position isEqualTo []) then
 		{
 			if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then

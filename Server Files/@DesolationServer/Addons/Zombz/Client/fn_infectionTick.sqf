@@ -13,7 +13,7 @@ License info here and copyright symbol above
 
 
 private ["_damage"];
-_infection = player getVariable ["SM_InfectionDOT", 0];
+_infection = SM_InfectionDOT;
 
 
 if (_infection > 0) then
@@ -24,7 +24,7 @@ if (_infection > 0) then
 		SM_InfectionEffect ppEffectEnable true;
 	};
 
-	if (player getVariable ["SM_IsImmune",false]) exitWith
+	if (SM_IsImmune) exitWith
 	{
 		SM_InfectionEffect ppEffectAdjust [0, 0, false]; 
 		SM_InfectionEffect ppEffectCommit 2;
@@ -73,14 +73,14 @@ if (_infection > 0) then
 		case (_infection >= 0.75):
 		{
 			_damage = _damage + (_infection / ( 1 / _infectionDamage));
-			SM_InfectionEffect ppEffectAdjust [0.3, 0.3, false];
+			SM_InfectionEffect ppEffectAdjust [0.04, 0.3, false];
 			SM_InfectionEffect ppEffectCommit 3;
 		};
 	};
 
 	if (_damage != (damage player)) then
 	{
-		player setDamage _damage;
+		DS_var_Blood = DS_var_Blood - (_damage * 20000);
 	};
 }
 else
@@ -90,6 +90,12 @@ else
 		ppEffectDestroy SM_InfectionEffect;
 		SM_InfectionEffect = nil;
 	};
+};
+
+if (((diag_tickTime - SM_isImmuneStart) >= 600) && SM_IsImmune) then
+{
+	SM_isImmuneStart = diag_tickTime;
+	SM_IsImmune = false;
 };
 
 true

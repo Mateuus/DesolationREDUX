@@ -25,13 +25,9 @@ while {_attempts < 1000} do
 	_newY = _posY + (_maxDist - (random (_maxDist * 2)));
 	_testPos = [_newX, _newY];
 
-	if ((_pos distance _testPos) >= _minDist) then
+	if (((_pos distance _testPos) >= _minDist) && !((_testPos isFlatEmpty [_objDist, 0, _maxGradient, _objDist max 5, _waterMode, _shoreMode, objNull]) isEqualTo [])) exitWith
 	{
-		if !((_testPos isFlatEmpty [_objDist, 0, _maxGradient, _objDist max 5, _waterMode, _shoreMode, objNull]) isEqualTo []) then 
-		{
-			_newPos = _testPos;
-			_attempts = 1000;
-		};
+		_newPos = _testPos;
 	};
 
 	_attempts = _attempts + 1;

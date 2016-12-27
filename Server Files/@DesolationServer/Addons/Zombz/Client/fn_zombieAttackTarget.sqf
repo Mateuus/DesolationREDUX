@@ -11,23 +11,23 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-params ["_zomieAgent","_target","_soundLast","_distance"];
+params ["_zombieAgent","_target","_soundLast","_distance"];
 
-if ((animationState _zomieAgent) isEqualTo "unconscious") exitWith { _soundLast };
+if ((animationState _zombieAgent) isEqualTo "unconscious") exitWith { _soundLast };
 
 if ((diag_tickTime - _soundLast) >= 3) then
 {
 	_aggressive = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AggressiveArray");
-	[_zomieAgent, _aggressive] remoteExecCall ["Say3D", -2];
+	[_zombieAgent, _aggressive] remoteExecCall ["Say3D", _zombieAgent nearEntities ["C_man_p_beggar_F",30]];
 	_soundLast = diag_tickTime;
 };
 
-_distance = _zomieAgent distance _target;
-_alive = alive _zomieAgent;
-if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
+_distance = _zombieAgent distance _target;
+_alive = alive _zombieAgent;
+if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 {
-	doStop _zomieAgent;
-	_zomieAgent setdir (_zomieAgent getDir _target);
+	doStop _zombieAgent;
+	_zombieAgent setdir (_zombieAgent getDir _target);
 
 	if !((vehicle _target) isKindOf "Man") then
 	{
@@ -53,37 +53,53 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 					if ((random 5) < 1) then
 					{
 						_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
-						[_x, _screamSound] remoteExecCall ["Say3D", -2];
+						[_x, _screamSound] remoteExecCall ["Say3D", _x nearEntities ["C_man_p_beggar_F",30]];
 					};
-					_x setDamage ((damage _x) + (0.15 / 25));
+
+					//--- TODO: Replace this "call" with an actual function
+					{
+						DS_var_Blood = DS_var_Blood - (random(2500) max 500);
+						_bleedEnabled = ["bleedEnabled","SM"] call SM_fnc_getCfgValue;
+						if (_bleedEnabled) then
+						{
+							_bleedChance = ["bleedChance","SM"] call SM_fnc_getCfgValue;
+							if (random 100 < _bleedChance) then
+							{
+								DS_var_damagedBy pushBack objNull;
+								_selections = ["spine3","leftforearm","rightforearm","lefthand","righthand","leftupleg","rightupleg","leftleg","rightleg","leftfoot","rightfoot","head","pelvis"];
+								[objNull, selectRandom _selections] call DS_fnc_onHitPartReceived;
+							};
+						};
+					} remoteExecCall ["call",_x];
 				} foreach (crew vehicle _target); 	
 			};
 		};
 
 		_vehicleHit = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_VehicleHitArray"));
-		[_zomieAgent, _vehicleHit] remoteExecCall ["Say3D", -2];
+		[_zombieAgent, _vehicleHit] remoteExecCall ["Say3D", _zombieAgent nearEntities ["C_man_p_beggar_F",30]];
 
 		_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_infectionEnabled) then
 		{
 			_vel = velocity (vehicle _target);
-			_dir = direction _zomieAgent;
+			_dir = direction _zombieAgent;
 			[(vehicle _target), [((_vel select 0) + ((sin _dir) * 1.5)), ((_vel select 1) + ((cos _dir) * 1.5)), ((_vel select 2) + (random 1))]] call SM_fnc_targetSetVelocity;
 		};
 	}
 	else
 	{
-		_target setDamage ((damage _target) + 0.15);
+		DS_var_Blood = DS_var_Blood - (random(5000) max 1000);
 		call SM_fnc_blurEffect;
 
 		_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
-		[_target, _screamSound] remoteExecCall ["Say3D", -2];
+
+		[_target, _screamSound] remoteExecCall ["Say3D", _target nearEntities ["C_man_p_beggar_F",30]];
 
 		_velocityEnabled = ["velocityEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_velocityEnabled) then
 		{
 			_vel = velocity _target;
-			_dir = direction _zomieAgent;
+			_dir = direction _zombieAgent;
 			[(vehicle _target), [((_vel select 0) + ((sin _dir) * 1)), ((_vel select 1) + ((cos _dir) * 1)), ((_vel select 2) + (random 1))]] call SM_fnc_targetSetVelocity;
 		};
 		
@@ -91,9 +107,11 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 		if (_bleedEnabled) then
 		{
 			_bleedChance = ["bleedChance","SM"] call SM_fnc_getCfgValue;
-			if (_bleedChance > random 100) then
+			if (random 100 < _bleedChance) then
 			{
-				_target setBleedingRemaining 20;
+				DS_var_damagedBy pushBack _zombieAgent;
+				_selections = ["spine3","leftforearm","rightforearm","lefthand","righthand","leftupleg","rightupleg","leftleg","rightleg","leftfoot","rightfoot","head","pelvis"];
+				[_zombieAgent,selectRandom _selections] call DS_fnc_onHitPartReceived;
 			};
 		};
 
@@ -102,12 +120,11 @@ if (((_zomieAgent distance2D _target) <= _distance) && _alive) then
 		{
 			if (_target getVariable ["SM_InfectionImmune", false]) exitWith {};
 			_infectionChance = ["infectionChance","SM"] call SM_fnc_getCfgValue;
-			if (_infectionChance > random 100) then
+			if (random 100 < _infectionChance) then
 			{
-				_targetInfection = _target getVariable ["SM_InfectionDOT", 0];
-				if !(_targetInfection >= 1) then
+				if !(SM_InfectionDOT >= 1) then
 				{
-					_target setVariable ["SM_InfectionDOT", (_targetInfection + random 0.25)];
+					SM_InfectionDOT = SM_InfectionDOT + random 0.25;
 				};
 			};
 		};

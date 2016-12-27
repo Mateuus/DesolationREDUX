@@ -31,7 +31,7 @@ if(DS_var_Blood <= 0) then {
 };
 
 //--- regen blood
-if(DS_var_Hunger == 100 && DS_var_Thirst == 100 && !DS_var_isBleeding && DS_var_Blood != 27500) then {
+if(DS_var_Hunger == 100 && DS_var_Thirst == 100 && !DS_var_isBleeding && (DS_var_Blood != 27500) && SM_InfectionDOT == 0) then {
 	_regenStationary = 1375/36;
 	_regenMoving = 725 / 144;
 	_regen = _regenMoving;

@@ -23,11 +23,11 @@ if !(isMultiplayer) exitWith
 waitUntil {!isNil "SM_fnc_zombieInit"};
 
 SM_idleZombies = [];
+SM_InfectionDOT = 0;
+SM_IsImmune = false;
+SM_isImmuneStart = diag_tickTime;
 
 [] call SM_fnc_zombieInit;
-
-// Exec the manager FSM.
-[] execFSM "DSR_Zombz_Code\FSM\Manager.fsm";
 
 diag_log format["SM_Zombz %1: Finished Init!", _version];
 
