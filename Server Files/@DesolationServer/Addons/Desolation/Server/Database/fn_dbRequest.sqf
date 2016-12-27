@@ -117,15 +117,15 @@ switch(_type)do{
 			_killType = 2;
 		};
 		
-		_playerUUID = _playerObj getVariable ["cUUID",""];
-		_killerUUID = "";
+		_deadCharUUID = _playerObj getVariable ["cUUID",""];
+		_killerPlayerUUID = "";
 		_type = "Unknown";
 		_weapon = "";
 		_distance = 0;
 		
 		switch(_killType) do {
 			case 1: {
-				_killerUUID = _killerObj getVariable ["pUUID",""];
+				_killerPlayerUUID = _killerObj getVariable ["pUUID",""];
 				_weapon = "TODO: get weapon"; 
 				_distance = _killerObj distance _playerObj;
 				_type = "Killed";
@@ -135,8 +135,8 @@ switch(_type)do{
 			};
 		};
 		_request = [PROTOCOL_DBCALL_FUNCTION_DECLARE_CHAR_DEATH,[
-			[PROTOCOL_DBCALL_ARGUMENT_CHARUUID,_playerUUID],
-			[PROTOCOL_DBCALL_ARGUMENT_ATTACKER,_killerUUID],
+			[PROTOCOL_DBCALL_ARGUMENT_CHARUUID,_deadCharUUID],
+			[PROTOCOL_DBCALL_ARGUMENT_ATTACKER,_killerPlayerUUID],
 			[PROTOCOL_DBCALL_ARGUMENT_TYPE,_type],
 			[PROTOCOL_DBCALL_ARGUMENT_WEAPON,_weapon],
 			[PROTOCOL_DBCALL_ARGUMENT_DISTANCE,_distance]
