@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-	
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 if(DS_var_Blood <= 0) then {
 	player setDamage 1;
@@ -31,7 +35,7 @@ if(DS_var_Blood <= 0) then {
 };
 
 //--- regen blood
-if(DS_var_Hunger == 100 && DS_var_Thirst == 100 && !DS_var_isBleeding && DS_var_Blood != 27500) then {
+if(DS_var_Hunger == 100 && DS_var_Thirst == 100 && !DS_var_isBleeding && (DS_var_Blood != 27500) && SM_InfectionDOT == 0) then {
 	_regenStationary = 1375/36;
 	_regenMoving = 725 / 144;
 	_regen = _regenMoving;

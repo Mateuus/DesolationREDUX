@@ -14,7 +14,7 @@ item9[] = {"Target_Check",2,250,1000.000000,1175.000000,1100.000000,1225.000000,
 item10[] = {"Surface_Water",4,218,500.000000,800.000000,600.000000,850.000000,0.000000,"Surface" \n "Water"};
 item11[] = {"Surface_Not_Wate",4,218,625.000000,800.000000,725.000000,850.000000,0.000000,"Surface" \n "Not" \n "Water"};
 item12[] = {"Go_To_Position",2,250,625.000000,725.000000,725.000000,775.000000,0.000000,"Go" \n "To" \n "Position"};
-item13[] = {"Calculate_Moveme",4,4314,700.000000,650.000000,800.000000,700.000000,0.000000,"Calculate" \n "Movement"};
+item13[] = {"Calculate_Moveme",4,218,700.000000,650.000000,800.000000,700.000000,0.000000,"Calculate" \n "Movement"};
 item14[] = {"Find_Wander_Posi",2,250,500.000000,725.000000,600.000000,775.000000,0.000000,"Find" \n "Wander" \n "Position"};
 item15[] = {"True",8,218,550.000000,650.000000,650.000000,700.000000,0.000000,"True"};
 item16[] = {"Calculate_Time",2,250,750.000000,725.000000,850.000000,775.000000,0.000000,"Calculate" \n "Time"};
@@ -37,7 +37,7 @@ item32[] = {"close",4,218,1375.000000,1475.000000,1475.000000,1525.000000,0.0000
 item33[] = {"far",4,218,1250.000000,1400.000000,1350.000000,1450.000000,0.000000,"far"};
 item34[] = {"eat_delay",4,218,1625.000000,1475.000000,1725.000000,1525.000000,0.000000,"eat delay"};
 item35[] = {"",7,210,1421.000000,1158.500000,1429.000000,1166.500000,0.000000,""};
-item36[] = {"eat",2,250,1500.000000,1475.000000,1600.000000,1525.000000,0.000000,"eat"};
+item36[] = {"eat",2,4346,1500.000000,1475.000000,1600.000000,1525.000000,0.000000,"eat"};
 item37[] = {"finished",4,218,1500.000000,1400.000000,1600.000000,1450.000000,0.000000,"finished"};
 item38[] = {"ending_anim",2,250,1500.000000,1325.000000,1600.000000,1375.000000,0.000000,"ending anim"};
 item39[] = {"true",8,218,1500.000000,1250.000000,1600.000000,1300.000000,0.000000,"true"};
@@ -140,8 +140,8 @@ link69[] = {62,63};
 link70[] = {64,25};
 link71[] = {64,65};
 link72[] = {65,27};
-globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,141.291870,1471.335693,1395.983643,350.240784,1207,949,1};
-window[] = {2,-1,-1,-1,-1,927,277,1677,261,3,1225};
+globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,915.254150,2093.386963,1807.698120,881.393921,1207,949,1};
+window[] = {2,-1,-1,-1,-1,822,156,1556,156,3,1225};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -436,31 +436,29 @@ class FSM
                                          "}" \n
                                          "else" \n
                                          "{" \n
-                                         "	if ((diag_tickTime - _runLoopCheck) > 0.5) then" \n
+                                         "" \n
+                                         "	if ((diag_ticktime - _soundLast) >= 420) then" \n
                                          "	{" \n
-                                         "		if ((diag_ticktime - _soundLast) >= 420) then" \n
-                                         "		{" \n
-                                         "			_moan = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray"");" \n
-                                         "			[_zombieAgent, _moan] remoteExecCall [""Say3D"", -2];" \n
-                                         "			_soundLast = diag_ticktime;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_distance = 1000;" \n
-                                         "		if !(isNull _target) then" \n
-                                         "		{" \n
-                                         "			_distance = _zombieAgent distance _target;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call SM_fnc_getCfgValue;" \n
-                                         "		if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 3) then" \n
-                                         "		{" \n
-                                         "			[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
-                                         "			_lastSpeedCheck = diag_ticktime;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_canFinish = ((movetoCompleted _zombieAgent) || (moveToFailed _zombieAgent) || ((diag_ticktime - _timeout) >= 7.5) || (_distance <= 10) || !(alive _zombieAgent));" \n
-                                         "		_runLoopCheck = diag_ticktime;" \n
+                                         "		_moan = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray"");" \n
+                                         "		[_zombieAgent, _moan] remoteExecCall [""Say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
+                                         "		_soundLast = diag_ticktime;" \n
                                          "	};" \n
+                                         "" \n
+                                         "	_distance = 1000;" \n
+                                         "	if !(isNull _target) then" \n
+                                         "	{" \n
+                                         "		_distance = _zombieAgent distance _target;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call SM_fnc_getCfgValue;" \n
+                                         "	if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 1) then" \n
+                                         "	{" \n
+                                         "		[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
+                                         "		_lastSpeedCheck = diag_ticktime;" \n
+                                         "	};" \n
+                                         "	" \n
+                                         "	_canFinish = ((movetoCompleted _zombieAgent) || (moveToFailed _zombieAgent) || ((diag_ticktime - _timeout) >= 7.5) || (_distance <= 10) || !(alive _zombieAgent));" \n
+                                         "	_runLoopCheck = diag_ticktime;" \n
                                          "};" \n
                                          "_canFinish"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -581,8 +579,6 @@ class FSM
                          "" \n
                          "[(netID vehicle _target), (netID _zombieAgent)] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
                          "" \n
-                         "systemchat ""passing zombie to target 2"";" \n
-                         "" \n
                          "true"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -690,7 +686,7 @@ class FSM
                         name = "eat";
                         itemno = 36;
                         init = /*%FSM<STATEINIT""">*/"_Eating = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_EatingArray"");" \n
-                         "[_zombieAgent, _Eating] remoteExecCall [""say3D"", -2];" \n
+                         "[_zombieAgent, _Eating] remoteExecCall [""say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
                          "" \n
                          "_eatingAnimation = selectRandom" \n
                          "[" \n
@@ -987,7 +983,7 @@ class FSM
                                         priority = 0.000000;
                                         to="Alive_Player_Che";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"(_target isEqualTo player)"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle _target) isEqualTo (vehicle player))"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -998,7 +994,7 @@ class FSM
                                         priority = 0.000000;
                                         to="Update_Locality_1";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"!(_target isEqualTo player)"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!((vehicle _target) isEqualTo (vehicle player))"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/

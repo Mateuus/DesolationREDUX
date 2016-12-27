@@ -1,9 +1,13 @@
 /*
-Desolation Redux
-2016 Desolation Dev Team
-
-License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 /*
 	Author: StokesMagee
@@ -69,8 +73,6 @@ if !((player distance _zombieAgent) > 1000) then
 					if (_distanceCheck >= 500) exitWith { 0.10 };
 				});
 
-				_detectionnumber = _detectionnumber + random 0.50;
-
 				_isInFront = [_zombieAgent,_unit] call SM_fnc_zombieCanSee;
 
 				if (_isInFront) then 
@@ -107,7 +109,7 @@ if !((player distance _zombieAgent) > 1000) then
 					if (_distanceCheck >= 500) exitWith { 0.10 };
 				});
 
-				_randomAddition = (random 0.50);
+				_randomAddition = (random 0.25);
 
 				_detectionnumber = _detectionnumber + _randomAddition;
 
@@ -115,7 +117,7 @@ if !((player distance _zombieAgent) > 1000) then
 
 				if (_isInFront) then 
 				{
-					_detectionnumber = _detectionnumber + 0.25
+					_detectionnumber = _detectionnumber + 0.25;
 				};
 
 				if (_detectionnumber > 1) then 
@@ -124,6 +126,10 @@ if !((player distance _zombieAgent) > 1000) then
 				};
 
 				_isvisible = _detected;
+			}
+			else
+			{
+				_isvisible = false;
 			};
 		};
 		if (_isvisible) then

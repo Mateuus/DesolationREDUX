@@ -91,6 +91,8 @@ class CfgFunctions
 			class usepainkillers {};
 			class usevitamins {};
 			class usewpt {};
+			class useCure {};
+			class useImmune {};
 		};
 		class Client_Actions_Repair {
 			file = "Desolation\Client\Actions\Repair";
@@ -115,7 +117,6 @@ class CfgFunctions
 			file = "Desolation\Client\Status";
 			isclient = 1;
 			class initHealthSys {};
-			class initStatusSys {};
 			class onBleedTick {};
 			class onBloodReceive {};
 			class onDrink {};
@@ -201,6 +202,7 @@ class CfgFunctions
 			class spawnCrashLoot {};
 			class getCrashLocation {};
 			class initHeliCrashes {};
+			class heliCrashAnim {};
 		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
@@ -226,11 +228,10 @@ class CfgFunctions
 };
 class CfgHeliCrashes {
 	class Settings {
-		MinTimeBetweenCrashes = 5
-		MaxTimeBetweenCrashes = 20
+		MinTimeBetweenCrashes = 5;
+		MaxTimeBetweenCrashes = 20;
 		NumberOfCrashesToSpawn = 5;
 		MaxSearchDistance = 5000;
-		
 	};
 	class CrashTypes {
 		class Military {
@@ -241,6 +242,13 @@ class CfgHeliCrashes {
 			//particle effects config (size and origin)
 			SmokePos[] = {0,0,0};
 			SmokeSize = 7;
+			Locations[] =
+			{
+				{4060.2971,2753.147},
+				{3014.8438,12482.121},
+				{7501.166,9649.7529},
+				{10790.136,4316.1323}
+			};
 			
 			class loot {
 				maxLootpiles = 10;//not implemented yet
@@ -268,6 +276,13 @@ class CfgHeliCrashes {
 			//particle effects config (size and origin)
 			SmokePos[] = {0,0,0};
 			SmokeSize = 7;
+			Locations[] =
+			{
+				{2794.793,6132.3345},
+				{12407.456,3987.5303},
+				{11379.448,11809.968},
+				{10190.923,2723.2224}
+			};
 			
 			class loot {
 				maxLootpiles = 10;//not implemented yet

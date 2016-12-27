@@ -1,9 +1,13 @@
 /*
-Desolation Redux
-2016 Desolation Dev Team
-
-License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 /*
 	Author: StokesMagee
@@ -11,7 +15,7 @@ License info here and copyright symbol above
 	Description: SM_Zombz desolation redux edition.
 */
 
-if !(["Enabled","SM"] call SM_fnc_getCfgValue) exitWith {};
+if !(call compile ["Enabled","SM"] call BASE_fnc_getCfgValue) exitWith {};
 
 private _version = getText(configFile >> "CfgPatches" >> "DSR_Zombz_code" >> "version");
 diag_log format["SM_Zombz %1: Starting Init!", _version];

@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 _numberOfCrashes = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "NumberOfCrashesToSpawn");
 _maxSearchDistance = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxSearchDistance");
@@ -22,9 +26,9 @@ for "_i" from 1 to _numberOfCrashes do
 	_spawnAlt = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
 
 	_crashPos = [_crashType, _maxSearchDistance] call DS_fnc_getCrashLocation;
-	//_spawnDirection = random 360;
-
-	_spawnPos = [(_crashPos select 0) + sin(_dir) * _mapsize, (_crashPos select 1) + cos(_dir) * _mapsize, _spawnAlt];
+	
+	_spawnDirection = random 360;
+	_spawnPos = [(_crashPos select 0) + sin(_spawnDirection) * _mapsize, (_crashPos select 1) + cos(_spawnDirection) * _mapsize, _spawnAlt];
 
 	_heli = _heliType createVehicle _spawnPos;
 

@@ -1,9 +1,13 @@
 /*
-Desolation Redux
-2016 Desolation Dev Team
-
-License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 /*
 	Author: StokesMagee
@@ -58,10 +62,13 @@ if (_leftOverZombies > 0) then
 	{
 		_radius = floor (random worldSize);
 		_angle = floor (random 360);
-		_position = [round ((_centerPos select 0) + (_radius * (cos _angle))), round((_centerPos select 1) + (_radius * (sin _angle)))];
-		if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
+		_position = [_centerPos, 0, worldSize/1.8, 0, 0, 20, false] call SM_fnc_FindSafePos;
+		if !(_position isEqualTo []) then
 		{
-			_leftOverZombies = _leftOverZombies - 1;
+			if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
+			{
+				_leftOverZombies = _leftOverZombies - 1;
+			};
 		};
 	};
 };

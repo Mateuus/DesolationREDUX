@@ -1,23 +1,27 @@
 /*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZombieIdleManager">*/
 /*%FSM<HEAD>*/
 /*
-item0[] = {"Init",0,250,1125.000000,900.000000,1225.000000,950.000000,0.000000,"Init"};
-item1[] = {"Client",4,218,1125.000000,975.000000,1225.000000,1025.000000,0.000000,"Client"};
-item2[] = {"Not_Client",4,218,1250.000000,900.000000,1350.000000,950.000000,0.000000,"Not-Client"};
-item3[] = {"Calculate_All_Zo",2,4346,1125.000000,1050.000000,1225.000000,1100.000000,0.000000,"Calculate" \n "All" \n "Zombies"};
-item4[] = {"End",1,250,1250.000000,975.000000,1350.000000,1025.000000,0.000000,"End"};
-item5[] = {"Timeout",4,218,1125.000000,1125.000000,1225.000000,1175.000000,0.000000,"Timeout"};
-item6[] = {"end_FSM",4,218,1250.000000,1050.000000,1350.000000,1100.000000,0.000000,"end FSM"};
-link0[] = {0,1};
-link1[] = {0,2};
-link2[] = {1,3};
-link3[] = {2,4};
-link4[] = {3,5};
-link5[] = {3,6};
-link6[] = {5,3};
-link7[] = {6,4};
-globals[] = {0.000000,0,0,0,0,640,480,2,11,6316128,1,830.688843,1553.871948,1314.683960,790.477234,1207,949,1};
-window[] = {2,-1,-1,-1,-1,1054,483,1633,388,3,1225};
+item0[] = {"Init",0,250,1125.000000,850.000000,1225.000000,900.000000,0.000000,"Init"};
+item1[] = {"Client",4,218,1125.000000,1075.000000,1225.000000,1125.000000,0.000000,"Client"};
+item2[] = {"Not_Client",4,218,1250.000000,1000.000000,1350.000000,1050.000000,0.000000,"Not-Client"};
+item3[] = {"Calculate_All_Zo",2,4346,1125.000000,1150.000000,1225.000000,1200.000000,0.000000,"Calculate" \n "All" \n "Zombies"};
+item4[] = {"End",1,250,1250.000000,1075.000000,1350.000000,1125.000000,0.000000,"End"};
+item5[] = {"Timeout",4,218,1125.000000,1225.000000,1225.000000,1275.000000,0.000000,"Timeout"};
+item6[] = {"end_FSM",4,218,1250.000000,1150.000000,1350.000000,1200.000000,0.000000,"end FSM"};
+item7[] = {"Who_Are_You_",3,250,1125.000000,1000.000000,1225.000000,1050.000000,0.000000,"Who" \n "Are" \n "You?"};
+item8[] = {"Wait_10_Seconds",4,218,1125.000000,925.000000,1225.000000,975.000000,0.000000,"Wait" \n "10" \n "Seconds"};
+link0[] = {0,8};
+link1[] = {1,3};
+link2[] = {2,4};
+link3[] = {3,5};
+link4[] = {3,6};
+link5[] = {5,3};
+link6[] = {6,4};
+link7[] = {7,1};
+link8[] = {7,2};
+link9[] = {8,7};
+globals[] = {0.000000,0,0,0,0,640,480,2,13,6316128,1,831.288330,1554.471436,1344.642090,820.434937,850,949,1};
+window[] = {2,-1,-1,-1,-1,718,52,1202,52,3,868};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -29,29 +33,18 @@ class FSM
                 {
                         name = "Init";
                         itemno = 0;
-                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
-                                /*%FSM<LINK "Not_Client">*/
-                                class Not_Client
+                                /*%FSM<LINK "Wait_10_Seconds">*/
+                                class Wait_10_Seconds
                                 {
-                                        itemno = 2;
+                                        itemno = 8;
                                         priority = 0.000000;
-                                        to="End";
+                                        to="Who_Are_You_";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"!(hasInterface)"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
-                                /*%FSM<LINK "Client">*/
-                                class Client
-                                {
-                                        itemno = 1;
-                                        priority = 0.000000;
-                                        to="Calculate_All_Zo";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"hasInterface"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((diag_ticktime - _timeout) >= 10)"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -63,7 +56,8 @@ class FSM
                 {
                         name = "Calculate_All_Zo";
                         itemno = 3;
-                        init = /*%FSM<STATEINIT""">*/"""Checking idle zombies"" call SM_fnc_Log;" \n
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;" \n
+                         """Checking idle zombies"" call SM_fnc_Log;" \n
                          "if !(SM_IdleZombies isEqualTo []) then" \n
                          "{" \n
                          "	_deleted = [];" \n
@@ -95,75 +89,73 @@ class FSM
                          "			_deleted pushback _forEachIndex;" \n
                          "		};" \n
                          "" \n
-                         "		if (_exit) exitWith {};" \n
-                         "		if ((diag_ticktime - (_zombieAgent getVariable [""SM_LastTargetCheck"",0])) >= 0.5) then" \n
+                         "		if !(_exit) then {" \n
+                         "		if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= 420) then" \n
                          "		{" \n
-                         "			if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= 420) then" \n
-                         "			{" \n
-                         "				_moan = selectRandom (getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray""));" \n
-                         "				[_zombieAgent, _moan] remoteExecCall [""Say3D"", -2];" \n
-                         "				_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",diag_ticktime];" \n
-                         "			};" \n
+                         "			_moan = selectRandom (getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray""));" \n
+                         "			[_zombieAgent, _moan] remoteExecCall [""Say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
+                         "			_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",diag_ticktime];" \n
+                         "		};" \n
                          "" \n
-                         "			_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
-                         "			if (_firedNearEnabled) then" \n
+                         "		_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
+                         "		if (_firedNearEnabled) then" \n
+                         "		{" \n
+                         "			if ((_zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
                          "			{" \n
-                         "				if ((_zombieAgent getVariable [""SM_ZombieOnFiredEVH"", -1]) isEqualTo -1) then" \n
-                         "				{" \n
-                         "					_evhID = _zombieAgent addEventHandler [""FiredNear"",{ _this call SM_fnc_zombieFiredNear }];" \n
-                         "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"", _evhid];" \n
-                         "				};" \n
+                         "				_evhID = _zombieAgent addEventHandler [""FiredNear"",{ _this call SM_fnc_zombieFiredNear }];" \n
+                         "				_zombieAgent setVariable [""SM_ZombieOnFiredEVH"", _evhid];" \n
                          "			};" \n
+                         "		};" \n
                          "" \n
-                         "			if ((_zombieAgent getVariable [""SM_ZombieFindFiredNear"",[]]) isEqualTo []) then" \n
+                         "		if ((_zombieAgent getVariable [""SM_ZombieFindFiredNear"",[]]) isEqualTo []) then" \n
+                         "		{" \n
+                         "			_target = _zombieAgent call SM_fnc_ZombieFindTarget;			" \n
+                         "			if !(isNull _target) then" \n
                          "			{" \n
-                         "				_target = _zombieAgent call SM_fnc_ZombieFindTarget;			" \n
-                         "				if !(isNull _target) then" \n
+                         "				if !((vehicle _target) isEqualTo (vehicle player)) then" \n
                          "				{" \n
-                         "					if (!(_target isEqualTo player) && !((vehicle _target) isEqualTo (vehicle player))) then" \n
+                         "					[(netID vehicle _target), _x] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "" \n
+                         "					_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "					_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "					_deleted pushback _forEachIndex;" \n
+                         "					_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
+                         "					if !(_firedEVH isEqualTo -1) then" \n
                          "					{" \n
-                         "						[(netID vehicle _target), _x] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
-                         "						systemchat ""passing zombie to target 1"";" \n
-                         "						_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
-                         "						_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
-                         "						_deleted pushback _forEachIndex;" \n
-                         "						_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
-                         "						if !(_firedEVH isEqualTo -1) then" \n
-                         "						{" \n
-                         "							_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
-                         "							_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
-                         "						};" \n
-                         "					}" \n
-                         "					else" \n
-                         "					{" \n
-                         "						_isRunning = _zombieAgent getVariable [""SM_FSMRunning"", -1];" \n
-                         "						if (_isRunning isEqualTo -1) then" \n
-                         "						{" \n
-                         "							""Creating an FSM for an zombie."" call SM_fnc_Log;" \n
-                         "							_zombieHandle = [_zombieAgent,_target] execFSM ""dsr_zombz_code\fsm\zombieBrain.fsm"";" \n
-                         "							_zombieAgent setVariable [""SM_FSMRunning"", _zombieHandle];" \n
-                         "							_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
-                         "							_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
-                         "							_zombieAgent setVariable [""SM_LastLocalCheck"",nil];" \n
-                         "							_deleted pushback _forEachIndex;" \n
-                         "						};" \n
+                         "						_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "						_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
                          "					};" \n
                          "				}" \n
                          "				else" \n
                          "				{" \n
-                         "					_pos = _zombieAgent call SM_fnc_zombieFindPositionWander;" \n
-                         "					_zombieAgent moveTo _pos;" \n
+                         "					_isRunning = _zombieAgent getVariable [""SM_FSMRunning"", -1];" \n
+                         "					if (_isRunning isEqualTo -1) then" \n
+                         "					{" \n
+                         "						""Creating an FSM for an zombie."" call SM_fnc_Log;" \n
+                         "						_zombieHandle = [_zombieAgent,_target] execFSM ""dsr_zombz_code\fsm\zombieBrain.fsm"";" \n
+                         "						_zombieAgent setVariable [""SM_FSMRunning"", _zombieHandle];" \n
+                         "						_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "						_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "						_zombieAgent setVariable [""SM_LastLocalCheck"",nil];" \n
+                         "						_deleted pushback _forEachIndex;" \n
+                         "					};" \n
                          "				};" \n
                          "			}" \n
                          "			else" \n
                          "			{" \n
-                         "				_pos = _zombieAgent call SM_fnc_zombieFindFiredNear;" \n
-                         "				if !(_pos isEqualTo []) then" \n
-                         "				{" \n
-                         "					_zombieAgent moveTo _pos;" \n
-                         "					_zombieAgent setVariable [""SM_LastTargetCheck"",diag_ticktime];" \n
-                         "				};" \n
+                         "				_pos = _zombieAgent call SM_fnc_zombieFindPositionWander;" \n
+                         "				_zombieAgent moveTo _pos;" \n
                          "			};" \n
+                         "		}" \n
+                         "		else" \n
+                         "		{" \n
+                         "			_pos = _zombieAgent call SM_fnc_zombieFindFiredNear;" \n
+                         "			if !(_pos isEqualTo []) then" \n
+                         "			{" \n
+                         "				_zombieAgent moveTo _pos;" \n
+                         "				_zombieAgent setVariable [""SM_LastTargetCheck"",diag_ticktime];" \n
+                         "			};" \n
+                         "		};" \n
                          "		};" \n
                          "	} forEach SM_IdleZombies;" \n
                          "" \n
@@ -218,6 +210,40 @@ class FSM
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Who_Are_You_">*/
+                class Who_Are_You_
+                {
+                        name = "Who_Are_You_";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_Client">*/
+                                class Not_Client
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(hasInterface)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Client">*/
+                                class Client
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Calculate_All_Zo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"hasInterface"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
                         };
                 };
                 /*%FSM</STATE>*/
