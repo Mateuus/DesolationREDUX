@@ -12,3 +12,4 @@
 /*
 	TODO
 */
+diag_log "i like EasyMode, it makes my server popular!";
