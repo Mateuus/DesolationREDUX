@@ -91,6 +91,8 @@ class CfgFunctions
 			class usepainkillers {};
 			class usevitamins {};
 			class usewpt {};
+			class useCure {};
+			class useImmune {};
 		};
 		class Client_Actions_Repair {
 			file = "Desolation\Client\Actions\Repair";
@@ -115,7 +117,6 @@ class CfgFunctions
 			file = "Desolation\Client\Status";
 			isclient = 1;
 			class initHealthSys {};
-			class initStatusSys {};
 			class onBleedTick {};
 			class onBloodReceive {};
 			class onDrink {};

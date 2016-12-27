@@ -26,7 +26,7 @@ if(_goggles != "") then {
 //--- show region
 [] spawn DS_fnc_showRegionNotification;
 //--- init subsystems
-call DS_fnc_initStatusSys;
+[] spawn DS_fnc_initStatusSys;
 call DS_fnc_initBleedingSystem;
 call DS_fnc_registerPlayer;
 call DS_fnc_initEventHandlers;
@@ -39,7 +39,7 @@ if(!isNil "RSM_fnc_initRealism") then {
 //--- TEMP
 addMissionEventHandler ["EachFrame",{
 	_text = "";
-	_text = _text + "<t size='1.4' align='center' color='#FFFFFF'>Desolation <t color='#FF3333'>Redux</t></t><br/><t size='1.1' align='center'>Debug Menu</t><br/><br/>";
+	_text = _text + "<t size='1.4' align='center' color='#FFFFFF'>Desolation <t color='#FF3333'>Redux</t></t><br/><t size='1.1' align='center'>Debug</t><br/><br/>";
 	_text = _text + "<t color='#FFFF55' align='left' size='0.9'>Damage:</t><t align='right' size='0.9'>" + str(damage player) + "</t><br/>";
 	_text = _text + "<t color='#FF5555' align='left' size='0.9'>Blood:</t><t align='right' size='0.9'>" + str(DS_var_Blood) + "</t><br/>";
 	_text = _text + "<t color='#55FF55' align='left' size='0.9'>Hunger:</t><t align='right' size='0.9'>" + str(DS_var_Hunger) + "</t><br/>";
