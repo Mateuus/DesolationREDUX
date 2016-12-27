@@ -22,9 +22,9 @@ for "_i" from 1 to _numberOfCrashes do
 	_spawnAlt = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
 
 	_crashPos = [_crashType, _maxSearchDistance] call DS_fnc_getCrashLocation;
-	//_spawnDirection = random 360;
-
-	_spawnPos = [(_crashPos select 0) + sin(_dir) * _mapsize, (_crashPos select 1) + cos(_dir) * _mapsize, _spawnAlt];
+	
+	_spawnDirection = random 360;
+	_spawnPos = [(_crashPos select 0) + sin(_spawnDirection) * _mapsize, (_crashPos select 1) + cos(_spawnDirection) * _mapsize, _spawnAlt];
 
 	_heli = _heliType createVehicle _spawnPos;
 
