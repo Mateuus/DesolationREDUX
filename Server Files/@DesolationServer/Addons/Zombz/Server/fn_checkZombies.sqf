@@ -1,9 +1,13 @@
 /*
-Desolation Redux
-2016 Desolation Dev Team
-
-License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 /*
 	Author: StokesMagee
@@ -43,7 +47,7 @@ _deleted = [];
 					_player = _tmpPlayer;
 					_distance = _tmpDistance;
 				};
-			} forEach _allPlayers;
+			} count _allPlayers;
 
 			if !(isNull _player) then
 			{
@@ -72,7 +76,7 @@ _deleted = [];
 			_distance = 1000;
 			{
 				if ((_x distance _zombieAgent) <= _distance) exitWith { _playerIsNear = true; };
-			} forEach _allPlayers;
+			} count _allPlayers;
 
 			// No valid player found, so hide and disable the zombies behavior.
 			if !(isObjectHidden _zombieAgent) then

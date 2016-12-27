@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 params["_data","_client"];
 private["_unit","_anim","_dir","_x","_y","_z","_class","_hitpoints","_nonpersvars","_persvars","_textures","_invuniform","_invvest","_invbackpack","_uniform","_vest","_backpack","_headgear","_goggles","_primary","_secondary","_handgun","_tools","_currentWeapon","_loadout","_name","_damage"];
 
