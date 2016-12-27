@@ -56,26 +56,58 @@ class CfgWorlds {
 	initWorld = "Tanoa";
 	demoWorld = "Tanoa";
 };
-//--- TODO: not work?
-class CfgDifficulties {
-	class Mercenary {
-		class Flags {
-			weaponCursor[] = {0,0};
-		};
-	};
+//---
+class CfgDifficultyPresets {
 	class Recruit {
-		class Flags {
-			weaponCursor[] = {0,0};
-		};
+		weaponCrosshair = 0;
+		reducedDamage = 0;
+		visionAid  = 0;
+		groupIndicators = 0;
+		friendlyTags = 0;
+		deathMessages = 0;
 	};
 	class Regular {
-		class Flags {
-			weaponCursor[] = {0,0};
-		};
+		weaponCrosshair = 0;
+		reducedDamage = 0;
+		visionAid  = 0;
+		groupIndicators = 0;
+		friendlyTags = 0;
+		deathMessages = 0;
 	};
 	class Veteran {
-		class Flags {
-			weaponCursor[] = {0,0};
+		weaponCrosshair = 0;
+		visionAid  = 0;
+		reducedDamage = 0;
+		groupIndicators = 0;
+		friendlyTags = 0;
+		deathMessages = 0;
+	};
+	class DesoHardcore {
+		displayName = "Desolation Redux: Hardcore Mode";
+		levelAI = "AILevelHigh";
+		optionDescription = "The hardest difficulty there is.";
+		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
+		class Options {
+			reducedDamage = 0;
+			groupIndicators = 0; 
+			friendlyTags = 0;
+			enemyTags = 0;
+			detectedMines = 0;
+			commands = 0;
+			waypoints = 0;
+			weaponInfo = 0;
+			stanceIndicator = 0
+			staminaBar = 0;
+			weaponCrosshair = 0;
+			visionAid = 0;
+			thirdPersonView = 0;
+			cameraShake = 1;
+			scoreTable = 0;
+			deathMessages = 0;
+			vonID = 1;
+			mapContent = 0;
+			autoReport = 0;
+			multipleSaves = 0;
 		};
 	};
 };
