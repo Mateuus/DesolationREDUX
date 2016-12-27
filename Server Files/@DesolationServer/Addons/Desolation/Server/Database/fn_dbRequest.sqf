@@ -125,7 +125,7 @@ switch(_type)do{
 		
 		switch(_killType) do {
 			case 1: {
-				_killerUUID = _killerObj getVariable ["cUUID",""];
+				_killerUUID = _killerObj getVariable ["pUUID",""];
 				_weapon = "TODO: get weapon"; 
 				_distance = _killerObj distance _playerObj;
 				_type = "Killed";
