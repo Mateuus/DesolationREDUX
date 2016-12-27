@@ -33,6 +33,8 @@ _deleted = [];
 		{
 			_player = objNull;
 			_distance = 1000;
+
+			// Locate the closest player
 			{
 				_tmpPlayer = _x;
 				_tmpDistance = _tmpPlayer distance2D _zombieAgent;
@@ -62,6 +64,23 @@ _deleted = [];
 					_zombieAgent hideObjectGlobal true;
 					_zombieAgent disableAI "ALL";
 				};
+			};
+		}
+		else
+		{
+			_playerIsNear = false;
+			_distance = 1000;
+			{
+				if ((_x distance _zombieAgent) <= _distance) exitWith { _playerIsNear = true; };
+			} forEach _allPlayers;
+
+			// No valid player found, so hide and disable the zombies behavior.
+			if !(isObjectHidden _zombieAgent) then
+			{
+				_zombieAgent setOwner -2;
+				_zombieAgent enableSimulationGlobal false;
+				_zombieAgent hideObjectGlobal true;
+				_zombieAgent disableAI "ALL";
 			};
 		};
 	};
