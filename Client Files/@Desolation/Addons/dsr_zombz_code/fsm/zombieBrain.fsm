@@ -140,8 +140,8 @@ link69[] = {62,63};
 link70[] = {64,25};
 link71[] = {64,65};
 link72[] = {65,27};
-globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,141.291870,1471.335693,1395.983643,350.240784,1207,949,1};
-window[] = {2,-1,-1,-1,-1,927,277,1677,261,3,1225};
+globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,432.984192,1139.345825,1001.453613,575.172546,1207,949,1};
+window[] = {2,-1,-1,-1,-1,793,292,1692,127,3,1225};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -436,31 +436,29 @@ class FSM
                                          "}" \n
                                          "else" \n
                                          "{" \n
-                                         "	if ((diag_tickTime - _runLoopCheck) > 0.5) then" \n
+                                         "" \n
+                                         "	if ((diag_ticktime - _soundLast) >= 420) then" \n
                                          "	{" \n
-                                         "		if ((diag_ticktime - _soundLast) >= 420) then" \n
-                                         "		{" \n
-                                         "			_moan = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray"");" \n
-                                         "			[_zombieAgent, _moan] remoteExecCall [""Say3D"", -2];" \n
-                                         "			_soundLast = diag_ticktime;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_distance = 1000;" \n
-                                         "		if !(isNull _target) then" \n
-                                         "		{" \n
-                                         "			_distance = _zombieAgent distance _target;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call SM_fnc_getCfgValue;" \n
-                                         "		if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 3) then" \n
-                                         "		{" \n
-                                         "			[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
-                                         "			_lastSpeedCheck = diag_ticktime;" \n
-                                         "		};" \n
-                                         "" \n
-                                         "		_canFinish = ((movetoCompleted _zombieAgent) || (moveToFailed _zombieAgent) || ((diag_ticktime - _timeout) >= 7.5) || (_distance <= 10) || !(alive _zombieAgent));" \n
-                                         "		_runLoopCheck = diag_ticktime;" \n
+                                         "		_moan = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray"");" \n
+                                         "		[_zombieAgent, _moan] remoteExecCall [""Say3D"", -2];" \n
+                                         "		_soundLast = diag_ticktime;" \n
                                          "	};" \n
+                                         "" \n
+                                         "	_distance = 1000;" \n
+                                         "	if !(isNull _target) then" \n
+                                         "	{" \n
+                                         "		_distance = _zombieAgent distance _target;" \n
+                                         "	};" \n
+                                         "" \n
+                                         "	_increaseSpeed = [""increaseSpeedEnabled"", ""SM""] call SM_fnc_getCfgValue;" \n
+                                         "	if (_increaseSpeed && (diag_ticktime - _lastSpeedCheck) >= 1) then" \n
+                                         "	{" \n
+                                         "		[_zombieAgent, _zombieDefaultSpeed] call SM_fnc_zombieCalculateSpeed;" \n
+                                         "		_lastSpeedCheck = diag_ticktime;" \n
+                                         "	};" \n
+                                         "	" \n
+                                         "	_canFinish = ((movetoCompleted _zombieAgent) || (moveToFailed _zombieAgent) || ((diag_ticktime - _timeout) >= 7.5) || (_distance <= 10) || !(alive _zombieAgent));" \n
+                                         "	_runLoopCheck = diag_ticktime;" \n
                                          "};" \n
                                          "_canFinish"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -580,8 +578,6 @@ class FSM
                          """Zombie FSM ended, passing to another target"" call SM_fnc_log;" \n
                          "" \n
                          "[(netID vehicle _target), (netID _zombieAgent)] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
-                         "" \n
-                         "systemchat ""passing zombie to target 2"";" \n
                          "" \n
                          "true"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -987,7 +983,7 @@ class FSM
                                         priority = 0.000000;
                                         to="Alive_Player_Che";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"(_target isEqualTo player)"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle _target) isEqualTo (vehicle player))"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -998,7 +994,7 @@ class FSM
                                         priority = 0.000000;
                                         to="Update_Locality_1";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"!(_target isEqualTo player)"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!((vehicle _target) isEqualTo (vehicle player))"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/

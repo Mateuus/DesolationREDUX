@@ -56,6 +56,7 @@ class CfgFunctions
 			class zombieCleanup {};
 			class transferOwnership {};
 			class zombieExplodeHead {};
+			class FindSafePos {};
 		};
 
 		class Shared

@@ -39,25 +39,21 @@ try
 				_buildingToSpawnZombie = _nearbuildings select _i;
 
 				// this should almost never happen.... but if it does...
-				if (isNull _buildingToSpawnZombie) then
+				if !(isNull _buildingToSpawnZombie) then
 				{
-					if !((count _nearbuildings) > 1) throw "could not find any valid building to spawn zombie!";
+					// Get the loot postions for the building.
+					_positions = getArray (configFile >> "CfgItemSpawns" >> "Buildings" >> (typeOf _buildingToSpawnZombie) >> "positions");
 
-					// what are the chances of selecthing another null building?
-					_buildingToSpawnZombie = selectRandom _nearbuildings;
+					if !(_positions isEqualTo []) then 
+					{
+						_spawnPositions pushBack [_positions, _buildingToSpawnZombie];
+					};
 				};
-
-				// Get the loot postions for the building.
-				_positions = getArray (configFile >> "CfgItemSpawns" >> "Buildings" >> (typeOf _buildingToSpawnZombie) >> "positions");
-
-				if (_positions isEqualTo []) throw "Failed to spawn zombie, no valid building spawn positions";
-
-				_spawnPositions pushBack [_positions, _buildingToSpawnZombie];
 			};
 
 			// Why would this ever happen?!?!
 			// This is kinda a useless check, but you never know with arma...
-			if (_spawnPositions isEqualTo []) throw "No valid spawn positons found";
+			if (_spawnPositions isEqualTo []) throw "No valid building spawn positons found";
 
 			// Select a random building from the spawn buildings provided.
 			_data = selectRandom _spawnPositions;
@@ -68,8 +64,8 @@ try
 	if (_positionToSpawnZombie isEqualTo []) then
 	{
 		// calculate a random postion based on the center positon.
-		_radius = floor ((random (1 - 5)) + 5);
-		_angle = floor (random 360);
+		_radius = floor random 15;
+		_angle = floor random 360;
 		_roads = _center nearRoads 200;
 
 		// Error checking to make sure there are roads nearby.

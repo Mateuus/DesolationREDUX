@@ -69,8 +69,6 @@ if !((player distance _zombieAgent) > 1000) then
 					if (_distanceCheck >= 500) exitWith { 0.10 };
 				});
 
-				_detectionnumber = _detectionnumber + random 0.50;
-
 				_isInFront = [_zombieAgent,_unit] call SM_fnc_zombieCanSee;
 
 				if (_isInFront) then 
@@ -107,7 +105,7 @@ if !((player distance _zombieAgent) > 1000) then
 					if (_distanceCheck >= 500) exitWith { 0.10 };
 				});
 
-				_randomAddition = (random 0.50);
+				_randomAddition = (random 0.25);
 
 				_detectionnumber = _detectionnumber + _randomAddition;
 
@@ -115,7 +113,7 @@ if !((player distance _zombieAgent) > 1000) then
 
 				if (_isInFront) then 
 				{
-					_detectionnumber = _detectionnumber + 0.25
+					_detectionnumber = _detectionnumber + 0.25;
 				};
 
 				if (_detectionnumber > 1) then 
@@ -124,6 +122,10 @@ if !((player distance _zombieAgent) > 1000) then
 				};
 
 				_isvisible = _detected;
+			}
+			else
+			{
+
 			};
 		};
 		if (_isvisible) then

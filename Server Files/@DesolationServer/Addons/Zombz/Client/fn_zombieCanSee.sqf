@@ -13,4 +13,4 @@ License info here and copyright symbol above
 
 params ["_zombie", "_unit", ["_offset", 0]];
 
-((((_zombie worldToModel getPos _unit) select 1) - _offset > 0) && if !((_zombie distance _unit) >= (200 / 2)) then {[_unit, "VIEW", _zombie] checkVisibility [eyePos _unit, eyePos _zombie] > 0} else { true })
+((((_zombie worldToModel getPos _unit) select 1) - _offset > 0) && if !((_zombie distance _unit) >= 35) then {[vehicle _unit, "VIEW", _zombie] checkVisibility [eyePos vehicle _unit, eyePos _zombie] > 0} else { true })
