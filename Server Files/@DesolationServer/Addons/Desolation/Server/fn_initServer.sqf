@@ -27,7 +27,8 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 [] spawn DS_fnc_spawnVehicles;
 
 // start helicrash spawns
-// [] spawn DS_fnc_spawnCrashes;
+[] call DS_fnc_initHeliCrashes;
+[] spawn DS_fnc_spawnCrashes;
 
 // start item spawns
 [] spawn DS_fnc_lootManager;
