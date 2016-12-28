@@ -16,27 +16,27 @@ class CfgPluginActions {
 		class Actions {
 			class RepairEngine {
 				text = "Repair Engine";
-				action = "systemchat 'repairing engine';";
+				action = "systemchat 'repairing engine'; [] spawn DS_fnc_repairEngine;";
 				condition = "call DS_fnc_CheckEngine";
 			};
 			class RepairBody {
 				text = "Repair Body";
-				action = "systemchat 'repairing body';";
+				action = "systemchat 'repairing body'; [] spawn DS_fnc_repairBody;";
 				condition = "call DS_fnc_CheckBody";
 			};
 			class RepairFueltank {
 				text = "Repair Fuel Tank";
-				action = "systemchat 'repairing fuel tank';";
+				action = "systemchat 'repairing fuel tank'; [] spawn DS_fnc_repairFuelTank;";
 				condition = "call DS_fnc_CheckFueltank";
 			};
 			class RepairGlass {
 				text = "Repair Glass";
-				action = "systemchat 'repairing glass';";
+				action = "systemchat 'repairing glass'; [] spawn DS_fnc_repairGlass;";
 				condition = "call DS_fnc_CheckGlass";
 			};
 			class RepairWheels {
-				text = "Repair Wheels";
-				action = "systemchat 'repairing wheels';";
+				text = "Repair Wheel";
+				action = "systemchat 'repairing wheels'; [] spawn DS_fnc_repairWheels;";
 				condition = "call DS_fnc_CheckWheels";
 			};
 		};
@@ -102,6 +102,11 @@ class CfgFunctions
 			class CheckFueltank {};
 			class CheckGlass {};
 			class CheckWheels {};
+			class repairBody {};
+			class repairEngine {};
+			class repairFuelTank {};
+			class repairGlass {};
+			class repairWheels {};
 		};
 		class Client_Interface {
 			file = "Desolation\Client\Interface";
