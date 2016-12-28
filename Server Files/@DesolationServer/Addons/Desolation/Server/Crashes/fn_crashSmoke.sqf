@@ -24,3 +24,4 @@ _smoke setDropInterval 0.005;
 if (_isWreck) exitWith {};
 waitUntil {!alive _obj};
 deleteVehicle _smoke;
+true

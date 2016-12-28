@@ -10,7 +10,6 @@
  */
 
 _numberOfCrashes = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "NumberOfCrashesToSpawn");
-_maxSearchDistance = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxSearchDistance");
 _maxTime = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MaxTimeBetweenCrashes");
 _minTime = getnumber (configFile >> "CfgHeliCrashes" >> "Settings" >> "MinTimeBetweenCrashes");
 _mapsize = worldSize;
@@ -25,7 +24,7 @@ for "_i" from 1 to _numberOfCrashes do
 	_wreckSmoke = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckSmoke");
 	_spawnAlt = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
 
-	_crashPos = [_crashType, _maxSearchDistance] call DS_fnc_getCrashLocation;
+	_crashPos = = [true, false] call DS_fnc_GenRandMapPos;
 	
 	_spawnDirection = random 360;
 	_spawnPos = [(_crashPos select 0) + sin(_spawnDirection) * _mapsize, (_crashPos select 1) + cos(_spawnDirection) * _mapsize, _spawnAlt];
