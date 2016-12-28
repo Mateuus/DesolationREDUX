@@ -17,8 +17,7 @@ _wreckSmoke = _this select 4;
 
 
 _heli  setHit ["tail_rotor_hit", 1];
-sleep 3;
-systemchat "Play heli crash soundfile";
+uiSleep 3;
 _heli  setHit ["main_rotor_hit", 1];
 _heli  setHit ["engine_hit", 1];
 [_heli,_smokesize,_smokeModelPos,false] spawn DS_fnc_crashSmoke;
@@ -35,13 +34,13 @@ _wreckUp = VectorUp _heli;
 
 //TODO Spawn new helicrew with custom weapons. (use set velocity random to fling crew hidden members, unhide after impact!)
 
-sleep 0.5;
+uiSleep 0.5;
 deletevehicle _heli;
 _wreck = _heliWreckModel createvehicle _wreckPos;
 _wreck setDir _wreckDir;
 _wreck setVectorUp _wreckUp;
 
 if (_wreckSmoke > 0) then {
-[_wreck,7,[0,0,0],true] call DS_fnc_crashSmoke;
+	[_wreck,7,[0,0,0],true] call DS_fnc_crashSmoke;
 };
 _wreckPos
