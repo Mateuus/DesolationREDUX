@@ -31,9 +31,9 @@ _return = false;
 try
 {
 	_buildingSpawnChance = ["buildingSpawnChance","SM"] call SM_fnc_getCfgValue;
-	if ((random 100) < _buildingSpawnChance) then
+	_nearbuildings = _center nearObjects ["House",15];
+	if (((random 100) < _buildingSpawnChance) && !(_nearbuildings isEqualTo [])) then
 	{
-		_nearbuildings = _center nearObjects ["House",15];
 		if !(_nearbuildings isEqualTo []) then
 		{
 			_spawnPositions = [];
