@@ -63,8 +63,8 @@ class FSM
                                         condition=/*%FSM<CONDITION""">*/"!(SM_FailedPassedZombies isEqualTo [])"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/"_deleted = [];" \n
                                          "{" \n
-                                         "	_zombieAgent = objectfromNetID (_x select 0);" \n
-                                         "	_target = objectfromNetID (_x select 1);" \n
+                                         "	_zombieAgent = objectfromNetID (_x select 1);" \n
+                                         "	_target = objectfromNetID (_x select 0);" \n
                                          "	_passed = _zombieAgent setOwner (owner _target);" \n
                                          "	if (_passed) then" \n
                                          "	{" \n
