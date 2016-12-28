@@ -16,6 +16,7 @@ if (_Ground) then {_blackList pushBack "ground"};
 _randomLocation = [0,0];
 while {_randomLocation isEqualTo [0,0]} do 
 {
+	//TODO Rewrite RandomPos function to not be shit
 	_randomLocation = [[call BIS_fnc_worldArea],_blackList] call BIS_fnc_randomPos;
 };
 _randomLocation;
