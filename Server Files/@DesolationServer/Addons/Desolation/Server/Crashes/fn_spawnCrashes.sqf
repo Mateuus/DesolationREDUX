@@ -24,16 +24,26 @@ for "_i" from 1 to _numberOfCrashes do
 	_wreckSmoke = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "WreckSmoke");
 	_spawnAlt = getnumber (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashType >> "SpawnAltitude");
 
-	_crashPos = = [true, false] call DS_fnc_GenRandMapPos;
+	_crashPos = [true, false] call DS_fnc_GenRandMapPos;
 	
 	_spawnDirection = random 360;
 	_spawnPos = [(_crashPos select 0) + sin(_spawnDirection) * _mapsize, (_crashPos select 1) + cos(_spawnDirection) * _mapsize, _spawnAlt];
+	_timeout = diag_ticktime + 20;
+	
+	
+	
 
-	_heli = _heliType createVehicle _spawnPos;
+	_heli = _heliType createVehicle [0,0,0];
 	createVehicleCrew _heli;
 	_heli engineOn true;
 	(group _heli) move _crashPos;
+	_heli setPosATL _spawnPos;
 	(group _heli) setSpeedMode "full";
+	while { (_timeout - diag_tickTime) >= 0} do
+	{
+		_heli setVelocity [0,0,0];
+		uiSleep 0.5;
+	};
 	waituntil {(_heli distance2d _crashPos) < 500};
 	_wreckPos = [_heli, _wreckClass, _smokeSize, _smokepos, _wreckSmoke] call DS_fnc_heliCrashAnim;
 	[_wreckPos, _crashType] call DS_fnc_spawnCrashLoot;
