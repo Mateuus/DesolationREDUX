@@ -31,12 +31,8 @@ for "_i" from 1 to _numberOfCrashes do
 	_spawnPos = [(_crashPos select 0) + sin(_spawnDirection) * _mapsize, (_crashPos select 1) + cos(_spawnDirection) * _mapsize, _spawnAlt];
 
 	_heli = _heliType createVehicle _spawnPos;
-	
-	
-	
-	
-	
-
+	createVehicleCrew _heli;
+	_heli engineOn true;
 	(group _heli) move _crashPos;
 	(group _heli) setSpeedMode "full";
 	waituntil {(_heli distance2d _crashPos) < 500};

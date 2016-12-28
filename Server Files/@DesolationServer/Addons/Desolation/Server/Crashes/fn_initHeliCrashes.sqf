@@ -16,11 +16,14 @@ _crashTypesClasses = "true" configClasses (configFile >> "CfgHeliCrashes" >> "Cr
 DS_HeliCrash_CrashTypes = [];
 {
 	_crashName = configName _x;
-	//_crashTypes pushBack (_crashName);
+
+	/*
+	//Depreciated
 	_variableName = format ["DS_HeliCrash_%1_locations",_crashName];
 	_crashLocations = getarray (configFile >> "CfgHeliCrashes" >> "CrashTypes">> _crashName >> "Locations");
 	missionNamespace setVariable [_variableName, _crashLocations];
-	DS_HeliCrash_CrashTypes pushback _variableName;
+	*/
+	DS_HeliCrash_CrashTypes pushback _crashName;
 } foreach _crashTypesClasses;
 
 true

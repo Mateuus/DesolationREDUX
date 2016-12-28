@@ -14,7 +14,10 @@ _maxSearchDist = _this select 1;
 
 //_spawnLocations = [];
 
+/*
+//Depreciated
 _variableNameLocations = format ["DS_HeliCrash_%1_locations",_crashtype];
 _desiredLocations = missionNamespace getVariable _variableNameLocations;
+*/
 _mapPos = [true, false] call DS_fnc_GenRandMapPos;
 _mapPos
