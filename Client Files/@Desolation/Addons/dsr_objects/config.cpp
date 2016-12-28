@@ -36,12 +36,22 @@ class CfgVehicles
 		transportMaxMagazines = 64;
 		transportMaxBackpacks = 12;
 	};
-};
 
-class CfgMagazines
-{
-	class CA_Magazine;
-	class dsr_gun_cabinet_metal: CA_Magazine
+	class NonStrategic;
+	class DSR_objects_base: NonStrategic
+	{
+		scope = 1;
+		author = "Desolation Redux Dev Team";
+		mapSize = 1;
+		armor = 10000;
+		cost = 1000;
+		icon = "iconObject_1x1";
+		picture = "";
+		destrType = "DestructNo";
+		hiddenSelections[] = {};
+		hiddenSelectionsTextures[] = {};
+	};
+	class dsr_gun_cabinet_metal: DSR_objects_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -52,7 +62,7 @@ class CfgMagazines
 		editorSubcategory = "DSR_Objects";
 		mass = 150;
 	};
-	class dsr_water_catchment: CA_Magazine
+	class dsr_water_catchment: DSR_objects_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -62,60 +72,5 @@ class CfgMagazines
 		icon = "iconObject_4x1";
 		editorSubcategory = "DSR_Objects";
 		mass = 150;
-	};
-	class dsr_engine_block: CA_Magazine
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Engine Block";
-		model = "\dsr_objects\engine_repair\engine_repair.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "DSR_Objects";
-		mass = 150;
-	};
-	class dsr_vehicle_gas_tank: CA_Magazine
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Gas Tank";
-		model = "\dsr_objects\vehicle_gas_tank\vehicle_gas_tank.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "DSR_Objects";
-		mass = 100;
-	};
-	class dsr_vehicle_tire_repair: CA_Magazine
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Tire Repair";
-		model = "\dsr_objects\tire_part\tire_part.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "DSR_Objects";
-		mass = 100;
-	};
-	class dsr_tools_spanner: CA_Magazine
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Spanner Wrench";
-		model = "\dsr_objects\spanner\spanner.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "DSR_Objects";
-		mass = 25;
-	};
-	class dsr_tools_saw: CA_Magazine
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Saw";
-		model = "\dsr_objects\saw\saw.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "DSR_Objects";
-		mass = 25;
 	};
 };

@@ -25,7 +25,96 @@ class CfgMagazines
 		mass = 5;
 	};
 	
-	//--- items
+	//--- DSR Items
+	class dsr_engine_block: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Engine Block";
+		model = "\dsr_items\engine_repair\engine_repair.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 150;
+	};
+	class dsr_vehicle_gas_tank: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Gas Tank";
+		model = "\dsr_items\vehicle_gas_tank\vehicle_gas_tank.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 100;
+	};
+	class dsr_vehicle_tire_part: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Tire Repair";
+		model = "\dsr_items\tire_part\tire_part.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 100;
+	};
+	class dsr_tools_spanner: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Spanner Wrench";
+		model = "\dsr_items\spanner\spanner.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_tools_saw: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Saw";
+		model = "\dsr_items\saw\saw.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_food_tuna: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Tuna";
+		model = "\dsr_items\tuna\tuna.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_glass_part: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Vehicle Glass";
+		model = "\dsr_items\materials\dsr_part_glass.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_scrap_metal: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Scrap Metal";
+		model = "\dsr_items\materials\dsr_scrap_metal.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	//--- A3 items
 	class dsr_item_log : dsr_item_base {
 		displayName = "Wooden Log";
 		model = "\A3\Structures_F_EPA\Civ\Camping\WoodenLog_F.p3d";
@@ -624,5 +713,4 @@ class CfgMagazines
 		descriptionUse = "TODO";
 		mass = 5;
 	};
-	
 };
