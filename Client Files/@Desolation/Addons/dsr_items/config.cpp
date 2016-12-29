@@ -230,7 +230,7 @@ class CfgMagazines
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Broken Fishing Rod";
-		model = "\dsr_items\materials\dsr_fishingrod_broken.p3d";
+		model = "\dsr_items\tools\dsr_fishingrod_broken.p3d";
 		icon = "iconObject_4x1";
 		editorSubcategory = "dsr_items";
 		mass = 25;
@@ -241,7 +241,7 @@ class CfgMagazines
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Toolbox";
-		model = "\dsr_items\materials\dsr_toolbox.p3d";
+		model = "\dsr_items\tools\dsr_toolbox.p3d";
 		icon = "iconObject_4x1";
 		editorSubcategory = "dsr_items";
 		mass = 25;
@@ -252,7 +252,7 @@ class CfgMagazines
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Watering Can";
-		model = "\dsr_items\materials\dsr_wateringcan.p3d";
+		model = "\dsr_items\tools\dsr_wateringcan.p3d";
 		icon = "iconObject_4x1";
 		editorSubcategory = "dsr_items";
 		mass = 25;
