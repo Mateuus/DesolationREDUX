@@ -114,6 +114,150 @@ class CfgMagazines
 		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
+	class dsr_battery_car: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Car Battery";
+		model = "\dsr_items\materials\dsr_battery_car.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_bricks: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Bricks";
+		model = "\dsr_items\materials\dsr_bricks.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_drum_plastic: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Plastic Drum";
+		model = "\dsr_items\materials\dsr_drum_plastic.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_ducttape: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Duct Tape";
+		model = "\dsr_items\materials\dsr_ducttape.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_electricalcomp: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Electrical Components";
+		model = "\dsr_items\materials\dsr_electricalcomp.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_hardware: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Hardware Box";
+		model = "\dsr_items\materials\dsr_hardware.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_logs: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Wood Logs";
+		model = "\dsr_items\materials\dsr_logs.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_lumber: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Lumber";
+		model = "\dsr_items\materials\dsr_lumber.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_plywood: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Plywood";
+		model = "\dsr_items\materials\dsr_plywood.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_seedpack: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Pack of Seeds";
+		model = "\dsr_items\materials\dsr_seedpack.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_fishingrod_broken: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Broken Fishing Rod";
+		model = "\dsr_items\materials\dsr_fishingrod_broken.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_toolbox: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Toolbox";
+		model = "\dsr_items\materials\dsr_toolbox.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	class dsr_wateringcan: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Watering Can";
+		model = "\dsr_items\materials\dsr_wateringcan.p3d";
+		icon = "iconObject_4x1";
+		editorSubcategory = "dsr_items";
+		mass = 25;
+	};
+	
 	//--- A3 items
 	class dsr_item_log : dsr_item_base {
 		displayName = "Wooden Log";
