@@ -72,15 +72,13 @@ _deleted = [];
 		}
 		else
 		{
-			_playerIsNear = false;
-			_distance = 1000;
-			{
-				if ((_x distance _zombieAgent) <= _distance) exitWith { _playerIsNear = true; };
-			} count _allPlayers;
-
-			// No valid player found, so hide and disable the zombies behavior.
 			if !(isObjectHidden _zombieAgent) then
 			{
+				_playerIsNear = false;
+				_distance = 1000;
+				{
+					if ((_x distance _zombieAgent) <= _distance) exitWith { _playerIsNear = true; };
+				} count _allPlayers;
 				_zombieAgent setOwner -2;
 				_zombieAgent enableSimulationGlobal false;
 				_zombieAgent hideObjectGlobal true;

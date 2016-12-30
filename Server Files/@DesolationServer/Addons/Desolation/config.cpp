@@ -258,14 +258,15 @@ class CfgHeliCrashes {
 			class loot {
 				maxLootpiles = 10;//not implemented yet
 				weapons[] = {
+				// TODO: ADD MAX AMOUNT
 				//{"classname",max amount},
-				"srifle_EBR_F",
+					"srifle_EBR_F",
 				};
 				magazines[] = {
 				
 				};
 				items[] = {
-				{"FirstAidKit",
+					"FirstAidKit",
 				};
 				backpacks[] = {
 			
@@ -308,10 +309,8 @@ class CfgHeliCrashes {
 				};
 			};
 		};
-		
 	};
-	
-	};
+};
 class CfgAirdropSpawns {
 	class MedicDrop {
 		name = "Medical Drop";
