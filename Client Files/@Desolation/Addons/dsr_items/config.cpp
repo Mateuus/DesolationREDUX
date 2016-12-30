@@ -26,6 +26,7 @@ class CfgMagazines
 		editorSubcategory = "dsr_items";
 		icon = "iconObject_4x1";
 		mass = 5;
+		count = 1;
 	};
 	
 	//--- DSR Items

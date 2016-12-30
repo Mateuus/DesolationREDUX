@@ -50,3 +50,4 @@ _savedLoot = [];
 } forEach _bLootPiles;
 
 _building setVariable ["SavedLoot",_savedLoot];
+_building setVariable ["LOOT_PILES",[]];

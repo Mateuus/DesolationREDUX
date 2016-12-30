@@ -143,6 +143,7 @@ if(_savedLoot isEqualTo []) then {
 						if(toLower(_type) in ["handgun","weapon"]) then {
 							_chance = call compile (["ChanceToSpawnWithMag"] call DS_fnc_getCfgValue);
 							if(random(100) < _chance) then {
+								diag_log "LOOT MANAGER > SPAWNING MAG FOR GUN";
 								_mags = getArray(configFile >> "CfgWeapons" >> _item >> "Magazines");
 								_mag = _mags select floor(random(count(_mags)));
 								_maxAmmo = getNumber(configFile >> "CfgMagazines" >> _mag >> "count");

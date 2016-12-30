@@ -13,6 +13,8 @@
 player addEventHandler ["HandleDamage",{
 	params["_unit","_selectionName","_damage","_shooter","_projectile","_hitPartIndex"];
 	
+	if(!alive _unit) exitWith {false};
+	
 	if(!isNull _shooter) then {
 		if(toLower(_projectile) find "b_" == 0) then {
 			if !(_shooter in DS_var_damagedBy) then {

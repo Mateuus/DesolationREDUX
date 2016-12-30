@@ -118,6 +118,7 @@ while{true} do {
 		_isSpawned = _x getVariable ["IsSpawnedLoot",false];
 		_savedLoot = _x getVariable ["SavedLoot",[]];
 		_spawnTime = _x getVariable ["SpawnedTime",0];
+		_lootPiles = _x getVariable ["LOOT_PILES",[]];
 
 		_doFreshSpawn = false;
 
@@ -130,16 +131,18 @@ while{true} do {
 				};
 			};
 		};
-
-		if(_doFreshSpawn) then {
-			_x setVariable ["SpawnedLoot",true];
-			_x setVariable ["SpawnedTime",diag_tickTime];
-			_x setVariable ["SavedLoot",[]];
-			_x setVariable ["IsSpawnedLoot",true];
-			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
-		} else {
-			if(!_isSpawned) then {
-				[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+		
+		if(count(_lootPiles) == 0) then {
+			if(_doFreshSpawn) then {
+				_x setVariable ["SpawnedLoot",true];
+				_x setVariable ["SpawnedTime",diag_tickTime];
+				_x setVariable ["SavedLoot",[]];
+				_x setVariable ["IsSpawnedLoot",true];
+				[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
+			} else {
+				if(!_isSpawned) then {
+					[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+				};
 			};
 		};
 	} forEach _buildingsToSpawn;
