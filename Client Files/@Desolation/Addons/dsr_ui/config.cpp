@@ -405,7 +405,7 @@ class RscTitles {
 class DsrInvisibleButton: RscButton {
 	text = "";
 	colorBackground[] = {0,0,0,0};
-	colorBackgroundActive = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
 	colorBackgroundDisabled[] = {0,0,0,0};
 	colorBorder[] = {0,0,0,0};
 	colorDisabled = {0,0,0,0};
