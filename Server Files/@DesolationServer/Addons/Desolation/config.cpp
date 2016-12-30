@@ -258,8 +258,6 @@ class CfgHeliCrashes {
 			class loot {
 				maxLootpiles = 10;//not implemented yet
 				weapons[] = {
-				// TODO: ADD MAX AMOUNT
-				//{"classname",max amount},
 					"srifle_EBR_F"
 				};
 				magazines[] = {
@@ -389,7 +387,7 @@ class CfgAirdropSpawns {
 class CfgItemSpawns {
 	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
 	lootRarity[] = {"rare","semirare","average","semicommon","common"};
-	lootTypes[] = {	"Weapon","Handgun","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart", "Attachment"};
+	lootTypes[] = {	"Weapon","Handgun","Magazine","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart", "Attachment"};
 
 	class Loot {
         class Military {
@@ -472,6 +470,23 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
+			class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
             class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
@@ -1214,7 +1229,24 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
-            class Food {
+            class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -1962,7 +1994,24 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
-            class Food {
+            class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -2710,7 +2759,24 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
-            class Food {
+            class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -3458,7 +3524,24 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
-            class Food {
+            class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -4206,7 +4289,24 @@ class CfgItemSpawns {
                     {"hgun_ACPC2_F",1}
                 };
             };
-            class Food {
+            class Magazine {
+				rare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                average[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                semicommon[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+                common[] = {
+                    {"30Rnd_556x45_Stanag",1}
+                };
+			};
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
