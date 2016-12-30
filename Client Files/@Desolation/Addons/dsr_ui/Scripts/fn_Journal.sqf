@@ -3,13 +3,7 @@ _data = _this select 0;
 _mode = _this select 1;
 
 _display = _data select 0;
-_TITLE_CTRL = _display displayCtrl 3;
-_DESCRIPTION_CTRL = _display displayCtrl 4;
-_PREVIEW_CTRL = _display displayCtrl 5;
-_ITEM_LIST_CTRL = _display displayCtrl 6;
-_BUILD_BTN = _display displayCtrl 7;
-_PREVIOUS_BTN = _display displayCtrl 9;
-_NEXT_BTN = _display displayCtrl 10;
+
 
 _groupIndex = uiNamespace getVariable["CURRENT_GROUP_INDEX",0];
 
@@ -22,9 +16,14 @@ _buildings = _buildableData select _groupIndex;
 
 //--- index controls
 if(_mode == "LOADINDEX") exitWith {
-	_display = findDisplay 4002;
+	_ctrl = _display displayCtrl 5;
+	_ctrl ctrlSetStructuredText parseText "<t font='LauHoWi_a' size='0.8'>
+	
+		woo fucking lad, this is the description<br/><br/>
+		ben can customize this because i dont want 2
+	</t>";
+
 	_list = _display displayCtrl 6;
-	lbClear _list;
 	{
 		_class = _x select 0;
 		_name = _x select 1;
@@ -38,15 +37,10 @@ if(_mode == "LOADINDEX") exitWith {
 			_list lbSetColor[_index,[1,0.3,0.3,1]];
 		};
 		_list lbSetPicture [_index,_preview];
-	} forEach _buildableData;
+	} forEach _buildableGroups;
 	
 	
-	_ctrl = _display displayCtrl 5;
-	_ctrl ctrlSetStructuredText parseText "<t font='LauHoWi_a' size='0.8'>
 	
-		woo fucking lad, this is the description<br/><br/>
-		ben can customize this because i dont want 2
-	</t>";
 };
 if(_mode == "GOTO") exitWith {
 	_display = findDisplay 4002;
@@ -63,8 +57,16 @@ if(_mode == "GOTO") exitWith {
 	};
 };
 
-
 //--- journal controls
+_TITLE_CTRL = _display displayCtrl 3;
+_DESCRIPTION_CTRL = _display displayCtrl 4;
+_PREVIEW_CTRL = _display displayCtrl 5;
+_ITEM_LIST_CTRL = _display displayCtrl 6;
+_BUILD_BTN = _display displayCtrl 7;
+_PREVIOUS_BTN = _display displayCtrl 9;
+_NEXT_BTN = _display displayCtrl 10;
+
+
 if(_mode == "BUILD") exitWith {
 
 };

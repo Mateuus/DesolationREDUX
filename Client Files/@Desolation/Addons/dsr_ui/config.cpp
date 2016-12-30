@@ -563,7 +563,7 @@ class DS_Journal_Index {
 		};
 		class ExitBtn: DsrInvisibleButton 
 		{
-			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*45)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
@@ -576,7 +576,7 @@ class DS_Journal_Index {
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
-			onButtonClick = "[[displayNull],'GOTO'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
+			onButtonClick = "[[(findDisplay 4002)],'GOTO'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
 		class ExitTxt: DsrTextBold
 		{
@@ -593,7 +593,7 @@ class DS_Journal_Index {
 			idc = 9;
 			text = "Go To";
 			colorText[] = {0,0,0,1};
-			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35) - ";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35) - (100*pixelW)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
