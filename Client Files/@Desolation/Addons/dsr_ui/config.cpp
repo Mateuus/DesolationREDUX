@@ -408,7 +408,7 @@ class DsrInvisibleButton: RscButton {
 	colorBackgroundActive[] = {0,0,0,0};
 	colorBackgroundDisabled[] = {0,0,0,0};
 	colorBorder[] = {0,0,0,0};
-	colorDisabled = {0,0,0,0};
+	colorDisabled[] = {0,0,0,0};
 	colorFocused[] = {0,0,0,0};
 	colorShadow[] = {0,0,0,0};
 	colorText[] = {0,0,0,0};
