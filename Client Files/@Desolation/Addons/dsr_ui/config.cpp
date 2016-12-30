@@ -703,6 +703,26 @@ class DS_Journal {
 			text = "Index";
 			onButtonClick = "[[(findDisplay 4001)],'INDEX'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
+		class PrevTxt: DsrTextBold
+		{
+			idc = 101;
+			text = "Previous";
+			colorText[] = {0,0,0,1};
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40) + (100*pixelW)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+		};
+		class NextTxt: DsrTextBold
+		{
+			idc = 100;
+			text = "Next";
+			colorText[] = {0,0,0,1};
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35) - (100*pixelW)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+		};
 	};
 };
 
