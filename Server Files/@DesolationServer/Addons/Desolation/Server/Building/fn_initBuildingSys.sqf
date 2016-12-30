@@ -14,12 +14,12 @@ for "_i" from 0 to count(_config)-1 do {
 	_entry = _config select _i;
 	if(isClass _entry) then {
 		_data = [
-			["parts",getArray(_entry >> "parts")],
-			["name",getText(_entry >> "name")],
-			["condition",getText(_entry >> "condition")],
-			["description",getText(_entry >> "description")],
-			["model",getText(_entry >> "model")],
-			["preview",getText(_entry >> "preview")]
+			getArray(_entry >> "parts"),
+			getText(_entry >> "name"),
+			getText(_entry >> "condition"),
+			getText(_entry >> "description"),
+			getText(_entry >> "model"),
+			getText(_entry >> "preview")
 		];
 		CFG_BUILDABLES pushBack _data;
 	};

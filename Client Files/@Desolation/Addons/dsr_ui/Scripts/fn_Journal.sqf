@@ -43,15 +43,15 @@ _preview = _entry select 5;
 _TITLE_CTRL ctrlSetText _name;
 _DESCRIPTION_CTRL ctrlSetStructuredText parseText ("<t font='LauHoWi_a' size='0.8'>" + _description + "</t>");
 _PREVIEW_CTRL ctrlSetText _preview;
+lbClear _ITEM_LIST_CTRL;
 {
 	_item_name = _x select 0;
 	_count = _x select 1;
 	
-	_displayName = getText(configFile >> "cfgMagazines" >> _item_name >> "displayName");
+	_displayName = getText(configFile >> "CfgMagazines" >> _item_name >> "displayName");
 	_ITEM_LIST_CTRL lbAdd (_displayName + " | x" + str(_count));
 } forEach _parts;
 if !(call compile _condition) then {
-	_BUILD_BTN ctrlEnable false;
 	_BUILD_BTN ctrlSetTextColor [1,0.3,0.3,1];
 } else {
 	_BUILD_BTN ctrlSetTextColor [0.3,1,0.3,1];

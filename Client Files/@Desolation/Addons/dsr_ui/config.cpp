@@ -539,7 +539,7 @@ class DS_Journal {
 		class NextBtn: DsrInvisibleButton
 		{
 			idc = 10;
-			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*200) - (pixelW*30)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*30)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
