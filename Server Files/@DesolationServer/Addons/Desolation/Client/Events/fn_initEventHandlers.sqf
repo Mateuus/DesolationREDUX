@@ -23,7 +23,17 @@ player addEventHandler ["HandleDamage",{
 			};
 		};
 	};
-	nil;
+	
+	if(_selectionName == "head") then {
+		[floor(5 + random(5))] spawn ds_fnc_knockOut;	
+	};
+	
+	_return = if(_damage < 1) then {
+		false;
+	} else {
+		true;
+	};
+	_return;
 }];
 player addEventHandler ["Killed",{
 	call DS_fnc_stopBleeding;
