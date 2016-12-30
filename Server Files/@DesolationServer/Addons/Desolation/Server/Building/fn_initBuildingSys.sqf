@@ -21,7 +21,7 @@ for "_i" from 0 to count(_config)-1 do {
 			["model",getText(_entry >> "model")],
 			["preview",getText(_entry >> "preview")]
 		];
-		CFG_BUILDABLES pushBack _config;
+		CFG_BUILDABLES pushBack _data;
 	};
 };
 publicVariable "CFG_BUILDABLES";

@@ -5982,14 +5982,27 @@ class CfgVehicleSpawns {
 class CfgBuildables {
     class HouseLvl1 {
         parts[] = {
-            {"Item",2},
-            {"Different Item",5}
+            {"dsr_lumber",30},
+            {"dsr_plywood",7},
+            {"dsr_logs",15}
         };
-        name = "House";
-        model = "DSR_Object_House_1";
-        description = "Level 1 house";
-        preview = "PreviewImageHouse1.paa";
+        name = "Small Shack";
+        model = "DSR_House_lv1";
+        description = "The small shack is small... and a shack... a good starting house for losers.";
+        preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
         condition = "true";
+    };
+	class HouseLvl1 {
+        parts[] = {
+            {"dsr_lumber",300},
+            {"dsr_plywood",700},
+            {"dsr_logs",150}
+        };
+        name = "Large Shack";
+        model = "DSR_House_lv1";
+        description = "This is for testing, it should not be buildable.";
+        preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+        condition = "false";
     };
 };
 class CfgCraftables {

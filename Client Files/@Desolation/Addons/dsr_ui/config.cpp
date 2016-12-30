@@ -423,6 +423,33 @@ class DsrButtonItalic: RscButton {
 class DsrButtonBold: RscButton {
 	font = "LauHoWi_a_bold";
 };
+class DsrTextOnlyButton: DsrButton {
+	colorBackground[] = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
+	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,0};
+	colorDisabled[] = {0,0,0,0};
+	colorFocused[] = {0,0,0,0};
+	colorShadow[] = {0,0,0,0};	
+};
+class DsrTextOnlyButtonItalic: DsrButtonItalic {
+	colorBackground[] = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
+	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,0};
+	colorDisabled[] = {0,0,0,0};
+	colorFocused[] = {0,0,0,0};
+	colorShadow[] = {0,0,0,0};	
+};
+class DsrTextOnlyButtonBold: DsrButtonBold {
+	colorBackground[] = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
+	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,0};
+	colorDisabled[] = {0,0,0,0};
+	colorFocused[] = {0,0,0,0};
+	colorShadow[] = {0,0,0,0};	
+};
 class DsrText: RscText {
 	font = "LauHoWi_a";
 };
@@ -431,6 +458,24 @@ class DsrTextItalic: RscText {
 };
 class DsrTextBold: RscText {
 	font = "LauHoWi_a_bold";
+};
+class DsrTitleText: DsrTextBold {
+	style = 0x02;
+};
+class DsrListbox: RscListBox {
+	font = "LauHoWi_a";
+	
+	canDrag = 0;
+	
+	colorSelect2[] = {1,1,1,1};
+	colorSelect2Right[] = {1,1,1,1};
+	colorSelectRight[] = {1,1,1,1};
+	colorSelect[] = {1,1,1,1};
+	itemBackground[] = {1,1,1,0.1};
+	colorSelectBackground2[] = {0,0,0,0};
+	colorSelectBackground[] = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
+	colorBackground[] = {0,0,0,0};
 };
 class DsrObject {
 	shadow = 0;
@@ -456,7 +501,7 @@ class DS_Journal {
 	movingEnable = 1;
 	enableSimulation = 1;
 	
-	onLoad = "";
+	onLoad = "[_this,'LOAD'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 	onUnload = "";
 	class controlsBackground 
 	{
@@ -470,6 +515,7 @@ class DS_Journal {
 			h = "800 * pixelH";
 		};
 	};
+	/*
 	class Objects 
 	{
 		class PreviewModel: DsrObject
@@ -478,66 +524,69 @@ class DS_Journal {
 			model = "\core\watch\watch.p3d";
 		};
 	};
+	*/
 	class Controls 
 	{
 		class PreviousBtn: DsrInvisibleButton 
 		{
-			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*20)";
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*10)";
-			w = "200*pixelW";
-			h = "100*pixelH";
-			idc = 1;
-			//--- add single click EH
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*30)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+			idc = 9;
+			onButtonClick = "[[(findDisplay 4001)],'PREV'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
 		class NextBtn: DsrInvisibleButton
 		{
-			idc = 2;
-			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*200) - (pixelW*20)";
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*10)";
-			w = "200*pixelW";
-			h = "100*pixelH";
-			//--- add single click EH
+			idc = 10;
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*200) - (pixelW*30)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+			onButtonClick = "[[(findDisplay 4001)],'NEXT'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
-		class Title: DsrTextBold
+		class Title: DsrTitleText
 		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*50)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
 			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
 			w = "300*pixelW";
 			h = "50*pixelH";
 			idc = 3;
 		};
-		class Description: RscStructuredText
-		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*500)";
-			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
-			h = "200*pixelH";
-			w = "300*pixelW";
-			idc = 4;
-		};
 		class Preview: RscPicture
 		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*150)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*120)";
 			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
 			w = "300*pixelW";
 			h = "300*pixelH";
 			idc = 5;
 		};
-		class ItemList: RscListBox
+		class Description: RscStructuredText
 		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*50)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*430)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			h = "200*pixelH";
+			w = "300*pixelW";
+			idc = 4;
+		};
+		class ItemList: DsrListbox
+		{
+			
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
 			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
 			h = "600*pixelH";
 			w = "300*pixelW";
 			idc = 6;
 		};
-		class BuildBtn: DsrButtonBold
+		class BuildBtn: DsrTextOnlyButtonBold
 		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*700)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*660)";
 			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
 			h = "50*pixelH";
 			w = "300*pixelW";
 			idc = 7;
 			text = "Build";
+			onButtonClick = "[[(findDisplay 4001)],'BUILD'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
 	};
 };
