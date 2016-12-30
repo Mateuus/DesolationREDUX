@@ -582,7 +582,7 @@ class DS_Journal_Index {
 		{
 			idc = 8;
 			text = "Exit";
-			colorText = {0,0,0,1};
+			colorText[] = {0,0,0,1};
 			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40) + (100*pixelW)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
@@ -592,7 +592,7 @@ class DS_Journal_Index {
 		{
 			idc = 9;
 			text = "Go To";
-			colorText = {0,0,0,1};
+			colorText[] = {0,0,0,1};
 			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35) - ";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
