@@ -5973,3 +5973,17 @@ class CfgVehicleSpawns {
 
 	};
 };
+
+class CfgBuildables {
+    class HouseLvl1 {
+        parts[] = {
+            {"Item",2},
+            {"Different Item",5}
+        };
+        name = "House";
+        model = "DSR_Object_House_1";
+        description = "Level 1 house";
+        preview = "PreviewImageHouse1.paa";
+        condition = "true";
+    };
+};

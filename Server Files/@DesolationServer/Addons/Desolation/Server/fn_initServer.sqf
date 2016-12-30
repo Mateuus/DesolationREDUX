@@ -39,8 +39,6 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 //--- start subsystems
 [] spawn DS_fnc_simManager;
 
-
-
 //--- DEBUG (monitor thread counts)
 [] spawn {
 	while{true} do {

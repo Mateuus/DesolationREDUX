@@ -14,14 +14,17 @@ class CfgPatches
 class CfgMagazines
 {
 	class CA_Magazine;
-	class dsr_item_base : CA_Magazine {
+	class dsr_item_base : CA_Magazine 
+	{
 		author = "Desolation Redux Dev Team";
-		scope = 2;
+		scope = 1;
 		displayName = "Desolation Item";
 		picture = "\dsr_ui\Assets\logo.paa";
 		model = "\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionShort = "Desolation Item - UNDEFINED DESCRIPTION";
 		descriptionUse = "Desolation Item - UNDEFINED USE";
+		editorSubcategory = "dsr_items";
+		icon = "iconObject_4x1";
 		mass = 5;
 	};
 	
@@ -33,8 +36,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Engine Block";
 		model = "\dsr_items\engine_repair\engine_repair.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 150;
 	};
 	class dsr_vehicle_gas_tank: dsr_item_base
@@ -44,8 +45,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Gas Tank";
 		model = "\dsr_items\vehicle_gas_tank\vehicle_gas_tank.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 100;
 	};
 	class dsr_vehicle_tire_part: dsr_item_base
@@ -55,8 +54,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Tire Repair";
 		model = "\dsr_items\tire_part\tire_part.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 100;
 	};
 	class dsr_tools_spanner: dsr_item_base
@@ -66,8 +63,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Spanner Wrench";
 		model = "\dsr_items\spanner\spanner.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_tools_saw: dsr_item_base
@@ -77,8 +72,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Saw";
 		model = "\dsr_items\saw\saw.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_food_tuna: dsr_item_base
@@ -88,8 +81,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Tuna";
 		model = "\dsr_items\tuna\tuna.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_glass_part: dsr_item_base
@@ -99,8 +90,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Vehicle Glass";
 		model = "\dsr_items\materials\dsr_part_glass.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_scrap_metal: dsr_item_base
@@ -110,8 +99,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Scrap Metal";
 		model = "\dsr_items\materials\dsr_scrap_metal.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_battery_car: dsr_item_base
@@ -121,8 +108,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Car Battery";
 		model = "\dsr_items\materials\dsr_battery_car.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_bricks: dsr_item_base
@@ -132,8 +117,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Bricks";
 		model = "\dsr_items\materials\dsr_bricks.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_drum_plastic: dsr_item_base
@@ -143,8 +126,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Plastic Drum";
 		model = "\dsr_items\materials\dsr_drum_plastic.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_ducttape: dsr_item_base
@@ -154,8 +135,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Duct Tape";
 		model = "\dsr_items\materials\dsr_ducttape.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_electricalcomp: dsr_item_base
@@ -165,8 +144,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Electrical Components";
 		model = "\dsr_items\materials\dsr_electricalcomp.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_hardware: dsr_item_base
@@ -176,8 +153,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Hardware Box";
 		model = "\dsr_items\materials\dsr_hardware.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_logs: dsr_item_base
@@ -187,8 +162,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Wood Logs";
 		model = "\dsr_items\materials\dsr_logs.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_lumber: dsr_item_base
@@ -198,8 +171,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Lumber";
 		model = "\dsr_items\materials\dsr_lumber.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_plywood: dsr_item_base
@@ -209,8 +180,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Plywood";
 		model = "\dsr_items\materials\dsr_plywood.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_seedpack: dsr_item_base
@@ -220,8 +189,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Pack of Seeds";
 		model = "\dsr_items\materials\dsr_seedpack.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_fishingrod_broken: dsr_item_base
@@ -231,8 +198,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Broken Fishing Rod";
 		model = "\dsr_items\tools\dsr_fishingrod_broken.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_toolbox: dsr_item_base
@@ -242,8 +207,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Toolbox";
 		model = "\dsr_items\tools\dsr_toolbox.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	class dsr_wateringcan: dsr_item_base
@@ -253,8 +216,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Watering Can";
 		model = "\dsr_items\tools\dsr_wateringcan.p3d";
-		icon = "iconObject_4x1";
-		editorSubcategory = "dsr_items";
 		mass = 25;
 	};
 	
@@ -856,5 +817,13 @@ class CfgMagazines
 		descriptionShort = "Quickly kills harmful bacteria in water.";
 		descriptionUse = "TODO";
 		mass = 5;
+	};
+};
+
+class CfgEditorSubcategories
+{
+	class dsr_items
+	{
+		displayName = "DSR Items";
 	};
 };

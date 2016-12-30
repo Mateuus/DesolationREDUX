@@ -85,6 +85,7 @@ class CfgDifficultyPresets {
 	class DesoHardcore {
 		displayName = "Desolation Redux: Hardcore Mode";
 		levelAI = "AILevelHigh";
+		description = "Desolation `haaaard` coore!";
 		optionDescription = "The hardest difficulty there is.";
 		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
 		class Options {
@@ -96,7 +97,7 @@ class CfgDifficultyPresets {
 			commands = 0;
 			waypoints = 0;
 			weaponInfo = 0;
-			stanceIndicator = 0
+			stanceIndicator = 0;
 			staminaBar = 0;
 			weaponCrosshair = 0;
 			visionAid = 0;
@@ -129,17 +130,17 @@ class CfgMusic {
 	class track1
 	{
 		name = "";
-		sound[] = {"\dsr_ui\Sounds\track1.ogg", db+0, 1.0};
+		sound[] = {"\dsr_ui\Sounds\track1.ogg", 1, 1.0};
 	};
 	class track2
 	{
 		name = "";
-		sound[] = {"\dsr_ui\Sounds\track2.ogg", db+0, 1.0};
+		sound[] = {"\dsr_ui\Sounds\track2.ogg", 1, 1.0};
 	};
 	class track2_redefined
 	{
 		name = "";
-		sound[] = {"\dsr_ui\Sounds\track2_redefined.ogg", db+0, 1.0};
+		sound[] = {"\dsr_ui\Sounds\track2_redefined.ogg", 1, 1.0};
 	};
 };
 
@@ -3027,11 +3028,6 @@ class RscDisplayMain_OLD: RscStandardDisplay
 			w = 1;
 			h = 0.5;
 		};
-		
-			text = "\dsr_ui\Assets\logo.paa";
-		};
-		//--- END CHANGE SIZING
-		
 	};
 };
 
