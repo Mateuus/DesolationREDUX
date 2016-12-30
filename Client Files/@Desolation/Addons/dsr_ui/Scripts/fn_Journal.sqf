@@ -5,7 +5,7 @@ _mode = _this select 1;
 _display = _data select 0;
 
 
-_groupIndex = uiNamespace getVariable["CURRENT_GROUP_INDEX",0];
+_groupIndex = missionNamespace getVariable["CURRENT_GROUP_INDEX",0];
 
 
 _buildableData = missionNamespace getVariable ["CFG_BUILDABLE_DATA",[]];
@@ -91,10 +91,10 @@ if(_mode == "PREV") then {
 _entry = _buildings select CURRENT_INDEX;
 _parts = _entry select 0;
 _name = _entry select 1;
-_condition = _entry select 2;
+_model = _entry select 2;
 _description = _entry select 3;
-_model = _entry select 4;
-_preview = _entry select 5;
+_preview = _entry select 4;
+_condition = _entry select 5;
 
 
 _TITLE_CTRL ctrlSetText _name;
