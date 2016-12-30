@@ -260,7 +260,7 @@ class CfgHeliCrashes {
 				weapons[] = {
 				// TODO: ADD MAX AMOUNT
 				//{"classname",max amount},
-					"srifle_EBR_F",
+					"srifle_EBR_F"
 				};
 				magazines[] = {
 				
