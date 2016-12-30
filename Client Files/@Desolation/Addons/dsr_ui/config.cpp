@@ -553,6 +553,15 @@ class DS_Journal {
 			h = "50*pixelH";
 			idc = 3;
 		};
+		class MaterialsTitle: DsrTitleText
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
+			w = "300*pixelW";
+			h = "50*pixelH";
+			text = "Materials";
+			idc = 11;
+		};
 		class Preview: RscPicture
 		{
 			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*120)";
@@ -572,15 +581,15 @@ class DS_Journal {
 		class ItemList: DsrListbox
 		{
 			
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*120)";
 			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
-			h = "600*pixelH";
+			h = "500*pixelH";
 			w = "300*pixelW";
 			idc = 6;
 		};
 		class BuildBtn: DsrTextOnlyButtonBold
 		{
-			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*660)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*630)";
 			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
 			h = "50*pixelH";
 			w = "300*pixelW";
