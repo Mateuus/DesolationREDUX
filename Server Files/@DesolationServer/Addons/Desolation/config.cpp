@@ -5992,7 +5992,7 @@ class CfgBuildables {
         preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
         condition = "true";
     };
-	class HouseLvl1 {
+	class HouseLvl2 {
         parts[] = {
             {"dsr_lumber",300},
             {"dsr_plywood",700},
