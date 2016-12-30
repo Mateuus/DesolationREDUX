@@ -17,9 +17,9 @@
 
 params [["_victim", objNull],["_selection", ""],["_damage", 0],["_damager", objNull],"_hmd","_headExplode"];
 
-if((_selection isEqualTo "head") && _damage >= 1) then
+if((_selection == "head") && _damage >= 1) then
 {
-	if !((face _victim) isEqualTo "SM_ZombzNoFace") then 
+	if !((face _victim) == "SM_ZombzNoFace") then 
 	{
 		_victim setFace "SM_ZombzNoFace";
 		[netId _victim] remoteExecCall ["SM_fnc_zombieExplodeHead", 2];
