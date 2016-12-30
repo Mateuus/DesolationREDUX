@@ -24,7 +24,6 @@ _tickLoss = (_numLevels^2) * 5;
 DS_var_Blood = DS_var_Blood - _tickLoss;
 
 
-
 // 5.5L of blood in the body
 // 20% = feels weak (can't run, may stumble)
 // 35% = falling unconscious

@@ -402,6 +402,30 @@ class RscTitles {
 };
 
 
+class DS_Journal {
+	idd = 4001;
+	name = "DS_Journal";
+	movingEnable = 1;
+	enableSimulation = 1;
+	
+	onLoad = "";
+	onUnload = "";
+	class controlsBackground {
+		class BackgroundPic: RscPicture
+		{
+			idc = -1;
+			text = "\dsr_ui\Assets\journal.paa";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400)";
+			w = "800 * pixelW";
+			h = "800 * pixelH";
+		};
+	};
+	class Controls {
+		
+	};
+};
+
 class DS_spawnSelection {
 	idd = 4000;
 	name = "DS_spawnSelection";
