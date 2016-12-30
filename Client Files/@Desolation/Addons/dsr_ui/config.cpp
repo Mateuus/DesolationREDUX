@@ -401,6 +401,54 @@ class RscTitles {
 	};
 };
 
+//--- custom controls
+class DsrInvisibleButton: RscButton {
+	text = "";
+	colorBackground[] = {0,0,0,0};
+	colorBackgroundActive = {0,0,0,0};
+	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,0};
+	colorDisabled = {0,0,0,0};
+	colorFocused[] = {0,0,0,0};
+	colorShadow[] = {0,0,0,0};
+	colorText[] = {0,0,0,0};
+	tooltip = "";
+};
+class DsrButton: RscButton {
+	font = "LauHoWi_a";
+};
+class DsrButtonItalic: RscButton {
+	font = "LauHoWi_a_italic";
+};
+class DsrButtonBold: RscButton {
+	font = "LauHoWi_a_bold";
+};
+class DsrText: RscText {
+	font = "LauHoWi_a";
+};
+class DsrTextItalic: RscText {
+	font = "LauHoWi_a_italic";
+};
+class DsrTextBold: RscText {
+	font = "LauHoWi_a_bold";
+};
+class DsrObject {
+	shadow = 0;
+	type = 80;
+	x = 0.7;
+	xBack = 0.7;
+	y = 0.12;
+	yBack = 0.12;
+	z = 0.22;
+	zBack = 0.22;
+	inBack = 0;
+	enableZoom = 0;
+	direction[] = {0,0,1};
+	up[] = {0,1,0};
+	zoomDuration = 1;
+	scale = 0.7;
+	
+};
 
 class DS_Journal {
 	idd = 4001;
@@ -410,7 +458,8 @@ class DS_Journal {
 	
 	onLoad = "";
 	onUnload = "";
-	class controlsBackground {
+	class controlsBackground 
+	{
 		class BackgroundPic: RscPicture
 		{
 			idc = -1;
@@ -421,8 +470,75 @@ class DS_Journal {
 			h = "800 * pixelH";
 		};
 	};
-	class Controls {
-		
+	class Objects 
+	{
+		class PreviewModel: DsrObject
+		{
+			idc = 8;
+			model = "\core\watch\watch.p3d";
+		};
+	};
+	class Controls 
+	{
+		class PreviousBtn: DsrInvisibleButton 
+		{
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*20)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*10)";
+			w = "200*pixelW";
+			h = "100*pixelH";
+			idc = 1;
+			//--- add single click EH
+		};
+		class NextBtn: DsrInvisibleButton
+		{
+			idc = 2;
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*200) - (pixelW*20)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*10)";
+			w = "200*pixelW";
+			h = "100*pixelH";
+			//--- add single click EH
+		};
+		class Title: DsrTextBold
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*50)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			w = "300*pixelW";
+			h = "50*pixelH";
+			idc = 3;
+		};
+		class Description: RscStructuredText
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*500)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			h = "200*pixelH";
+			w = "300*pixelW";
+			idc = 4;
+		};
+		class Preview: RscPicture
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*150)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			w = "300*pixelW";
+			h = "300*pixelH";
+			idc = 5;
+		};
+		class ItemList: RscListBox
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*50)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
+			h = "600*pixelH";
+			w = "300*pixelW";
+			idc = 6;
+		};
+		class BuildBtn: DsrButtonBold
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*700)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
+			h = "50*pixelH";
+			w = "300*pixelW";
+			idc = 7;
+			text = "Build";
+		};
 	};
 };
 

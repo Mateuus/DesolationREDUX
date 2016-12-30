@@ -84,7 +84,7 @@ if(_savedLoot isEqualTo []) then {
 						_exit = true;
 					} else {
 						_count = _spawnedCount select _index;
-						_limit = ["Max" + _type + "s"] call _getCFGValue;
+						_limit = ["Max" + _type + "s"] call DS_fnc_getCfgValue;
 						if(!isNil {_limit}) then {
 							if(_count < _limit) then {
 								_spawnedCount set[_index,_count+1];
@@ -135,31 +135,30 @@ if(_savedLoot isEqualTo []) then {
 						_item = _x select 0;
 					};
 				} forEach _itemArray;
-
-				//--- TODO: rewrite this LOL
-
-				_class = _item;
+				// TODO: fix this shit code
 				if(isClass (configFile >> "CfgWeapons" >> _item)) then {
-					if((toLower(_class) find "item" == 0) || (toLower(_class) find "h_" == 0) || (toLower(_class) find "u_" == 0) || (toLower(_class) find "v_" == 0) || (toLower(_class) find "minedetector" == 0) || (toLower(_class) find "binocular" == 0) || (toLower(_class) find "rangefinder" == 0) || (toLower(_class) find "NVGoggles" == 0) || (toLower(_class) find "laserdesignator" == 0) || (toLower(_class) find "firstaidkit" == 0) || (toLower(_class) find "medkit" == 0) || (toLower(_class) find "toolkit" == 0) || (toLower(_class) find "muzzle_" == 0) || (toLower(_class) find "optic_" == 0) || (toLower(_class) find "acc_" == 0) || (toLower(_class) find "bipod_" == 0)) then {
-						_object addItemCargoGlobal [_class,1];
+					if((toLower(_item) find "item" == 0) || (toLower(_item) find "h_" == 0) || (toLower(_item) find "u_" == 0) || (toLower(_item) find "v_" == 0) || (toLower(_item) find "minedetector" == 0) || (toLower(_item) find "binocular" == 0) || (toLower(_item) find "rangefinder" == 0) || (toLower(_item) find "NVGoggles" == 0) || (toLower(_item) find "laserdesignator" == 0) || (toLower(_item) find "firstaidkit" == 0) || (toLower(_item) find "medkit" == 0) || (toLower(_item) find "toolkit" == 0) || (toLower(_item) find "muzzle_" == 0) || (toLower(_item) find "optic_" == 0) || (toLower(_item) find "acc_" == 0) || (toLower(_item) find "bipod_" == 0)) then {
+						_object addItemCargoGlobal [_item,1];
 					} else {
-						if(_type in ["handgun","weapon"]) then {
-							_chance = call compile (["ChanceToSpawnWithMag","DS"] call BASE_fnc_getCfgValue);
+						if(toLower(_type) in ["handgun","weapon"]) then {
+							_chance = call compile (["ChanceToSpawnWithMag"] call DS_fnc_getCfgValue);
 							if(random(100) < _chance) then {
 								_mags = getArray(configFile >> "CfgWeapons" >> _item >> "Magazines");
 								_mag = _mags select floor(random(count(_mags)));
-								_object addMagazineCargoGlobal [_mag,1];
+								_maxAmmo = getNumber(configFile >> "CfgMagazines" >> _mag >> "count");
+								_object addMagazineAmmoCargo [_mag,1,ceil(random(_maxAmmo))];
 								_i = _i + 1;
 							};
 						};
-						_object addWeaponCargoGlobal [_class,1];
+						_object addWeaponCargoGlobal [_item,1];
 					};
 				};
 				if(isClass (configFile >> "CfgVehicles" >> _item)) then {
-					_object addBackpackCargoGlobal [_class,1];
+					_object addBackpackCargoGlobal [_item,1];
 				};
 				if(isClass (configFile >> "CfgMagazines" >> _item)) then {
-					_object addMagazineCargoGlobal [_class,1];
+					_maxAmmo = getNumber(configFile >> "CfgMagazines" >> _item >> "count");
+					_object addMagazineAmmoCargo [_item,1,ceil(random(_maxAmmo))];
 				};
 			};
 		} forEach _spawn_positions;
