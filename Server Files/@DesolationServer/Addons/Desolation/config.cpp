@@ -266,7 +266,7 @@ class CfgHeliCrashes {
 				
 				};
 				items[] = {
-					"FirstAidKit",
+					"FirstAidKit"
 				};
 				backpacks[] = {
 			
