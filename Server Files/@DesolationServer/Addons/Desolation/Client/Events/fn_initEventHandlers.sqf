@@ -23,9 +23,12 @@ player addEventHandler ["HandleDamage",{
 			};
 		};
 	};
-	
 	if(_selectionName == "head") then {
-		[floor(5 + random(5))] spawn ds_fnc_knockOut;	
+		if(!isNil {_damage}) then {
+			if(_damage > 0.1) then {
+				[floor(5 + random(5))] spawn ds_fnc_knockOut;	
+			};
+		};
 	};
 	
 	(_damage >= 1);

@@ -5980,30 +5980,55 @@ class CfgVehicleSpawns {
 };
 
 class CfgBuildables {
-    class HouseLvl1 {
-        parts[] = {
-            {"dsr_lumber",30},
-            {"dsr_plywood",7},
-            {"dsr_logs",15}
-        };
-        name = "Small Shack";
-        model = "DSR_House_lv1";
-        description = "The small shack is small... and a shack... a good starting house for losers.";
-        preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
-        condition = "true";
-    };
-	class HouseLvl2 {
-        parts[] = {
-            {"dsr_lumber",300},
-            {"dsr_plywood",700},
-            {"dsr_logs",150}
-        };
-        name = "Large Shack";
-        model = "DSR_House_lv1";
-        description = "This is for testing, it should not be buildable.";
-        preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
-        condition = "false";
-    };
+    class Type1Houses {
+		condition = "true"; //--- a check to see if the person has knowledge to build this type
+		preview = "\SM_Zombz\Survivors_icon.paa"; //--- preview icon for index
+		name = "Type 1 Houses"; //--- name of this buidlable group
+		class Buildables {
+			class HouseLvl1 {
+				parts[] = {
+					{"dsr_lumber",30},
+					{"dsr_plywood",7},
+					{"dsr_logs",15}
+				};
+				name = "Small Shack";
+				model = "DSR_House_lv1";
+				description = "The small shack is small... and a shack... a good starting house for losers.";
+				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				condition = "true";
+			};
+			class HouseLvl2 {
+				parts[] = {
+					{"dsr_lumber",300},
+					{"dsr_plywood",700},
+					{"dsr_logs",150}
+				};
+				name = "Large Shack";
+				model = "DSR_House_lv1";
+				description = "This is for testing, it should not be buildable.";
+				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				condition = "false";
+			};
+		};
+	};
+	class Misc {
+		condition = "true"; 
+		preview = "\SM_Zombz\Survivors_icon.paa";  
+		name = "Miscellaneous";  
+		class Buildables {
+			class Billboard {
+				parts[] = {
+					{"dsr_lumber",20}
+				};
+				name = "Billboard";
+				model = "DSR_House_lv1";
+				description = "This is an amazing billboard that you can paint.";
+				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				condition = "false";
+			};
+			
+		};
+	};
 };
 class CfgCraftables {
 	class CraftableItem {

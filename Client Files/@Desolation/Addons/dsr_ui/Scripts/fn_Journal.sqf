@@ -11,11 +11,66 @@ _BUILD_BTN = _display displayCtrl 7;
 _PREVIOUS_BTN = _display displayCtrl 9;
 _NEXT_BTN = _display displayCtrl 10;
 
-_buildings = missionNamespace getVariable ["CFG_BUILDABLES",[]];
+_groupIndex = uiNamespace getVariable["CURRENT_GROUP_INDEX",0];
 
-//--- if we are attempting to build something
+
+_buildableData = missionNamespace getVariable ["CFG_BUILDABLE_DATA",[]];
+_buildableGroups = missionNamespace getVariable ["CFG_BUILDABLE_GROUPS",[]];
+
+_buildings = _buildableData select _groupIndex;
+
+
+//--- index controls
+if(_mode == "LOADINDEX") exitWith {
+	_display = findDisplay 4002;
+	_list = _display displayCtrl 6;
+	lbClear _list;
+	{
+		_class = _x select 0;
+		_name = _x select 1;
+		_condition = _x select 2;
+		_preview = _x select 3;
+		
+		_index = _list lbAdd _name;
+		if(call compile _condition) then {
+			_list lbSetColor[_index,[0.3,1,0.3,1]];
+		} else {
+			_list lbSetColor[_index,[1,0.3,0.3,1]];
+		};
+		_list lbSetPicture [_index,_preview];
+	} forEach _buildableData;
+	
+	
+	_ctrl = _display displayCtrl 5;
+	_ctrl ctrlSetStructuredText parseText "<t font='LauHoWi_a' size='0.8'>
+	
+		woo fucking lad, this is the description<br/><br/>
+		ben can customize this because i dont want 2
+	</t>";
+};
+if(_mode == "GOTO") exitWith {
+	_display = findDisplay 4002;
+	_list = _display displayCtrl 6;
+	_index = lbCurSel _list;
+	if(_index != -1) then {
+		_groupData = _buildableGroups select _index;
+		_condition = _groupData select 2;
+		if(call compile _condition) then {
+			CURRENT_GROUP_INDEX = _index;
+			closeDialog 0;
+			createDialog "DS_Journal";
+		};
+	};
+};
+
+
+//--- journal controls
 if(_mode == "BUILD") exitWith {
 
+};
+if(_mode == "INDEX") exitWith {
+	closeDialog 0;
+	createDialog "DS_Journal_Index";
 };
 
 //--- determine current index

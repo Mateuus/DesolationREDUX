@@ -477,6 +477,17 @@ class DsrListbox: RscListBox {
 	colorBackgroundActive[] = {0,0,0,0};
 	colorBackground[] = {0,0,0,0};
 };
+class DsrListboxSelectable: RscListBox {
+	font = "LauHoWi_a";
+	
+	canDrag = 0;
+	
+	itemBackground[] = {1,1,1,0.1};
+	colorSelectBackground2[] = {0,0,0,0};
+	colorSelectBackground[] = {0,0,0,0};
+	colorBackgroundActive[] = {0,0,0,0};
+	colorBackground[] = {0,0,0,0};
+};
 class DsrObject {
 	shadow = 0;
 	type = 80;
@@ -493,6 +504,101 @@ class DsrObject {
 	zoomDuration = 1;
 	scale = 0.7;
 	
+};
+
+class DS_Journal_Index {
+	idd = 4002;
+	name = "DS_Journal_Index";
+	movingEnable = 1;
+	enableSimulation = 1;
+	
+	onLoad = "[_this,'LOADINDEX'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
+	
+	class controlsBackground 
+	{
+		class BackgroundPic: RscPicture
+		{
+			idc = -1;
+			text = "\dsr_ui\Assets\journal.paa";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400)";
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400)";
+			w = "800 * pixelW";
+			h = "800 * pixelH";
+		};
+	};
+	class Controls {
+		class LeftTitle: DsrTitleText
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			w = "300*pixelW";
+			h = "50*pixelH";
+			idc = 3;
+			text = "Building";
+		};
+		class RightTitle: DsrTitleText
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
+			w = "300*pixelW";
+			h = "50*pixelH";
+			text = "Index";
+			idc = 4;
+		};
+		class BuildingHelp: RscStructuredText
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*120)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*50)";
+			h = "600*pixelH";
+			w = "300*pixelW";
+			idc = 5;
+		};
+		class ItemList: DsrListboxSelectable
+		{
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*120)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*50)";
+			h = "600*pixelH";
+			w = "300*pixelW";
+			idc = 6;
+		};
+		class ExitBtn: DsrInvisibleButton 
+		{
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+			idc = 1; //idc of 1 is hardcoded to exit (THANKS ARMA)
+		};
+		class GoToBtn: DsrInvisibleButton
+		{
+			idc = 7;
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+			onButtonClick = "[[displayNull],'GOTO'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
+		};
+		class ExitTxt: DsrTextBold
+		{
+			idc = 8;
+			text = "Exit";
+			colorText = {0,0,0,1};
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40) + (100*pixelW)";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+		};
+		class GoToTxt: DsrTextBold
+		{
+			idc = 9;
+			text = "Go To";
+			colorText = {0,0,0,1};
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35) - ";
+			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
+			w = "100*pixelW";
+			h = "50*pixelH";
+		};
+	};
 };
 
 class DS_Journal {
@@ -515,21 +621,11 @@ class DS_Journal {
 			h = "800 * pixelH";
 		};
 	};
-	/*
-	class Objects 
-	{
-		class PreviewModel: DsrObject
-		{
-			idc = 8;
-			model = "\core\watch\watch.p3d";
-		};
-	};
-	*/
 	class Controls 
 	{
 		class PreviousBtn: DsrInvisibleButton 
 		{
-			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*30)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) + (pixelW*40)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
@@ -539,7 +635,7 @@ class DS_Journal {
 		class NextBtn: DsrInvisibleButton
 		{
 			idc = 10;
-			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*30)";
+			x = "safeZoneX + (safeZoneW/2) + (pixelW*400) -  (pixelW*100) - (pixelW*35)";
 			y = "safeZoneY + (safeZoneH/2) + (pixelH*400) - (pixelH*50) - (pixelH*30)";
 			w = "100*pixelW";
 			h = "50*pixelH";
@@ -596,6 +692,16 @@ class DS_Journal {
 			idc = 7;
 			text = "Build";
 			onButtonClick = "[[(findDisplay 4001)],'BUILD'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
+		};
+		class IndexBtn: DsrTextOnlyButtonBold
+		{
+			y = 0;
+			x = 0;
+			w = 0;
+			h = 0;
+			idc = 12;
+			text = "Index";
+			onButtonClick = "[[(findDisplay 4001)],'INDEX'] call compile preprocessfilelinenumbers 'dsr_ui\Scripts\fn_Journal.sqf';";
 		};
 	};
 };
