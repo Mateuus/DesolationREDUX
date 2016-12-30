@@ -217,6 +217,11 @@ class CfgFunctions
 			class vehicleMonitor {};
 			class simManager {};
 		};
+		class Server_Building {
+			file = "Desolation\Server\Building";
+			isserver = 1;
+			class initBuildingSys {};
+		};
 		class Server_Functions {
 			file = "Desolation\Server\Functions";
 			isserver = 1;
@@ -5987,3 +5992,16 @@ class CfgBuildables {
         condition = "true";
     };
 };
+class CfgCraftables {
+	class CraftableItem {
+		parts[] = {
+			{"Item",2},
+			{"Different Item",1}
+		};
+		name = "Some Crafted Item";
+		item = "DSR_Item_That_Is_Craftable";
+		description = "Sick moves";
+		condition = "true";
+	};
+};
+

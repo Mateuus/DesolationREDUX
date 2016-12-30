@@ -33,6 +33,12 @@ addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 // start item spawns
 [] spawn DS_fnc_lootManager;
 
+// start the building system
+[] spawn DS_fnc_initBuildingSys;
+
+// start the crafting system (not implemented)
+// [] spawn DS_fnc_initCraftingSys;
+
 // start airdrops
 [] spawn DS_fnc_initAirdrops;
 
