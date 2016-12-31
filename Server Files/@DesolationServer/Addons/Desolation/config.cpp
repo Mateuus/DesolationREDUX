@@ -91,6 +91,7 @@ class CfgFunctions
 			class usepainkillers {};
 			class usevitamins {};
 			class usewpt {};
+			class usesplint {};
 			class useCure {};
 			class useImmune {};
 		};
