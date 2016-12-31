@@ -30,8 +30,14 @@ void RVExtension(char *output, int outputSize, const char *function)
 		strncpy(output, returnString.c_str(), outputSize);
 		return;
 	} catch (std::exception const& e) {
+		std::string error = e.what();
+		int i = 0;
+		while ((i = error.find("\"", i)) != std::string::npos) {
+			error.insert(i, "\"");
+			i += 2;
+		}
 		std::string errstr = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
-		errstr += e.what();
+		errstr += error;
 		errstr += "\"]";
 		strncpy(output, errstr.c_str(), outputSize);
 #ifdef DEBUG

@@ -314,20 +314,26 @@ std::string dbcon::quietCall(DB_FUNCTION_INFO funcinfo, boost::property_tree::pt
 void dbcon::asyncCallProcessor(DB_FUNCTION_INFO funcinfo, boost::property_tree::ptree dbarguments, PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier) {
 	const DB_FUNCTION &func(std::get<0>(funcinfo));
 
-	std::string returnstring;
+	std::string returnString;
 
 	try {
-		returnstring = this->syncCall(funcinfo, dbarguments);
+		returnString = this->syncCall(funcinfo, dbarguments);
 		//func(dbarguments, syncdbhandler);
 	} catch (std::exception const& e) {
-		returnstring = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
-		returnstring += e.what();
-		returnstring += "\"]";
+		std::string error = e.what();
+		int i = 0;
+		while ((i = error.find("\"", i)) != std::string::npos) {
+			error.insert(i, "\"");
+			i += 2;
+		}
+		returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
+		returnString += error;
+		returnString += "\"]";
 	}
 
 	if (messageIdentifier != "") {
 		msgmutex.lock();
-		msgmap.insert(std::make_pair(messageIdentifier, returnstring));
+		msgmap.insert(std::make_pair(messageIdentifier, returnString));
 		msgmutex.unlock();
 	}
 

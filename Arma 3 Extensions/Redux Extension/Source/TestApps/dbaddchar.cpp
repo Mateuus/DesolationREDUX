@@ -30,29 +30,29 @@
 void RVExtension(char *output, int outputSize, const char *function);
 
 std::string randomstring(int length) {
-	std::stringstream returnstring;
+	std::stringstream returnString;
 	std::string chars("abcdefghijklmnopqrstuvwxyz"
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 			"1234567890");
 	boost::random::random_device rng;
 	boost::random::uniform_int_distribution<> index_dist(0, chars.size() - 1);
 	for (int i = 0; i < length; ++i) {
-		returnstring << chars[index_dist(rng)];
+		returnString << chars[index_dist(rng)];
 	}
 
-	return returnstring.str();
+	return returnString.str();
 }
 
 std::string randomsteamid() {
-	std::stringstream returnstring;
+	std::stringstream returnString;
 	std::string chars("1234567890");
 	boost::random::random_device rng;
 	boost::random::uniform_int_distribution<> index_dist(0, chars.size() - 1);
 	for (int i = 0; i < 17; ++i) {
-		returnstring << chars[index_dist(rng)];
+		returnString << chars[index_dist(rng)];
 	}
 
-	return returnstring.str();
+	return returnString.str();
 }
 
 std::string receivemsg(std::string msguuid) {

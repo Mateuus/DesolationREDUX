@@ -96,8 +96,14 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 		try {
 			returnString = func(dllarguments);
 		} catch (std::exception const& e) {
+			std::string error = e.what();
+			int i = 0;
+			while ((i = error.find("\"", i)) != std::string::npos) {
+				error.insert(i, "\"");
+				i += 2;
+			}
 			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR)+ "\", \"";
-			returnString += e.what();
+			returnString += error;
 			returnString += "\"]";
 		}
 
