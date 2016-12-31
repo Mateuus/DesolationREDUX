@@ -24,8 +24,8 @@ class CfgWeapons
 };
 class CfgVehicles 
 {
-	class C_man_p_fugitive_F;
-	class C_man_p_beggar_F: C_man_p_fugitive_F 
+	class C_man_polo_3_F;
+	class C_man_p_beggar_F: C_man_polo_3_F 
 	{
 		uniformClass = "U_C_DSR_Tester";
 		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt_co.paa"};
