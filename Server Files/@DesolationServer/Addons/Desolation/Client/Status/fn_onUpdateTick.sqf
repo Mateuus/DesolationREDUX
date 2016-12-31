@@ -11,13 +11,17 @@
  
 //--- notify server of variables (both persistant and non-persistant)
 
-if(player getVariable ["DS_var_Blood",0] != DS_var_Blood) then {
-	player setVariable ["DS_var_Blood",DS_var_Blood,true];
+if(player getVariable ["SVAR_DS_var_Blood",0] != DS_var_Blood) then {
+	player setVariable ["SVAR_DS_var_Blood",DS_var_Blood,true];
 };
-if(player getVariable ["DS_var_Thirst",0] != DS_var_Thirst) then {
-	player setVariable ["DS_var_Thirst",DS_var_Thirst,true];
+if(player getVariable ["SVAR_DS_var_Thirst",0] != DS_var_Thirst) then {
+	player setVariable ["SVAR_DS_var_Thirst",DS_var_Thirst,true];
 };
-if(player getVariable ["DS_var_Hunger",0] != DS_var_Hunger) then {
-	player setVariable ["DS_var_Hunger",DS_var_Hunger,true];
+if(player getVariable ["SVAR_DS_var_Hunger",0] != DS_var_Hunger) then {
+	player setVariable ["SVAR_DS_var_Hunger",DS_var_Hunger,true];
 };
-
+if(!isNil "SM_infectionDOT") then {
+	if(player getVariable ["SVAR_SM_infectionDOT",0] != SM_infectionDOT) then {
+		player setVariable ["SVAR_SM_infectionDOT",SM_infectionDOT,true];
+	};
+};

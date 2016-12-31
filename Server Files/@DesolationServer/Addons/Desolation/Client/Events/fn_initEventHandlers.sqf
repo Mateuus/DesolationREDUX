@@ -23,6 +23,21 @@ player addEventHandler ["HandleDamage",{
 				_bloodLoss = _damage * 27500;
 				DS_var_Blood = DS_var_Blood - _bloodLoss;
 			};
+		} else {
+			_bloodLoss = _damage * 2750;
+			DS_var_Blood = DS_var_Blood - _bloodLoss;
+		};
+	} else {
+		_bloodLoss = _damage * 2750;
+		DS_var_Blood = DS_var_Blood - _bloodLoss;
+	};
+	if(_selectionName == "legs") then {
+		if(!isNil {_damage}) then {
+			if(_damage > 0.5) then {
+				[] spawn {
+ 					player setHitPointDamage ["HitLegs",1];
+				};
+			};
 		};
 	};
 	if(_selectionName == "head") then {

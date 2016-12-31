@@ -9,11 +9,11 @@
  * https://www.bistudio.com/monetization/
  */
 
-DS_var_Blood = 27500;
+DS_var_Blood = player getVariable ["SVAR_DS_var_Blood",27500];
 DS_var_isBleeding = false;
-DS_var_Thirst = 100;
+DS_var_Thirst = player getVariable ["SVAR_DS_var_Thirst",100];
 DS_var_isDehydrating = false;
-DS_var_Hunger = 100;
+DS_var_Hunger = player getVariable ["SVAR_DS_var_Hunger",100];
 DS_var_isStarving = false;
 DS_var_lastAte = diag_tickTime;
 DS_var_lastDrank = diag_tickTime;

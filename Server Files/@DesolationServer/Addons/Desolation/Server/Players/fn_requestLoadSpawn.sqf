@@ -44,6 +44,11 @@ _unit = (createGroup CIVILIAN) createUnit [_class, [_x,_y,_z], [],0, "NONE"];
 _unit allowDamage false;
 _unit hideObjectGlobal true;
 
+{
+	_unit setVariable [_x select 0,_x select 1,true];
+} forEach _nonpersvars;
+
+
 _unit setVariable ["pUUID",_client getVariable "pUUID"];
 _unit setVariable ["cUUID",_client getVariable "cUUID"];
 
@@ -80,3 +85,6 @@ _unit addMPEventHandler ["MPKilled", DS_fnc_onPlayerKilled];
 _unit hideObjectGlobal false;
 _unit allowDamage true;
 [_unit,_goggles] remoteExecCall ["DS_fnc_finishSpawn",_client];
+
+waitUntil{getPlayerUID _unit == _uid && (tolower(goggles _unit) == tolower(_defaultData select 2))};
+deleteVehicle _client;
