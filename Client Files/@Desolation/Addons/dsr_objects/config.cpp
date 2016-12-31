@@ -14,6 +14,24 @@ class CfgPatches
 
 class CfgVehicles
 {
+	class ReammoBox;
+	class LootWeaponHolder: ReammoBox
+	{
+		scope = 1;
+		scopeCurator = 0;
+		author = "Desolation Redux Dev Team";
+		isGround = 1;
+		accuracy = 0.2;
+		forceSupply = 1;
+		showWeaponCargo = 1;
+		transportMaxMagazines = 1e+009;
+		transportMaxWeapons = 1e+009;
+		transportMaxBackpacks = 0;
+		icon = "iconObject_1x1";
+		model = "\A3\Weapons_f\dummyweapon.p3d";
+		destrType = "DestructNo";
+		class TransportMagazines {};
+	};
 	class NATO_Box_Base;
 	class DSR_Crate_Base: NATO_Box_Base
 	{
