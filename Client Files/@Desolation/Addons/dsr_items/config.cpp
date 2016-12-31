@@ -27,6 +27,7 @@ class CfgVehicles
 	class C_man_polo_3_F;
 	class C_man_p_beggar_F: C_man_polo_3_F 
 	{
+		model = "\A3\Characters_F\Civil\c_poloshirt";
 		uniformClass = "U_C_DSR_Tester";
 		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt_co.paa"};
 	};
