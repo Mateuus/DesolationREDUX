@@ -20,6 +20,7 @@ _townTypes = ["townTypes","SM"] call SM_fnc_getCfgValue;
 _zombieClasses = getArray (configFile >> "ZombieSettings" >> "zombieClasses");
 
 _leftOverZombies = _maxZombies;
+_spawnedZombies = 1;
 
 _centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 _towns = nearestLocations [_centerPos, _townTypes, worldSize];
@@ -50,6 +51,8 @@ if (_zombiesPerTown > _maxZombies) then
 	{
 		if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
 		{
+			diag_log (str _spawnedZombies + " of " str _maxZombies);
+			_spawnedZombies = _spawnedZombies + 1;
 			_leftOverZombies = _leftOverZombies - 1;
 		};
 	};
@@ -67,6 +70,8 @@ if (_leftOverZombies > 0) then
 		{
 			if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
 			{
+				diag_log (str _spawnedZombies + " of " str _maxZombies);
+				_spawnedZombies = _spawnedZombies + 1;
 				_leftOverZombies = _leftOverZombies - 1;
 			};
 		};
