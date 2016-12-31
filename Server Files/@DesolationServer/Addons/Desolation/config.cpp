@@ -129,6 +129,7 @@ class CfgFunctions
 			class onEffectTick {};
 			class onHungerTick {};
 			class onThirstTick {};
+			class onUpdateTick {};
 			class onTick {};
 		};
 		class Client_Medical {
