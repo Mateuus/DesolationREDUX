@@ -19,11 +19,11 @@ params ["_class","_center"];
 private ["_return","_positionToSpawnZombie"];
 
 // Why would this ever happen?
-if (isNil "_class") exitWith {};
-if (isNil "_center") exitWith {};
+if (isNil "_class") exitWith { false };
+if (isNil "_center") exitWith { false };
 
 // Make sure that the zombie class is a valid class.
-if !(_class isKindOf "SM_Zombz_Base") exitWith {};
+if !(_class isKindOf "SM_Zombz_Base") exitWith { false };
 
 _positionToSpawnZombie = [];
 _return = false;

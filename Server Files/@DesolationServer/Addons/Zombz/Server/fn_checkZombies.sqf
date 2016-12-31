@@ -93,7 +93,7 @@ _deleted = [];
 
 {
 	_player = _x;
-	_nearZombies = nearEntities ["SM_Zombz_Base",1000];
+	_nearZombies = _player nearEntities ["SM_Zombz_Base",1000];
 	{
 		_zombieAgent = _x;
 		_zombieAgent = objectFromNetId _x;
