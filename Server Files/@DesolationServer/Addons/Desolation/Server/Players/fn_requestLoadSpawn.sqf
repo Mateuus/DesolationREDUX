@@ -11,6 +11,7 @@
 params["_data","_client"];
 private["_unit","_anim","_dir","_x","_y","_z","_class","_hitpoints","_nonpersvars","_persvars","_textures","_invuniform","_invvest","_invbackpack","_uniform","_vest","_backpack","_headgear","_goggles","_primary","_secondary","_handgun","_tools","_currentWeapon","_loadout","_name","_damage"];
 
+_uid = getPlayerUID _client;
 
 _anim = _data deleteAt 0;
 _dir = _data deleteAt 0;
@@ -87,5 +88,5 @@ _unit allowDamage true;
 
 [_unit,_goggles] remoteExecCall ["DS_fnc_finishSpawn",_client];
 
-waitUntil{getPlayerUID _unit == _uid && (tolower(goggles _unit) == tolower(_defaultData select 2))};
+waitUntil{getPlayerUID _unit == _uid && (tolower(goggles _unit) == toLower(_goggles))};
 deleteVehicle _client;

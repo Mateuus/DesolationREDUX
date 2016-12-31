@@ -11,6 +11,7 @@
 private["_playerObj","_dbCallback"];
 //--- player is requesting to spawn in, ask the database how they should do it
 _playerObj = _this select 0;
+_playerObj hideObjectGlobal true;
 _playerObj setVariable ["DDATA",_this select 1];
 
 _dbCallback = "DS_fnc_dbOnSpawnResponse";

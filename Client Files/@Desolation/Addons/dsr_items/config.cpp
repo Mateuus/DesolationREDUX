@@ -19,7 +19,7 @@ class CfgWeapons
 		scope = 2;
 		author = "Desolation Redux";
 		displayName = "Desolation Tester Uniform";
-		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt.paa"};
+		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt_co.paa"};
 	};
 };
 class CfgVehicles 
@@ -28,7 +28,7 @@ class CfgVehicles
 	class C_man_p_beggar_F: C_man_p_fugitive_F 
 	{
 		uniformClass = "U_C_DSR_Tester";
-		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt.paa"};
+		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt_co.paa"};
 	};
 };
 class CfgMagazines
