@@ -95,7 +95,6 @@ _deleted = [];
 	_player = _x;
 	_nearZombies = _player nearEntities ["SM_Zombz_Base",1000];
 	{
-		_zombieAgent = _x;
 		_zombieAgent = objectFromNetId _x;
 		if ((isNull _zombieAgent) || !(alive _zombieAgent)) then
 		{
