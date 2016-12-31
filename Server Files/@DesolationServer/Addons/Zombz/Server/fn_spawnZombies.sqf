@@ -15,6 +15,7 @@
 	Description: SM_Zombz desolation redux edition.
 */
 
+_zombieStart = diag_tickTime;
 _maxZombies = ["maxZombies","SM"] call SM_fnc_getCfgValue;
 _townTypes = ["townTypes","SM"] call SM_fnc_getCfgValue;
 _zombieClasses = getArray (configFile >> "ZombieSettings" >> "zombieClasses");
@@ -51,7 +52,7 @@ if (_zombiesPerTown > _maxZombies) then
 	{
 		if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
 		{
-			diag_log (str _spawnedZombies + " of " str _maxZombies);
+			diag_log (str _spawnedZombies + " of " + str _maxZombies);
 			_spawnedZombies = _spawnedZombies + 1;
 			_leftOverZombies = _leftOverZombies - 1;
 		};
@@ -70,7 +71,7 @@ if (_leftOverZombies > 0) then
 		{
 			if ([selectRandom _zombieClasses,_position] call SM_fnc_spawnZombie) then
 			{
-				diag_log (str _spawnedZombies + " of " str _maxZombies);
+				diag_log (str _spawnedZombies + " of " + str _maxZombies);
 				_spawnedZombies = _spawnedZombies + 1;
 				_leftOverZombies = _leftOverZombies - 1;
 			};
@@ -86,5 +87,6 @@ if (_leftOverZombies > 0) then
 };
 
 format["Zombies spawned: %1", (_maxZombies - _leftOverZombies)] call SM_fnc_log;
+diag_log ("time took to spawn zombies: " + str (diag_tickTime - _zombieStart) + "s");
 
 true
