@@ -16,6 +16,18 @@ class CfgWeapons
 	class U_C_Poor_2; //import
 	class U_C_DSR_Tester: U_C_Poor_2 
 	{
+		scope = 2;
+		author = "Desolation Redux";
+		displayName = "Desolation Tester Uniform";
+		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt.paa"};
+	};
+};
+class CfgVehicles 
+{
+	class C_man_p_fugitive_F;
+	class C_man_p_beggar_F: C_man_p_fugitive_F 
+	{
+		uniformClass = "U_C_DSR_Tester";
 		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt.paa"};
 	};
 };
