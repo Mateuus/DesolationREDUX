@@ -84,6 +84,7 @@ _unit addMPEventHandler ["MPKilled", DS_fnc_onPlayerKilled];
 
 _unit hideObjectGlobal false;
 _unit allowDamage true;
+
 [_unit,_goggles] remoteExecCall ["DS_fnc_finishSpawn",_client];
 
 waitUntil{getPlayerUID _unit == _uid && (tolower(goggles _unit) == tolower(_defaultData select 2))};

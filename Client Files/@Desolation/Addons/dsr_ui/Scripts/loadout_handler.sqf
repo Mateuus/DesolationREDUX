@@ -33,7 +33,7 @@ switch(_type) do {
 	};
 	case 2: {
 		//--- uniform switch
-		_uniforms = ["U_C_Poor_2","U_C_Poloshirt_blue","U_C_Poloshirt_burgundy","U_C_Poloshirt_stripped","U_C_Poloshirt_tricolour","U_C_Poloshirt_salmon","U_C_Poloshirt_redwhite","U_C_Commoner1_1","U_NikosBody","U_OrestesBody"];
+		_uniforms = ["U_C_DSR_Tester","U_C_Poor_2","U_C_Poloshirt_blue","U_C_Poloshirt_burgundy","U_C_Poloshirt_stripped","U_C_Poloshirt_tricolour","U_C_Poloshirt_salmon","U_C_Poloshirt_redwhite","U_C_Commoner1_1","U_NikosBody","U_OrestesBody"];
 		
 		_u = uniform player;
 		_index = _uniforms find _u;

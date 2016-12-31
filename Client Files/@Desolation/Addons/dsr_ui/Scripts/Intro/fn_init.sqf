@@ -11,6 +11,9 @@ scriptName "fn_init";
 
 diag_log "Starting main menu scene";
 
+removeUniform player;
+player addUniform "U_C_DSR_Tester";
+
 cam = "camera" camCreate (getPos player);
 0 fadeSound 0;
 

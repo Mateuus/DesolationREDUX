@@ -12,7 +12,6 @@
 params["_unit",["_goggles",""]];
 
 
-//--- todo: initialize event handlers on unit
 selectPlayer _unit;
 
 if(_goggles != "") then {

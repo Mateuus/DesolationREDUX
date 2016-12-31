@@ -11,12 +11,12 @@
 params["_client","_location"];
 private["_brokenLoadout","_defaultData","_hats","_goggles","_uniforms","_uid","_unit"];
 
-_brokenLoadout = ["U_C_Poor_2","H_StrawHat","G_Aviator"];
+_brokenLoadout = ["U_C_DSR_Tester","H_StrawHat","G_Aviator"];
 _defaultData = _client getVariable ["DDATA",_brokenLoadout];
 
 _hats = ["H_StrawHat","H_Hat_blue","H_Hat_checker","H_Cap_tan","H_Cap_blk","H_Cap_blk_CMMG","H_Cap_brn_SPECOPS","H_Cap_tan_specops_US","H_Cap_khaki_specops_UK","H_Cap_grn","H_Cap_grn_BI","H_Cap_blk_Raven","H_Cap_oli_hs","H_Cap_press","H_Bandanna_khk","H_Bandanna_khk_hs"];
 _goggles = ["G_Aviator","G_Shades_Black","G_Shades_Blue","G_Sport_Blackred","G_Tactical_Clear","G_Spectacles","G_Spectacles_Tinted","G_Shades_Green","G_Shades_Red","G_Squares","G_Squares_Tinted","G_Sport_BlackWhite","G_Sport_Blackyellow","G_Sport_Greenblack","G_Sport_Checkered","G_Sport_Red"];
-_uniforms = ["U_C_Poor_2","U_C_Poloshirt_blue","U_C_Poloshirt_burgundy","U_C_Poloshirt_stripped","U_C_Poloshirt_tricolour","U_C_Poloshirt_salmon","U_C_Poloshirt_redwhite","U_C_Commoner1_1","U_NikosBody","U_OrestesBody"];
+_uniforms = ["U_C_DSR_Tester","U_C_Poor_2","U_C_Poloshirt_blue","U_C_Poloshirt_burgundy","U_C_Poloshirt_stripped","U_C_Poloshirt_tricolour","U_C_Poloshirt_salmon","U_C_Poloshirt_redwhite","U_C_Commoner1_1","U_NikosBody","U_OrestesBody"];
 
 if !((_defaultData select 0) in _uniforms) then {_defaultData = _brokenLoadout;diag_log "BROKEN DATA DETECTED 1";};
 if !((_defaultData select 1) in _hats) then {_defaultData = _brokenLoadout;diag_log "BROKEN DATA DETECTED 2";};

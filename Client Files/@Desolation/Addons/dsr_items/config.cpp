@@ -3,12 +3,20 @@ class CfgPatches
 	class dsr_items
 	{
 		fileName = "dsr_items.pbo";
-		requiredAddons[] = {"A3_Data_F","A3_Weapons_F", "dsr_actions"};
+		requiredAddons[] = {"A3_Data_F","A3_Weapons_F","A3_Characters_F", "dsr_actions"};
 		requiredVersion = 0.1;
 		units[] = {};
 		weapons[] = {};
 		vehicles[] = {};
 		author[]= {"Desolation Redux Dev Team"};
+	};
+};
+class CfgWeapons 
+{
+	class U_C_Poor_2; //import
+	class U_C_DSR_Tester: U_C_Poor_2 
+	{
+		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt.paa"};
 	};
 };
 class CfgMagazines
