@@ -56,8 +56,14 @@ std::string datetime::processDTCall(boost::property_tree::ptree &dtcall) {
 		try {
 			returnString = func(dtarguments);
 		} catch (std::exception const& e) {
-			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR)+ "\", \"";
-			returnString += e.what();
+			std::string error = e.what();
+			int i = 0;
+			while ((i = error.find("\"", i)) != std::string::npos) {
+				error.insert(i, "\"");
+				i += 2;
+			}
+			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
+			returnString += error;
 			returnString += "\"]";
 		}
 
