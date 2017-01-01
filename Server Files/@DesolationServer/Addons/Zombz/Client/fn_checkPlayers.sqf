@@ -17,6 +17,7 @@
 
 SM_NearbyPlayers = [];
 {
-	if ((_x distance player) < 50) then { SM_NearbyPlayers pushBack _x };
+	if ((_x distance player) < 50) then { SM_NearbyPlayers pushBack _x; }; 
+	true
 } count (allPlayers - entities "HeadlessClient_F");
 true
