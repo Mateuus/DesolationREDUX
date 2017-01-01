@@ -224,6 +224,12 @@ class CfgFunctions
 			isserver = 1;
 			class initBuildingSys {};
 		};
+		class Server_Locking {
+			file = "Desolation\Server\Locking";
+			isserver = 1;
+			class checkServerLock {};
+			class initServerLock {};
+		};
 		class Server_Functions {
 			file = "Desolation\Server\Functions";
 			isserver = 1;
