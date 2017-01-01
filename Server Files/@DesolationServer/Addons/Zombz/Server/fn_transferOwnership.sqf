@@ -18,6 +18,11 @@
 params [["_targetNetId", ""],["_zombieAgentNetId", ""],"_zombieAgent","_target","_alreadyRunning","_targetGroup","_owner","_zombieInfo","_count","_zombieArray","_targetData","_array","_passed"];
 _zombieAgent = objectFromNetId _zombieAgentNetId;
 
+if (isNull _zombieAgent) exitWith 
+{ 
+	"Problem fetching zombie to update locality to" call SM_Util_log; 
+};
+
 // May cause crashes??
 _target = objNull;
 if (_targetNetId != "") then
@@ -25,10 +30,6 @@ if (_targetNetId != "") then
 	_target = objectFromNetId _targetNetId;
 };
 
-if (isNull _zombieAgent) exitWith 
-{ 
-	"Problem fetching zombie to update locality to" call SM_Util_log; 
-};
 if (isNull _target) exitWith 
 { 
 	"Problem fetching player to update locality to" call SM_Util_log; 
