@@ -40,7 +40,6 @@ _distance = 1000;
 	_detected = false;
 	if (isPlayer _unit) then
 	{
-		_isvisible = false;
 		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible) then
 		{
             if ((vehicle _unit) == _unit) then
@@ -54,7 +53,7 @@ _distance = 1000;
             }
             else
             {
-                _detectionnumber = random 0.50;
+                _detectionnumber = 0.50;
             };
 
 			_detectionnumber = _detectionnumber + (_tmpDistace call
@@ -82,11 +81,14 @@ _distance = 1000;
 				_detected = true; 
 			};
 			_isvisible = _detected;
+		}
+		else
+		{
+			_isvisible = false;
 		};
 	}
 	else
 	{
-		_isvisible = false;
 		if (_isvisible) then
 		{
 			_distanceCheck = _tmpDistace;
@@ -120,6 +122,10 @@ _distance = 1000;
 			};
 
 			_isvisible = _detected;
+		}
+		else
+		{
+			_isvisible = false;
 		};
 	};
 	if (_isvisible) then
