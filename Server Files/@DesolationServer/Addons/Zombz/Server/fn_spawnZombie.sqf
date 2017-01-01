@@ -145,7 +145,10 @@ try
 		_local = _this select 1;
 		if (_local) then
 		{
-			_nearPlayers = _zombieAgent nearEntities ["C_man_p_beggar_F", 1000];
+			_nearPlayers = [];
+			{
+				if ((_x distance _zombieAgent) < 1000) then { SM_NearbyPlayers pushBack _x };
+			} count (allPlayers - entities "HeadlessClient_F");
 			if (_nearPlayers isEqualTo []) then
 			{
 				_zombieAgent hideObjectGlobal true;
@@ -155,7 +158,7 @@ try
 			else
 			{
 				// Update the owner to another player ASAP
-				_zombieAgent setOwner (owner selectRandom _nearPlayers);
+				_zombieAgent setOwner (owner vehicle selectRandom _nearPlayers);
 			};
 		};
 	}];
