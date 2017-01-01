@@ -138,6 +138,28 @@ try
 	// When the zombie dies, we need to know about it!
 	_zombieAgent addMPEventHandler ["MPKilled", { _this call SM_fnc_onMPKilled }];
 
+	// Hopefully this will fire if the owner disconnects from the server.
+	_zombieAgent addEventHandler ["local", 
+	{ 
+		_zombieAgent = _this select 0;
+		_local = _this select 1;
+		if (_local) then
+		{
+			_nearPlayers = _zombieAgent nearEntities ["C_man_p_beggar_F", 1000];
+			if (_nearPlayers isEqualTo []) then
+			{
+				_zombieAgent hideObjectGlobal true;
+				_zombieAgent enableSimulationGlobal false;
+				_zombieAgent disableAI "ALL";
+			}
+			else
+			{
+				// Update the owner to another player ASAP
+				_zombieAgent setOwner (owner selectRandom _nearPlayers);
+			};
+		};
+	}];
+
 	_return = true;
 } 
 catch 

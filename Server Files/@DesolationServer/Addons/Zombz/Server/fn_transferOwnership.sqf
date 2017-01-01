@@ -17,7 +17,13 @@
 
 params [["_targetNetId", ""],["_zombieAgentNetId", ""],"_zombieAgent","_target","_alreadyRunning","_targetGroup","_owner","_zombieInfo","_count","_zombieArray","_targetData","_array","_passed"];
 _zombieAgent = objectFromNetId _zombieAgentNetId;
-_target = objectFromNetId _targetNetId;
+
+// May cause crashes??
+_target = objNull;
+if (_targetNetId != "") then
+{
+	_target = objectFromNetId _targetNetId;
+};
 
 if (isNull _zombieAgent) exitWith 
 { 

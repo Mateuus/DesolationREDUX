@@ -21,7 +21,7 @@ link7[] = {7,1};
 link8[] = {7,2};
 link9[] = {8,7};
 globals[] = {0.000000,0,0,0,0,640,480,2,13,6316128,1,831.288330,1554.471436,1344.642090,820.434937,850,949,1};
-window[] = {2,-1,-1,-1,-1,718,52,1202,52,3,868};
+window[] = {2,-1,-1,-1,-1,796,130,1280,130,3,868};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -69,6 +69,10 @@ class FSM
                          "		_exit = false;" \n
                          "		if !(isNull _zombieAgent) then" \n
                          "		{" \n
+                         "			if ((player distance _zombieAgent) > 1000) then" \n
+                         "			{" \n
+                         "				["""", netID _zombieAgent] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "			};" \n
                          "			if (!(local _zombieAgent) || !(alive _zombieAgent)) then" \n
                          "			{" \n
                          "				_deleted pushBack _forEachIndex;" \n
