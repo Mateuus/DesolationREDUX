@@ -46,4 +46,7 @@ bis_functions_mainscope setVariable ["SM_allZombies", SM_IdleZombies, true];
 // Manager FSM for Zombz.
 [] execFSM "zombz\FSM\manager.fsm";
 
+SM_var_finishedZombies = true;
+call DS_fnc_checkServerLock;
+
 diag_log format["SM_Zombz %1: Finished Init!", _version];
