@@ -10,6 +10,9 @@
  */
 
 //TODO: this updates like every 5 minutes or some shit, why is it updating????
+DS_var_finishedVehicles = true;
+call DS_fnc_checkServerLock;
+
 while{true} do {
 	uiSleep (60*30);
 	diag_log  "Vehicle Monitor> Updating Database";

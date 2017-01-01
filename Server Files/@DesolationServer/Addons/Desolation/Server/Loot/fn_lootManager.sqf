@@ -43,7 +43,8 @@ for "_i" from 0 to count(configFile >> "CfgItemSpawns" >> "Buildings")-1 do {
 		_all_buildings pushBack _name;
 	};
 };
-
+DS_var_finishedLoot = true;
+call DS_fnc_checkServerLock;
 diag_log "<Loot Manager>: Loot Manager Running!";
 
 while{true} do {
