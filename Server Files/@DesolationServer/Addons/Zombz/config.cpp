@@ -43,6 +43,7 @@ class CfgFunctions
 			class zombieCalculateSpeed {};
 			class zombieFindPositionWander {};
 			class zombieHandleDamage {};
+			class checkPlayers {};
 		};
 
 		class Server 

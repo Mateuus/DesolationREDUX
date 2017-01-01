@@ -10,18 +10,21 @@ item5[] = {"Timeout",4,218,1125.000000,1225.000000,1225.000000,1275.000000,0.000
 item6[] = {"end_FSM",4,218,1250.000000,1150.000000,1350.000000,1200.000000,0.000000,"end FSM"};
 item7[] = {"Who_Are_You_",3,250,1125.000000,1000.000000,1225.000000,1050.000000,0.000000,"Who" \n "Are" \n "You?"};
 item8[] = {"Wait_10_Seconds",4,218,1125.000000,925.000000,1225.000000,975.000000,0.000000,"Wait" \n "10" \n "Seconds"};
+item9[] = {"players_check",4,218,1000.000000,1150.000000,1100.000000,1200.000000,0.000000,"players check"};
 link0[] = {0,8};
 link1[] = {1,3};
 link2[] = {2,4};
 link3[] = {3,5};
 link4[] = {3,6};
-link5[] = {5,3};
-link6[] = {6,4};
-link7[] = {7,1};
-link8[] = {7,2};
-link9[] = {8,7};
-globals[] = {0.000000,0,0,0,0,640,480,2,13,6316128,1,831.288330,1554.471436,1344.642090,820.434937,850,949,1};
-window[] = {2,-1,-1,-1,-1,796,130,1280,130,3,868};
+link5[] = {3,9};
+link6[] = {5,3};
+link7[] = {6,4};
+link8[] = {7,1};
+link9[] = {7,2};
+link10[] = {8,7};
+link11[] = {9,3};
+globals[] = {0.000000,0,0,0,0,640,480,2,15,6316128,1,764.445557,1365.026978,1426.870605,817.947388,936,949,1};
+window[] = {2,-1,-1,-1,-1,926,260,1410,260,3,954};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -33,7 +36,8 @@ class FSM
                 {
                         name = "Init";
                         itemno = 0;
-                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;" \n
+                         "_nearbyPlayersCheck = diag_ticktime;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -69,9 +73,20 @@ class FSM
                          "		_exit = false;" \n
                          "		if !(isNull _zombieAgent) then" \n
                          "		{" \n
-                         "			if ((player distance _zombieAgent) > 1000) then" \n
+                         "			if ((player distance _zombieAgent) > 1000) exitWith" \n
                          "			{" \n
                          "				["""", netID _zombieAgent] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "				_exit = true;" \n
+                         "				_deleted pushBack _forEachIndex;" \n
+                         "				_zombieAgent setVariable [""SM_LastTargetCheck"",nil];" \n
+                         "				_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",nil];" \n
+                         "				_deleted pushback _forEachIndex;" \n
+                         "				_firedEVH = _zombieAgent getVariable [""SM_ZombieOnFiredEVH"",-1];" \n
+                         "				if !(_firedEVH isEqualTo -1) then" \n
+                         "				{" \n
+                         "					_zombieAgent removeEventHandler [""FiredNear"",_firedEVH];" \n
+                         "					_zombieAgent setVariable [""SM_ZombieOnFiredEVH"",nil];" \n
+                         "				};" \n
                          "			};" \n
                          "			if (!(local _zombieAgent) || !(alive _zombieAgent)) then" \n
                          "			{" \n
@@ -97,8 +112,8 @@ class FSM
                          "		if ((diag_ticktime - (_zombieAgent getVariable [""SM_ZombieSoundDelayMoan"",0])) >= 420) then" \n
                          "		{" \n
                          "			_moan = selectRandom (getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray""));" \n
-                         "			[_zombieAgent, _moan] remoteExecCall [""Say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
-                         "			_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"",diag_ticktime];" \n
+                         "			[_zombieAgent, _moan] remoteExecCall [""Say3D"", SM_NearbyPlayers];" \n
+                         "			_zombieAgent setVariable [""SM_ZombieSoundDelayMoan"", diag_ticktime];" \n
                          "		};" \n
                          "" \n
                          "		_firedNearEnabled = [""firedNearEnabled"",""SM""] call SM_fnc_getCfgValue;" \n
@@ -157,7 +172,7 @@ class FSM
                          "			if !(_pos isEqualTo []) then" \n
                          "			{" \n
                          "				_zombieAgent moveTo _pos;" \n
-                         "				_zombieAgent setVariable [""SM_LastTargetCheck"",diag_ticktime];" \n
+                         "				_zombieAgent setVariable [""SM_LastTargetCheck"", diag_ticktime];" \n
                          "			};" \n
                          "		};" \n
                          "		};" \n
@@ -186,6 +201,19 @@ class FSM
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"SM_IdleZombies isEqualTo []"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "players_check">*/
+                                class players_check
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Calculate_All_Zo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"// This only needs to be checked if there are zombies on the players client.." \n
+                                         "// only issue is if the zombie is constantly targeting someone, i doubt this would cause any issues..." \n
+                                         "(diag_ticktime - _nearbyPlayersCheck) >= 25"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_checkPlayers;"/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
                                 /*%FSM<LINK "Timeout">*/

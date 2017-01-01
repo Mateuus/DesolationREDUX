@@ -23,7 +23,7 @@ if ((face _zombieAgent) isEqualTo "SM_ZombzNoFace") exitWith { objNull };
 
 _target = objNull;
 
-_targets = _zombieAgent nearEntities ["C_man_p_beggar_F", 1000];
+_targets = SM_NearbyPlayers;
 _smokes = _zombieAgent nearEntities ["SmokeShell", 1000];
 if !(_smokes isEqualTo []) then
 {
@@ -43,13 +43,19 @@ _distance = 1000;
 		_isvisible = false;
 		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible) then
 		{
-			switch (stance _unit) do 
-			{
-				case "STAND": { _detectionnumber = _detectionnumber + 0.50 };
-				case "CROUCH": { _detectionnumber = _detectionnumber + 0.35 };
-				case "PRONE": { _detectionnumber = _detectionnumber + 0.15 };
-				default { _detectionnumber = _detectionnumber + 0 };
-			};
+            if ((vehicle _unit) == _unit) then
+            {
+                switch (stance _unit) do 
+                {
+                    case "STAND": { _detectionnumber = _detectionnumber + 0.50 };
+                    case "CROUCH": { _detectionnumber = _detectionnumber + 0.35 };
+                    case "PRONE": { _detectionnumber = _detectionnumber + 0.15 };
+                };
+            }
+            else
+            {
+                _detectionnumber = random 0.50;
+            };
 
 			_detectionnumber = _detectionnumber + (_tmpDistace call
 			{
@@ -129,7 +135,7 @@ _distance = 1000;
 		else
 		{
 			_distance = _tmpDistace;
-			_target = _unit;
+			_target = vehicle _unit;
 		};
 	};
 } forEach _targets;

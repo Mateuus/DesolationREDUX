@@ -27,7 +27,7 @@ item22[] = {"Get_Target_Posit",2,250,750.000000,1175.000000,850.000000,1225.0000
 item23[] = {"True",8,218,625.000000,950.000000,725.000000,1000.000000,0.000000,"True"};
 item24[] = {"Target_Is_Player",4,218,1000.000000,1250.000000,1100.000000,1300.000000,0.000000,"Target" \n "Is" \n "Player"};
 item25[] = {"Not_Local_Target",4,218,1125.000000,1325.000000,1225.000000,1375.000000,0.000000,"Not" \n "Local" \n "Target"};
-item26[] = {"Update_Locality_1",1,250,1250.000000,1325.000000,1350.000000,1375.000000,0.000000,"Update" \n "Locality" \n "Target"};
+item26[] = {"Update_Locality_1",1,4346,1250.000000,1325.000000,1350.000000,1375.000000,0.000000,"Update" \n "Locality" \n "Target"};
 item27[] = {"Alive_Player_Che",2,250,1000.000000,1475.000000,1100.000000,1525.000000,0.000000,"Alive" \n "Player" \n "Check"};
 item28[] = {"Is_Alive",4,218,1000.000000,1550.000000,1100.000000,1600.000000,0.000000,"Is" \n "Alive"};
 item29[] = {"Not_Alive",4,218,1125.000000,1475.000000,1225.000000,1525.000000,0.000000,"Not" \n "Alive"};
@@ -37,7 +37,7 @@ item32[] = {"close",4,218,1375.000000,1475.000000,1475.000000,1525.000000,0.0000
 item33[] = {"far",4,218,1250.000000,1400.000000,1350.000000,1450.000000,0.000000,"far"};
 item34[] = {"eat_delay",4,218,1625.000000,1475.000000,1725.000000,1525.000000,0.000000,"eat delay"};
 item35[] = {"",7,210,1421.000000,1158.500000,1429.000000,1166.500000,0.000000,""};
-item36[] = {"eat",2,4346,1500.000000,1475.000000,1600.000000,1525.000000,0.000000,"eat"};
+item36[] = {"eat",2,250,1500.000000,1475.000000,1600.000000,1525.000000,0.000000,"eat"};
 item37[] = {"finished",4,218,1500.000000,1400.000000,1600.000000,1450.000000,0.000000,"finished"};
 item38[] = {"ending_anim",2,250,1500.000000,1325.000000,1600.000000,1375.000000,0.000000,"ending anim"};
 item39[] = {"true",8,218,1500.000000,1250.000000,1600.000000,1300.000000,0.000000,"true"};
@@ -140,8 +140,8 @@ link69[] = {62,63};
 link70[] = {64,25};
 link71[] = {64,65};
 link72[] = {65,27};
-globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,915.254150,2093.386963,1807.698120,881.393921,1207,949,1};
-window[] = {2,-1,-1,-1,-1,822,156,1556,156,3,1225};
+globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,552.154053,1730.287842,1919.948730,993.643555,1207,949,1};
+window[] = {2,-1,-1,-1,-1,796,130,1530,130,3,1225};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -440,7 +440,7 @@ class FSM
                                          "	if ((diag_ticktime - _soundLast) >= 420) then" \n
                                          "	{" \n
                                          "		_moan = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_MoanArray"");" \n
-                                         "		[_zombieAgent, _moan] remoteExecCall [""Say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
+                                         "		[_zombieAgent, _moan] remoteExecCall [""Say3D"", SM_NearbyPlayers];" \n
                                          "		_soundLast = diag_ticktime;" \n
                                          "	};" \n
                                          "" \n
@@ -577,7 +577,7 @@ class FSM
                          "" \n
                          """Zombie FSM ended, passing to another target"" call SM_fnc_log;" \n
                          "" \n
-                         "[(netID vehicle _target), (netID _zombieAgent)] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
+                         "[netID _target, netID _zombieAgent] remoteExecCall [""SM_fnc_transferOwnership"", 2];" \n
                          "" \n
                          "true"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -686,7 +686,7 @@ class FSM
                         name = "eat";
                         itemno = 36;
                         init = /*%FSM<STATEINIT""">*/"_Eating = selectRandom getArray (configFile >> ""SM_Zombz"" >> ""SM_EatingArray"");" \n
-                         "[_zombieAgent, _Eating] remoteExecCall [""say3D"", _zombieAgent nearEntities [""C_man_p_beggar_F"",30]];" \n
+                         "[_zombieAgent, _Eating] remoteExecCall [""say3D"", SM_NearbyPlayers];" \n
                          "" \n
                          "_eatingAnimation = selectRandom" \n
                          "[" \n
@@ -764,7 +764,7 @@ class FSM
                 {
                         name = "Distance_Calcula";
                         itemno = 43;
-                        init = /*%FSM<STATEINIT""">*/"_distance = (vehicle _target) call SM_fnc_fetchVehicleSize;"/*%FSM</STATEINIT""">*/;
+                        init = /*%FSM<STATEINIT""">*/"_distance = _target call SM_fnc_fetchVehicleSize;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -798,7 +798,7 @@ class FSM
                 {
                         name = "Start_Attack";
                         itemno = 45;
-                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombieAgent, (vehicle _target), _soundLast] call SM_fnc_zombieStartAttack;" \n
+                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombieAgent, _target, _soundLast] call SM_fnc_zombieStartAttack;" \n
                          "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -822,7 +822,7 @@ class FSM
                 {
                         name = "damage";
                         itemno = 47;
-                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombieAgent, (vehicle _target), _soundLast, _distance] call SM_fnc_zombieAttackTarget;" \n
+                        init = /*%FSM<STATEINIT""">*/"_soundLast = [_zombieAgent, _target, _soundLast, _distance] call SM_fnc_zombieAttackTarget;" \n
                          "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links

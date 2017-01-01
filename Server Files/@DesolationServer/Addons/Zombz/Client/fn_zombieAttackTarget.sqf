@@ -22,7 +22,7 @@ if ((animationState _zombieAgent) isEqualTo "unconscious") exitWith { _soundLast
 if ((diag_tickTime - _soundLast) >= 3) then
 {
 	_aggressive = selectRandom getArray (configFile >> "SM_Zombz" >> "SM_AggressiveArray");
-	[_zombieAgent, _aggressive] remoteExecCall ["Say3D", _zombieAgent nearEntities ["C_man_p_beggar_F",30]];
+	[_zombieAgent, _aggressive] remoteExecCall ["Say3D", SM_NearbyPlayers];
 	_soundLast = diag_tickTime;
 };
 
@@ -57,7 +57,7 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 					if ((random 5) < 1) then
 					{
 						_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
-						[_x, _screamSound] remoteExecCall ["Say3D", _x nearEntities ["C_man_p_beggar_F",30]];
+						[_x, _screamSound] remoteExecCall ["Say3D", SM_NearbyPlayers];
 					};
 
 					//--- TODO: Replace this "call" with an actual function
@@ -80,7 +80,7 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 		};
 
 		_vehicleHit = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_VehicleHitArray"));
-		[_zombieAgent, _vehicleHit] remoteExecCall ["Say3D", _zombieAgent nearEntities ["C_man_p_beggar_F",30]];
+		[_zombieAgent, _vehicleHit] remoteExecCall ["Say3D", SM_NearbyPlayers];
 
 		_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_infectionEnabled) then
@@ -97,7 +97,7 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 
 		_screamSound = selectRandom (getArray (configFile >> "SM_Zombz" >> "SM_ScreamArray")); 
 
-		[_target, _screamSound] remoteExecCall ["Say3D", _target nearEntities ["C_man_p_beggar_F",30]];
+		[_target, _screamSound] remoteExecCall ["Say3D", SM_NearbyPlayers];
 
 		_velocityEnabled = ["velocityEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_velocityEnabled) then

@@ -33,6 +33,7 @@ SM_InfectionDOT = 0;
 SM_IsImmune = false;
 SM_isImmuneStart = diag_tickTime;
 
+[] call SM_fnc_checkPlayers;
 [] call SM_fnc_zombieInit;
 
 diag_log format["SM_Zombz %1: Finished Init!", _version];
