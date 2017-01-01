@@ -12,7 +12,7 @@
 DS_var_finishedVehicles = false;
 DS_var_finishedLoot = false;
 SM_var_finishedZombies = false;
-_password = bis_functions_mainscope getVariable ["DS_ServerCommandPassword", ""];
+_password = bis_functions_mainscope getVariable ["ServerCommandPassword_DS", ""];
 diag_log ("SERVER LOCKING > PASSWORD: " + _password);
 _password serverCommand "#lock";
 diag_log "SERVER LOCKING > LOCKED";

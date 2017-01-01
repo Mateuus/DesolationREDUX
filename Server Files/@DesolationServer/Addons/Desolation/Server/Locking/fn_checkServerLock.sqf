@@ -10,9 +10,9 @@
  */
 
  
-_password = bis_functions_mainscope getVariable ["DS_ServerCommandPassword", ""];
+_password = bis_functions_mainscope getVariable ["ServerCommandPassword_DS", ""];
 if(DS_var_finishedVehicles && DS_var_finishedLoot && SM_var_finishedZombies) then {
-	bis_functions_mainscope setVariable ["DS_ServerCommandPassword",nil,true]; //--- wipe security vulnerability 
+	bis_functions_mainscope setVariable ["ServerCommandPassword_DS",nil,true]; //--- wipe security vulnerability 
 	_password serverCommand "#unlock";
 	diag_log "SERVER LOCKING > UNLOCKED";
 };
