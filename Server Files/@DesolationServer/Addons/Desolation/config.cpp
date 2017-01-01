@@ -228,7 +228,7 @@ class CfgFunctions
 			file = "Desolation\Server\Locking";
 			isserver = 1;
 			class checkServerLock {};
-			class initServerLock {};
+			class initLock {};
 		};
 		class Server_Functions {
 			file = "Desolation\Server\Functions";

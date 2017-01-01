@@ -23,7 +23,7 @@ if !(_debug) then {
 addMissionEventHandler ["PlayerDisconnected", DS_fnc_playerDisconnected];
 addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
-call DS_fnc_initServerLock;
+call DS_fnc_initLock;
 
 // start vehicle & object spawns
 [] spawn DS_fnc_spawnVehicles;
