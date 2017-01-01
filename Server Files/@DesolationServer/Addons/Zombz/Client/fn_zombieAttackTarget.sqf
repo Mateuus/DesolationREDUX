@@ -75,7 +75,8 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 							};
 						};
 					} remoteExecCall ["call",_x];
-				} foreach (crew vehicle _target); 	
+					true
+				} count (crew vehicle _target); 	
 			};
 		};
 

@@ -47,8 +47,9 @@ if !(isNull _zombieAgent) then
 	{
 		uiSleep 5;
 		{
-			deleteVehicle _x
-		} forEach _this;
+			deleteVehicle _x;
+			true
+		} count _this;
 	};
 };
 

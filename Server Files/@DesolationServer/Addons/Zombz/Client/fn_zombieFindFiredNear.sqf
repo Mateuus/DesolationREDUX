@@ -34,7 +34,8 @@ _pos = [];
 		_distance = _distanceEnemy;
 		_pos = _x;
 	};
-} forEach _firedNear;
+	true
+} count _firedNear;
 
 _zombieAgent setVariable ["SM_FiredNear",nil];
 

@@ -138,6 +138,7 @@ _distance = 1000;
 			_target = vehicle _unit;
 		};
 	};
-} forEach _targets;
+	true
+} count _targets;
 
 _target

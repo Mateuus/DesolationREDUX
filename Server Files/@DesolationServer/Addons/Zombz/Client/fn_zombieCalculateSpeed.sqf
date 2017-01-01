@@ -15,12 +15,11 @@
 	Description: SM_Zombz desolation redux edition.
 */
 
-params [["_zombieAgent", objNull],["_zombieDefaultSpeed", 0],"_building","_zombieIsInBuilding","_zombieisFaster"];
+params [["_zombieAgent", objNull],["_zombieDefaultSpeed", 0],"_building","_zombieIsInBuilding","_zombieisFaster","_buildingBox","_box0","_box1","_xm","_ym","_zm","_xmm","_ymm","_zmm","_zombiePos","_zmx","_zmy","_zmz"];
 _building = nearestBuilding _zombieAgent;
 _zombieIsInBuilding = false;
 if !(isNull _building) then
 {
-	private["_buildingBox","_box0","_box1","_xm","_ym","_zm","_xmm","_ymm","_zmm","_zombiePos","_zmx","_zmy","_zmz"];
 	_buildingBox = boundingBoxReal _building;
 	_box0 = _building modelToWorld (_buildingBox select 0);
 	_box1 = _building modelToWorld (_buildingBox select 1);

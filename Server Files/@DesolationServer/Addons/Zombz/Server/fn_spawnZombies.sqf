@@ -57,7 +57,8 @@ if (_zombiesPerTown > _maxZombies) then
 			_leftOverZombies = _leftOverZombies - 1;
 		};
 	};
-} forEach _towns;
+	true
+} count _towns;
 
 // There was an issue spawning a zombie, so randomly spawn the left overs around the map.
 if (_leftOverZombies > 0) then
