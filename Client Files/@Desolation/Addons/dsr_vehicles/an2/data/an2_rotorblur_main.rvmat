@@ -1,0 +1,4 @@
+class StageTI
+{
+	texture="dsr_vehicles\an2\data\vrtule_blur_ca.paa";
+};
