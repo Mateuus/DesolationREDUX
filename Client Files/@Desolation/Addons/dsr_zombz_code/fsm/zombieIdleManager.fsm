@@ -23,8 +23,8 @@ link8[] = {7,1};
 link9[] = {7,2};
 link10[] = {8,7};
 link11[] = {9,3};
-globals[] = {0.000000,0,0,0,0,640,480,2,15,6316128,1,764.445557,1365.026978,1426.870605,817.947388,936,949,1};
-window[] = {2,-1,-1,-1,-1,926,260,1410,260,3,954};
+globals[] = {0.000000,0,0,0,0,640,480,2,15,6316128,1,897.910889,1327.021973,1340.043457,904.507202,935,949,1};
+window[] = {2,-1,-1,-1,-1,1170,172,1322,504,3,953};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -213,7 +213,8 @@ class FSM
                                         condition=/*%FSM<CONDITION""">*/"// This only needs to be checked if there are zombies on the players client.." \n
                                          "// only issue is if the zombie is constantly targeting someone, i doubt this would cause any issues..." \n
                                          "(diag_ticktime - _nearbyPlayersCheck) >= 25"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_checkPlayers;"/*%FSM</ACTION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_checkPlayers;" \n
+                                         "_nearbyPlayersCheck = diag_ticktime;"/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
                                 /*%FSM<LINK "Timeout">*/

@@ -16,8 +16,9 @@
 */
 
 params ["_zombieAgent"];
+private["_target","_targets"];
 
-if !((player distance _zombieAgent) > 1000) exitWith { ["", netID _zombieAgent] remoteExecCall ["SM_fnc_transferOwnership", 2]; objNull };
+if ((player distance _zombieAgent) > 1000) exitWith { ["", netID _zombieAgent] remoteExecCall ["SM_fnc_transferOwnership", 2]; objNull };
 
 if ((face _zombieAgent) isEqualTo "SM_ZombzNoFace") exitWith { objNull };
 
@@ -25,15 +26,13 @@ _target = objNull;
 
 _targets = SM_NearbyPlayers;
 _smokes = _zombieAgent nearEntities ["SmokeShell", 1000];
-if !(_smokes isEqualTo []) then
-{
-	_targets append _smokes;
-};
+_targets append _smokes;
 
 _passed = false;
 _distance = 1000;
 {
 	_unit = _x;
+	if (isNull _unit) exitWith { false };
 	_tmpDistace = _unit distance _zombieAgent;
 	_isvisible = _tmpDistace <= _distance;
 	_detectionnumber = 0;
