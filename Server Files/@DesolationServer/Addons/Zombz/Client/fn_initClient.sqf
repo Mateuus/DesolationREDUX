@@ -20,11 +20,6 @@ if !(["Enabled","SM"] call SM_fnc_getCfgValue) exitWith {};
 private _version = getText(configFile >> "CfgPatches" >> "DSR_Zombz_code" >> "version");
 diag_log format["SM_Zombz %1: Starting Init!", _version];
 
-if !(isMultiplayer) exitWith 
-{
-	diag_log format["SM_Zombz %1: Finished Init, but was exited due to not being in a multiplayer session!", _version];
-};
-
 // wait until the preinit for the mod has completed
 waitUntil {!isNil "SM_fnc_zombieInit"};
 

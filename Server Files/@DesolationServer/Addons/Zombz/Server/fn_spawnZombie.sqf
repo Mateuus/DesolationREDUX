@@ -67,15 +67,17 @@ try
 
 	if (_positionToSpawnZombie isEqualTo []) then
 	{
-		// calculate a random postion based on the center positon.
-		_radius = floor random 15;
-		_angle = floor random 360;
+		// Why the fuck does this throw there are no roads near a damn town?!?!?
 		_roads = _center nearRoads 200;
 
 		// Error checking to make sure there are roads nearby.
 		if (_roads isEqualTo []) throw "No valid roads to spawn a zombie on";
 
 		_center = getPosATL (selectRandom _roads);
+
+		// calculate a random postion based on the center positon.
+		_radius = floor random 15;
+		_angle = floor random 360;
 		_positionToSpawnZombie = [round ((_center select 0) + (_radius * (cos _angle))), round((_center select 1) + (_radius * (sin _angle)))];	
 	};
 
