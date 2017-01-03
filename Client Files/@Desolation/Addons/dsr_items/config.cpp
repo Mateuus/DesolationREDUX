@@ -51,6 +51,7 @@ class CfgMagazines
 	};
 	
 	//--- DSR Items
+		//--- Vehicle Parts
 	class dsr_engine_block: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
@@ -96,6 +97,35 @@ class CfgMagazines
 		model = "\dsr_items\saw\saw.p3d";
 		mass = 25;
 	};
+	class dsr_toolbox: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Toolbox";
+		model = "\dsr_items\tools\dsr_toolbox.p3d";
+		mass = 25;
+	};
+		//--- Medical
+	class dsr_medical_splint: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Splint";
+		model = "\dsr_items\medical\splint\dsr_splint.p3d";
+		mass = 25;
+	};
+	class dsr_medical_bloodbag: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Blood Bag";
+		model = "\dsr_items\medical\bloodbag\dsr_bloodbag.p3d";
+		mass = 25;
+	};
+		//--- Food
 	class dsr_food_tuna: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
@@ -105,15 +135,7 @@ class CfgMagazines
 		model = "\dsr_items\tuna\tuna.p3d";
 		mass = 25;
 	};
-	class dsr_glass_part: dsr_item_base
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Vehicle Glass";
-		model = "\dsr_items\materials\dsr_part_glass.p3d";
-		mass = 25;
-	};
+		//--- Materials
 	class dsr_scrap_metal: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
@@ -220,15 +242,6 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Broken Fishing Rod";
 		model = "\dsr_items\tools\dsr_fishingrod_broken.p3d";
-		mass = 25;
-	};
-	class dsr_toolbox: dsr_item_base
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Toolbox";
-		model = "\dsr_items\tools\dsr_toolbox.p3d";
 		mass = 25;
 	};
 	class dsr_wateringcan: dsr_item_base
