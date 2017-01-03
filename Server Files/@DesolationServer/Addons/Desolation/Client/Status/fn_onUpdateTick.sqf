@@ -20,8 +20,8 @@ if(player getVariable ["SVAR_DS_var_Thirst",0] != DS_var_Thirst) then {
 if(player getVariable ["SVAR_DS_var_Hunger",0] != DS_var_Hunger) then {
 	player setVariable ["SVAR_DS_var_Hunger",DS_var_Hunger,true];
 };
-if(!isNil "SM_infectionDOT") then {
-	if(player getVariable ["SVAR_SM_infectionDOT",0] != SM_infectionDOT) then {
-		player setVariable ["SVAR_SM_infectionDOT",SM_infectionDOT,true];
+if(!isNil "DS_var_InfectionDOT") then {
+	if(player getVariable ["SVAR_DS_var_InfectionDOT",0] != SM_infectionDOT) then {
+		player setVariable ["SVAR_DS_var_InfectionDOT",SM_infectionDOT,true];
 	};
 };
