@@ -21,7 +21,7 @@ if !(_player == _vehiclePlayer) exitWith
 
 if (2 call DS_fnc_doAction) then
 {
-	if !("dsr_vehicle_tire_part" in (magazines _player)) exitWith
+	if !("dsr_item_tirepart" in (magazines _player)) exitWith
 	{
 		systemChat "You do not have the required tire to repair!";
 	};
@@ -29,7 +29,7 @@ if (2 call DS_fnc_doAction) then
 	{
 		systemChat "You must get in the driver seat first!";
 	};
-	_player removeMagazine "dsr_vehicle_tire_part";
+	_player removeMagazine "dsr_item_tirepart";
 	_hitpoints = getAllHitPointsDamage _target;
 	_names = _hitpoints select 0;
 	_values = _hitpoints select 2;

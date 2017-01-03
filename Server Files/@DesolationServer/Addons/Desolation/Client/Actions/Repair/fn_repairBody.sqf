@@ -21,7 +21,7 @@ if !(_player == _vehiclePlayer) exitWith
 
 if (2 call DS_fnc_doAction) then
 {
-	if !("dsr_scrap_metal" in (magazines _player)) exitWith
+	if !("dsr_item_scrapmetal" in (magazines _player)) exitWith
 	{
 		systemChat "You do not have the required sheet metal to repair!";
 	};
@@ -29,7 +29,7 @@ if (2 call DS_fnc_doAction) then
 	{
 		systemChat "You must get in the driver seat first!";
 	};
-	_player removeMagazine "dsr_scrap_metal";
+	_player removeMagazine "dsr_item_scrapmetal";
 	_target setHitPointDamage ["HitBody", 0];
 	systemChat "You have succesfully repaired the body!";
 	["updateVehicle","",[_target]] remoteExec ["DS_fnc_dbRequest", 2];

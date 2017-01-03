@@ -21,7 +21,7 @@ if !(_player == _vehiclePlayer) exitWith
 
 if (2 call DS_fnc_doAction) then
 {
-	if !("dsr_engine_block" in (magazines _player)) exitWith
+	if !("dsr_item_engineblock" in (magazines _player)) exitWith
 	{
 		systemChat "You do not have the required engine block to repair!";
 	};
@@ -29,7 +29,7 @@ if (2 call DS_fnc_doAction) then
 	{
 		systemChat "You must get in the driver seat first!";
 	};
-	_player removeMagazine "dsr_engine_block";
+	_player removeMagazine "dsr_item_engineblock";
 	_target setHitPointDamage ["HitEngine", 0];
 	systemChat "You have succesfully repaired the engine block!";
 	["updateVehicle","",[_target]] remoteExec ["DS_fnc_dbRequest", 2];

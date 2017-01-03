@@ -21,7 +21,7 @@ if !(_player == _vehiclePlayer) exitWith
 
 if (2 call DS_fnc_doAction) then
 {
-	if !("dsr_vehicle_gas_tank" in (magazines _player)) exitWith
+	if !("dsr_item_gastank" in (magazines _player)) exitWith
 	{
 		systemChat "You do not have the required gas tank to repair!";
 	};
@@ -29,7 +29,7 @@ if (2 call DS_fnc_doAction) then
 	{
 		systemChat "You must get in the driver seat first!";
 	};
-	_player removeMagazine "dsr_vehicle_gas_tank";
+	_player removeMagazine "dsr_item_gastank";
 	_target setHitPointDamage ["HitFuel", 0];
 	systemChat "You have succesfully repaired the fuel tank!";
 	["updateVehicle","",[_target]] remoteExec ["DS_fnc_dbRequest", 2];

@@ -47,7 +47,7 @@ else
 
 if ((_isSupp) && (_distance > 20)) exitWith {};
 _cal = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
-if (!(_isSupp) && (_distance > (150 * _cal)) exitWith {};
+if (!(_isSupp) && (_distance > (150 * _cal))) exitWith {};
 
 _firedPosition = position _fired;
 _zombieVariable = _zombieAgent getVariable ["SM_FiredNear", []];

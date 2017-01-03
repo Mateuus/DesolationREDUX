@@ -21,7 +21,7 @@ if !(_player == _vehiclePlayer) exitWith
 
 if (2 call DS_fnc_doAction) then
 {
-	if !("dsr_glass_part" in (magazines _player)) exitWith
+	if !("dsr_items_glasspart" in (magazines _player)) exitWith
 	{
 		systemChat "You do not have the required glass to repair!";
 	};
@@ -29,7 +29,7 @@ if (2 call DS_fnc_doAction) then
 	{
 		systemChat "You must get in the driver seat first!";
 	};
-	_player removeMagazine "dsr_glass_part";
+	_player removeMagazine "dsr_items_glasspart";
 	_hitpoints = getAllHitPointsDamage _target;
 	_names = _hitpoints select 0;
 	_values = _hitpoints select 2;

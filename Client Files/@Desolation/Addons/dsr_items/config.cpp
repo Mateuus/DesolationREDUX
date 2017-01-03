@@ -70,6 +70,15 @@ class CfgMagazines
 		model = "\dsr_items\vehicle_gas_tank\vehicle_gas_tank.p3d";
 		mass = 100;
 	};
+	class dsr_items_glasspart: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Vehicle Glass";
+		model = "\dsr_items\materials\dsr_part_glass.p3d";
+		mass = 100;
+	};
 	class dsr_item_tirepart: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
