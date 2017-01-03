@@ -52,7 +52,7 @@ class CfgMagazines
 	
 	//--- DSR Items
 		//--- Vehicle Parts
-	class dsr_engine_block: dsr_item_base
+	class dsr_item_engineblock: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -61,7 +61,7 @@ class CfgMagazines
 		model = "\dsr_items\engine_repair\engine_repair.p3d";
 		mass = 150;
 	};
-	class dsr_vehicle_gas_tank: dsr_item_base
+	class dsr_item_gastank: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -70,7 +70,7 @@ class CfgMagazines
 		model = "\dsr_items\vehicle_gas_tank\vehicle_gas_tank.p3d";
 		mass = 100;
 	};
-	class dsr_vehicle_tire_part: dsr_item_base
+	class dsr_item_tirepart: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -79,136 +79,141 @@ class CfgMagazines
 		model = "\dsr_items\tire_part\tire_part.p3d";
 		mass = 100;
 	};
-	class dsr_tools_spanner: dsr_item_base
+	class dsr_item_spanner: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Spanner Wrench";
 		model = "\dsr_items\spanner\spanner.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_tools_saw: dsr_item_base
+	class dsr_item_saw: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Saw";
 		model = "\dsr_items\saw\saw.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_toolbox: dsr_item_base
+	class dsr_item_toolbox: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Toolbox";
 		model = "\dsr_items\tools\dsr_toolbox.p3d";
-		mass = 25;
+		mass = 10;
 	};
 		//--- Medical
-	class dsr_medical_splint: dsr_item_base
+	class dsr_item_splint: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Splint";
 		model = "\dsr_items\medical\splint\dsr_splint.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_medical_bloodbag: dsr_item_base
-	{
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Blood Bag";
+	class dsr_item_bloodbag_empty : dsr_item_base {
+		displayName = "Empty Bloodbag";
 		model = "\dsr_items\medical\bloodbag\dsr_bloodbag.p3d";
-		mass = 25;
+		descriptionShort = "An empty bloodbag.";
+		descriptionUse = "TODO";
+		mass = 5;
+	};
+	class dsr_item_bloodbag_full : dsr_item_base {
+		displayName = "Full Bloodbag";
+		model = "\dsr_items\medical\bloodbag\dsr_bloodbag.p3d";
+		descriptionShort = "A bloodbag filled with blood.";
+		descriptionUse = "TODO";
+		mass = 5;
 	};
 		//--- Food
-	class dsr_food_tuna: dsr_item_base
+	class dsr_item_tuna: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Tuna";
 		model = "\dsr_items\tuna\tuna.p3d";
-		mass = 25;
+		mass = 5;
 	};
 		//--- Materials
-	class dsr_scrap_metal: dsr_item_base
+	class dsr_item_scrapmetal: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Scrap Metal";
 		model = "\dsr_items\materials\dsr_scrap_metal.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_battery_car: dsr_item_base
+	class dsr_item_carbattery: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Car Battery";
 		model = "\dsr_items\materials\dsr_battery_car.p3d";
-		mass = 25;
+		mass = 10;
 	};
-	class dsr_bricks: dsr_item_base
+	class dsr_item_bricks: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Bricks";
 		model = "\dsr_items\materials\dsr_bricks.p3d";
-		mass = 25;
+		mass = 10;
 	};
-	class dsr_drum_plastic: dsr_item_base
+	class dsr_item_plasticdrum: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Plastic Drum";
 		model = "\dsr_items\materials\dsr_drum_plastic.p3d";
-		mass = 25;
+		mass = 10;
 	};
-	class dsr_ducttape: dsr_item_base
+	class dsr_item_ducttape: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Duct Tape";
 		model = "\dsr_items\materials\dsr_ducttape.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_electricalcomp: dsr_item_base
+	class dsr_item_electricalcomp: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Electrical Components";
 		model = "\dsr_items\materials\dsr_electricalcomp.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_hardware: dsr_item_base
+	class dsr_item_hardware: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Hardware Box";
 		model = "\dsr_items\materials\dsr_hardware.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_logs: dsr_item_base
+	class dsr_item_logs: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Wood Logs";
 		model = "\dsr_items\materials\dsr_logs.p3d";
-		mass = 25;
+		mass = 50;
 	};
-	class dsr_lumber: dsr_item_base
+	class dsr_item_lumber: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -217,7 +222,7 @@ class CfgMagazines
 		model = "\dsr_items\materials\dsr_lumber.p3d";
 		mass = 25;
 	};
-	class dsr_plywood: dsr_item_base
+	class dsr_item_plywood: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
@@ -226,32 +231,32 @@ class CfgMagazines
 		model = "\dsr_items\materials\dsr_plywood.p3d";
 		mass = 25;
 	};
-	class dsr_seedpack: dsr_item_base
+	class dsr_item_seedpack: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Pack of Seeds";
 		model = "\dsr_items\materials\dsr_seedpack.p3d";
-		mass = 25;
+		mass = 5;
 	};
-	class dsr_fishingrod_broken: dsr_item_base
+	class dsr_item_fishingrod_broken: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Broken Fishing Rod";
 		model = "\dsr_items\tools\dsr_fishingrod_broken.p3d";
-		mass = 25;
+		mass = 15;
 	};
-	class dsr_wateringcan: dsr_item_base
+	class dsr_item_wateringcan: dsr_item_base
 	{
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Watering Can";
 		model = "\dsr_items\tools\dsr_wateringcan.p3d";
-		mass = 25;
+		mass = 10;
 	};
 	
 	//--- A3 items
@@ -794,20 +799,6 @@ class CfgMagazines
 		displayName = "Bandage";
 		model = "\A3\Structures_F_EPA\Items\Medical\Bandage_F.p3d";
 		descriptionShort = "A bandage wrap for treating bleeding wounds.";
-		descriptionUse = "TODO";
-		mass = 5;
-	};
-	class dsr_item_bloodbag_empty : dsr_item_base {
-		displayName = "Empty Bloodbag";
-		model = "\A3\Structures_F_EPA\Items\Medical\BloodBag_F.p3d";
-		descriptionShort = "An empty bloodbag.";
-		descriptionUse = "TODO";
-		mass = 5;
-	};
-	class dsr_item_bloodbag_full : dsr_item_base {
-		displayName = "Full Bloodbag";
-		model = "\A3\Structures_F_EPA\Items\Medical\BloodBag_F.p3d";
-		descriptionShort = "A bloodbag filled with blood.";
 		descriptionUse = "TODO";
 		mass = 5;
 	};

@@ -119,11 +119,19 @@ class CfgMagazines {
 		};
 	};
 	//--- medical
+	class dsr_item_splint {
+		class Actions {
+			class Use : Action_Use {
+				condition = "!(isNil 'ds_fnc_usesplint') && ((player getHitPointDamage 'HitLegs') > 0)";
+				action = "[_classname] spawn ds_fnc_usesplint";
+			};
+		};
+	};
 	class dsr_item_antibiotic {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_useantibotic')";
-				action = "[] spawn ds_fnc_useantibotic";
+				action = "[_classname] spawn ds_fnc_useantibotic";
 			};
 		};
 	};
@@ -131,7 +139,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usebandage')";
-				action = "[] spawn ds_fnc_usebandage";
+				action = "[_classname] spawn ds_fnc_usebandage";
 			};
 		};
 	};
@@ -139,7 +147,7 @@ class CfgMagazines {
 		class Actions {
 			class Fill : Action_Fill {
 				condition = "!(isNil 'ds_fnc_fillblood')";
-				action = "[] spawn ds_fnc_fillblood";
+				action = "[_classname] spawn ds_fnc_fillblood";
 			};
 		};
 	};
@@ -147,7 +155,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_useblood') && !isNil 'ds_var_blood'";
-				action = "[] spawn ds_fnc_useblood";
+				action = "[_classname] spawn ds_fnc_useblood";
 			};
 			class Drink : Action_Drink {};
 		};
@@ -156,7 +164,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usedefib') && cursorObject isKindOf 'man' && !isPlayer cursorObject && !alive cursorObject";
-				action = "[] spawn ds_fnc_usedefib";
+				action = "[_classname] spawn ds_fnc_usedefib";
 			};
 		};
 	};
@@ -164,7 +172,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usedisinfectant')";
-				action = "[] spawn ds_fnc_usedisinfectant";
+				action = "[_classname] spawn ds_fnc_usedisinfectant";
 			};
 		};
 	};
@@ -172,7 +180,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usehandwarmer')";
-				action = "[] spawn ds_fnc_usehandwarmer";
+				action = "[_classname] spawn ds_fnc_usehandwarmer";
 			};
 		};
 	};
@@ -180,7 +188,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usepainkillers')";
-				action = "[] spawn ds_fnc_usepainkillers";
+				action = "[_classname] spawn ds_fnc_usepainkillers";
 			};
 		};
 	};
@@ -188,7 +196,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usevitamins')";
-				action = "[] spawn ds_fnc_usevitamins";
+				action = "[_classname] spawn ds_fnc_usevitamins";
 			};
 		};
 	};
@@ -196,7 +204,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usewpt')";
-				action = "[] spawn ds_fnc_usewpt";
+				action = "[_classname] spawn ds_fnc_usewpt";
 			};
 		};
 	};
@@ -215,7 +223,7 @@ class CfgMagazines {
 		class Actions {
 			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_lightfire')";
-				action = "[] spawn ds_fnc_lightfire";
+				action = "[_classname] spawn ds_fnc_lightfire";
 			};
 		};
 	};
