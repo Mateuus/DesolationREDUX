@@ -24,6 +24,38 @@ _tickLoss = (_numLevels^2) * 5;
 DS_var_Blood = DS_var_Blood - _tickLoss;
 
 
+if(DS_var_Blood != 27500) then {
+	//--- blood loss ppeffect
+	if (isNil "DS_var_bloodEffect") then
+	{
+		DS_var_bloodEffect = ppEffectCreate ["ColorCorrections", 1500];
+		DS_var_bloodEffect ppEffectEnable true;
+		
+		DS_var_bEffectSaturation = 1;
+	};
+	
+	
+	_newSaturation = DS_var_Blood / 27500;
+	if(DS_var_bEffectSaturation != _newSaturation) then {
+		DS_var_bEffectSaturation = _newSaturation;
+		DS_var_bloodEffect ppEffectAdjust [
+			1, 
+			1, 
+			0, 
+			0, 0, 0, 0, 
+			0, 0, 0, 0, 
+			DS_var_bEffectSaturation, DS_var_bEffectSaturation, DS_var_bEffectSaturation, 0
+		]; 
+		DS_var_InfectionEffect ppEffectCommit 3;
+	};
+} else {
+	if(!isNil "DS_var_bloodEffect") then {
+		ppEffectDestroy DS_var_bloodEffect;
+		DS_var_bloodEffect = nil;
+	};
+};
+
+
 // 5.5L of blood in the body
 // 20% = feels weak (can't run, may stumble)
 // 35% = falling unconscious

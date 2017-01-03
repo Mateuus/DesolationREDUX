@@ -21,8 +21,8 @@ if(count(_sourcesinfo) > 0) then {
 		DS_var_isBleeding = false;
 	};
 };
+call ds_fnc_onInfectionTick;
 call ds_fnc_onHungerTick;
 call ds_fnc_onThirstTick;
-call SM_fnc_infectionTick;
 call ds_fnc_onEffectTick;
 call ds_fnc_onUpdateTick;

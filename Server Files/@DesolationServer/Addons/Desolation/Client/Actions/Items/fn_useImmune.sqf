@@ -12,8 +12,8 @@
 // Kegan made me syntax
 params["_classname"];
 _success = {
-	SM_isImmune = true;
-	SM_isImmuneStart = diag_tickTime;
+	DS_var_Immune = true;
+	DS_var_lastImmune = diag_tickTime;
 };
 _failure = {
 	private["_type"];

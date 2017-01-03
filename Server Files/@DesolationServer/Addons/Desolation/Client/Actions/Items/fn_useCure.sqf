@@ -11,7 +11,7 @@
 
 params["_classname"];
 _success = {
-	SM_InfectionDOT = 0;
+	DS_var_InfectionDOT = 0;
 };
 _failure = {
 	private["_type"];

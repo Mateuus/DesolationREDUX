@@ -18,3 +18,6 @@ DS_var_isStarving = false;
 DS_var_lastAte = diag_tickTime;
 DS_var_lastDrank = diag_tickTime;
 DS_var_lastKnockout = 0;
+DS_var_InfectionDOT = 0;
+DS_var_Immune = false;
+DS_var_lastImmune = diag_tickTime;

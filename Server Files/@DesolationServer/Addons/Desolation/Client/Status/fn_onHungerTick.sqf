@@ -18,6 +18,6 @@ if(diag_tickTime > (DS_var_lastAte + 5400)) then { // 1.5 hour grace
 	};
 } else {
 	if(DS_var_isStarving) then {
-		DS_var_isStarving = true;
+		DS_var_isStarving = false;
 	};
 };
