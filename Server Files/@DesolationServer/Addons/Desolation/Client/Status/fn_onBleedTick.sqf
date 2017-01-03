@@ -25,7 +25,6 @@ DS_var_Blood = DS_var_Blood - _tickLoss;
 
 
 if(DS_var_Blood != 27500) then {
-	//--- blood loss ppeffect
 	if (isNil "DS_var_bloodEffect") then
 	{
 		DS_var_bloodEffect = ppEffectCreate ["ColorCorrections", 1500];
@@ -38,15 +37,8 @@ if(DS_var_Blood != 27500) then {
 	_newSaturation = DS_var_Blood / 27500;
 	if(DS_var_bEffectSaturation != _newSaturation) then {
 		DS_var_bEffectSaturation = _newSaturation;
-		DS_var_bloodEffect ppEffectAdjust [
-			1, 
-			1, 
-			0, 
-			0, 0, 0, 0, 
-			0, 0, 0, 0, 
-			DS_var_bEffectSaturation, DS_var_bEffectSaturation, DS_var_bEffectSaturation, 0
-		]; 
-		DS_var_InfectionEffect ppEffectCommit 3;
+		DS_var_bloodEffect ppEffectAdjust ([_newSaturation] call DS_fnc_calcGrayscale); 
+		DS_var_bloodEffect ppEffectCommit 3;
 	};
 } else {
 	if(!isNil "DS_var_bloodEffect") then {

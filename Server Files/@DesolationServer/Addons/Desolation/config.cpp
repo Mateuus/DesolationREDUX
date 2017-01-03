@@ -235,6 +235,7 @@ class CfgFunctions
 			isserver = 1;
 			class getCfgValue {};
 			class shuffleArray {};
+			class calcGrayscale {};
 			class genRandMapPos {};
 		};
 		class Server {
