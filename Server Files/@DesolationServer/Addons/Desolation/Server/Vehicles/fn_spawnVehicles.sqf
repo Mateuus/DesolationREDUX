@@ -150,8 +150,10 @@ diag_log format["Spawning vehicles @ %1 houses",count(_houses)];
 						_tv setHitPointDamage [_x,_value];
 					};
 				} forEach _hitpoints;
-				_tv setposasl _posasl;
+				
 				_tv setdir _vDir;
+				_tv setposasl _posasl;
+				
 				_tvs pushBack _tv;
 				_numVtoSpawn = _numVtoSpawn - 1;
 				["spawnVehicle","",[_tv]] call DS_fnc_dbRequest;

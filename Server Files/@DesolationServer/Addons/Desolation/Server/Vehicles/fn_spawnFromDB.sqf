@@ -46,13 +46,14 @@ if(_visible == 1) then {
 		_object lock true;
 	};
 	
+	
+	_object setDir _direction;
 	if(_positiontype == 1) then {
 		_object setPosATL _position;
 	} else {
 		_object setPosASL _position;
 	};
 	_object setVectorUp (_variables select 0);
-	_object setDir _direction;
 	
 	_returnData = [_object,_priority,_object_uuid];
 };
