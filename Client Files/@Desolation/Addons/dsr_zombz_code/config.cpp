@@ -8,6 +8,6 @@ class CfgPatches
 		weapons[] = {};
 		magazines[] = {};
 		ammo[] = {};
-		version = "v0.0.2";
+		version = "v0.0.4";
 	};
 };

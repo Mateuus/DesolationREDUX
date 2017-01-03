@@ -527,13 +527,6 @@ class CfgMagazines
 		descriptionUse = "TODO";
 		mass = 5;
 	};
-	class dsr_item_ducttape : dsr_item_base {
-		displayName = "Duct Tape";
-		model = "\A3\Structures_F_EPA\Items\Tools\DuctTape_F.p3d";
-		descriptionShort = "Duct tape. This shit fixes everything!";
-		descriptionUse = "TODO";
-		mass = 5;
-	};
 	class dsr_item_propane_full : dsr_item_base {
 		displayName = "Full Propane Bottle";
 		model = "\A3\Structures_F_EPA\Items\Tools\GasCanister_F.p3d";
@@ -623,13 +616,6 @@ class CfgMagazines
 		displayName = "Pliers";
 		model = "\A3\Structures_F\Items\Tools\Pliers_F.p3d";
 		descriptionShort = "Pliers.";
-		descriptionUse = "TODO";
-		mass = 5;
-	};
-	class dsr_item_saw : dsr_item_base {
-		displayName = "Saw";
-		model = "\A3\Structures_F\Items\Tools\Saw_F.p3d";
-		descriptionShort = "A saw.";
 		descriptionUse = "TODO";
 		mass = 5;
 	};
