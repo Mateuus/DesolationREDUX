@@ -15,40 +15,43 @@ player addEventHandler ["HandleDamage",{
 	
 	if(!alive _unit) exitWith {false};
 	
-	if(!isNull _shooter) then {
-		if(toLower(_projectile) find "b_" == 0) then {
-			if !(_shooter in DS_var_damagedBy) then {
-				DS_var_damagedBy pushBack _shooter;
-			
-				_bloodLoss = _damage * 27500;
+	_allowDamage = false;
+	_allowArmaDamage = true;
+	
+	if(_damage > 0.1) then {
+		_allowDamage = true;
+		
+		if(!isNull _shooter) then {
+			if(toLower(_projectile) find "b_" == 0) then {
+				_allowArmaDamage = false;
+				if !(_shooter in DS_var_damagedBy) then {
+					DS_var_damagedBy pushBack _shooter;
+				
+					_bloodLoss = _damage * 27500;
+					DS_var_Blood = DS_var_Blood - _bloodLoss;
+				};
+			} else {
+				_bloodLoss = _damage * 8250;
 				DS_var_Blood = DS_var_Blood - _bloodLoss;
 			};
 		} else {
-			_bloodLoss = _damage * 2750;
+			_bloodLoss = _damage * 13750;
 			DS_var_Blood = DS_var_Blood - _bloodLoss;
 		};
-	} else {
-		_bloodLoss = _damage * 2750;
-		DS_var_Blood = DS_var_Blood - _bloodLoss;
-	};
-	if(_selectionName == "legs") then {
-		if(!isNil {_damage}) then {
-			if(_damage > 0.5) then {
-				[] spawn {
- 					player setHitPointDamage ["HitLegs",1];
+		if(_selectionName == "legs") then {
+			if(!isNil {_damage}) then {
+				if(_damage > 0.5) then {
+					[] spawn {
+						player setHitPointDamage ["HitLegs",1];
+					};
 				};
 			};
 		};
-	};
-	if(_selectionName == "head") then {
-		if(!isNil {_damage}) then {
-			if(_damage > 0.1) then {
-				[floor(5 + random(5))] spawn ds_fnc_knockOut;	
-			};
+		if(_selectionName == "head") then {
+			[floor(5 + random(5))] spawn ds_fnc_knockOut;
 		};
 	};
-	
-	(_damage >= 1);
+	((_damage >= 1) && _allowArmaDamage && _allowDamage);
 }];
 player addEventHandler ["Killed",{
 	call DS_fnc_stopBleeding;
