@@ -72,7 +72,7 @@ _distance = 1000;
 
 			if (_isInFront) then 
 			{
-				_detectionnumber = _detectionnumber + 0.25;
+				_detectionnumber = _detectionnumber + 0.50;
 			};
 
 			if (_detectionnumber > 1) then 

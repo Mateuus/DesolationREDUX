@@ -74,6 +74,19 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 								[objNull, selectRandom _selections] call DS_fnc_onHitPartReceived;
 							};
 						};
+						_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
+						if (_infectionEnabled) then
+						{
+							if (DS_var_immune) exitWith {};
+							_infectionChance = ["infectionChance","SM"] call SM_fnc_getCfgValue;
+							if (random 100 < _infectionChance) then
+							{
+								if !(DS_var_infectionDOT >= 1) then
+								{
+									DS_var_infectionDOT = DS_var_InfectionDOT + random 0.25;
+								};
+							};
+						};
 					} remoteExecCall ["call",_x];
 					true
 				} count (crew vehicle _target); 	
@@ -123,13 +136,13 @@ if (((_zombieAgent distance2D _target) <= _distance) && _alive) then
 		_infectionEnabled = ["infectionEnabled","SM"] call SM_fnc_getCfgValue;
 		if (_infectionEnabled) then
 		{
-			if (_target getVariable ["SM_InfectionImmune", false]) exitWith {};
+			if (DS_var_immune) exitWith {};
 			_infectionChance = ["infectionChance","SM"] call SM_fnc_getCfgValue;
 			if (random 100 < _infectionChance) then
 			{
-				if !(SM_InfectionDOT >= 1) then
+				if !(DS_var_infectionDOT >= 1) then
 				{
-					SM_InfectionDOT = SM_InfectionDOT + random 0.25;
+					DS_var_infectionDOT = DS_var_InfectionDOT + random 0.25;
 				};
 			};
 		};

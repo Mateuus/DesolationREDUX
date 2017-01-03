@@ -25,7 +25,6 @@ class CfgFunctions
 			isclient = true;
 			class initClient {};
 			class ZombieInit {};
-			class infectionTick {};
 			class zombieFindTarget {};
 			class zombieCanSee {};
 			class zombieFiredNear {};
