@@ -128,6 +128,7 @@ class CfgFunctions
 			class onDrink {};
 			class onEat {};
 			class onEffectTick {};
+			class onInfectionTick {};
 			class onHungerTick {};
 			class onThirstTick {};
 			class onUpdateTick {};
