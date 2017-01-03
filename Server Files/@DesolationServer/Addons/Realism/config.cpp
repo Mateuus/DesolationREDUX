@@ -20,6 +20,7 @@ class CfgFunctions
 			file = "Realism\Client";
 			isclient = 1;
 			class initRealism {};
+			class blurMonitor {};
 		};
 	};
 };
