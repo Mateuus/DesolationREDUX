@@ -19,11 +19,6 @@ params ["_zombieAgent"];
 
 _firedNear = _zombieAgent getVariable ["SM_FiredNear",[]];
 
-if (_firedNear isEqualTo []) exitWith
-{
-	[]
-};
-
 _distance = 1000;
 _pos = [];
 

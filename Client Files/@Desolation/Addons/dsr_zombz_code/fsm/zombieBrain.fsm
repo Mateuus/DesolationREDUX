@@ -10,7 +10,7 @@ item5[] = {"Local",4,218,1000.000000,1100.000000,1100.000000,1150.000000,0.00000
 item6[] = {"Not_Local",4,218,1125.000000,1025.000000,1225.000000,1075.000000,0.000000,"Not" \n "Local"};
 item7[] = {"Update_Locality",1,250,1250.000000,1025.000000,1350.000000,1075.000000,0.000000,"Update" \n "Locality" \n "Player"};
 item8[] = {"Junction",3,250,625.000000,875.000000,725.000000,925.000000,0.000000,"Junction"};
-item9[] = {"Target_Check",2,250,1000.000000,1175.000000,1100.000000,1225.000000,0.000000,"Target Check"};
+item9[] = {"Target_Check",2,4346,1000.000000,1175.000000,1100.000000,1225.000000,0.000000,"Target Check"};
 item10[] = {"Surface_Water",4,218,500.000000,800.000000,600.000000,850.000000,0.000000,"Surface" \n "Water"};
 item11[] = {"Surface_Not_Wate",4,218,625.000000,800.000000,725.000000,850.000000,0.000000,"Surface" \n "Not" \n "Water"};
 item12[] = {"Go_To_Position",2,250,625.000000,725.000000,725.000000,775.000000,0.000000,"Go" \n "To" \n "Position"};
@@ -27,7 +27,7 @@ item22[] = {"Get_Target_Posit",2,250,750.000000,1175.000000,850.000000,1225.0000
 item23[] = {"True",8,218,625.000000,950.000000,725.000000,1000.000000,0.000000,"True"};
 item24[] = {"Target_Is_Player",4,218,1000.000000,1250.000000,1100.000000,1300.000000,0.000000,"Target" \n "Is" \n "Player"};
 item25[] = {"Not_Local_Target",4,218,1125.000000,1325.000000,1225.000000,1375.000000,0.000000,"Not" \n "Local" \n "Target"};
-item26[] = {"Update_Locality_1",1,4346,1250.000000,1325.000000,1350.000000,1375.000000,0.000000,"Update" \n "Locality" \n "Target"};
+item26[] = {"Update_Locality_1",1,250,1250.000000,1325.000000,1350.000000,1375.000000,0.000000,"Update" \n "Locality" \n "Target"};
 item27[] = {"Alive_Player_Che",2,250,1000.000000,1475.000000,1100.000000,1525.000000,0.000000,"Alive" \n "Player" \n "Check"};
 item28[] = {"Is_Alive",4,218,1000.000000,1550.000000,1100.000000,1600.000000,0.000000,"Is" \n "Alive"};
 item29[] = {"Not_Alive",4,218,1125.000000,1475.000000,1225.000000,1525.000000,0.000000,"Not" \n "Alive"};
@@ -140,8 +140,8 @@ link69[] = {62,63};
 link70[] = {64,25};
 link71[] = {64,65};
 link72[] = {65,27};
-globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,552.154053,1730.287842,1919.948730,993.643555,1207,949,1};
-window[] = {2,-1,-1,-1,-1,796,130,1530,130,3,1225};
+globals[] = {0.000000,0,0,0,0,640,480,2,87,6316128,1,698.828125,1471.801514,1622.959351,1015.211487,1207,949,1};
+window[] = {2,-1,-1,-1,-1,822,156,1556,156,3,1225};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -323,52 +323,10 @@ class FSM
                          "}" \n
                          "else" \n
                          "{" \n
-                         "	if (isPlayer _target) then" \n
+                         "	if !([_zombieAgent, _target] call SM_fnc_zombieCanSee) then" \n
                          "	{" \n
-                         "		_isvisible = (!((vehicle _target) getVariable [""SM_HasZombieGuts"",false]) && !((vehicle _target) getVariable [""SM_HasBeenEaten"",false]) && !(isObjectHidden (vehicle _target)));" \n
-                         "" \n
-                         "		if (_isvisible) then" \n
-                         "		{" \n
-                         "			_detectionnumber = 0;" \n
-                         "			_detected = false;" \n
-                         "			switch (stance _target) do " \n
-                         "			{" \n
-                         "				case ""STAND"": { _detectionnumber = _detectionnumber + 0.50 };" \n
-                         "				case ""CROUCH"": { _detectionnumber = _detectionnumber + 0.35 };" \n
-                         "				case ""PRONE"": { _detectionnumber = _detectionnumber + 0.15 };" \n
-                         "				default { _detectionnumber = _detectionnumber + 0 };" \n
-                         "			};" \n
-                         "" \n
-                         "			//Distance" \n
-                         "			_distanceCheck = _zombieAgent distance _target;" \n
-                         "			_detectionnumber = _detectionnumber + (_distanceCheck call" \n
-                         "			{" \n
-                         "				_distanceCheck = _this;" \n
-                         "				if (_distanceCheck < 5) exitWith { 1 };" \n
-                         "				if (_distanceCheck >= 5 && _distanceCheck < 10) exitWith { 0.50 };" \n
-                         "				if (_distanceCheck >= 10 && _distanceCheck < 20) exitWith { 0.40 };" \n
-                         "				if (_distanceCheck >= 20 && _distanceCheck < 35) exitWith { 0.30 };" \n
-                         "				if (_distanceCheck >= 35 && _distanceCheck < 50) exitWith { 0.25 };" \n
-                         "				if (_distanceCheck >= 50 && _distanceCheck < 100) exitWith { 0.20 };" \n
-                         "				if (_distanceCheck >= 100 && _distanceCheck < 500) exitWith { 0.15 };" \n
-                         "				if (_distanceCheck >= 500) exitWith { 0.10 };" \n
-                         "			});" \n
-                         "" \n
-                         "			//Random Chance" \n
-                         "			_randomAddition = (random 0.25);" \n
-                         "" \n
-                         "			_detectionnumber = _detectionnumber + _randomAddition;" \n
-                         "" \n
-                         "			//Player is in front or not" \n
-                         "			_isInFront = [_zombieAgent, _target] call SM_fnc_zombieCanSee;" \n
-                         "" \n
-                         "			if (_isInFront) then {_detectionnumber = _detectionnumber + 0.25};" \n
-                         "" \n
-                         "" \n
-                         "			if (1 < _detectionnumber) then { _detected = true; };" \n
-                         "" \n
-                         "			_isvisible = _detected && _isvisible;" \n
-                         "		};" \n
+                         "		_target = _zombieAgent call SM_fnc_zombieFindTarget;" \n
+                         "		_lastTargetCheck = diag_ticktime;		" \n
                          "	};" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;

@@ -30,16 +30,16 @@ _targets append _smokes;
 
 _passed = false;
 _distance = 1000;
+
 {
 	_unit = _x;
 	if (isNull _unit) exitWith { false };
 	_tmpDistace = _unit distance _zombieAgent;
 	_isvisible = _tmpDistace <= _distance;
-	_detectionnumber = 0;
-	_detected = false;
+	_detectionnumber = 0.50;
 	if (isPlayer _unit) then
 	{
-		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible) then
+		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible && (_zombieAgent,_unit] call SM_fnc_zombieCanSee)) then
 		{
             if ((vehicle _unit) == _unit) then
             {
@@ -68,18 +68,14 @@ _distance = 1000;
 				if (_distanceCheck >= 500) exitWith { 0.10 };
 			});
 
-			_isInFront = [_zombieAgent,_unit] call SM_fnc_zombieCanSee;
-
-			if (_isInFront) then 
-			{
-				_detectionnumber = _detectionnumber + 0.50;
-			};
-
 			if (_detectionnumber > 1) then 
 			{ 
-				_detected = true; 
+				_isvisible = true; 
+			}
+			else
+			{
+				_isvisible = false;
 			};
-			_isvisible = _detected;
 		}
 		else
 		{
@@ -104,23 +100,19 @@ _distance = 1000;
 				if (_distanceCheck >= 500) exitWith { 0.10 };
 			});
 
-			_randomAddition = random 0.25;
-
-			_detectionnumber = _detectionnumber + _randomAddition;
-
-			_isInFront = [_zombieAgent,_unit] call SM_fnc_zombieCanSee;
-
-			if (_isInFront) then 
+			if (_zombieAgent,_unit] call SM_fnc_zombieCanSee) then 
 			{
 				_detectionnumber = _detectionnumber + 0.25;
 			};
 
 			if (_detectionnumber > 1) then 
 			{ 
-				_detected = true; 
+				_isvisible = true; 
+			}
+			else
+			{
+				_isvisible = false;
 			};
-
-			_isvisible = _detected;
 		}
 		else
 		{

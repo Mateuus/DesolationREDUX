@@ -15,13 +15,40 @@
 	Description: SM_Zombz desolation redux edition.
 */
 
-private ["_zombieAgent","_fired","_zombiePosition","_firedPosition","_zombieVariable"];
-_zombieAgent = _this select 0;
-_fired = _this select 7;
+private ["_zombiePosition","_firedPosition","_zombieVariable"];
+params ["_zombieAgent","_fired","_distance","_weapon","_muzzle","_mode","_ammo","_gunner"];
 
-if !(isPlayer _fired) exitWith {};
+if (!(isPlayer _fired) || !(isPlayer _gunner)) exitWith { false };
 
-_zombiePosition = position _zombieAgent;
+_isSupp = false;
+if ((primaryWeapon player) == (currentWeapon player)) then
+{
+	_weaponItems = primaryWeaponItems player;
+	_supp = _weaponItems select 0;
+	if !(_supp == "") then
+	{
+		_distance = _distance / 2;
+		_isSupp = true;
+	};
+}
+else
+{
+	if ((secondaryWeapon player) == (currentWeapon player)) then
+	{
+		_weaponItems = secondaryWeaponItems player;
+		_supp = _weaponItems select 0;
+		if !(_supp == "") then
+		{
+			_distance = _distance / 2;
+			_isSupp = true;
+		};
+	};
+};
+
+if ((_isSupp) && (_distance > 20)) exitWith {};
+_cal = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
+if (!(_isSupp) && (_distance > (150 * _cal)) exitWith {};
+
 _firedPosition = position _fired;
 _zombieVariable = _zombieAgent getVariable ["SM_FiredNear", []];
 _zombieVariable pushBack _firedPosition;
