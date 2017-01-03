@@ -209,7 +209,6 @@ class CfgFunctions
 			class spawnCrashes {};
 			class crashSmoke {};
 			class spawnCrashLoot {};
-			class getCrashLocation {};
 			class initHeliCrashes {};
 			class heliCrashAnim {};
 		};
