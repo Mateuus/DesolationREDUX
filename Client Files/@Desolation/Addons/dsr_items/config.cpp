@@ -13,8 +13,8 @@ class CfgPatches
 };
 class CfgWeapons 
 {
-	class U_C_Poor_2; //import
-	class U_C_DSR_Tester: U_C_Poor_2 
+	class U_C_Poloshirt_stripped; //import
+	class U_C_DSR_Tester: U_C_Poloshirt_stripped 
 	{
 		scope = 2;
 		author = "Desolation Redux";
