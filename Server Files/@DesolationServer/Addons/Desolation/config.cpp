@@ -70,6 +70,7 @@ class CfgFunctions
 			isclient = 1;
 			class infoText {};
 			class receiveTransmition {};
+			class calcGrayscale {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";
@@ -236,7 +237,6 @@ class CfgFunctions
 			isserver = 1;
 			class getCfgValue {};
 			class shuffleArray {};
-			class calcGrayscale {};
 			class genRandMapPos {};
 		};
 		class Server {
