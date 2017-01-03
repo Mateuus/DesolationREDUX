@@ -9,6 +9,9 @@
  * https://www.bistudio.com/monetization/
  */
 
+_maxFatigue = 0;
+ 
+ 
 if(DS_var_Blood <= 0) then {
 	player setDamage 1;
 } else {
@@ -20,7 +23,7 @@ if(DS_var_Blood <= 0) then {
 		if(_bloodPercent < 65) then {
 			if(random(100) < 5 && (lifeState player != "INCAPACITATED") && ((diag_tickTime - DS_var_lastKnockout) > 5)) then {
 				_lvl = 65 - _bloodPercent;
-				_timer = ceil((20 / 15) * _lvl);
+				_timer = ceil(((20 / 15) * _lvl) + random((10 / 15) * _lvl));
 				[_timer] spawn ds_fnc_knockOut;					
 			};
 			
@@ -49,7 +52,7 @@ if(DS_var_Hunger == 100 && DS_var_Thirst == 100 && !DS_var_isBleeding && (DS_var
 	DS_var_Blood = (DS_var_Blood + _regen) min 25000;
 };
 
-_maxFatigue = 0;
+
 //--- starving effects
 if(DS_var_isStarving) then {
 	_maxFatigue = (1 - (DS_var_Hunger / 100)) max _maxFatigue;

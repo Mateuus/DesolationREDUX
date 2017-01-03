@@ -12,17 +12,17 @@
 params["_sourcesinfo"];
 // each bleed source / level increases loss by 5 per second
 
-_numLevels = 0;
+if(count(_sourcesinfo) > 0) then {
+	_numLevels = 0;
 
-{
-	_lvl = _x select 0;
-	_numLevels = _numLevels + _lvl;
-} forEach _sourcesinfo;
+	{
+		_lvl = _x select 0;
+		_numLevels = _numLevels + _lvl;
+	} forEach _sourcesinfo;
 
-_tickLoss = (_numLevels^2) * 5;
-
-DS_var_Blood = DS_var_Blood - _tickLoss;
-
+	_tickLoss = (_numLevels^2) * 5;
+	DS_var_Blood = DS_var_Blood - _tickLoss;
+};
 
 if(DS_var_Blood != 27500) then {
 	if (isNil "DS_var_bloodEffect") then
