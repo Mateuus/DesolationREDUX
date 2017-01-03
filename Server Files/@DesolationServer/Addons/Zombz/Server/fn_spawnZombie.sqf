@@ -149,7 +149,7 @@ try
 		{
 			_nearPlayers = [];
 			{
-				if ((_x distance _zombieAgent) < 1000) then { SM_NearbyPlayers pushBack _x };
+				if ((_x distance _zombieAgent) < 1000) then { _nearPlayers pushBack _x };
 			} count (allPlayers - entities "HeadlessClient_F");
 			if (_nearPlayers isEqualTo []) then
 			{

@@ -39,7 +39,7 @@ _distance = 1000;
 	_detectionnumber = 0.50;
 	if (isPlayer _unit) then
 	{
-		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible && (_zombieAgent,_unit] call SM_fnc_zombieCanSee)) then
+		if (!(_unit getVariable ["SM_HasZombieGuts",false]) && !(_unit getVariable ["SM_HasBeenEaten",false]) && !(isObjectHidden _unit) && _isvisible && ([_zombieAgent,_unit] call SM_fnc_zombieCanSee)) then
 		{
             if ((vehicle _unit) == _unit) then
             {
@@ -100,7 +100,7 @@ _distance = 1000;
 				if (_distanceCheck >= 500) exitWith { 0.10 };
 			});
 
-			if (_zombieAgent,_unit] call SM_fnc_zombieCanSee) then 
+			if ([_zombieAgent,_unit] call SM_fnc_zombieCanSee) then 
 			{
 				_detectionnumber = _detectionnumber + 0.25;
 			};
