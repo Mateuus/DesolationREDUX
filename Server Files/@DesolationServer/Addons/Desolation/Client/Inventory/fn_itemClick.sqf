@@ -29,6 +29,7 @@ if(isNull _ctrl) exitWith {systemchat "ERROR: ctrlNull 2";};
 _classname = _ctrl lbData _item;
 _itemtext = _ctrl lbText _item;
 _cursor = typeof cursorObject;
+_cursorStr = str cursorObject;
 
 _actions = configFile >> "CfgMagazines" >> _classname >> "Actions";
 _bIndex = 0;
