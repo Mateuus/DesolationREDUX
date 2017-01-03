@@ -26,8 +26,11 @@ player addEventHandler ["HandleDamage",{
 				_allowArmaDamage = false;
 				if !(_shooter in DS_var_damagedBy) then {
 					DS_var_damagedBy pushBack _shooter;
-				
+					
 					_bloodLoss = _damage * 27500;
+					if(_selectionName != "head") then {
+						_bloodLoss = _bloodLoss / 1.5;
+					};
 					DS_var_Blood = DS_var_Blood - _bloodLoss;
 				};
 			} else {
