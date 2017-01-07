@@ -22,9 +22,8 @@ while{true} do {
 		uiSleep 0.001;
 	};
 	_cItems = call DS_fnc_genCrateItems;
-	//uiSleep 2700;
+	uiSleep 2700;
 	diag_log ("AIRDROPS > Dropping crate @ " + str(_location));
 	diag_log ("AIRDROPS > Crate Loot: " + str(_cItems));
 	[_location,_cItems] call DS_fnc_DoDrop;
-	uiSleep 2700; // TODO (remove this line and uncomment the line above when tested)
 };
