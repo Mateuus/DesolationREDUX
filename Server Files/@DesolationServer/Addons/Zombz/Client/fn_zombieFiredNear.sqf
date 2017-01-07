@@ -46,6 +46,7 @@ else
 };
 
 if ((_isSupp) && (_distance > 20)) exitWith {};
+_ammo = getText (configFile >> "CfgMagazines" >> _ammo >> "ammo");
 _cal = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
 if (!(_isSupp) && (_distance > (150 * _cal))) exitWith {};
 
