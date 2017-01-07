@@ -2728,7 +2728,7 @@ class RscDisplayMain: RscStandardDisplay {
 	idd = 0;
 	scriptName = "RscDisplayMain";
 	scriptPath = "GUI";
-	onLoad = "[""onLoad"",_this,""RscDisplayMain"",'GUI'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
+	//onLoad = "[""onLoad"",_this,""RscDisplayMain"",'GUI'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayMain.sqf'";
 	onUnload = "[""onUnload"",_this,""RscDisplayMain"",'GUI'] call 	(uinamespace getvariable 'BIS_fnc_initDisplay')";
 	
 	delete Spotlight;
