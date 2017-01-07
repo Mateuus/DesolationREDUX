@@ -40,10 +40,13 @@ _this spawn {
 	[_fnclist] call BASE_fnc_setupEvents;
 	
 	diag_log "<PluginManager>: Starting plugins...";
-	{
-		if((toLower(_x) find "initserver") != -1) then {
-			diag_log ((_plugins select _forEachIndex) + " > Init Server");
-			[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
+	{	
+		_i = toLower(_x) find "initserver";
+		if(_i != -1) then {
+			if(count(_x) == ((_i + 10))) then {
+				diag_log ((_plugins select _forEachIndex) + " > Init Server");
+				[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
+			};
 		};
 	} forEach _fnclist;
 	
