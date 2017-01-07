@@ -15,6 +15,8 @@
 	Description: SM_Zombz desolation redux edition.
 */
 
+systemchat "Finding firedNear position";
+
 params ["_zombieAgent"];
 
 _firedNear = _zombieAgent getVariable ["SM_FiredNear",[]];
@@ -33,5 +35,8 @@ _pos = [];
 } count _firedNear;
 
 _zombieAgent setVariable ["SM_FiredNear",nil];
+
+systemchat "Position found:";
+systemchat str _pos;
 
 _pos
