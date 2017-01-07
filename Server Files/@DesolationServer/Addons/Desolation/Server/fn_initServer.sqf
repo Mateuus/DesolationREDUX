@@ -56,6 +56,9 @@ call DS_fnc_initLock;
 		if(NUM_THREADS > 13 && diag_fps < 40) then {
 			diag_log ("ERROR: CANT KEEP UP! To many threads running on the server - " + str(NUM_THREADS) + " - FPS: " + str(diag_fps));
 		};
+		if(diag_fps < 15) then {
+			diag_log ("ERROR: CANT KEEP UP! Thread Count: " + str(Diag_activeScripts) + " - FPS: " + str(diag_fps));
+		};
 		uiSleep 0.5;
 	};
 };
