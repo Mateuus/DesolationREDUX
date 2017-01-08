@@ -175,6 +175,9 @@ if(_mode == "onload") then {
 				if(_ctrl) then {
 					_extra = 2;
 				};
+				if(_ctrl && _shift) then {
+					_extra = 4;
+				};
 				if(_alt) then {
 					_extra = 3;
 				};
