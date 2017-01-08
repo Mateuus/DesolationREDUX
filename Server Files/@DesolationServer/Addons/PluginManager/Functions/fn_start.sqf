@@ -39,6 +39,9 @@ _this spawn {
 	
 	[_fnclist] call BASE_fnc_setupEvents;
 	
+	[] call BASE_fnc_initKeybinds;
+	
+	
 	diag_log "<PluginManager>: Starting plugins...";
 	{	
 		_i = toLower(_x) find "initserver";

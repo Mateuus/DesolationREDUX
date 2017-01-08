@@ -8,7 +8,6 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
-
 params["_check","_functions_forclients"];
 
 diag_log "<PluginManager>: Preinit Called";

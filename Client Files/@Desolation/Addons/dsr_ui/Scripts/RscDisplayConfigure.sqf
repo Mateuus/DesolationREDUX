@@ -64,15 +64,22 @@ if(_mode == "onload") then {
 	//--- setup some variables
 	uiNamespace setVariable ["DS_PLUGIN_CONTROLS_CURINDEX",nil];
 	uiNamespace setVariable ["VARS_TO_UPDATE",[]];
-	uiNamespace setVariable ["DS_PLUGIN_CONTROLS", [
-		[
-			"Example Keybind", //Display Name
-			"DS", //Plugin Prefix
-			"EXMAPLE_KEYBIND", //Storage Variable
-			[[0x06,0],[0x0F,0]] //Default Keys
-		]
-	]];
 	
+	_missionvalue = missionNamespace getVariable ["KEYBIND_DATA",[]];
+	if(count(_missionvalue) > 0) then {
+		uiNamespace setVariable ["DS_PLUGIN_CONTROLS",missionNamespace getVariable "KEYBIND_DATA"];
+	} else {
+		uiNamespace setVariable ["DS_PLUGIN_CONTROLS", [
+			[
+				"Example Keybind", //Display Name
+				"DS", //Plugin Prefix
+				"EXMAPLE_KEYBIND", //Storage Variable
+				[[0x06,0],[0x0F,0]], //Default Keys
+				"This is for testing purposes", //Tooltip
+				"true" //code to run on exec (unused)
+			]
+		]];
+	};
 	//--- hide custom lnb
 	_dsc = _display displayCtrl 202;
 	_dsc ctrlShow false;
@@ -133,7 +140,7 @@ if(_mode == "onload") then {
 			_variable = _pluginPrefix + "_KEYBIND_" + _varSuffix;
 			_defaultKey = uiNamespace getVariable [_variable,+_defaultKeys];
 			
-			
+			uiNamespace setVariable [_variable + "_ORIG",_defaultKey];
 			
 			//--- open the configuration display
 			_configuractiondisplay = (ctrlParent _ctrl) createDisplay "RscDisplayConfigureAction"; //idd 131
@@ -233,7 +240,7 @@ if(_mode == "onload") then {
 			
 			//--- setup the cancel button to wipe the variable so changes are not updated
 			_ctrlCancel = _configuractiondisplay displayCtrl 107;
-			_ctrlCancel buttonSetAction "uiNamespace setVariable ['" + _variable + "',nil];(findDisplay 131) closeDisplay 0;";
+			_ctrlCancel buttonSetAction "uiNamespace setVariable ['" + _variable + "',uiNamespace getVariable ['" + _variable + "_ORIG',nil]];(findDisplay 131) closeDisplay 0;";
 			
 			//--- load data into the listbox of keys
 			_ctrlKeyList = _configuractiondisplay displayCtrl 102; //listbox of keys
@@ -313,6 +320,7 @@ if(_mode == "onload") then {
 			_pluginPrefix = _x select 1;
 			_varSuffix = _x select 2;
 			_defaultKeys = _x select 3;
+			_tooltip = _x select 4;
 			
 			//--- define storage variable name
 			_variable = _pluginPrefix + "_KEYBIND_" + _varSuffix;
@@ -348,6 +356,7 @@ if(_mode == "onload") then {
 			
 			//--- add text to row and stor lnbData
 			_dsc lnbAddRow [_displayName,_keyText];
+			_dsc lbSetToolTip [((lnbSize _dsc) select 0),_tooltip];
 		} forEach (uiNamespace getVariable ["DS_PLUGIN_CONTROLS",[]]);
 		
 	};

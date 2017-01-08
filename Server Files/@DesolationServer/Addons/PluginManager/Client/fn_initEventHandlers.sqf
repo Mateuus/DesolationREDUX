@@ -20,6 +20,41 @@
 	_alt = _this select 4;
 	
 	_value = false;
+	
+	if(!isNil "KEYBIND_DATA") then {
+		{
+			_tag = _x select 1;
+			_variable = _x select 2;
+			_code = _x select 5;
+			
+			_keyData = profileNamespace getVariable [_tag + "_KEYBIND_" + _variable,[]];
+			{
+				_dik = _x select 0;
+				_entry = _x select 1;
+				if(_key == _dik) then {
+					_continue = false;
+					if(_entry == 0) then {_continue = true;};
+					if(_entry == 1 && _shift) then {_continue = true;};
+					if(_entry == 2 && _ctrl) then {_continue = true;};
+					if(_entry == 3 && _alt) then {_continue = true;};
+					if(_continue) then {
+						_response = call compile _code;
+						if(isNil {_response}) then {
+							_value = true;
+						} else {
+							if(_response isEqualType true) then {
+								_value = _value || _response;
+							} else {
+								_value = true;
+							};
+						};
+					};
+				};
+			} forEach _keyData;
+			
+		} forEach KEYBIND_DATA;
+	};
+	
 	{
 		_code = _x select 0;
 		

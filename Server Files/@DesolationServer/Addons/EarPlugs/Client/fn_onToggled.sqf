@@ -12,12 +12,11 @@
 /*
 	Ear plugs: on key pressed event
 */
-params["_key"];
 
 if(isNil 'EP_var_curVal') then {EP_var_curVal = 0;};
 
 _found = false;
-if((_key == (call compile (["Key","EP"] call BASE_fnc_getCfgValue))) && toLower(["Enabled","EP"] call BASE_fnc_getCfgValue) == "true") then {
+if(toLower(["Enabled","EP"] call BASE_fnc_getCfgValue) == "true") then {
 	_found = true;
 	EP_var_curVal = EP_var_curVal + 1;
 	if(EP_var_curVal == 4) then {EP_var_curVal = 0;};

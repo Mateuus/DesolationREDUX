@@ -32,6 +32,7 @@ class CfgFunctions {
 			class compileCfg {};
 			class setupEvents {};
 			class initActions {};
+			class initKeybinds {};
 			class start 
 			{
 				preInit = 1;
