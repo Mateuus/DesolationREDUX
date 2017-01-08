@@ -169,6 +169,7 @@ class CfgFontFamilies {
 };
 
 
+class RscListNBox;
 class RscPicture;
 class RscButton;
 class RscText;
@@ -199,6 +200,7 @@ class RscButtonMenuCancel;
 class RscButtonMenuSteam;
 class RscActivePicture;
 class RscButtonMenuMain;
+class RscControlsGroup;
 
 class RscTitles {
 	class transition_type1
@@ -736,6 +738,32 @@ class DS_spawnSelection {
 			w = 0.1625;
 			h = 0.04;
 			colorBackground[] = {1,0,0,0.5};
+		};
+	};
+};
+
+class RscDisplayConfigure {
+	onLoad = "[_this,'onload'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayConfigure.sqf';";
+	onUnload = "[[(findDisplay 4)],'onexit'] call compile preprocessfilelinenumbers '\dsr_ui\Scripts\RscDisplayConfigure.sqf';";
+	class Controls {
+		class KeyboardGroup: RscControlsGroup {
+			class controls {
+				class DS_CustomKeys: RscListNBox {
+					idc = 202;
+					mainCollumW = 0.450000;
+					secndCollumW = 0.550000;
+					drawSideArrows = 0;
+                    idcLeft = -1;
+                    idcRight = -1;
+					rowHeight = 0.042;
+					columns[] = {0,0.43};
+					x = "0.5 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+					y = "3.5 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+					w = "25 * 					(			((safezoneW / safezoneH) min 1.2) / 40)";
+					h = "15.8 * 					(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+				};
+
+			};
 		};
 	};
 };
