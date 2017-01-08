@@ -29,7 +29,7 @@ class CfgVehicles
 	{
 		model = "\A3\Characters_F\Civil\c_poloshirt";
 		uniformClass = "U_C_DSR_Tester";
-		hiddenSelections = {"Camo", "insignia"};
+		hiddenSelections[] = {"Camo", "insignia"};
 		hiddenSelectionsTextures[] = {"\dsr_ui\Assets\alpha_tester_shirt_co.paa"};
 	};
 };
