@@ -39,6 +39,7 @@ if(_mode == "reload") then {
 				case 1: {"Shift+"};
 				case 2: {"Ctrl+"};
 				case 3: {"Alt+"};
+				case 4: {"Ctrl+Shift+"};
 				default {""};
 			};
 			//--- TODO convert _dik from DIK to human-readable key
@@ -210,6 +211,7 @@ if(_mode == "onload") then {
 							case 1: {"Shift+"};
 							case 2: {"Ctrl+"};
 							case 3: {"Alt+"};
+							case 4: {"Ctrl+Shift+"};
 							default {""};
 						};
 						//--- TODO convert _dik from DIK to human-readable key
@@ -256,6 +258,7 @@ if(_mode == "onload") then {
 					case 1: {"Shift+"};
 					case 2: {"Ctrl+"};
 					case 3: {"Alt+"};
+					case 4: {"Ctrl+Shift+"};
 					default {""};
 				};
 				//--- TODO convert _dik from DIK to human-readable key
@@ -339,6 +342,7 @@ if(_mode == "onload") then {
 					case 1: {"Shift+"};
 					case 2: {"Ctrl+"};
 					case 3: {"Alt+"};
+					case 4: {"Ctrl+Shift+"};
 					default {""};
 				};
 				//--- TODO convert _dik from DIK to human-readable key
@@ -437,6 +441,7 @@ if(_mode == "loaddefaults") then {
 			case 1: {"Shift+"};
 			case 2: {"Ctrl+"};
 			case 3: {"Alt+"};
+			case 4: {"Ctrl+Shift+"};
 			default {""};
 		};
 		//--- TODO convert _dik from DIK to human-readable key

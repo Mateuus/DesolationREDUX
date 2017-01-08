@@ -37,6 +37,7 @@
 					if(_entry == 1 && _shift) then {_continue = true;};
 					if(_entry == 2 && _ctrl) then {_continue = true;};
 					if(_entry == 3 && _alt) then {_continue = true;};
+					if(_entry == 4 && _ctrl && _shift) then {_continue = true;};
 					if(_continue) then {
 						_response = call compile _code;
 						if(isNil {_response}) then {
