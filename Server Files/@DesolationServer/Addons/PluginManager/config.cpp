@@ -30,7 +30,6 @@ class CfgFunctions {
 				preInit = 1;
 			};			
 			class compileCfg {};
-			class hasSuffix {};
 			class setupEvents {};
 			class initActions {};
 			class initKeybinds {};
@@ -45,9 +44,11 @@ class CfgFunctions {
 			file = "PluginManager\Client";
 			class getCfgValue {};
 			class randomAreaLocation {};
+			class hasSuffix {};
 			class addEventHandler {};
 			class removeEventHandler {};
 			class initEventHandlers {};
+			class initKeybindUI {};
 			class startActionManager {};
 		};
 	};
