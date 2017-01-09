@@ -65,8 +65,6 @@ if (_leftOverZombies > 0) then
 {
 	for "_i" from 1 to _leftOverZombies do
 	{
-		_radius = floor (random worldSize);
-		_angle = floor (random 360);
 		_position = [_centerPos, 0, worldSize/1.8, 0, 0, 20, false] call SM_fnc_FindSafePos;
 		if !(_position isEqualTo []) then
 		{
