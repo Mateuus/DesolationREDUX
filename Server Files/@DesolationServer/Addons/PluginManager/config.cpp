@@ -30,6 +30,7 @@ class CfgFunctions {
 				preInit = 1;
 			};			
 			class compileCfg {};
+			class hasSuffix {};
 			class setupEvents {};
 			class initActions {};
 			class initKeybinds {};

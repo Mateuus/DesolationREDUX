@@ -44,12 +44,11 @@ _this spawn {
 	
 	diag_log "<PluginManager>: Starting plugins...";
 	{	
-		_i = toLower(_x) find "initserver";
-		if(_i != -1) then {
-			if(count(_x) == ((_i + 10))) then {
-				diag_log ((_plugins select _forEachIndex) + " > Init Server");
-				[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
-			};
+		_isStartServer = [_x,"initServer"] call BASE_fnc_hasSuffix;
+		
+		if(_isStartServer) then {
+			diag_log ((_plugins select _forEachIndex) + " > Init Server");
+			[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
 		};
 	} forEach _fnclist;
 	
