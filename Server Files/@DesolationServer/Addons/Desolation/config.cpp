@@ -71,6 +71,9 @@ class CfgFunctions
 			class infoText {};
 			class receiveTransmition {};
 			class calcGrayscale {};
+			class getCfgValue {};
+			class shuffleArray {};
+			class genRandMapPos {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";
@@ -230,13 +233,6 @@ class CfgFunctions
 			isserver = 1;
 			class checkServerLock {};
 			class initLock {};
-		};
-		class Server_Functions {
-			file = "Desolation\Server\Functions";
-			isserver = 1;
-			class getCfgValue {};
-			class shuffleArray {};
-			class genRandMapPos {};
 		};
 		class Server {
 			file = "Desolation\Server";

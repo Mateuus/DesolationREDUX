@@ -26,7 +26,7 @@ if(DS_var_InfectionDOT > 0) then {
 		DS_var_InfectionEffect ppEffectCommit 2;
 	} else {
 		//--- calculate damage from infection
-		_infectionDamage = (["InfectionDamage"] call BASE_fnc_getCfgValue);
+		_infectionDamage = (["InfectionDamage"] call DS_fnc_getCfgValue);
 		_damage = (DS_var_InfectionDOT / ( 1 / _infectionDamage));
 		if (_damage > 0) then
 		{
