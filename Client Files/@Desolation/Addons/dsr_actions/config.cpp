@@ -235,3 +235,33 @@ class CfgMagazines {
 		};
 	};
 };
+
+class Cfg3DActions
+{
+	glass[] = {"Glass","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	wheel[] = {"Wheel","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	engine[] = {"Engine","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	fuel[] = {"Fuel","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	body[] = {"Body","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	avionics[] = {"Avionics","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	gear[] = {"Gear","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	winch[] = {"Winch","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	hull[] = {"Hull","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	rotor[] = {"Rotor","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	stabilizer[] = {"Stabilizer","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	transmission[] = {"Transmission","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	gun[] = {"Gun","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	turret[] = {"Turret","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	missiles[] = {"Missiles","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	starter[] = {"Starter","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	blade[] = {"Blade","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	port[] = {"Port","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	tail[] = {"Tail","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	track[] = {"Track","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	light[] = {"Light","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	elevator[] = {"Elevator","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	door[] = {"Door","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	ramp[] = {"Ramp","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	hatch[] = {"Hatch","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	flap[] = {"Flap","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+};

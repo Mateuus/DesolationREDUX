@@ -44,6 +44,18 @@ class CfgPluginActions {
 		text = "Repair Vehicle";
 	};
 };
+class CfgPluginKeybinds 
+{
+	class ToggleAction 
+	{
+		displayName = "Toggle Actions";
+		tooltip = "Toggle actions to be able to easily use any actions in 3D";
+		tag = "Action";
+		variable = "ToggleAction";
+		defaultKeys[] = {{0x0F,0}};
+		code = "call DS_fnc_toggleActions;";
+	};
+};
 class CfgFunctions
 {
 	class DS
@@ -74,6 +86,13 @@ class CfgFunctions
 			class getCfgValue {};
 			class shuffleArray {};
 			class genRandMapPos {};
+		};
+		class Client_Actions_System {
+			file = "Desolation\Client\Actions\System";
+			isclient = 1;
+			class toggleActions {};
+			class draw3DActions {};
+			class get3DPartName {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";
