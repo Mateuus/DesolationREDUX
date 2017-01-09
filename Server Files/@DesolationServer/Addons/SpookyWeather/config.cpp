@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class SpookyWeather {};
 };
+
 class Plugins
 {
 	class SpookyWeather
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Increases server fog & creates a spooky environment";
 		tag = "SW";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class SW

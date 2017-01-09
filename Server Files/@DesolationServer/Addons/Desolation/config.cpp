@@ -10,7 +10,7 @@ class Plugins
 		desc = "ArmA 3 Zombie Survival Mod";
 		tag = "DS";
 	};
-}
+};
 class CfgPluginActions {
 	class RepairCars {
 		class Actions {

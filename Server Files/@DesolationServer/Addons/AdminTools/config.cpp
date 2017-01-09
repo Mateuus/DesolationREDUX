@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class AdminTools {};
 };
+
 class Plugins
 {
 	class AdminTools
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Allows admins to use some tools during development";
 		tag = "AT";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class AT

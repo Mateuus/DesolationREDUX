@@ -9,6 +9,7 @@ class CfgPatches
 		author[]= {"Kegan"};
 	};
 };
+
 class Plugins
 {
 	class PluginManager
@@ -17,7 +18,8 @@ class Plugins
 		desc = "Master PBO for handling plugins";
 		tag = "BASE";
 	};
-}
+};
+
 class CfgFunctions {
 	init = "PluginManager\initFunctions.sqf";
 	class BASE 

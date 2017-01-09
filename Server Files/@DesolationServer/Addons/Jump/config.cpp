@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class Jump {};
 };
+
 class Plugins
 {
 	class Jump
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Allows players to jump while sprinting";
 		tag = "JMP";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class JMP

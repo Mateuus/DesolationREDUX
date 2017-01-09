@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class EasyMode {};
 };
+
 class Plugins
 {
 	class EasyMode
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Increases server fog & creates a spooky environment";
 		tag = "Em";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class EM

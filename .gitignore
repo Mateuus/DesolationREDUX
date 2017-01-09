@@ -29,3 +29,5 @@
 
 # ARMA binary files
 **/*.pbo
+Stokes-PackDeso.bat
+Stokes-PackServ.bat

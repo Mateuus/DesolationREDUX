@@ -10,7 +10,8 @@ class Plugins
 		desc = "Forces anyone trying to use VON on side chat into direct chat";
 		tag = "ASC";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class ASC

@@ -4,6 +4,7 @@ class CfgPatches
 {
 	class DesoDB {};
 };
+
 class Plugins
 {
 	class DesoDB
@@ -12,7 +13,8 @@ class Plugins
 		desc = "Desolation Redux's custom Database connection plugin";
 		tag = "DB";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class DB

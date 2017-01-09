@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class EarPlugs {};
 };
+
 class Plugins
 {
 	class EarPlugs
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Allows players to use earplugs to lower the sounds in game";
 		tag = "EP";
 	};
-}
+};
+
 class CfgPluginKeybinds {
 	class EarPlugs {
 		displayName = "Change Earplugs";
@@ -21,6 +23,7 @@ class CfgPluginKeybinds {
 		code = "call EP_fnc_onToggled;";
 	};
 };
+
 class CfgFunctions
 {
 	class EP

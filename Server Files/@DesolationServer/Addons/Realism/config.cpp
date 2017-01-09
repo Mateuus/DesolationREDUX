@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class Realism {};
 };
+
 class Plugins
 {
 	class Realism
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Makes the game feel more realistic. Adds sound effects and makes the player feel less military trained.";
 		tag = "RSM";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class RSM
