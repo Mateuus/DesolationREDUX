@@ -126,6 +126,33 @@ class CfgMagazines
 		model = "\dsr_items\medical\splint\dsr_splint.p3d";
 		mass = 5;
 	};
+	class dsr_item_new_bandage: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Bandage";
+		model = "\dsr_items\medical\bandage\dsr_bandage.p3d";
+		mass = 3;
+	};
+	class dsr_item_painmed: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Pain Medication";
+		model = "\dsr_items\medical\painmed\dsr_painmed.p3d";
+		mass = 3;
+	};
+	class dsr_item_peptobismol: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Pepy Bismol";
+		model = "\dsr_items\medical\peptobismol\dsr_peptobismol.p3d";
+		mass = 3;
+	};
 	class dsr_item_bloodbag_empty : dsr_item_base {
 		displayName = "Empty Bloodbag";
 		model = "\dsr_items\medical\bloodbag\dsr_bloodbag.p3d";
@@ -148,6 +175,69 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Tuna";
 		model = "\dsr_items\tuna\tuna.p3d";
+		mass = 5;
+	};
+	class dsr_item_bag_rice: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Bag of Rice";
+		model = "\dsr_items\food\rice\dsr_bagrice.p3d";
+		mass = 10;
+	};
+	class dsr_item_mre: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "MRE";
+		model = "\dsr_items\food\mre\dsr_mre.p3d";
+		mass = 10;
+	};
+	class dsr_item_canchicken: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Canned Chicken";
+		model = "\dsr_items\food\canchicken\dsr_canchicken.p3d";
+		mass = 5;
+	};
+	class dsr_item_canclams: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Canned Clams";
+		model = "\dsr_items\food\canclams\dsr_canclams.p3d";
+		mass = 5;
+	};
+	class dsr_item_deviledham: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Deviled Ham";
+		model = "\dsr_items\food\deviledham\dsr_deviledham.p3d";
+		mass = 5;
+	};
+	class dsr_item_driedbeans: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Bag of Dried Beans";
+		model = "\dsr_items\food\driedbeans\dsr_driedbeans.p3d";
+		mass = 10;
+	};
+	class dsr_item_instantcoffee: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Instant Coffee Mix";
+		model = "\dsr_items\food\instantcoffee\dsr_instantcoffee.p3d";
 		mass = 5;
 	};
 		//--- Materials
