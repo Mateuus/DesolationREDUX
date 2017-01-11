@@ -17,7 +17,6 @@ if(!_enabled) exitWith {diag_log "DESOLATION IS NOT ENABLED, THE PLUGIN WILL NOT
 0 fadeMusic 0;
 
 call ds_fnc_initInvHandler;
-call ds_fnc_initHealthSys;
 
 //asks the server to spawn us
 

@@ -29,8 +29,13 @@ if(_goggles != "") then {
 //--- show region
 [] spawn DS_fnc_showRegionNotification;
 //--- init subsystems
+
+	// starting health systems
+call ds_fnc_initHealthSys;
 [] spawn DS_fnc_initStatusSys;
 call DS_fnc_initBleedingSystem;
+
+
 call DS_fnc_registerPlayer;
 call DS_fnc_initEventHandlers;
 

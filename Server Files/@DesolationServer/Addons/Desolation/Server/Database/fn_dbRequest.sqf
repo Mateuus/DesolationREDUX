@@ -60,10 +60,10 @@ switch(_type)do{
 		_nonpersvars = [];
 		_persvars = [];
 		{
-			if(_x find "SVAR_" == 0) then {
+			if(toLower(_x) find "svar_" == 0) then {
 				_nonpersvars pushback [_x,_playerObj getVariable [_x,""]];
 			};
-			if(_x find "PVAR_" == 0) then {
+			if(tolower(_x) find "pvar_" == 0) then {
 				_persvars pushback [_x,_playerObj getVariable [_x,""]];
 			};
 		} forEach _vars;
