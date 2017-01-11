@@ -28,7 +28,7 @@ while {DS_var_3DActionsEnabled} do
 
 		_dif0 = (boundingBoxReal _obj) select 0;
 		_dif1 = (boundingBoxReal _obj) select 1;
-		_distance = (_dif0 distance _dif1) + 10;
+		_distance = (_dif0 distance _dif1) + 4;
 
 		if ((_obj distance player) > (_distance / 2)) exitWith { false };
 
@@ -64,7 +64,7 @@ while {DS_var_3DActionsEnabled} do
 				true
 			} count (_hitpoints select 1);
 		};
-		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(_obj) find 'water' != -1)) exitWith
+		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1)) exitWith
 		{
 			_pos = _obj modelToWorld [0,0,0];
 			_data = "action" call DS_fnc_get3DPartName;
@@ -72,6 +72,9 @@ while {DS_var_3DActionsEnabled} do
 			_icon = _data select 1;
 			DS_var_valid3DActions pushBack [_icon,0,_pos,"",""];
 		};
+		DS_var_valid3DActions = [];
+		DS_var_3DLastObject = nil;
+		DS_var_3DLastPosition = nil;
 	}
 	else
 	{
