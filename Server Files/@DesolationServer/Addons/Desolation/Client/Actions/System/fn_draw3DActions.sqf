@@ -61,7 +61,7 @@ _alreadyHasValidAction = false;
 				"LauHoWi_a"
 			];
 			_alreadyHasValidAction = true;
-			DS_var_3DPartName = _partName;
+			DS_var_3DActionData = [_partName];
 		}
 		else
 		{

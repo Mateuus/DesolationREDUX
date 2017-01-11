@@ -14,18 +14,13 @@ if !(canSuspend) exitWith { _this spawn DS_fnc_calculate3DActions; };
 while {DS_var_3DActionsEnabled} do
 {
 	_obj = cursorTarget;
+	_validActions = [];
 	if (isNull _obj) then
 	{
 		_obj = cursorObject;
 	};
 	if (!(isNull _obj) && (vehicle player == player)) then 
 	{
-		if (isNil "DS_var_3DLastObject") then { DS_var_3DLastObject = objNull; };
-		if (isNil "DS_var_3DLastPosition") then { DS_var_3DLastPosition = getPosATL _obj; };
-		if ((_obj == DS_var_3DLastObject) && (DS_var_3DLastPosition isEqualTo (getPosATL _obj))) exitWith { false };
-		DS_var_3DLastObject = _obj;
-		DS_var_3DLastPosition = getPosATL _obj;
-
 		_dif0 = (boundingBoxReal _obj) select 0;
 		_dif1 = (boundingBoxReal _obj) select 1;
 		_distance = (_dif0 distance _dif1) + 4;
@@ -33,8 +28,6 @@ while {DS_var_3DActionsEnabled} do
 		if ((_obj distance player) > (_distance / 2)) exitWith 
 		{ 
 			DS_var_valid3DActions = [];
-			DS_var_3DLastObject = nil;
-			DS_var_3DLastPosition = nil;
 			false 
 		};
 
@@ -45,7 +38,7 @@ while {DS_var_3DActionsEnabled} do
 			if ((count _hitpoints) == 0) exitWith { false };
 
 			_i = -1;
-			DS_var_valid3DActions = [];
+			_validActions = [];
 			{
 				_i = _i + 1;
 				_pos = _obj    selectionPosition _x;
@@ -63,9 +56,10 @@ while {DS_var_3DActionsEnabled} do
 					_pos = _obj modelToWorldVisual _pos;
 					_damage = (_hitpoints select 2) select _i;
 					_data = (tolower _partName) call DS_fnc_get3DPartName;
-					_txt = _data select 0;
-					_icon = _data select 1;
-					DS_var_valid3DActions pushBack [_icon,_damage,_pos,_txt,_partName];
+					if (isNull _data) exitWith {};
+					_txt = getText (_data >> "Name");
+					_icon = getText (_data >> "Icon");
+					_validActions pushBack [_icon,_damage,_pos,_txt,_partName];
 				};
 				true
 			} count (_hitpoints select 1);
@@ -74,19 +68,23 @@ while {DS_var_3DActionsEnabled} do
 		{
 			_pos = _obj modelToWorld [0,0,0];
 			_data = "action" call DS_fnc_get3DPartName;
-			//_txt = _data select 0;
-			_icon = _data select 1;
-			DS_var_valid3DActions pushBack [_icon,0,_pos,"",""];
+			//_txt = getText (_data >> "Name");
+			_icon = getText (_data >> "Icon");
+			_validActions = []; pushBack [_icon,0,_pos,"",""];
 		};
 		DS_var_valid3DActions = [];
-		DS_var_3DLastObject = nil;
-		DS_var_3DLastPosition = nil;
 	}
 	else
 	{
 		DS_var_valid3DActions = [];
-		DS_var_3DLastObject = nil;
-		DS_var_3DLastPosition = nil;
+	};
+
+	if ((count _validActions) < 1) exitWith {};
+
+	// Literally all for Kegan :)
+	// I even made it readable for him :)
+	if !(_validActions isEqualTo DS_var_valid3DActions) then {
+		DS_var_valid3DActions = _validActions;
 	};
 	uiSleep 0.1;
 	true

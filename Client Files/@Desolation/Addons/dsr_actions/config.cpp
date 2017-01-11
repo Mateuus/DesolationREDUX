@@ -236,42 +236,241 @@ class CfgMagazines {
 	};
 };
 
+class 3DDefaultActions
+{
+	class Prestine
+	{
+		condition = "_thisDamage == 0";
+		code = "systemchat 'i like prestine';";
+	};
+	class Destroyed
+	{
+		condition = "_thisDamage >= 1";
+		code = "systmechat 'i am destroyed';";
+	};
+	class Damaged
+	{
+		condition = "_thisDamage < 1 && _thisDamage > 0";
+		code = "systemchat 'i am damaged';";
+	};
+};
+
 class Cfg3DActions
 {
-	action[] = {"Action","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	glass[] = {"Glass","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	wheel[] = {"Wheel","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	engine[] = {"Engine","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	fuel[] = {"Fuel","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	body[] = {"Body","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	avionics[] = {"Avionics","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	gear[] = {"Gear","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	winch[] = {"Winch","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	hull[] = {"Hull","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	rotor[] = {"Rotor","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	stabilizer[] = {"Stabilizer","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	transmission[] = {"Transmission","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	gun[] = {"Gun","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	turret[] = {"Turret","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	missiles[] = {"Missiles","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	starter[] = {"Starter","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	blade[] = {"Blade","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	port[] = {"Port","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	tail[] = {"Tail","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	track[] = {"Track","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	light[] = {"Light","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	elevator[] = {"Elevator","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	door[] = {"Door","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	ramp[] = {"Ramp","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	hatch[] = {"Hatch","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	flap[] = {"Flap","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	head[] = {"Head","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	leg[] = {"Leg","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	hand[] = {"Hand","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	pelvis[] = {"Pelvis","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	chest[] = {"Chest","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	arm[] = {"Arm","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	neck[] = {"Neck","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	abdomen[] = {"Abdomen","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
-	diaphragm[] = {"Diaphragm","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	class action
+	{
+		name = "Actions";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class glass
+	{
+		name = "Glass";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class wheel
+	{
+		name = "Glass";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class engine
+	{
+		name = "Engine";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class fuel
+	{
+		name = "Fuel";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class body
+	{
+		name = "Body";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class avionics
+	{
+		name = "Avionics";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class gear
+	{
+		name = "Gear";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class winch
+	{
+		name = "Winch";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class hull
+	{
+		name = "Hull";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class missiles
+	{
+		name = "Missiles";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class turret
+	{
+		name = "Turret";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class gun
+	{
+		name = "Gun";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class transmission
+	{
+		name = "Transmission";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class stabilizer
+	{
+		name = "Stabilizer";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class rotor
+	{
+		name = "Rotor";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class track
+	{
+		name = "Totor";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class tail
+	{
+		name = "Tail";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class port
+	{
+		name = "Port";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class blade
+	{
+		name = "Blade";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class starter
+	{
+		name = "Starter";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class door
+	{
+		name = "Door";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class elevator
+	{
+		name = "Elevator";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class light
+	{
+		name = "Light";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class chest
+	{
+		name = "Chest";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class pelvis
+	{
+		name = "Pelvis";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class hand
+	{
+		name = "Hand";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class leg
+	{
+		name = "Leg";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class head
+	{
+		name = "Head";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class flap
+	{
+		name = "Flap";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class hatch
+	{
+		name = "Hatch";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class ramp
+	{
+		name = "Ramp";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class diaphragm
+	{
+		name = "Diaphragm";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class abdomen
+	{
+		name = "Abdomen";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class neck
+	{
+		name = "Neck";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class arm
+	{
+		name = "Arm";
+		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		class Actions: 3DDefaultActions {};		
+	};
 };

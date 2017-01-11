@@ -27,12 +27,17 @@ switch(_type)do{
 		_request = [PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER,[[PROTOCOL_DBCALL_ARGUMENT_NICKNAME,_nickName],[PROTOCOL_DBCALL_ARGUMENT_STEAMID,_steamID]]] call DB_fnc_buildDBRequest;
 		_response = [_request] call DB_fnc_sendRequest;
 		
-		diag_log "LOAD PLAYER REQUEST";
-		diag_log str(_response);
-		
 		_playeruuid = _response select 0;
 		_dpvaruuid = _response select 1;
 		_friendlist = _response select 2;
+		_kickableData = _response select 3;
+		_kickable = _kickableData select 0;
+		_kickReason = _kickableData select 1;
+
+
+		if (_kickable) exitWith {
+			{ (findDisplay 46) closeDisplay 0; } remoteExecCall ["call", _playerObj];
+		};
 		
 		_playerObj setVariable ["pUUID",_playeruuid];
 		
