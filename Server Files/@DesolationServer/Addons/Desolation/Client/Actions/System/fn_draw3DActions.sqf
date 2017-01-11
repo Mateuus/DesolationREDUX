@@ -1,47 +1,18 @@
-_visPos = ASLtoATL(AGLToASL positionCameraToWorld [0,0,3]);
-_obj = cursorTarget;
-if (isNull _obj) exitWith { false };
+if !(DS_var_3DActionsEnabled) exitWith { false };
+if (isNil "DS_var_valid3DActions") then
+{
+	DS_var_valid3DActions = [];
+};
 
+if ((count DS_var_valid3DActions) == 0) exitWith { false };
+
+_obj = cursorObject;
+if (isNull _obj) exitWith { false };
 _dif0 = (boundingBoxReal _obj) select 0;
 _dif1 = (boundingBoxReal _obj) select 1;
 _distance = (_dif0 distance _dif1) + 3;
-
-if ((_obj distance player) > (_distance / 2)) exitWith { false };
-
-_hitpoints = getAllHitPointsDamage _obj;
-
-if ((count _hitpoints) == 0) exitWith { false };
-
-_i = -1;
-_validActions = [];
-{
-	_i = _i + 1;
-	_pos = _obj    selectionPosition _x;
-	_partName = (_hitpoints select 0) select _i;
-	if (_pos isEqualTo [0,0,0]) then 
-	{
-		_partName = (selectionNames _obj) select _i;
-		_pos = _obj selectionPosition [_partName,"HitPoints"];
-		_partName = "Hit" + _partName;
-	};
-	if !(_pos isEqualTo [0,0,0]) then
-	{
-		if (_partName == "") exitWith { false };
-		if (((toLower _partName) find "reserve") != -1) exitWith { false };
-		_pos = _obj modelToWorldVisual _pos;
-		_damage = (_hitpoints select 2) select _i;
-		_data = (tolower _partName) call DS_fnc_get3DPartName;
-		_txt = _data select 0;
-		_icon = _data select 1;
-		_angle = getDir player;
-		_validActions pushBack [_icon,_damage,_pos,_txt,_partName];
-	};
-	true
-} count (_hitpoints select 1);
-
-_camPos = ASLtoATL(AGLToASL positionCameraToWorld [0,0,0]);
-_uVectorTo = _camPos vectorFromTo _visPos;
-_dist = _camPos distance _visPos;
+_visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,3]);
+_camPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,0]);
 _alreadyHasValidAction = false;
 
 {
@@ -53,7 +24,7 @@ _alreadyHasValidAction = false;
 	_valid = false;
 	for "_j" from 1 to _distance do 
 	{
-		_vChange = _uVectorTo vectorMultiply ((_dist / 20)*_j);
+		_vChange = (_camPos vectorFromTo _visPos) vectorMultiply (((_camPos distance _visPos) / 20)*_j);
 		_checkPos = _camPos vectorAdd _vChange;
 		if((_checkPos distance _pos) <= 0.1) exitWith 
 		{
@@ -114,9 +85,11 @@ _alreadyHasValidAction = false;
 			"LauHoWi_a"
 		];
 	};
-} count _validActions;
+} count DS_var_valid3DActions;
 
 if !(_alreadyHasValidAction) then
 {
 	DS_var_3DPartName = nil;
 };
+
+true
