@@ -9,10 +9,9 @@
  * https://www.bistudio.com/monetization/
  */
 
-/*
-	initializes UI event handlers
-*/
+//this is so broken
 
+/*
 if(!isClass (configFile >> "CfgPatches" >> "dsr_ui")) then {
 
 	BASE_fnc_dikToHuman = {
@@ -581,3 +580,5 @@ if(!isClass (configFile >> "CfgPatches" >> "dsr_ui")) then {
 		[[(findDisplay 4)],'onexit'] call BASE_fnc_RscDisplayConfigure;
 	};
 };
+
+*/
