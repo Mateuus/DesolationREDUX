@@ -4,7 +4,7 @@ ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};
 emmisive[] = {0,0,0,0};
-specular[] = 0.01;
+specular[]={0.47451001,0.47451001,0.47451001,1};
 specularPower = 60;
 PixelShaderID = "Super";
 VertexShaderID = "Super";
@@ -58,7 +58,7 @@ class Stage4
 };
 class Stage5
 {
-	texture = "dsr_weapons\melee\data\dsr_axes_smdi.paa";
+	texture = "dsr_weapons\melee\axes\data\dsr_axes_smdi.paa";
 	uvSource = "tex";
 	class uvTransform
 	{
