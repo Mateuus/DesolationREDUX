@@ -30,7 +30,13 @@ while {DS_var_3DActionsEnabled} do
 		_dif1 = (boundingBoxReal _obj) select 1;
 		_distance = (_dif0 distance _dif1) + 4;
 
-		if ((_obj distance player) > (_distance / 2)) exitWith { false };
+		if ((_obj distance player) > (_distance / 2)) exitWith 
+		{ 
+			DS_var_valid3DActions = [];
+			DS_var_3DLastObject = nil;
+			DS_var_3DLastPosition = nil;
+			false 
+		};
 
 		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "Man") || (_obj isKindOf "House")) exitWith
 		{
