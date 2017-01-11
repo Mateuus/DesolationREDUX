@@ -4,7 +4,7 @@ if (isNil "DS_var_valid3DActions") then
 	DS_var_valid3DActions = [];
 };
 
-if ((count DS_var_valid3DActions) == 0) exitWith { false };
+if (((count DS_var_valid3DActions) == 0) || (vehicle player != player)) exitWith { false };
 
 _obj = cursorObject;
 if (isNull _obj) exitWith { false };

@@ -150,6 +150,7 @@ try
 			_nearPlayers = [];
 			{
 				if ((_x distance _zombieAgent) < 1000) then { _nearPlayers pushBack _x };
+				true
 			} count (allPlayers - entities "HeadlessClient_F");
 			if (_nearPlayers isEqualTo []) then
 			{

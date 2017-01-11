@@ -12,7 +12,7 @@ if !(DS_var_3DActionsEnabled) then
 		while {DS_var_3DActionsEnabled} do
 		{
 			_obj = cursorObject;
-			if !(isNull _obj) then 
+			if (!(isNull _obj) && (vehicle player == player)) then 
 			{
 				if (isNil "DS_var_3DLastObject") then { DS_var_3DLastObject = objNull; };
 				if (isNil "DS_var_3DLastPosition") then { DS_var_3DLastPosition = getPosATL _obj; };
@@ -59,7 +59,7 @@ if !(DS_var_3DActionsEnabled) then
 			{
 				DS_var_valid3DActions = [];
 			};
-			uiSleep 1;
+			uiSleep 0.1;
 			true
 		};
 	};
