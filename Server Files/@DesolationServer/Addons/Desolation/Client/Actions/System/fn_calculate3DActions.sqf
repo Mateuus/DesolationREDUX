@@ -70,7 +70,7 @@ while {DS_var_3DActionsEnabled} do
 			_data = "action" call DS_fnc_get3DPartName;
 			//_txt = getText (_data >> "Name");
 			_icon = getText (_data >> "Icon");
-			_validActions = []; pushBack [_icon,0,_pos,"",""];
+			_validActions pushBack [_icon,0,_pos,"",""];
 		};
 		DS_var_valid3DActions = [];
 	}
