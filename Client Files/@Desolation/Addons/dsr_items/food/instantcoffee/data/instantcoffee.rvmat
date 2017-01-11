@@ -1,6 +1,6 @@
 class StageTI
 {
-	texture="dsr_items\food\instatncoffee\data\instancoffee_co.paa";
+	texture="dsr_items\food\instantcoffee\data\instantcoffee_co.paa";
 };
 ambient[]={1,1,1,1};
 diffuse[]={1,1,1,1};
@@ -12,7 +12,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="dsr_items\food\instatncoffee\data\instancoffee_nohq.paa";
+	texture="dsr_items\food\instantcoffee\data\instantcoffee_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -48,7 +48,7 @@ class Stage3
 };
 class Stage4
 {
-	texture="dsr_items\food\instatncoffee\data\instancoffee_as.paa";
+	texture="dsr_items\food\instantcoffee\data\instantcoffee_as.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -60,7 +60,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="dsr_items\food\instatncoffee\data\instancoffee_smdi.paa";
+	texture="dsr_items\food\instantcoffee\data\instantcoffee_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
