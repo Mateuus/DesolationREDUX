@@ -46,14 +46,23 @@ class CfgPluginActions {
 };
 class CfgPluginKeybinds 
 {
-	class ToggleAction 
+	class Toggle3DAction 
 	{
 		displayName = "Toggle Actions";
 		tooltip = "Toggle actions to be able to easily use any actions in 3D";
-		tag = "Action";
-		variable = "ToggleAction";
+		tag = "ToggleAction";
+		variable = "Toggle3DAction";
 		defaultKeys[] = {{0x0F,0}};
 		code = "call DS_fnc_toggleActions;";
+	};
+	class do3DAction
+	{
+		displayName = "Use 3D Action";
+		tooltip = "Allows you to use the highlighted action";
+		tag = "do3DAction";
+		variable = "do3DAction";
+		defaultKeys[] = {{0x39,0}};
+		code = "call DS_fnc_do3DAction;";
 	};
 };
 class CfgFunctions
@@ -94,6 +103,7 @@ class CfgFunctions
 			class draw3DActions {};
 			class get3DPartName {};
 			class calculate3DActions {};
+			class do3DAction {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";

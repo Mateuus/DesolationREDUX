@@ -1,28 +1,51 @@
-if (isNil "DS_var_3DActionData") exitWith {};
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
-DS_var_3DActionData params ["_partName","_thisDamage","_position"];
-_actionConfig = (DS_var_3DActionData call DS_fnc_get3DPartName) >> "Actions"; //the actions class of the part
-_actionClasses = "true" configClasses _actionConfig;
-
-_validActions = [];
+if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
+if (isNil "DS_var_valid3DActionCodeSelected") then
 {
-	_condition = getText(_x >> "condition");
-	_code = getText(_x >> "code");
+	if (isNil "DS_var_3DActionData") exitWith {};
 
-	if (call compile _condition) then 
+	DS_var_3DActionData params ["_partName","_thisDamage"];
+	_actionConfig = ((toLower _partName) call DS_fnc_get3DPartName) >> "Actions";
+	_actionConfig = (configProperties [_actionConfig, "true", true]);
+
+	_validActions = [];
+	for "_i" from 0 to (count _actionConfig) - 1 do
 	{
-		_validActions pushBack _code;
+		_config = _actionConfig select _i;
+		_condition = getText(_config >> "condition");
+		_code = getText(_config >> "code");
+		_text = getText(_config >> "text");
+
+		_condition = str(_thisDamage) + " call { params['_thisDamage']; (" + _condition + ")};";
+		if (call compile _condition) then 
+		{
+			_validActions pushBack [_code,_text];
+		};
 	};
-} count _actionClasses;
+	if ((count _validActions) < 1) exitWith
+	{
+		DS_var_valid3DActionsCode = [];
+	};
 
-if ((count _validActions) < 1) exitWith
+	if !(_validActions isEqualTo DS_var_valid3DActionsCode) then
+	{
+		DS_var_valid3DActionsCode = _validActions;
+	};
+}
+else
 {
-	DS_var_valid3DActionsCode = [];
-};
-
-if !(_validActions isEqualTo DS_var_valid3DActionsCode) then
-{
-	DS_var_valid3DActionsCode = _validActions;
+	call compile DS_var_valid3DActionCodeSelected;
+	DS_var_valid3DActionCodeSelected = nil;
 };
 
 true

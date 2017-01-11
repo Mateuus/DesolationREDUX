@@ -240,16 +240,19 @@ class 3DDefaultActions
 {
 	class Prestine
 	{
+		text = "Prestine";
 		condition = "_thisDamage == 0";
 		code = "systemchat 'i like prestine';";
 	};
 	class Destroyed
 	{
+		text = "Destroyed";
 		condition = "_thisDamage >= 1";
 		code = "systmechat 'i am destroyed';";
 	};
 	class Damaged
 	{
+		text = "Damaged";
 		condition = "_thisDamage < 1 && _thisDamage > 0";
 		code = "systemchat 'i am damaged';";
 	};
@@ -263,141 +266,27 @@ class Cfg3DActions
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};
 	};
-	class glass
+	class diaphragm
 	{
-		name = "Glass";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
-	};
-	class wheel
-	{
-		name = "Glass";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
-	};
-	class engine
-	{
-		name = "Engine";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
-	};
-	class fuel
-	{
-		name = "Fuel";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
-	};
-	class body
-	{
-		name = "Body";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
-	};
-	class avionics
-	{
-		name = "Avionics";
+		name = "Diaphragm";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
-	class gear
+	class abdomen
 	{
-		name = "Gear";
+		name = "Abdomen";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
-	class winch
+	class neck
 	{
-		name = "Winch";
+		name = "Neck";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
-	class hull
+	class arm
 	{
-		name = "Hull";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class missiles
-	{
-		name = "Missiles";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class turret
-	{
-		name = "Turret";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class gun
-	{
-		name = "Gun";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class transmission
-	{
-		name = "Transmission";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class stabilizer
-	{
-		name = "Stabilizer";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class rotor
-	{
-		name = "Rotor";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class track
-	{
-		name = "Totor";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class tail
-	{
-		name = "Tail";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class port
-	{
-		name = "Port";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class blade
-	{
-		name = "Blade";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class starter
-	{
-		name = "Starter";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class door
-	{
-		name = "Door";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class elevator
-	{
-		name = "Elevator";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class light
-	{
-		name = "Light";
+		name = "Arm";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
@@ -431,46 +320,160 @@ class Cfg3DActions
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
+	class glass
+	{
+		name = "Glass";
+		icon = "\dsr_ui\Assets\actions\glass.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class wheel
+	{
+		name = "Glass";
+		icon = "\dsr_ui\Assets\actions\wheel.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class engine
+	{
+		name = "Engine";
+		icon = "\dsr_ui\Assets\actions\engine.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class fuel
+	{
+		name = "Fuel";
+		icon = "\dsr_ui\Assets\actions\fuel.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class body
+	{
+		name = "Body";
+		icon = "\dsr_ui\Assets\actions\body.paa";
+		class Actions: 3DDefaultActions {};
+	};
+	class avionics
+	{
+		name = "Avionics";
+		icon = "\dsr_ui\Assets\actions\avionics.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class gear
+	{
+		name = "Gear";
+		icon = "\dsr_ui\Assets\actions\gear.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class winch
+	{
+		name = "Winch";
+		icon = "\dsr_ui\Assets\actions\winch.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class hull
+	{
+		name = "Hull";
+		icon = "\dsr_ui\Assets\actions\hull.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class missiles
+	{
+		name = "Missiles";
+		icon = "\dsr_ui\Assets\actions\missiles.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class turret
+	{
+		name = "Turret";
+		icon = "\dsr_ui\Assets\actions\turret.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class gun
+	{
+		name = "Gun";
+		icon = "\dsr_ui\Assets\actions\gun.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class transmission
+	{
+		name = "Transmission";
+		icon = "\dsr_ui\Assets\actions\transmission.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class stabilizer
+	{
+		name = "Stabilizer";
+		icon = "\dsr_ui\Assets\actions\stabilizer.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class rotor
+	{
+		name = "Rotor";
+		icon = "\dsr_ui\Assets\actions\rotor.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class track
+	{
+		name = "Totor";
+		icon = "\dsr_ui\Assets\actions\track.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class tail
+	{
+		name = "Tail";
+		icon = "\dsr_ui\Assets\actions\tail.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class port
+	{
+		name = "Port";
+		icon = "\dsr_ui\Assets\actions\port.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class blade
+	{
+		name = "Blade";
+		icon = "\dsr_ui\Assets\actions\blade.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class starter
+	{
+		name = "Starter";
+		icon = "\dsr_ui\Assets\actions\starter.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class door
+	{
+		name = "Door";
+		icon = "\dsr_ui\Assets\actions\door.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class elevator
+	{
+		name = "Elevator";
+		icon = "\dsr_ui\Assets\actions\elevator.paa";
+		class Actions: 3DDefaultActions {};		
+	};
+	class light
+	{
+		name = "Light";
+		icon = "\dsr_ui\Assets\actions\light.paa";
+		class Actions: 3DDefaultActions {};		
+	};
 	class flap
 	{
 		name = "Flap";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		icon = "\dsr_ui\Assets\actions\flap.paa";
 		class Actions: 3DDefaultActions {};		
 	};
 	class hatch
 	{
 		name = "Hatch";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		icon = "\dsr_ui\Assets\actions\hatch.paa";
 		class Actions: 3DDefaultActions {};		
 	};
 	class ramp
 	{
 		name = "Ramp";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class diaphragm
-	{
-		name = "Diaphragm";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class abdomen
-	{
-		name = "Abdomen";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class neck
-	{
-		name = "Neck";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class arm
-	{
-		name = "Arm";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
+		icon = "\dsr_ui\Assets\actions\ramp.paa";
 		class Actions: 3DDefaultActions {};		
 	};
 };

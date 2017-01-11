@@ -29,6 +29,8 @@ else
 	removeMissionEventHandler ["Draw3D", DS_var_3DDrawEvent];
 	DS_var_3DDrawEvent = nil;
 	DS_var_3DPartName = nil;
+	DS_var_valid3DActionsCode = nil;
+	DS_var_valid3DActionCodeSelected = nil;
 };
 
 true
