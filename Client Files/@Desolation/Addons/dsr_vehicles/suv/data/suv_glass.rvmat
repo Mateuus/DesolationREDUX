@@ -1,6 +1,3 @@
-#define _ARMA_
-
-//Class data_f : glass_veh_int.rvmat{
 class StageTI
 {
 	texture = "a3\data_f\default_ti_ca.paa";

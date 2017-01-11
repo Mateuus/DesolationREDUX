@@ -1,5 +1,3 @@
-#define _ARMA_
-
 enum {
 	destructengine = 2,
 	destructdefault = 6,

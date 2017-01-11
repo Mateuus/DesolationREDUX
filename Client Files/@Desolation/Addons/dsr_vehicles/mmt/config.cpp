@@ -1,5 +1,3 @@
-#define _ARMA_
-
 enum {
 	stabilizedinaxisx = 1,
 	stabilizedinaxesxyz = 4,
@@ -28,7 +26,7 @@ class CfgVehicles
 		model 	= "\dsr_vehicles\mmt\mmt.p3d";  /// simple path to model
 		picture	= "\dsr_vehicles\mmt\data\ui\picture_mmt_ca.paa"; /// just some icon in command bar
 		Icon	= "\dsr_vehicles\mmt\data\ui\icon_mmt_ca.paa"; /// icon in map
-		displayName = "MMT - ANixon"; /// displayed in Editor
+		displayName = "MMT"; /// displayed in Editor
 		hiddenSelections[] = {"camo1"};
 		hiddenSelectionsTextures[] = {"\dsr_vehicles\mmt\data\mmt_01_co.paa"};
 		terrainCoef 	= 6.5; 	/// different surface affects this car more, stick to tarmac
@@ -44,7 +42,7 @@ class CfgVehicles
 		wheelDamageRadiusCoef 	= 0.9; 			/// for precision tweaking of damaged wheel size
 		wheelDestroyRadiusCoef 	= 0.4;			/// for tweaking of rims size to fit ground
 		maxFordingDepth 		= 0.5;			/// how high water would damage the engine of the car
-		waterResistance 		= 1;			/// if the depth of water is bigger than maxFordingDepth it starts to damage the engine after this time
+		//waterResistance 		= 1;			/// if the depth of water is bigger than maxFordingDepth it starts to damage the engine after this time
 		crewCrashProtection		= 0.25;			/// multiplier of damage to crew of the vehicle => low number means better protection
 		driverLeftHandAnimName 	= "volant"; /// according to what bone in model of car does hand move
 		driverRightHandAnimName = "volant";	/// beware, non-existent bones may cause game crashes (even if the bones are hidden during play)
@@ -533,10 +531,12 @@ class CfgVehicles
 		faction = "CIV_F";
 		crew = "C_man_1";
 		typicalCargo[] = {"C_man_1"};
+		hiddenSelections[] = {"camo1"};
+		hiddenSelectionsTextures[] = {"\dsr_vehicles\mmt\data\mmt_01_co.paa"};
 	};
 	class DSR_Bike_Green_F: MMT_base
 	{
-		displayName = "White Old Mountain Bike";
+		displayName = "Green Old Mountain Bike";
 		model 	= "\dsr_vehicles\mmt\mmt_green.p3d";  /// simple path to model
 		scope = 2;
 		scopeCurator=2;		// scope 2 means it's available in Zeus mode (0 means hidden)

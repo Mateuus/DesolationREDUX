@@ -1,5 +1,3 @@
-#define _ARMA_
-
 enum {
 	StabilizedInAxesNone = 0,
 	StabilizedInAxisX = 1,

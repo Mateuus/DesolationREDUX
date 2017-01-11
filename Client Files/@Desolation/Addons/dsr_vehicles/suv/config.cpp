@@ -1,5 +1,3 @@
-#define _ARMA_
-
 enum {
 	StabilizedInAxesNone = 0,
 	StabilizedInAxisX = 1,
@@ -22,26 +20,11 @@ class CfgPatches
 class CfgVehicles
 {
 	class LandVehicle;
-	class Car: LandVehicle
-	{
-		class HitPoints;
-	};
+	class Car: LandVehicle {};
 	class Car_F: Car
 	{
-		class HitPoints
-		{
-			class HitLFWheel;
-			class HitLF2Wheel;
-			class HitRFWheel;
-			class HitRF2Wheel;
-			class HitBody;
-			class HitGlass1;
-			class HitGlass2;
-			class HitGlass3;
-			class HitGlass4;
-		};
 		class Eventhandlers;
-		//class AnimationSources;
+		class AnimationSources;
 	};
 	class DSR_SUV_Base: Car_F
 	{
@@ -131,7 +114,7 @@ class CfgVehicles
 		wheelDamageRadiusCoef = 0.9;
 		wheelDestroyRadiusCoef = 0.4;
 		maxFordingDepth = 0.0;
-		waterResistance = 1;
+		//waterResistance = 1;
 		crewCrashProtection = 0.25;
 		armor = 35; 	/// just some protection against missiles, collisions and explosions
 		mapSize = 20;
@@ -205,22 +188,151 @@ class CfgVehicles
 		};
 		selectionBrakeLights = "brzdove svetlo";
 		selectionBackLights = "zadni svetlo";
-		class HitPoints: HitPoints
+		class AnimationSources: AnimationSources
 		{
-			class HitLFWheel: HitLFWheel    {armor=0.08; passThrough=0;}; /// it is easier to destroy wheels than hull of the vehicle
-			class HitLF2Wheel: HitLF2Wheel	{armor=0.08; passThrough=0;};
-
-			class HitRFWheel: HitRFWheel	{armor=0.08; passThrough=0;};
-			class HitRF2Wheel: HitRF2Wheel 	{armor=0.08; passThrough=0;};
-
-			class HitFuel 			        {armor=0.35; material=-1; name="fueltank"; visual=""; passThrough=0.2;}; /// correct points for fuel tank, some of the damage is aFRLied to the whole
-			class HitEngine 				{armor=0.35; material=-1; name="engine"; visual=""; passThrough=0.2;};
-			class HitBody: HitBody			{visual = "camo";};
-
-			class HitGlass1: HitGlass1 		{armor=0.15;}; /// it is pretty easy to puncture the glass but not so easy to remove it
-			class HitGlass2: HitGlass2 		{armor=0.15;};
-			class HitGlass3: HitGlass3 		{armor=0.15;};
-			class HitGlass4: HitGlass4 		{armor=0.15;};
+			class HitLFWheel
+			{
+				source = "Hit";
+				hitpoint = "HitLFWheel";
+				raw = 1;
+			};
+			class HitRFWheel: HitLFWheel
+			{
+				hitpoint = "HitRFWheel";
+			};
+			class HitLBWheel: HitLFWheel
+			{
+				hitpoint = "HitLF2Wheel";
+			};
+			class HitRBWheel: HitLFWheel
+			{
+				hitpoint = "HitRF2Wheel";
+			};
+			class HitLF2Wheel: HitLFWheel
+			{
+				hitpoint = "HitLBWheel";
+			};
+			class HitRF2Wheel: HitLFWheel
+			{
+				hitpoint = "HitRBWheel";
+			};
+			class HitGlass1
+			{
+				source = "Hit";
+				hitpoint = "HitGlass6";
+				raw = 1;
+			};
+			class HitGlass2: HitGlass1
+			{
+				hitpoint = "HitGlass2";
+			};
+			class HitGlass3: HitGlass1
+			{
+				hitpoint = "HitGlass3";
+			};
+			class HitGlass4: HitGlass1
+			{
+				hitpoint = "HitGlass4";
+			};
+			class HitGlass5: HitGlass1
+			{
+				hitpoint = "HitGlass5";
+			};
+			class HitGlass6: HitGlass1
+			{
+				hitpoint = "HitGlass6";
+			};
+			class HitGlass7: HitGlass1
+			{
+				hitpoint = "HitGlass7";
+			};
+			class HitGlass8: HitGlass1
+			{
+				hitpoint = "HitGlass8";
+			};
+		};
+		class HitPoints
+		{
+			class HitLFWheel
+			{
+				armor = 0.1;
+				material = -1;
+				name = "wheel_1_1_steering";
+				visual = "";
+				passThrough = 0.3;
+				explosionShielding = 4;
+			};
+			class HitLF2Wheel
+			{
+				armor = 0.1;
+				material = -1;
+				name = "wheel_1_2_steering";
+				visual = "";
+				passThrough = 0.3;
+				explosionShielding = 4;
+			};
+			class HitRFWheel
+			{
+				armor = 0.1;
+				material = -1;
+				name = "wheel_2_1_steering";
+				visual = "";
+				passThrough = 0.3;
+				explosionShielding = 4;
+			};
+			class HitRF2Wheel
+			{
+				armor = 0.1;
+				material = -1;
+				name = "wheel_2_2_steering";
+				visual = "";
+				passThrough = 0.3;
+				explosionShielding = 4;
+			};
+			class HitFuel
+			{
+				armor = 1.5;
+				material = -1;
+				name = "fueltank";
+				visual = "";
+				passThrough = 0.5;
+				explosionShielding = 1.5;
+				minimalHit = 0.1;
+			};
+			class HitEngine
+			{
+				armor = 0.5;
+				material = -1;
+				name = "engine";
+				visual = "";
+				passThrough = 0.5;
+				explosionShielding = 0.5;
+			};
+			class HitBody
+			{
+				armor = 1.0;
+				material = -1;
+				name = "karoserie";
+				visual = "camo";
+				passThrough = 1;
+				explosionShielding = 1.5;
+			};
+			class HitGlass1
+			{
+				armor = 0.25;
+				material = -1;
+				name = "glass1";
+				visual = "glass1";
+				passThrough = 0;
+				explosionShielding = 2;
+			};
+			class HitGlass2: HitGlass1 {name = "glass2"; visual = "glass2";};
+			class HitGlass3: HitGlass1 {name = "glass3"; visual = "glass3";};
+			class HitGlass4: HitGlass1 {name = "glass4"; visual = "glass4";};
+			class HitGlass5: HitGlass1 {name = "glass5"; visual = "glass5";};
+			class HitGlass6: HitGlass1 {name = "glass6"; visual = "glass6";};
+			class HitGlass7: HitGlass1 {name = "glass7"; visual = "glass7";};
+			class HitGlass8: HitGlass1 {name = "glass8"; visual = "glass8";};
 		};
 
 		#include "sounds.hpp"
