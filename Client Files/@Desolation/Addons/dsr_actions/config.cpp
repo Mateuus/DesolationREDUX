@@ -238,6 +238,7 @@ class CfgMagazines {
 
 class Cfg3DActions
 {
+	action[] = {"Action","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 	glass[] = {"Glass","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 	wheel[] = {"Wheel","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 	engine[] = {"Engine","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
@@ -264,4 +265,13 @@ class Cfg3DActions
 	ramp[] = {"Ramp","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 	hatch[] = {"Hatch","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 	flap[] = {"Flap","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	head[] = {"Head","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	leg[] = {"Leg","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	hand[] = {"Hand","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	pelvis[] = {"Pelvis","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	chest[] = {"Chest","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	arm[] = {"Arm","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	neck[] = {"Neck","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	abdomen[] = {"Abdomen","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
+	diaphragm[] = {"Diaphragm","\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa"};
 };

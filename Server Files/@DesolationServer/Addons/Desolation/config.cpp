@@ -93,6 +93,7 @@ class CfgFunctions
 			class toggleActions {};
 			class draw3DActions {};
 			class get3DPartName {};
+			class calculate3DActions {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";

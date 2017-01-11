@@ -1,3 +1,14 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
+
 if !(DS_var_3DActionsEnabled) exitWith { false };
 if (isNil "DS_var_valid3DActions") then
 {
@@ -6,7 +17,7 @@ if (isNil "DS_var_valid3DActions") then
 
 if (((count DS_var_valid3DActions) == 0) || (vehicle player != player)) exitWith { false };
 
-_obj = cursorObject;
+_obj = cursorTarget;
 if (isNull _obj) exitWith { false };
 _dif0 = (boundingBoxReal _obj) select 0;
 _dif1 = (boundingBoxReal _obj) select 1;
@@ -16,11 +27,7 @@ _camPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,0]);
 _alreadyHasValidAction = false;
 
 {
-	_icon = _x select 0;
-	_damage = _x select 1;
-	_pos = _x select 2;
-	_txt = _x select 3;
-	_partName = _x select 4;
+	_x params ["_icon","_damage","_pos","_txt","_partName"];
 	_valid = false;
 	for "_j" from 1 to _distance do 
 	{
