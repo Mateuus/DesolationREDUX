@@ -269,7 +269,7 @@ class Cfg3DActions
 			class Lift 
 			{
 				text = "Lift Object";
-				condition = "true";
+				condition = "if !(isNil 'OM_fnc_canLift') then { [_thisObject] call OM_fnc_canLift; } else { false };";
 				code = "[_thisObject] call OM_fnc_liftObject;";
 			};
 		};
