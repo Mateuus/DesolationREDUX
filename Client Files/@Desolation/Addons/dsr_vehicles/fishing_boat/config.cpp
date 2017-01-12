@@ -11,12 +11,10 @@ class CfgPatches
 #include "crewanimations.hpp"
 class CfgVehicles
 {
-	class Ship
-	{
-		class ViewPilot;
-	};
+	class Ship;
 	class Ship_F: Ship
 	{
+		class ViewPilot;
 		class AnimationSources;
 		class Eventhandlers;
 	};

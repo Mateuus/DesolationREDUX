@@ -16,7 +16,7 @@ enum {
 
 class CfgPatches
 {
-	class CAAir_E_An2
+	class DSR_AN2
 	{
 		units[] ={"DSR_AN2_F"};
 		weapons[] = {};

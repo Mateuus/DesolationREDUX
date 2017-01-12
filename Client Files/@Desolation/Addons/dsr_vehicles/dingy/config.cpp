@@ -11,24 +11,46 @@ class CfgPatches
 #include "crewanimations.hpp"
 class CfgVehicles
 {
-	class Ship
-	{
-		class ViewPilot;
-	};
+	class Ship;
 	class Ship_F: Ship
 	{
+		class ViewPilot;
 		class AnimationSources;
 		class Eventhandlers;
 	};
 	class DSR_Dingy_base_F: Ship_F
 	{
-		displayName	= "Dingy w/Gas Motor";  /// displayed in Editor
-		model		= "\dsr_vehicles\dingy\dingy.p3d";/// simple path to model
-		picture		= "\A3\Weapons_F\Data\placeholder_co.paa"; /// just some icon in command bar
-		Icon		= "\A3\Weapons_F\Data\placeholder_co.paa"; /// icon in map
-		cost		= 20000; /// how likely is the enemy going to target this vehicle
-		accuracy	= 0.50; /// knowledge required to recognize this type of target
+		displayName			= "Dingy w/Gas Motor";  /// displayed in Editor
+		model				= "\dsr_vehicles\dingy\dingy.p3d";/// simple path to model
+		picture				= "\A3\Weapons_F\Data\placeholder_co.paa"; /// just some icon in command bar
+		Icon				= "\A3\Weapons_F\Data\placeholder_co.paa"; /// icon in map
+		cost				= 20000; /// how likely is the enemy going to target this vehicle
+		accuracy			= 0.50; /// knowledge required to recognize this type of target
+		scope			 	= 2;					/// scope 2 means it is available in editor, this is one of the macros in basicdefines_a3.hpp
+		scopeCurator	 	= 2;						// scope 2 means it's available in Zeus mode (0 means hidden)
+		/*
+		camouflage			= 3;
 		vehicleClass = "Ship";
+		class SpeechVariants
+		{
+			class Default
+			{
+				speechSingular[] = {"veh_ship_boat_s"};
+				speechPlural[] = {"veh_ship_boat_p"};
+			};
+		};
+		textSingular = "$STR_A3_nameSound_veh_ship_boat_s";
+		textPlural = "$STR_A3_nameSound_veh_ship_boat_p";
+		nameSound = "veh_ship_boat_s";
+		maxDetectRange = 20;
+		detectSkill
+		mineAlertIconRange
+		weaponSlots
+		spotableNightLightsOff
+		spotableDarkNightLightsOff
+		spotableNightLightsOn
+		side
+		*/
 		class HitPoints
 		{
 			class HitBody
