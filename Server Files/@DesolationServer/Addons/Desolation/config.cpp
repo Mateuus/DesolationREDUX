@@ -68,7 +68,7 @@ class CfgPluginKeybinds
 	{
 		displayName = "Use 3D Action";
 		tooltip = "Allows you to use the highlighted action";
-		tag = "do3DAction";
+		tag = "DS";
 		variable = "do3DAction";
 		defaultKeys[] = {{0x39,0}};
 		code = "call DS_fnc_do3DAction;";
