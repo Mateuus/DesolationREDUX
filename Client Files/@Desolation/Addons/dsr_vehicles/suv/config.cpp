@@ -13,7 +13,7 @@ class CfgPatches
 		units[] ={"DSR_SUV_F"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"dsr_vehicles"};
+		requiredAddons[] = {"dsr_vehicles","A3_Soft_F"};
 	};
 };
 #include "crewanimations.hpp"

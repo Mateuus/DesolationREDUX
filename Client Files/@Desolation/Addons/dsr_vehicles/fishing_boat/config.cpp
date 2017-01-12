@@ -5,7 +5,7 @@ class CfgPatches
 		units[] ={"DSR_FishingBoat_F"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"dsr_vehicles"};
+		requiredAddons[] = {"dsr_vehicles","A3_Boat_F"};
 	};
 };
 #include "crewanimations.hpp"
