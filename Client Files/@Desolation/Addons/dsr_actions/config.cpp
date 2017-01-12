@@ -264,7 +264,12 @@ class Cfg3DActions
 	{
 		name = "Actions";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions: 3DDefaultActions 
+		{
+			text = "Lift Object";
+			condition = "true";
+			code = "[_thisObject] call OM_fnc_liftObject;";
+		};
 	};
 	class diaphragm
 	{

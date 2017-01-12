@@ -11,6 +11,12 @@
 
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
 if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = ""; };
+_obj = cursorTarget;
+if (isNull _obj) then
+{
+	_obj = cursorObject;
+};
+if (isNull _obj) exitWith { false };
 if (DS_var_valid3DActionCodeSelected == "") then
 {
 	if (isNil "DS_var_3DActionData") exitWith {};
@@ -27,7 +33,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		_code = getText(_config >> "code");
 		_text = getText(_config >> "text");
 
-		_condition = str(_thisDamage) + " call { params['_thisDamage']; (" + _condition + ")};";
+		_condition = str([_thisDamage, _obj]) + " call { params['_thisDamage','_thisObject']; (" + _condition + ")};";
 		if (call compile _condition) then 
 		{
 			_validActions pushBack [_code,_text];

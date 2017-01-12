@@ -48,8 +48,8 @@ class CfgPluginKeybinds
 {
 	class Toggle3DAction 
 	{
-		displayName = "Toggle Actions";
-		tooltip = "Toggle actions to be able to easily use any actions in 3D";
+		displayName = "Toggle 3D Actions";
+		tooltip = "Toggle 3D actions to be able to easily use any actions in 3D";
 		tag = "ToggleAction";
 		variable = "Toggle3DAction";
 		defaultKeys[] = {{0x0F,0}};
