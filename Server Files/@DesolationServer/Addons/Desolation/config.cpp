@@ -46,11 +46,20 @@ class CfgPluginActions {
 };
 class CfgPluginKeybinds 
 {
+	class OpenJournalIndex 
+	{
+		displayName = "Open Building Journal";
+		tooltip = "Open the journal containing buildables";
+		tag = "DS";
+		variable = "OpenBuildingJournal";
+		defaultKeys[] = {{0x24,0}};
+		code = "call DS_fnc_openJournal;";
+	};
 	class Toggle3DAction 
 	{
 		displayName = "Toggle 3D Actions";
 		tooltip = "Toggle 3D actions to be able to easily use any actions in 3D";
-		tag = "ToggleAction";
+		tag = "DS";
 		variable = "Toggle3DAction";
 		defaultKeys[] = {{0x0F,0}};
 		code = "call DS_fnc_toggleActions;";
@@ -70,6 +79,14 @@ class CfgFunctions
 	class DS
 	{
 		//--- client functions
+		class Client_Building {
+			file = "Desolation\Client\Building";
+			isclient = 1;
+			class openJournal {};
+			class onBuildClick {};
+			class registerBuildable {};
+			class onCrateFilled {};
+		};
 		class Client_Spawning {
 			file = "Desolation\Client\Spawning";
 			isclient = 1;
@@ -256,6 +273,8 @@ class CfgFunctions
 		class Server_Building {
 			file = "Desolation\Server\Building";
 			isserver = 1;
+			class requestBuild {};
+			class finishBuild {};
 			class initBuildingSys {};
 		};
 		class Server_Locking {

@@ -12,6 +12,16 @@ class Plugins
 		tag = "OM";
 	};
 };
+class CfgPluginKeybinds {
+	class EarPlugs {
+		displayName = "Release Object";
+		tooltip = "Drops the object currently being moved";
+		tag = "OM";
+		variable = "DropObject";
+		defaultKeys[] = {{0x39,0}};
+		code = "call OM_fnc_dropObject;";
+	};
+};
 class CfgFunctions
 {
 	class OM
