@@ -56,7 +56,7 @@ else
 {
 	if !(DS_var_valid3DActionCodeSelected == "undef") then
 	{
-		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; };  systemchat 'derp'; " + DS_var_valid3DActionCodeSelected + "};";
+		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + DS_var_valid3DActionCodeSelected + "};";
 		call compile _code;
 		DS_var_3DPartName = nil;
 		DS_var_3DActionData = nil;
