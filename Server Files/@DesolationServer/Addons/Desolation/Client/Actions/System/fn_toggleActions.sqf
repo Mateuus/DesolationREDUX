@@ -25,7 +25,7 @@ else
 {
 	systemChat "Disabled";
 	DS_var_3DActionsEnabled = false;
-	if (isNil "DS_var_3DDrawEvent") exitWith {};
+	if (isNil "DS_var_3DDrawEvent") exitWith { false };
 	removeMissionEventHandler ["Draw3D", DS_var_3DDrawEvent];
 	DS_var_3DDrawEvent = nil;
 	DS_var_3DPartName = nil;
