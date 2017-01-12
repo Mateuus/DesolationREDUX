@@ -5,14 +5,13 @@ class CfgPatches
 		units[] ={"DSR_SUV_F"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"A3_Soft_F","A3_Data_F"};
+		requiredAddons[] = {"A3_Soft_F"};
 	};
 };
 #include "crewanimations.hpp"
 class CfgVehicles
 {
-	class LandVehicle;
-	class Car: LandVehicle {};
+	class Car;
 	class Car_F: Car
 	{
 		class Eventhandlers;
