@@ -320,6 +320,12 @@ class Cfg3DActions
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
 		class Actions: 3DDefaultActions {};		
 	};
+	class missiles
+	{
+		name = "Missiles";
+		icon = "\dsr_ui\Assets\actions\Missiles.paa";
+		class Actions: 3DDefaultActions {};		
+	};
 	class glass
 	{
 		name = "Glass";
@@ -328,7 +334,7 @@ class Cfg3DActions
 	};
 	class wheel
 	{
-		name = "Glass";
+		name = "Wheel";
 		icon = "\dsr_ui\Assets\actions\wheel.paa";
 		class Actions: 3DDefaultActions {};
 	};
@@ -372,12 +378,6 @@ class Cfg3DActions
 	{
 		name = "Hull";
 		icon = "\dsr_ui\Assets\actions\hull.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class missiles
-	{
-		name = "Missiles";
-		icon = "\dsr_ui\Assets\actions\missiles.paa";
 		class Actions: 3DDefaultActions {};		
 	};
 	class turret

@@ -18,6 +18,10 @@ if (isNil "DS_var_valid3DActionsCode") then
 {
 	DS_var_valid3DActionsCode = [];
 };
+if (isNil "DS_var_valid3DActionCodeSelected") then
+{
+	DS_var_valid3DActionCodeSelected = "";
+};
 
 if (((count DS_var_valid3DActions) == 0) || (vehicle player != player)) exitWith { false };
 
@@ -61,7 +65,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 					2*1.5,
 					2*1.5,
 					0,
-					_txt,
+					_txt + " " + str ((1 - _damage) * 100) + "%",
 					2,
 					0.05,
 					"LauHoWi_a"
@@ -79,7 +83,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 					1*1.5,
 					1*1.5,
 					0,
-					_txt,
+					_txt + " " + str ((1 - _damage) * 100) + "%",
 					2,
 					0.05,
 					"LauHoWi_a"
@@ -96,7 +100,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 				1*1.5,
 				1*1.5,
 				0,
-				_txt,
+				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
 				"LauHoWi_a"
@@ -123,7 +127,7 @@ else
 				2*1.5,
 				2*1.5,
 				0,
-				_txt,
+				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
 				"LauHoWi_a"
@@ -139,7 +143,7 @@ else
 				1*1.5,
 				1*1.5,
 				0,
-				_txt,
+				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
 				"LauHoWi_a"
@@ -165,7 +169,7 @@ else
 			_vChange = (_camPos vectorFromTo _visPos) vectorMultiply (((_camPos distance _visPos) / 20)*_j);
 			_checkPos = _camPos vectorAdd _vChange;
 			_valid = false;
-			if((_checkPos distance _iconPos) <= 0.05) exitWith 
+			if((_checkPos distance _iconPos) <= 0.1) exitWith 
 			{
 				_valid = true;
 			};

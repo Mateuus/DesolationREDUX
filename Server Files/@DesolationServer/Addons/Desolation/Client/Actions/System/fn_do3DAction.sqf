@@ -10,7 +10,8 @@
  */
 
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
-if (isNil "DS_var_valid3DActionCodeSelected") then
+if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = ""; };
+if (DS_var_valid3DActionCodeSelected == "") then
 {
 	if (isNil "DS_var_3DActionData") exitWith {};
 
