@@ -6577,15 +6577,15 @@ class CfgBuildables {
 		preview = "\SM_Zombz\Survivors_icon.paa";  
 		name = "Miscellaneous";  
 		class Buildables {
-			class Billboard {
+			class Pallets {
 				parts[] = {
-					{"dsr_lumber",20}
+					{"dsr_lumber",10}
 				};
-				name = "Billboard";
-				model = "DSR_House_lv1";
-				description = "This is an amazing billboard that you can paint.";
-				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
-				condition = "false";
+				name = "Pallet";
+				model = "Land_Pallets_stack_F";
+				description = "A stack of pallets";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
 			};
 			
 		};
