@@ -76,7 +76,7 @@ if(_mode == "onload") then {
 				"DS", //Plugin Prefix
 				"EXMAPLE_KEYBIND", //Storage Variable
 				[[0x06,0],[0x0F,0]], //Default Keys
-				"This is for testing purposes", //Tooltip
+				"This is for testing purposes", //Tooltip (unused)
 				"true" //code to run on exec (unused)
 			]
 		]];
