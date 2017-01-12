@@ -51,7 +51,8 @@ if (DS_var_valid3DActionCodeSelected == "") then
 }
 else
 {
-	call compile DS_var_valid3DActionCodeSelected;
+	_code = str([_thisDamage, _obj]) + " call { params['_thisDamage','_thisObject']; " + _code;
+	call compile _code;
 	DS_var_valid3DActionCodeSelected = nil;
 };
 
