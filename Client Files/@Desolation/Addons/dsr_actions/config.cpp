@@ -248,7 +248,7 @@ class 3DDefaultActions
 	{
 		text = "Destroyed";
 		condition = "_thisDamage >= 1";
-		code = "systmechat 'i am destroyed';";
+		code = "systemchat 'i am destroyed';";
 	};
 	class Damaged
 	{
