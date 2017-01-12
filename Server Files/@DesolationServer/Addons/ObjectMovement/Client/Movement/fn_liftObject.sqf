@@ -8,16 +8,16 @@ if([_object] call OM_fnc_canLift) then {
 	OM_var_EachFrameEH = addMissionEventHandler ["EachFrame",{
 		_object = OM_var_lifted;
 		
-		_maxheight = 3; 
-		_carryDistance = 3;
-		_speedUp = 2;
-		_speedDown = -2;
-		_lagComp = 1 max (30 / (diag_fps max 1));
-		_maxDistToObject = 5;
+		_maxheight = call compile (["maxHeight","OM"] call BASE_fnc_getCfgValue); 
+		_carryDistance = call compile (["carryDistance","OM"] call BASE_fnc_getCfgValue); 
+		_speedUp = call compile (["liftSpeed","OM"] call BASE_fnc_getCfgValue);
+		_speedDown = -1*(call compile (["liftSpeed","OM"] call BASE_fnc_getCfgValue));
+		_lagComp = call compile (["lagComp","OM"] call BASE_fnc_getCfgValue);
+		_maxDistToObject = call compile (["maxDistance","OM"] call BASE_fnc_getCfgValue);
 		_objectNewVelocityZ = 0.168;
-		_speedPushPull = 2;
-		_maxCollisionForce = 0.5;
-		_rotSpeed = 5;
+		_speedPushPull = call compile (["moveSpeed","OM"] call BASE_fnc_getCfgValue);
+		_maxCollisionForce = call compile (["maxForce","OM"] call BASE_fnc_getCfgValue);
+		_rotSpeed = call compile (["rotationSpeed","OM"] call BASE_fnc_getCfgValue);
 		
 		
 		
