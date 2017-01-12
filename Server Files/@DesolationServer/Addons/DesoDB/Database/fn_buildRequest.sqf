@@ -15,7 +15,7 @@ _db_function_call = {
 	params[["_dbfunction","getUUID"],["_arguments",[]]];
 	private["_base","_baseargs","_argEntryBase","_args","_badRequest","_entryName","_entryValue","_chars","_newchars","_request"];
 
-	_base = "{'dllfunction': '%1', 'dllarguments': { %2 } }";
+	_base = "{'dllFunction': '%1', 'dllArguments': { %2 } }";
 	_dbbase = "'dbfunction': '%1', 'dbarguments': { %2 }";
 	
 	_argEntryBase = "'%1': %2";
@@ -66,10 +66,10 @@ _db_function_call = {
 	_request;
 };
 _dll_function_call = {
-	params[["_dllfunction","initdb"],["_arguments",[]]];
+	params[["_dllFunction","initdb"],["_arguments",[]]];
 	private["_base","_argEntryBase","_args","_badRequest","_entryName","_entryValue","_chars","_newchars","_request"];
 
-	_base = "{'dllfunction': '%1', 'dllarguments': { %2 } }";
+	_base = "{'dllFunction': '%1', 'dllArguments': { %2 } }";
 
 	_argEntryBase = "'%1': %2";
 	_args = "";
@@ -108,21 +108,21 @@ _dll_function_call = {
 	if(_badRequest) exitWith {
 		diag_log "==== DESOLATION DB ERROR ====";
 		diag_log "BAD REQUEST SENT TO DB";
-		diag_log str(_dllfunction);
+		diag_log str(_dllFunction);
 		diag_log str(_arguments);
 		diag_log "==== DESOLATION DB ERROR ====";
 		"";
 	};
 
-	_request = format[_base,_dllfunction,_args];
+	_request = format[_base,_dllFunction,_args];
 	_request;
 };
 _io_function_call = {
 	params[["_ioFunction","GetInitOrder"],["_arguments",[]]];
 	private["_base","_baseargs","_argEntryBase","_args","_badRequest","_entryName","_entryValue","_chars","_newchars","_request"];
 
-	_base = "{'dllfunction': '%1', 'dllarguments': { %2 } }";
-	_iobase = "'iofunction': '%1', 'ioarguments': { %2 }";
+	_base = "{'dllFunction': '%1', 'dllArguments': { %2 } }";
+	_iobase = "'extFunction': '%1', 'extArguments': { %2 }";
 	
 	_argEntryBase = "'%1': %2";
 	_args = "";

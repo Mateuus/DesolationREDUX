@@ -42,7 +42,7 @@ while{_doswitchloop} do {
 
             /* empty uuid means function call without retuning data e.g. updates */
             if (_uuid != "") then {
-                _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } } }";
+                _request = "{ 'dllFunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllArguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } } }";
 
                 _innerdoloop = true;
                 while{_innerdoloop} do {
@@ -69,7 +69,7 @@ while{_doswitchloop} do {
             _uuid = _compiledResponse select 1;
             _finalResponse = _compiledResponse select 2;
             
-            _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + "' } }";
+            _request = "{ 'dllFunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllArguments': {  'msguuid': '" + _uuid + "' } }";
 			
 			diag_log "Receiving multipart message";
             _innerdoloop = true;

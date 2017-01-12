@@ -1,4 +1,4 @@
-/* datetime.hpp
+/* randomlist.hpp
  *
  * Copyright 2016-2017 Desolation Redux
  *
@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  */
 
-#ifndef SOURCE_DATETIME_HPP_
-#define SOURCE_DATETIME_HPP_
+#ifndef SOURCE_RANDOM_HPP_
+#define SOURCE_RANDOM_HPP_
 
 #include <algorithm>
 #include <string>
@@ -27,16 +27,20 @@
 
 #include "extbase.hpp"
 #include "constants.hpp"
+#include "randomlist/discrete_randomlist.hpp"
 
-class datetime: public ext_base {
+class randomlist: public ext_base {
 public:
-	datetime();
-	~datetime();
+	randomlist();
+	~randomlist();
 
 private:
-	std::string getDateTimeArray(boost::property_tree::ptree &extArguments);
-	std::string getEpochTime(boost::property_tree::ptree &extArguments);
+	typedef std::map<std::string, discrete_list> DISCRETE_LIST_MAP;
+	DISCRETE_LIST_MAP DiscreteItemList;
+
+	std::string addDiscreteItemList(boost::property_tree::ptree &extArguments);
+	std::string getDiscreteItemList(boost::property_tree::ptree &extArguments);
 };
 
 
-#endif /* SOURCE_DATETIME_HPP_ */
+#endif /* SOURCE_RANDOM_HPP_ */

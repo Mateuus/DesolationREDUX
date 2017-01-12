@@ -24,11 +24,11 @@ void RVExtension(char *output, int outputSize, const char *function);
 int main(int argc, char *argv[])
 {
     char output[1024];
-    const char function[] = "{ 'dllfunction': 'dtcall', 'dllarguments': {  'dtfunction': 'getDateTimeArray', 'dtarguments': {  } } }";
+    const char function[] = "{ 'dllFunction': 'dtcall', 'dllArguments': {  'extFunction': 'getDateTimeArray', 'extArguments': {  } } }";
     RVExtension(output, 1024, function);
     std::cout << "OUTPUT: " << output << std::endl;
 
-    const char function2[] = "{ 'dllfunction': 'dtcall', 'dllarguments': {  'dtfunction': 'getEpochTime', 'dtarguments': {  } } }";
+    const char function2[] = "{ 'dllFunction': 'dtcall', 'dllArguments': {  'extFunction': 'getEpochTime', 'extArguments': {  } } }";
     RVExtension(output, 1024, function2);
     std::cout << "OUTPUT: " << output << std::endl;
 

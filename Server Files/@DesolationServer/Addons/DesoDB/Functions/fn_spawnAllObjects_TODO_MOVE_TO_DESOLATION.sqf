@@ -14,7 +14,7 @@
 params["_player"];
 private["_request", "_response", "_objectList", "_objectUUID",  "_parentObjectUUID",  "_classname",  "_priority",  "_visible",  "_accesscode",  "_locked",  "_player_uuid",  "_hitpoints",  "_damage",  "_fuel",  "_fuelcargo",  "_repaircargo",  "_items",  "_magazines",  "_weapons",  "_backpacks",  "_magazinesturret",  "_variables",  "_animationstate",  "_textures",  "_direction",  "_positiontype",  "_positionx",  "_positiony",  "_positionz",  "_friendlist", "_vehicle", "_hitpointsPoints", "_hitpointsValues", "_items", "_itemValue", "_magazineList", "_magazineValue", "_weaponsList", "_weaponsValue", "_backpacksList", "_backpacksValue"];
 
-_request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS, "', 'dbarguments': {  } } }" ] joinString "";
+_request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS, "', 'dbarguments': {  } } }" ] joinString "";
 
 _response = _request call DS_fnc_Send_Request;
 

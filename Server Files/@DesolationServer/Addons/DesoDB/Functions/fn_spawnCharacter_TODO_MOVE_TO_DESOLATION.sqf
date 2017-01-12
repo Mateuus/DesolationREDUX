@@ -15,7 +15,7 @@ params["_player"];
 private["_request", "_response","_playeruuid", "_dpvaruuid","_friendlist","_doswitchloop","_innerdoloop"];
 
 
-_request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER, 
+_request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LOAD_PLAYER, 
              "', 'dbarguments': { '", PROTOCOL_DBCALL_ARGUMENT_NICKNAME, "': '", name _player,  "', '", PROTOCOL_DBCALL_ARGUMENT_STEAMID, "': '", getPlayerUID _player, "'  } } }" ] joinString "";
 
 _response = _request call DS_fnc_Send_Request;
@@ -27,7 +27,7 @@ _friendlist = _resonse select 2;
 /* to be implemented later */
 /*
 if (_dpvaruuid == "") then {
-   _request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_AV_CHARS, 
+   _request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_AV_CHARS, 
                 "', 'dbarguments': { '", PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID, "': '", _playeruuid, "' } } }" ] joinString "";
    _response = _request call DS_fnc_Send_Request;
    
@@ -35,14 +35,14 @@ if (_dpvaruuid == "") then {
    // send _response to client
    // wait for user answer, must be an uuid of the response of
    _variabuuid = "lol;
-   _request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LINK_CHARS, 
+   _request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LINK_CHARS, 
                 "', 'dbarguments': { '", PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID, "': '", _playeruuid, "', '", PROTOCOL_DBCALL_ARGUMENT_VARIABUUID, "': '", _variabuuid, "' } } }" ] joinString "";
    _response = _request call DS_fnc_Send_Request;
    }
 }
 */
 
-_request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR, 
+_request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_LOAD_CHAR, 
              "', 'dbarguments': { '", PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID, "': '", _playeruuid, "' } } }" ] joinString "";
 _response = _request call DS_fnc_Send_Request;
 
@@ -74,7 +74,7 @@ if (_response == []) {
     _tools = [];
     _currentweapon = "someprimaryweapon"; 
     
-    _request = [ "{ 'dllfunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllarguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR, 
+    _request = [ "{ 'dllFunction': '", PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL, "', 'dllArguments': {  'dbfunction': '", PROTOCOL_DBCALL_FUNCTION_CREATE_CHAR, 
                  "', 'dbarguments': { '", PROTOCOL_DBCALL_ARGUMENT_PLAYER_UUID, "': '", _playeruuid, "', '", PROTOCOL_DBCALL_ARGUMENT_ANIMATIONSTATE, "': '", _animationstate, 
                  "', '", PROTOCOL_DBCALL_ARGUMENT_DIRECTION, "': '", _direction, "', '", PROTOCOL_DBCALL_ARGUMENT_POSITIONTYPE, "': '", _positiontype, 
                  "', '", PROTOCOL_DBCALL_ARGUMENT_POSITIONX , "': '", _positionx, "', '", PROTOCOL_DBCALL_ARGUMENT_POSITIONY , "': '", _positiony, 
