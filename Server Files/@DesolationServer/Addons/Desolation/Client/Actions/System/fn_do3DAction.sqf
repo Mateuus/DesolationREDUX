@@ -33,7 +33,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		_code = getText(_config >> "code");
 		_text = getText(_config >> "text");
 
-		_condition = str([_thisDamage, _obj]) + " call { params['_thisDamage','_thisObject']; (" + _condition + ")};";
+		_condition = "[" + str (_thisDamage) + ",""" + str(_obj) + """]" + " call { params['_thisDamage','_thisObject']; (" + _condition + ")};";
 		if (call compile _condition) then 
 		{
 			_validActions pushBack [_code,_text];
@@ -51,7 +51,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 }
 else
 {
-	_code = str([_thisDamage, _obj]) + " call { params['_thisDamage','_thisObject']; " + _code;
+	_code = "[" + str (DS_var_3DActionData select 1) + ",""" + str(_obj) + """]" + " call { params['_thisDamage','_thisObject']; " + DS_var_valid3DActionCodeSelected + "};";
 	call compile _code;
 	DS_var_valid3DActionCodeSelected = nil;
 };
