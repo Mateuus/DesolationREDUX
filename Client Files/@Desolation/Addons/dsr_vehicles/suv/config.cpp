@@ -1,19 +1,11 @@
-enum {
-	StabilizedInAxesNone = 0,
-	StabilizedInAxisX = 1,
-	StabilizedInAxisY = 2,
-	StabilizedInAxesBoth = 3,
-	StabilizedInAxesXYZ = 4
-};
-class DefaultEventhandlers;
 class CfgPatches
 {
-	class CAWheeled_E_SUV
+	class DSR_SUV
 	{
 		units[] ={"DSR_SUV_F"};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {"dsr_vehicles","A3_Soft_F"};
+		requiredAddons[] = {"A3_Soft_F","A3_Data_F"};
 	};
 };
 #include "crewanimations.hpp"
@@ -255,7 +247,7 @@ class CfgVehicles
 		{
 			class HitLFWheel
 			{
-				armor = 0.1;
+				armor = 0.08;
 				material = -1;
 				name = "wheel_1_1_steering";
 				visual = "";
@@ -264,7 +256,7 @@ class CfgVehicles
 			};
 			class HitLF2Wheel
 			{
-				armor = 0.1;
+				armor = 0.08;
 				material = -1;
 				name = "wheel_1_2_steering";
 				visual = "";
@@ -273,7 +265,7 @@ class CfgVehicles
 			};
 			class HitRFWheel
 			{
-				armor = 0.1;
+				armor = 0.08;
 				material = -1;
 				name = "wheel_2_1_steering";
 				visual = "";
@@ -282,7 +274,7 @@ class CfgVehicles
 			};
 			class HitRF2Wheel
 			{
-				armor = 0.1;
+				armor = 0.08;
 				material = -1;
 				name = "wheel_2_2_steering";
 				visual = "";
@@ -291,9 +283,9 @@ class CfgVehicles
 			};
 			class HitFuel
 			{
-				armor = 1.5;
+				armor = 0.5;
 				material = -1;
-				name = "fueltank";
+				name = "palivo";
 				visual = "";
 				passThrough = 0.5;
 				explosionShielding = 1.5;
@@ -319,7 +311,7 @@ class CfgVehicles
 			};
 			class HitGlass1
 			{
-				armor = 0.25;
+				armor = 0.20;
 				material = -1;
 				name = "glass1";
 				visual = "glass1";
