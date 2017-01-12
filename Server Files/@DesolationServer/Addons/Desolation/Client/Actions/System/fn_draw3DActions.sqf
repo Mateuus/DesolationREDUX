@@ -192,6 +192,10 @@ else
 					"LauHoWi_a"
 				];
 				_alreadyHasValidAction = true;
+				if (isNil "DS_var_valid3DActionCodeSelected") then
+				{
+					DS_var_valid3DActionCodeSelected = "";
+				};
 				if (DS_var_valid3DActionCodeSelected != _code) then
 				{
 					DS_var_valid3DActionCodeSelected = _code;

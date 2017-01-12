@@ -19,7 +19,7 @@ if (isNull _obj) then
 if (isNull _obj) exitWith { false };
 if (DS_var_valid3DActionCodeSelected == "") then
 {
-	if (isNil "DS_var_3DActionData") exitWith {};
+	if (isNil "DS_var_3DActionData") exitWith { false };
 
 	DS_var_3DActionData params ["_partName","_thisDamage"];
 	if (_partName == "") then { _partName = "action" };
@@ -34,15 +34,17 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		_code = getText(_config >> "code");
 		_text = getText(_config >> "text");
 
-		_condition = "[" + str (_thisDamage) + ",""" + str(_obj) + """]" + " call { params['_thisDamage','_thisObject']; (" + _condition + ")};";
+		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; (" + _condition + ")};";
 		if (call compile _condition) then 
 		{
 			_validActions pushBack [_code,_text];
+			systemchat str _validActions;
 		};
 	};
 	if ((count _validActions) < 1) exitWith
 	{
 		DS_var_valid3DActionsCode = [];
+		false
 	};
 
 	if !(_validActions isEqualTo DS_var_valid3DActionsCode) then
@@ -52,7 +54,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 }
 else
 {
-	_code = "[" + str (DS_var_3DActionData select 1) + ",""" + str(_obj) + """]" + " call { params['_thisDamage','_thisObject']; " + DS_var_valid3DActionCodeSelected + "};";
+	_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; };  systemchat 'derp'; " + DS_var_valid3DActionCodeSelected + "};";
 	call compile _code;
 	DS_var_valid3DActionCodeSelected = nil;
 };
