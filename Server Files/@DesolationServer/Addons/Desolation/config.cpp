@@ -427,7 +427,7 @@ class CfgAirdropSpawns {
 class CfgItemSpawns {
 	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
 	lootRarity[] = {"rare","semirare","average","semicommon","common"};
-	lootTypes[] = {"Weapon","Handgun","Magazine","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart", "Attachment"};
+	lootTypes[] = {"Weapon","Handgun","Magazine","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart","Attachment"};
 
 	class Loot {
         class Military {
