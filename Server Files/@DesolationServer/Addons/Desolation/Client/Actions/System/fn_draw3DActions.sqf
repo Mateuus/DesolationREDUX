@@ -34,7 +34,7 @@ if (isNull _obj) exitWith { false };
 _dif0 = (boundingBoxReal _obj) select 0;
 _dif1 = (boundingBoxReal _obj) select 1;
 _distance = (_dif0 distance _dif1) + 4;
-_visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,3]);
+_visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,4.5]);
 _camPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,0]);
 if ((count DS_var_valid3DActionsCode) < 1) then
 {

@@ -22,6 +22,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 	if (isNil "DS_var_3DActionData") exitWith {};
 
 	DS_var_3DActionData params ["_partName","_thisDamage"];
+	if (_partName == "") then { _partName = "action" };
 	_actionConfig = ((toLower _partName) call DS_fnc_get3DPartName) >> "Actions";
 	_actionConfig = (configProperties [_actionConfig, "true", true]);
 
