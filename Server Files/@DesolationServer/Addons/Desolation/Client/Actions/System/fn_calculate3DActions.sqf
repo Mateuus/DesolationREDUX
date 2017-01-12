@@ -26,9 +26,14 @@ while {DS_var_3DActionsEnabled} do
 		_distance = (_dif0 distance _dif1) + 4;
 
 		if ((_obj distance player) > (_distance / 2)) exitWith 
-		{ 
+		{
+			DS_var_3DPartName = nil;
+			DS_var_3DActionData = nil;
+			DS_var_valid3DActionsCode = nil;
+			DS_var_valid3DActionCodeSelected = nil;
 			DS_var_valid3DActions = [];
-			false 
+
+			false
 		};
 
 		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "Man") || (_obj isKindOf "House")) exitWith
@@ -79,11 +84,8 @@ while {DS_var_3DActionsEnabled} do
 		DS_var_valid3DActions = [];
 	};
 
-	if ((count _validActions) < 1) exitWith {};
-
-	// Literally all for Kegan :)
-	// I even made it readable for him :)
-	if !(_validActions isEqualTo DS_var_valid3DActions) then {
+	if (!((count _validActions) < 1) && !(_validActions isEqualTo DS_var_valid3DActions)) then
+	{
 		DS_var_valid3DActions = _validActions;
 	};
 	uiSleep 0.1;
