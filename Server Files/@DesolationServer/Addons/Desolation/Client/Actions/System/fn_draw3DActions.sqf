@@ -18,10 +18,6 @@ if (isNil "DS_var_valid3DActionsCode") then
 {
 	DS_var_valid3DActionsCode = [];
 };
-if (isNil "DS_var_valid3DActionCodeSelected") then
-{
-	DS_var_valid3DActionCodeSelected = "";
-};
 
 if (((count DS_var_valid3DActions) == 0) || (vehicle player != player)) exitWith { false };
 
@@ -237,7 +233,7 @@ else
 
 		if !(_alreadyHasValidAction) then
 		{
-			DS_var_valid3DActionCodeSelected = nil;
+			DS_var_valid3DActionCodeSelected = "undef";
 		};
 	};
 };

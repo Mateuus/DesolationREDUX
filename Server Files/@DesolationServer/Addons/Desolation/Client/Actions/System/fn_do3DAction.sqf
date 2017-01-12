@@ -10,7 +10,7 @@
  */
 
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
-if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = ""; };
+if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = "" };
 _obj = cursorTarget;
 if (isNull _obj) then
 {
@@ -19,6 +19,7 @@ if (isNull _obj) then
 if (isNull _obj) exitWith { false };
 if (DS_var_valid3DActionCodeSelected == "") then
 {
+	DS_var_valid3DActionCodeSelected = "";
 	if (isNil "DS_var_3DActionData") exitWith { false };
 
 	DS_var_3DActionData params ["_partName","_thisDamage"];
@@ -38,7 +39,6 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		if (call compile _condition) then 
 		{
 			_validActions pushBack [_code,_text];
-			systemchat str _validActions;
 		};
 	};
 	if ((count _validActions) < 1) exitWith
@@ -54,9 +54,22 @@ if (DS_var_valid3DActionCodeSelected == "") then
 }
 else
 {
-	_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; };  systemchat 'derp'; " + DS_var_valid3DActionCodeSelected + "};";
-	call compile _code;
-	DS_var_valid3DActionCodeSelected = nil;
+	if !(DS_var_valid3DActionCodeSelected == "undef") then
+	{
+		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; };  systemchat 'derp'; " + DS_var_valid3DActionCodeSelected + "};";
+		call compile _code;
+		DS_var_3DPartName = nil;
+		DS_var_3DActionData = nil;
+		DS_var_valid3DActionsCode = nil;
+		DS_var_valid3DActionCodeSelected = nil;
+	}
+	else
+	{
+		DS_var_3DPartName = nil;
+		DS_var_3DActionData = nil;
+		DS_var_valid3DActionsCode = nil;
+		DS_var_valid3DActionCodeSelected = nil;
+	};
 };
 
 true

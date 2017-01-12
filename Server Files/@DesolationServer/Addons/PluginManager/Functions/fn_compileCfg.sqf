@@ -15,7 +15,7 @@ _MasterObject = bis_functions_mainscope;
 
 _request = ["GetCfgFile",[["configfiles",_initOrder]]] call DB_fnc_buildIORequest;
 diag_log _request;
-_configEntries = call compile ([_request] call DB_fnc_sendRequest);
+_configEntries = [_request] call DB_fnc_sendRequest;
 
 _cfg = configFile >> "Plugins";
 {
