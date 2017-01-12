@@ -25,9 +25,10 @@
 		{
 			_tag = _x select 1;
 			_variable = _x select 2;
+			_defaults = _x select 3;
 			_code = _x select 5;
 			
-			_keyData = profileNamespace getVariable [_tag + "_KEYBIND_" + _variable,[]];
+			_keyData = profileNamespace getVariable [_tag + "_KEYBIND_" + _variable,_defaults];
 			{
 				_dik = _x select 0;
 				_entry = _x select 1;

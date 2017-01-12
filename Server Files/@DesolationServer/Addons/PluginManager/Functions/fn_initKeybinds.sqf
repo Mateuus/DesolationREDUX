@@ -14,12 +14,24 @@ KEYBIND_DATA = [];
 _config = configFile >> "CfgPluginKeybinds";
 for "_i" from 0 to count(_config)-1 do {
 	_entry = _config select _i;
+	
 	if(isClass _entry) then {
+		_arrayData = getArray(_entry >> "defaultKeys");
+		
+		{
+			_number = _x select 0;
+			if(_number isEqualType "") then {
+				_number = call compile _number;
+			};
+			_x set[0,_number];
+			_arrayData set[_forEachIndex,_x];
+		} forEach _arrayData;
+		
 		KEYBIND_DATA pushback [
 			getText(_entry >> "displayName"),
 			getText(_entry >> "tag"),
 			getText(_entry >> "variable"),
-			getArray(_entry >> "defaultKeys"),
+			_arrayData,
 			getText(_entry >> "tooltip"),
 			getText(_entry >> "code")
 			

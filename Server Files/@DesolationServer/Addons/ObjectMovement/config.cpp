@@ -13,7 +13,7 @@ class Plugins
 	};
 };
 class CfgPluginKeybinds {
-	class EarPlugs {
+	class ReleaseObject {
 		displayName = "Release Object";
 		tooltip = "Drops the object currently being moved";
 		tag = "OM";
