@@ -230,6 +230,11 @@ else
 				"LauHoWi_a"
 			];	
 		};
+
+		if !(_alreadyHasValidAction) then
+		{
+			DS_var_valid3DActionCodeSelected = nil;
+		};
 	};
 };
 
