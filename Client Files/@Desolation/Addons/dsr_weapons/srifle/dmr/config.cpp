@@ -66,7 +66,7 @@ class CfgWeapons
 		{
 			class MuzzleSlot: MuzzleSlot
 			{
-				linkProxy="\a3\data_f\proxies\weapon_slots\muzzle.001";
+				linkProxy="\a3\data_f\proxies\weapon_slots\muzzle";
 				compatibleItems[]=
 				{
 					"muzzle_snds_B"
