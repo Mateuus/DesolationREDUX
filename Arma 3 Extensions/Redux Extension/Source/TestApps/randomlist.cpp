@@ -46,5 +46,20 @@ int main(int argc, char *argv[])
 	RVExtension(output, size, function3);
 	std::cout << "OUTPUT: " << output << std::endl;
 
+	const char function4[] = "{ 'dllFunction': 'rlcall', 'dllArguments': {  'extFunction': 'addDiscreteItemList', 'extArguments': { 'listName': 'testlist2', 'weights': [20, 5, 3, 2], 'items': [] } } }";
+	std::cout << "SENT: " << function4 << std::endl;
+	RVExtension(output, size, function4);
+	std::cout << "OUTPUT: " << output << std::endl;
+
+	const char function5[] = "{ 'dllFunction': 'rlcall', 'dllArguments': {  'extFunction': 'addDiscreteItemList', 'extArguments': { 'listName': 'testlist3', 'weights': [], 'items': ['Cat', 'Dog', 'Bird', 'Mouse'] } } }";
+	std::cout << "SENT: " << function5 << std::endl;
+	RVExtension(output, size, function5);
+	std::cout << "OUTPUT: " << output << std::endl;
+
+	const char function6[] = "{ 'dllFunction': 'rlcall', 'dllArguments': {  'extFunction': 'addDiscreteItemList', 'extArguments': { 'listName': 'testlist4', 'weights': [20, 5, 3, 2], 'items': ['Cat', 'Dog', 'Bird'] } } }";
+	std::cout << "SENT: " << function6 << std::endl;
+	RVExtension(output, size, function6);
+	std::cout << "OUTPUT: " << output << std::endl;
+
     return 0;
 }

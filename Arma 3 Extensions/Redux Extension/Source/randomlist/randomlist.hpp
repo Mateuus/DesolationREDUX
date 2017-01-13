@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  */
 
-#ifndef SOURCE_RANDOM_HPP_
-#define SOURCE_RANDOM_HPP_
+#ifndef SOURCE_RANDOMLIST_HPP_
+#define SOURCE_RANDOMLIST_HPP_
 
 #include <algorithm>
 #include <string>
@@ -43,4 +43,4 @@ private:
 };
 
 
-#endif /* SOURCE_RANDOM_HPP_ */
+#endif /* SOURCE_RANDOMLIST_HPP_ */

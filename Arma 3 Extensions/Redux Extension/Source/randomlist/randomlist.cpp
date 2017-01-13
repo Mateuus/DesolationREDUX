@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  */
 
-#include "randomlist.hpp"
+#include "randomlist/randomlist.hpp"
 
 #include <unistd.h>
 #include <boost/bind.hpp>
@@ -57,35 +57,33 @@ std::string randomlist::addDiscreteItemList(boost::property_tree::ptree &extArgu
 	if (it != DiscreteItemList.end()) {
 		throw std::runtime_error("List does already exist: " + listName);
 	} else {
-		try {
-			std::list<int> weights;
-			std::list<std::string> items;
+		std::list<int> weights;
+		std::list<std::string> items;
 
-			for (auto& item : extArguments.get_child("weights")) {
-				int itemWeight = item.second.get_value<int>();
-				weights.push_back(itemWeight);
-			}
-
-			for (auto& item : extArguments.get_child("items")) {
-				std::string itemClass = item.second.get_value<std::string>();
-				items.push_back(itemClass);
-			}
-
-			DiscreteItemList.insert(std::make_pair(listName, discrete_list(weights, items)));
-			returnString = "Done";
-//			discrete_list newList(weights, items);
-//			DiscreteItemList.insert(std::make_pair(listName, newList));
-		} catch (std::exception const& e) {
-			std::string error = e.what();
-			int i = 0;
-			while ((i = error.find("\"", i)) != std::string::npos) {
-				error.insert(i, "\"");
-				i += 2;
-			}
-			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR) + "\", \"";
-			returnString += error;
-			returnString += "\"]";
+		for (auto& item : extArguments.get_child("weights")) {
+			int itemWeight = item.second.get_value<int>();
+			weights.push_back(itemWeight);
 		}
+
+		for (auto& item : extArguments.get_child("items")) {
+			std::string itemClass = item.second.get_value<std::string>();
+			items.push_back(itemClass);
+		}
+
+		if (weights.empty()) {
+				throw std::runtime_error("The weights array is empty!");
+		}
+
+		if (items.empty()) {
+				throw std::runtime_error("The items array is empty!");
+		}
+
+		if (weights.size() != items.size()) {
+				throw std::runtime_error("The weights and items array need to have the same size!");
+		}
+
+		DiscreteItemList.insert(std::make_pair(listName, discrete_list(weights, items)));
+		returnString = "\"Done\"";
 	}
 
 	return returnString;
