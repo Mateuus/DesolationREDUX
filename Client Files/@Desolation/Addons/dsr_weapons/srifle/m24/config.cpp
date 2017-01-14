@@ -2,7 +2,7 @@
  * Desolation Redux
  * http://desolationredux.com/
  * © 2016 Desolation Dev Team
- * 
+ *
  * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
  * To view a copy of this license, visit:
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
@@ -516,7 +516,7 @@ class CfgWeapons
 		aiDispersionCoefY=3;
 		aiDispersionCoefX=2;
 	};
-	class dsr_us_dmr_scoped: DMR_06_base_F
+	class dsr_srifle_m24: DMR_06_base_F
 	{
 		author="$STR_A3_Bohemia_Interactive";
 		_generalMacro="srifle_DMR_06_camo_F";

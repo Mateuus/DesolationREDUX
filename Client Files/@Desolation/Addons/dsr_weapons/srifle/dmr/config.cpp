@@ -25,7 +25,7 @@ class PointerSlot;
  * Desolation Redux
  * http://desolationredux.com/
  * © 2016 Desolation Dev Team
- * 
+ *
  * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
  * To view a copy of this license, visit:
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
@@ -49,7 +49,7 @@ class CfgWeapons
 		author="$STR_A3_Bohemia_Interactive";
 		_generalMacro="DMR_06_base_F";
 		scope=0;
-		displayName="dsr_us_dmr_scoped";
+		displayName="dsr_us_dmr";
 		selectionFireAnim = "muzzleFlash"; /// are we able to get rid of all the zaslehs?
 		magazines[]=
 		{
@@ -516,14 +516,14 @@ class CfgWeapons
 		aiDispersionCoefY=3;
 		aiDispersionCoefX=2;
 	};
-	class dsr_us_dmr_scoped: DMR_06_base_F
+	class dsr_srifle_dmr_old: DMR_06_base_F
 	{
 		author="$STR_A3_Bohemia_Interactive";
 		_generalMacro="srifle_DMR_06_camo_F";
 		scope=2;
 		model="dsr_weapons\srifle\dmr\dsr_us_dmr.p3d";
 		dexterity=1.6799999;
-		displayName="DSR_US_DMR_SCOPED";
+		displayName="DSR_US_DMR";
 		picture="\A3\Weapons_F_Mark\LongRangeRifles\DMR_06\Data\UI\gear_DMR_06_camo_X_CA.paa";
 		UiPicture="\A3\weapons_f\data\UI\icon_regular_CA.paa";
 		descriptionShort="US_DMR";
