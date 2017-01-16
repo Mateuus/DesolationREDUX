@@ -17,3 +17,5 @@ if !(isNil "OM_var_EachFrameEH") then
 OM_var_lifted removeAllEventHandlers "EpeContact";
 OM_var_collisionForce = 0;
 OM_var_lifted = objNull;
+
+true

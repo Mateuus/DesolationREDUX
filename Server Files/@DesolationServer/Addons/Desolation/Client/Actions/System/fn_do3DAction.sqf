@@ -9,6 +9,7 @@
  * https://www.bistudio.com/monetization/
  */
 
+uiSleep 0.2;
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
 if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = "" };
 _obj = cursorTarget;
@@ -35,7 +36,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		_code = getText(_config >> "code");
 		_text = getText(_config >> "text");
 
-		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; (" + _condition + ")};";
+		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _condition + " };";
 		if (call compile _condition) then 
 		{
 			_validActions pushBack [_code,_text];
@@ -56,7 +57,7 @@ else
 {
 	if !(DS_var_valid3DActionCodeSelected == "undef") then
 	{
-		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + DS_var_valid3DActionCodeSelected + "};";
+		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + DS_var_valid3DActionCodeSelected + " };";
 		call compile _code;
 		DS_var_3DPartName = nil;
 		DS_var_3DActionData = nil;

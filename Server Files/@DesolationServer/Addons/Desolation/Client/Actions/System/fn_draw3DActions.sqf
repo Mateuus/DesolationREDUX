@@ -64,7 +64,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 					_txt + " " + str ((1 - _damage) * 100) + "%",
 					2,
 					0.05,
-					"LauHoWi_a"
+					"PuristaBold"
 				];
 				_alreadyHasValidAction = true;
 				DS_var_3DActionData = [_partName,_damage,_x];
@@ -82,7 +82,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 					_txt + " " + str ((1 - _damage) * 100) + "%",
 					2,
 					0.05,
-					"LauHoWi_a"
+					"PuristaBold"
 				];
 			};
 		}
@@ -99,7 +99,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
-				"LauHoWi_a"
+				"PuristaBold"
 			];
 		};
 	} count DS_var_valid3DActions;
@@ -126,7 +126,7 @@ else
 				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
-				"LauHoWi_a"
+				"PuristaBold"
 			];
 		}
 		else
@@ -142,7 +142,7 @@ else
 				_txt + " " + str ((1 - _damage) * 100) + "%",
 				2,
 				0.05,
-				"LauHoWi_a"
+				"PuristaBold"
 			];
 		};
 	} count DS_var_valid3DActions;
@@ -185,7 +185,7 @@ else
 					_txt,
 					2,
 					0.05,
-					"LauHoWi_a"
+					"PuristaBold"
 				];
 				_alreadyHasValidAction = true;
 				if (isNil "DS_var_valid3DActionCodeSelected") then
@@ -210,7 +210,7 @@ else
 					_txt,
 					2,
 					0.05,
-					"LauHoWi_a"
+					"PuristaBold"
 				];		
 			};
 		}
@@ -227,7 +227,7 @@ else
 				_txt,
 				2,
 				0.05,
-				"LauHoWi_a"
+				"PuristaBold"
 			];	
 		};
 

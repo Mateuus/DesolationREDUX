@@ -38,36 +38,28 @@ while {DS_var_3DActionsEnabled} do
 
 		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "Man") || (_obj isKindOf "House")) exitWith
 		{
-			_hitpoints = getAllHitPointsDamage _obj;
+			_hitpoints = "true" configClasses (configFile >> "CfgVehicles" >> typeOf _obj >> "Hitpoints");
 
 			if ((count _hitpoints) == 0) exitWith { false };
 
-			_i = -1;
+			_i = 0;
 			_validActions = [];
 			{
-				_i = _i + 1;
-				_pos = _obj    selectionPosition _x;
-				_partName = (_hitpoints select 0) select _i;
-				if (_pos isEqualTo [0,0,0]) then 
-				{
-					_partName = (selectionNames _obj) select _i;
-					_pos = _obj selectionPosition [_partName,"HitPoints"];
-					_partName = "Hit" + _partName;
-				};
+				_partName = configName (_hitpoints select _i);
+				_pos = _obj selectionPosition [getText((_hitpoints select _i) >> "name"), "HitPoints"];
 				if !(_pos isEqualTo [0,0,0]) then
 				{
-					if (_partName == "") exitWith { false };
-					if (((toLower _partName) find "reserve") != -1) exitWith { false };
 					_pos = _obj modelToWorldVisual _pos;
-					_damage = (_hitpoints select 2) select _i;
+					_damage = _obj getHitPointDamage _partName;
 					_data = (tolower _partName) call DS_fnc_get3DPartName;
 					if (isNull _data) exitWith {};
 					_txt = getText (_data >> "Name");
 					_icon = getText (_data >> "Icon");
 					_validActions pushBack [_icon,_damage,_pos,_txt,_partName];
 				};
+				_i = _i + 1;
 				true
-			} count (_hitpoints select 1);
+			} count _hitpoints;
 		};
 		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1)) exitWith
 		{
