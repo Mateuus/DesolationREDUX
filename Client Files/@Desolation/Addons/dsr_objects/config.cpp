@@ -14,8 +14,6 @@ class CfgPatches
 
 class CfgVehicles
 {
-	class House;
-	class House_F: House {};
 	class ReammoBox;
 	class LootWeaponHolder: ReammoBox
 	{
