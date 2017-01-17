@@ -210,7 +210,7 @@ class CfgVehicles
 			class HitGlass1
 			{
 				source = "Hit";
-				hitpoint = "HitGlass6";
+				hitpoint = "HitGlass1";
 				raw = 1;
 			};
 			class HitGlass2: HitGlass1
@@ -246,7 +246,8 @@ class CfgVehicles
 		{
 			class HitLFWheel
 			{
-				armor = 0.08;
+				armor = 0.75;
+				radius = 0.2;
 				material = -1;
 				name = "wheel_1_1_steering";
 				visual = "";
@@ -255,7 +256,8 @@ class CfgVehicles
 			};
 			class HitLF2Wheel
 			{
-				armor = 0.08;
+				armor = 0.75;
+				radius = 0.2;
 				material = -1;
 				name = "wheel_1_2_steering";
 				visual = "";
@@ -264,7 +266,8 @@ class CfgVehicles
 			};
 			class HitRFWheel
 			{
-				armor = 0.08;
+				armor = 0.75;
+				radius = 0.2;
 				material = -1;
 				name = "wheel_2_1_steering";
 				visual = "";
@@ -273,7 +276,8 @@ class CfgVehicles
 			};
 			class HitRF2Wheel
 			{
-				armor = 0.08;
+				armor = 0.75;
+				radius = 0.2;
 				material = -1;
 				name = "wheel_2_2_steering";
 				visual = "";
@@ -282,7 +286,8 @@ class CfgVehicles
 			};
 			class HitFuel
 			{
-				armor = 0.5;
+				armor = 2;
+				radius = 0.45;
 				material = -1;
 				name = "palivo";
 				visual = "";
@@ -292,7 +297,8 @@ class CfgVehicles
 			};
 			class HitEngine
 			{
-				armor = 0.5;
+				armor = 4;
+				radius = 0.25;
 				material = -1;
 				name = "engine";
 				visual = "";
@@ -304,30 +310,56 @@ class CfgVehicles
 				armor = 1.0;
 				material = -1;
 				name = "karoserie";
-				visual = "camo";
+				visual = "zbytek";
 				passThrough = 1;
 				explosionShielding = 1.5;
 			};
 			class HitGlass1
 			{
-				armor = 0.20;
+				armor = 0.2;
 				material = -1;
 				name = "glass1";
 				visual = "glass1";
 				passThrough = 0;
 				explosionShielding = 2;
 			};
-			class HitGlass2: HitGlass1 {name = "glass2"; visual = "glass2";};
-			class HitGlass3: HitGlass1 {name = "glass3"; visual = "glass3";};
-			class HitGlass4: HitGlass1 {name = "glass4"; visual = "glass4";};
-			class HitGlass5: HitGlass1 {name = "glass5"; visual = "glass5";};
-			class HitGlass6: HitGlass1 {name = "glass6"; visual = "glass6";};
-			class HitGlass7: HitGlass1 {name = "glass7"; visual = "glass7";};
-			class HitGlass8: HitGlass1 {name = "glass8"; visual = "glass8";};
+			class HitGlass2: HitGlass1
+			{
+				name = "glass2";
+				visual = "glass2";
+			};
+			class HitGlass3: HitGlass1
+			{
+				name = "glass3";
+				visual = "glass3";
+			};
+			class HitGlass4: HitGlass1
+			{
+				name = "glass4";
+				visual = "glass4";
+			};
+			class HitGlass5: HitGlass1
+			{
+				name = "glass5";
+				visual = "glass5";
+			};
+			class HitGlass6: HitGlass1
+			{
+				name = "glass6";
+				visual = "glass6";
+			};
+			class HitGlass7: HitGlass1
+			{
+				name = "glass7";
+				visual = "glass7";
+			};
+			class HitGlass8: HitGlass1
+			{
+				name = "glass8";
+				visual = "glass8";
+			};
 		};
-
 		#include "sounds.hpp"
-
 		class Damage
 		{
 			tex[] = {};
