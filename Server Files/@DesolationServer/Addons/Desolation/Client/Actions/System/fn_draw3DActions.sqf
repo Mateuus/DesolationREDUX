@@ -102,6 +102,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 				"PuristaBold"
 			];
 		};
+		true
 	} count DS_var_valid3DActions;
 
 	if !(_alreadyHasValidAction) then
@@ -145,6 +146,7 @@ else
 				"PuristaBold"
 			];
 		};
+		true
 	} count DS_var_valid3DActions;
 
 	_alreadyHasValidAction = false;
