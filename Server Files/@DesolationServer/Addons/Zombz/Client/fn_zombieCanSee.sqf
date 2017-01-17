@@ -15,6 +15,43 @@
 	Description: SM_Zombz desolation redux edition.
 */
 
-params ["_zombie", "_unit", ["_offset", 0]];
+params ["_zombie", "_unit"];
 
-(if !((_zombie distance _unit) >= 35) then {[_unit, "VIEW", _zombie] checkVisibility [eyePos _unit, eyePos _zombie] > 0} else { false })
+_objects = [];
+{
+	_objs = lineIntersectsObjs [eyePos _unit, eyePos _zombie, objNull, objNull, false, _x];
+	if (count(_objs) != 0) then
+	{
+		_objects append _objs;
+	};
+	true
+} count [1,2,4,8,16,32];
+
+_blackListObjects = [];
+_canSee = false;
+if (count(_blackListObjects) != 0) then
+{
+	_i = 0;
+	_deleted = [];
+	{
+		if (toLower(_x) in _blackListObjects) then
+		{
+			_deleted pushBack _i;
+		};
+		_i = _i + 1;
+		true
+	} count _objects;
+
+	_objects = _objects - _deleted;
+
+	if (count(_objects) == 0) then
+	{
+		_canSee = true;
+	};
+}
+else
+{
+	_canSee = true;
+};
+
+_canSee
