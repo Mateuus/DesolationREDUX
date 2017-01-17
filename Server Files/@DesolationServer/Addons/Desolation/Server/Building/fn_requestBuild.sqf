@@ -9,3 +9,7 @@
  * https://www.bistudio.com/monetization/
  */
 params["_building","_player"];
+
+//check that everyhting is okay
+//spawn a crate object with the building requirements attached as SVAR_ variables (so they are saved to the db)
+//tell the player "this is your crate, place it"

@@ -8,3 +8,7 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
+
+ // on build button click, request a buildable from the server
+ 
+ systemchat "WE ARE MAKING PROGRESS STOKES";
