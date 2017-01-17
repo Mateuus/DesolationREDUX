@@ -14,6 +14,7 @@
 */
 
 (findDisplay 46) displayAddEventHandler ["KeyDown",{
+	private["_response"];
 	_key = _this select 1;
 	_shift = _this select 2;
 	_ctrl = _this select 3;
