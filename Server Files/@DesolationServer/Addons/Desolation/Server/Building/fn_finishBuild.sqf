@@ -9,3 +9,15 @@
  * https://www.bistudio.com/monetization/
  */
 params["_crate"];
+
+_entry = _crate getVariable "SVAR_buildParams";
+
+_pos = getposatl _crate;
+_dir = getdir _crate;
+
+deleteVehicle _crate;
+
+_model createVehicle _pos;
+_model setdir _dir;
+_model setposatl _pos;
+

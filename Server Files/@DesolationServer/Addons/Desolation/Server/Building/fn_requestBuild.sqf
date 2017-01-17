@@ -8,8 +8,9 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
-params["_building","_player"];
+params["_entry","_player"];
 
-//check that everyhting is okay
-//spawn a crate object with the building requirements attached as SVAR_ variables (so they are saved to the db)
-//tell the player "this is your crate, place it"
+_crate = "DSR_Storage_Small" createVehicle (position _player);
+_crate setPosAtl ((getposatl _player) vectorAdd [2,0,0]);
+_crate setVariable ["SVAR_buildParams",_entry,true];
+[_crate] remoteExec ["DS_fnc_registerBuildable",_player];

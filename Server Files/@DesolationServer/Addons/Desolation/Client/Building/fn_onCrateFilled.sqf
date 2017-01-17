@@ -8,6 +8,6 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
+params["_crate"];
 
- //this is run when the crate is filled with a material
- // if the crate is filled completely, request the server finishBuild
+[_crate] remoteExec ["DS_fnc_finishBuild",2];
