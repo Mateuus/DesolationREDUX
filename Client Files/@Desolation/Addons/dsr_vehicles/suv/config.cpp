@@ -11,7 +11,8 @@ class CfgPatches
 #include "crewanimations.hpp"
 class CfgVehicles
 {
-	class Car;
+	class LandVehicle;
+	class Car: LandVehicle {};
 	class Car_F: Car
 	{
 		class Eventhandlers;
@@ -87,10 +88,16 @@ class CfgVehicles
 		changeGearMinEffectivity[] = {1,0.15,1,1,1,1,1,1};
 		switchTime = 0.31;
 		latency = 1.5;
-		antiRollbarForceCoef = 1;
-		antiRollbarForceLimit = 10;
+		canfloat = 0;
+		waterResistance = 1;
+		//antiRollbarForceCoef = 1;
+		//antiRollbarForceLimit = 10;
+		//antiRollbarSpeedMin = 10;
+		//antiRollbarSpeedMax = 120;
+		antiRollbarForceCoef = 3.0;
+		antiRollbarForceLimit = 12;
 		antiRollbarSpeedMin = 10;
-		antiRollbarSpeedMax = 120;
+		antiRollbarSpeedMax = 200;
 		idleRpm = 400;
 		redRpm = 3500;
 		maxSpeed = 230;
@@ -99,13 +106,9 @@ class CfgVehicles
 		enginePower = 150;
 		peakTorque = 425;
 		wheelCircumference = 2.805;
-		fuelCapacity = 25;
+		fuelCapacity = 85;
 		transportSoldier = 5;
 		hiddenSelections[] = {"camo"};
-		wheelDamageRadiusCoef = 0.9;
-		wheelDestroyRadiusCoef = 0.4;
-		maxFordingDepth = 0.0;
-		//waterResistance = 1;
 		crewCrashProtection = 0.25;
 		armor = 35; 	/// just some protection against missiles, collisions and explosions
 		mapSize = 20;
@@ -134,10 +137,10 @@ class CfgVehicles
 				suspTravelDirection[] = {0,-1,0};
 				suspForceAppPointOffset = "wheel_1_1_axis";
 				tireForceAppPointOffset = "wheel_1_1_axis";
-				maxCompression = 0.1;
-				maxDroop = 0.145;
-				sprungMass = 600;	//530
-				springStrength = 15000; //13200
+				maxCompression = 0.0001; //0.1
+				maxDroop = 0.12; //0.145
+				sprungMass = 600; //600
+				springStrength = 15000; //15000
 				springDamperRate = 2105;
 				longitudinalStiffnessPerUnitGravity = 10000;
 				latStiffX = 2.5;
