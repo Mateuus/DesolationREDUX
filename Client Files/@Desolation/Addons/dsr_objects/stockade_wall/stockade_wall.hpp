@@ -7,7 +7,7 @@ class dsr_objects_stockade_wall: DSR_Objects_Base
 	model = "\dsr_objects\stockade_wall\dsr_stockade_wall.p3d";
 	icon = "iconObject_4x1";
 	editorSubcategory = "DSR_Objects";
-	mass = 150;
+	mass = 1000;
 	hiddenSelections[] = {"camo1"}; ///we want to allow changing the color of this selection
 	hiddenSelectionsTextures[]=
 	{
@@ -23,7 +23,7 @@ class dsr_objects_stockade_wall_preview: DSR_Crate_Base
 	model = "\dsr_objects\stockade_wall\dsr_stockade_wall_preview.p3d";
 	icon = "iconObject_4x1";
 	editorSubcategory = "DSR_Objects";
-	mass = 150;
+	maximumLoad = 5000;
 	hiddenSelections[] = {"camo1"}; ///we want to allow changing the color of this selection
 	hiddenSelectionsTextures[]=
 	{

@@ -74,3 +74,19 @@ class DSR_objects_House_lv1: House_F
 	// Amount of doors of this house; a parameter for easy processing of all doors on different houses by scripts.
 	numberOfDoors = 3;
 };
+class dsr_objects_playerhouse_lv1_preview: DSR_Crate_Base
+{
+	editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+	scope = 2;
+	scopeCurator = 2;
+	displayName = "Level 1 Player House Preview";
+	model = "\dsr_objects\House_lv1\dsr_playerhouse_lv1_preview.p3d";
+	icon = "iconObject_4x1";
+	editorSubcategory = "DSR_Objects";
+	maximumLoad = 5000;
+	hiddenSelections[] = {"camo1"}; ///we want to allow changing the color of this selection
+	hiddenSelectionsTextures[]=
+	{
+		"#(argb,2,2,1)color(0.7,0.93,0,0.6)"
+	};
+};
