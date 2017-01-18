@@ -27,8 +27,7 @@ if (isNull _obj) then
 	_obj = cursorObject;
 };
 if (isNull _obj) exitWith { false };
-_dif0 = (boundingBoxReal _obj) select 0;
-_dif1 = (boundingBoxReal _obj) select 1;
+(boundingBoxReal _obj) params ["_dif0","_dif1"];
 _distance = (_dif0 distance _dif1) + 4;
 _visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,4.5]);
 _camPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,0]);
