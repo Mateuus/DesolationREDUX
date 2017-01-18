@@ -6557,6 +6557,9 @@ class CfgBuildables {
 				model = "DSR_objects_House_lv1";
 				description = "The small shack is small... and a shack... a good starting house for losers.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				
+				crateObject = "DSR_objects_House_lv1_preview";
+				
 				condition = "true";
 			};
 			class HouseLvl2 {
@@ -6569,6 +6572,9 @@ class CfgBuildables {
 				model = "DSR_objects_House_lv2";
 				description = "This is for testing, it should not be buildable.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				
+				crateObject = "DSR_objects_House_lv2_preview";
+				
 				condition = "false";
 			};
 		};
@@ -6586,6 +6592,9 @@ class CfgBuildables {
 				model = "Land_Pallets_stack_F";
 				description = "A stack of pallets";
 				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				
+				crateObject = "DSR_objects_Storage_Small";
+				
 				condition = "true";
 			};
 			
