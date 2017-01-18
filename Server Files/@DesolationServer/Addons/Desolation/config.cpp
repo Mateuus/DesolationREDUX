@@ -83,6 +83,7 @@ class CfgFunctions
 			file = "Desolation\Client\Building";
 			isclient = 1;
 			class openJournal {};
+			class initBuilding {};
 			class onBuildClick {};
 			class registerBuildable {};
 			class onCrateFilled {};
@@ -6548,9 +6549,9 @@ class CfgBuildables {
 		class Buildables {
 			class HouseLvl1 {
 				parts[] = {
-					{"dsr_lumber",30},
-					{"dsr_plywood",7},
-					{"dsr_logs",15}
+					{"dsr_item_lumber",30},
+					{"dsr_item_plywood",7},
+					{"dsr_item_logs",15}
 				};
 				name = "Small Shack";
 				model = "DSR_House_lv1";
@@ -6560,9 +6561,9 @@ class CfgBuildables {
 			};
 			class HouseLvl2 {
 				parts[] = {
-					{"dsr_lumber",300},
-					{"dsr_plywood",700},
-					{"dsr_logs",150}
+					{"dsr_item_lumber",300},
+					{"dsr_item_plywood",700},
+					{"dsr_item_logs",150}
 				};
 				name = "Large Shack";
 				model = "DSR_House_lv1";
@@ -6579,7 +6580,7 @@ class CfgBuildables {
 		class Buildables {
 			class Pallets {
 				parts[] = {
-					{"dsr_lumber",10}
+					{"dsr_item_lumber",10}
 				};
 				name = "Pallet";
 				model = "Land_Pallets_stack_F";

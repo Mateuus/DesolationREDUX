@@ -16,6 +16,7 @@ if([_object] call OM_fnc_canLift) then {
 	_object addEventHandler ["EpeContact",{
 		OM_var_collisionForce = _this select 4;
 	}];
+	
 	OM_var_EachFrameEH = addMissionEventHandler ["EachFrame",{
 		_object = OM_var_lifted;
 		

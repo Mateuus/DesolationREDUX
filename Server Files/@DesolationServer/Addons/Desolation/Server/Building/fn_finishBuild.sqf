@@ -11,13 +11,16 @@
 params["_crate"];
 
 _entry = _crate getVariable "SVAR_buildParams";
+_model = _entry select 2;
+diag_log _model;
 
 _pos = getposatl _crate;
 _dir = getdir _crate;
 
 deleteVehicle _crate;
 
-_model createVehicle _pos;
-_model setdir _dir;
-_model setposatl _pos;
+
+_obj = _model createVehicle _pos;
+_obj setdir _dir;
+_obj setposatl _pos;
 
