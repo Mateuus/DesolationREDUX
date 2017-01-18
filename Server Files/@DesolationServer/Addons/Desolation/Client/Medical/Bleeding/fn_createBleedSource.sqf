@@ -39,9 +39,9 @@ _source setDropInterval _dropinterval;
 _point attachTo [_unit,_offset,_selection];
 
 if(_unit == player) then {
-	_GLOBAL_BLEEDDATA = player getVariable ["BLEED_SOURCES",[]];
+	_GLOBAL_BLEEDDATA = player getVariable ["SVAR_BLEED_SOURCES",[]];
 	_GLOBAL_BLEEDDATA pushBack [_selection,_level,_offset];
-	 player setVariable ["BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
+	 player setVariable ["SVAR_BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
 };
 //--- add source to list
 _sources = _unit getVariable ["DS_var_BleedSources",[]];

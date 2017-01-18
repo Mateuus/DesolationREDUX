@@ -15,7 +15,7 @@ _unit setVariable ["DS_var_BleedSources",[],true];
 _unit setVariable ["DS_var_BleedSourcesInfo",[],true];
 */
 {
-	_bsources = _x getVariable["BLEED_SOURCES",[]];
+	_bsources = _x getVariable["SVAR_BLEED_SOURCES",[]];
 	
 	_unit = _x;
 	{

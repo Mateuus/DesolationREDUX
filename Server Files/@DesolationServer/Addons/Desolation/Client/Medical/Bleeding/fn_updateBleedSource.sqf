@@ -29,14 +29,14 @@ if(_i != -1) then {
 	
 	if(_unit == player) then {
 		//--- update my global bleed data (for new connected clients to use on JIP)
-		_GLOBAL_BLEEDDATA = player getVariable ["BLEED_SOURCES",[]];
+		_GLOBAL_BLEEDDATA = player getVariable ["SVAR_BLEED_SOURCES",[]];
 		{
 			_Gselect = _x select 0;
 			_Glevel = _x select 1;
 			_Goffset = _x select 2;
 			if(_Gselect == _selection) exitWith {
 				_GLOBAL_BLEEDDATA set[_forEachIndex,[_Gselect,_level,_Goffset]];
-				player setVariable ["BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
+				player setVariable ["SVAR_BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
 			};
 		} foreach _GLOBAL_BLEEDDATA;
 	};

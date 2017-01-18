@@ -22,12 +22,12 @@ if(_i != -1) then {
 	
 	if(_unit == player) then {
 		//--- remove my global bleed data (for new connected clients to use on JIP)
-		_GLOBAL_BLEEDDATA = player getVariable ["BLEED_SOURCES",[]];
+		_GLOBAL_BLEEDDATA = player getVariable ["SVAR_BLEED_SOURCES",[]];
 		{
 			_select = _x select 0;
 			if(_select == _selection) exitWith {
 				_GLOBAL_BLEEDDATA deleteAt _forEachIndex;
-				player setVariable ["BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
+				player setVariable ["SVAR_BLEED_SOURCES",_GLOBAL_BLEEDDATA,true];
 			};
 		} foreach _GLOBAL_BLEEDDATA;
 	};
