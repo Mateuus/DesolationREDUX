@@ -1,4 +1,4 @@
-class DSR_objects_House_lv1: DSR_Crate_Base
+class DSR_objects_House_lv1: House_F
 {
 	displayName = "House Level 1";
 	scope = 2;

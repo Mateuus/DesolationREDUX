@@ -14,6 +14,8 @@ class CfgPatches
 
 class CfgVehicles
 {
+	class House;
+	class House_F: House {};
 	class ReammoBox;
 	class LootWeaponHolder: ReammoBox
 	{
@@ -63,7 +65,7 @@ class CfgVehicles
 		maximumLoad = 2000;
 	};
 	class NonStrategic;
-	class DSR_objects_base: NonStrategic
+	class DSR_Objects_Base: NonStrategic
 	{
 		scope = 1;
 		author = "Desolation Redux Dev Team";

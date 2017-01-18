@@ -1,17 +1,3 @@
-/*
- * Desolation Redux
- * http://desolationredux.com/
- * © 2016 Desolation Dev Team
- * 
- * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
- * To view a copy of this license, visit:
- * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
- * https://www.bistudio.com/monetization/
- */
-
-/*
-	Quick N Dirty
-*/
 class CfgPatches
 {
 	class dsr_items
@@ -22,7 +8,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		vehicles[] = {};
-		author = "Desolation Redux Dev Team";
+		author[]= {"Desolation Redux Dev Team"};
 	};
 };
 class CfgWeapons 
@@ -181,6 +167,13 @@ class CfgMagazines
 		descriptionUse = "TODO";
 		mass = 5;
 	};
+	class dsr_item_syringe : dsr_item_base {
+		displayName = "Morphine Syringe";
+		model = "\dsr_items\medical\syringe\dsr_syringe.p3d";
+		descriptionShort = "A shot of morphine.";
+		descriptionUse = "TODO";
+		mass = 5;
+	};
 		//--- Food
 	class dsr_item_tuna: dsr_item_base
 	{
@@ -189,6 +182,15 @@ class CfgMagazines
 		scopeCurator = 2;
 		displayName = "Tuna";
 		model = "\dsr_items\tuna\tuna.p3d";
+		mass = 5;
+	};
+	class dsr_item_ration: dsr_item_base
+	{
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Axe_F.jpg";
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "Bar Tac Ration";
+		model = "\dsr_items\food\ration\dsr_ration.p3d";
 		mass = 5;
 	};
 	class dsr_item_bag_rice: dsr_item_base

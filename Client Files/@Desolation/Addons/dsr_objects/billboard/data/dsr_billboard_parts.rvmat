@@ -8,7 +8,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-	texture = "dsr_objects\billboard\data\dsr_billboard_parts_nohq.paa";
+	texture = "dsr_objects\billboard\data\dsr_billboard_parts_nohq";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture = "dsr_objects\billboard\data\dsr_billboard_parts_smdi.paa";
+	texture = "dsr_objects\billboard\data\dsr_billboard_parts_smdi";
 	uvSource = "tex";
 	class uvTransform
 	{
