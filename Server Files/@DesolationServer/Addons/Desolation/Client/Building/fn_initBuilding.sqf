@@ -1,13 +1,4 @@
-/*
- * Desolation Redux
- * http://desolationredux.com/
- * © 2016 Desolation Dev Team
- * 
- * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
- * To view a copy of this license, visit:
- * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
- * https://www.bistudio.com/monetization/
- */
+
 DS_Var_valid3DBuildIcons = [];
  
 addMissionEventHandler["Draw3D",{
@@ -15,6 +6,7 @@ addMissionEventHandler["Draw3D",{
 		_text = _x select 0;
 		_pos = _x select 1;
 		_remaining = _x select 2;
+		_object = _x select 3;
 		drawIcon3D
 		[
 			"",
@@ -25,8 +17,8 @@ addMissionEventHandler["Draw3D",{
 			0,
 			_text,
 			2,
-			0.05,
-			"PuristaBold"
+			0.05 * (sqrt((2 / (player distance _object))) min 1),
+			"LauHoWi_a"
 		];
 	} count DS_Var_valid3DBuildIcons;
 }];
@@ -40,37 +32,46 @@ while{true} do {
 		DS_Var_valid3DBuildIcons = [];
 	};
 	 
-	_data = _object getVariable ["SVAR_buildParams", [[]];
+	_data = _crate getVariable ["SVAR_buildParams", [[]]];
 	_requirements = _data select 0;
 	 
 	_crateMags = getMagazineCargo _crate;
-	_crateItems = _crateMags select 0;
+	_crateItems = call compile tolower(str(_crateMags select 0));
 	_crateCounts = _crateMags select 1;
 	_cratePos = getPosATL _crate;
 	 
 	_validIcons = [];
-	_i = _i;
+	_i = 1;
+	
+	
 	{
 		_class = _x select 0;
-		_amount = _x select 1;
-	 
+		_maxAmount = _x select 1;
+		
+		_itemCount = 0;
+		
 		_index = _crateItems find _class;
-		if (_index != -1) then
-		{
-			_remaining = _amount - (_crateItems select _index);
-		}
-		else
-		{
-			_remaining = 0;
+		if(_index != -1) then {
+			_itemCount = _crateCounts select _index;
 		};
-		_pos = _cratePos;
-		_pos set [2, (_pos select 2) + (_i / 2)];
-		_validIcons pushBack [((getText(configFile >> "CfgMagazines" >> _class >> "displayName")) + " | [" + _remaining + "/" + _amount + "]"), _pos, (_amount / _remaining)];
-	 
+		
+		_pos = +_cratePos;
+		_pos set [2, (_pos select 2) + (_i / 5)];
+		_text = getText(configFile >> "CfgMagazines" >> _class >> "displayName");
+		if(_text == "") then {
+			_text = _class;
+		};
+		_text = _text + " ( " + str(_itemCount) + " / " + str(_maxAmount) + " )";
+		
+		
+		_validIcons pushBack [_text, _pos, (_itemCount / _maxAmount),_crate];
+		
 		_i = _i + 1;
+		
 		true
 	} count _requirements;
-	 
+	
+	systemchat str(_validIcons);
 	if !(_validIcons isEqualTo DS_Var_valid3DBuildIcons) then
 	{
 		DS_Var_valid3DBuildIcons = _validIcons;
