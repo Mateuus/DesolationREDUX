@@ -14,6 +14,8 @@ params["_crate"];
 waitUntil{!isNull OM_var_lifted};
 waitUntil{isNull OM_var_lifted};
 
+player reveal [_crate, 4];
+
 _crate addEventHandler ["ContainerClosed",{
 	params["_container","_player"];
 	_data = _container getVariable "SVAR_buildParams";

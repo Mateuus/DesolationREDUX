@@ -6554,7 +6554,7 @@ class CfgBuildables {
 					{"dsr_item_logs",15}
 				};
 				name = "Small Shack";
-				model = "DSR_House_lv1";
+				model = "DSR_objects_House_lv1";
 				description = "The small shack is small... and a shack... a good starting house for losers.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
 				condition = "true";
@@ -6566,7 +6566,7 @@ class CfgBuildables {
 					{"dsr_item_logs",150}
 				};
 				name = "Large Shack";
-				model = "DSR_House_lv1";
+				model = "DSR_objects_House_lv2";
 				description = "This is for testing, it should not be buildable.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
 				condition = "false";
