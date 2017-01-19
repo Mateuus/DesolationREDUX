@@ -82,9 +82,10 @@ if(DS_var_InfectionDOT > 0) then {
 };
 
 //--- check immunity timeout
-if (((diag_tickTime - DS_var_lastImmune) >= 600) && DS_var_Immune) then
+DS_var_lastImmune = DS_var_lastImmune + 1;
+if ((DS_var_lastImmune >= 600) && DS_var_Immune) then
 {
-	DS_var_lastImmune = diag_tickTime;
+	DS_var_lastImmune = 0;
 	DS_var_Immune = false;
 };
 

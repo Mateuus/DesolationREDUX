@@ -13,7 +13,7 @@
 params["_classname"];
 _success = {
 	DS_var_Immune = true;
-	DS_var_lastImmune = diag_tickTime;
+	DS_var_lastImmune = 0;
 };
 _failure = {
 	private["_type"];
