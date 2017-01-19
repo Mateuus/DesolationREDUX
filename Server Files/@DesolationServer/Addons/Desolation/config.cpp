@@ -6559,9 +6559,6 @@ class CfgBuildables {
 				crateObject = "dsr_objects_house_lv1_preview";
 				description = "The small shack is small... and a shack... a good starting house for losers.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
-				
-				crateObject = "DSR_objects_House_lv1_preview";
-				
 				condition = "true";
 			};
 			class HouseLvl2 {
@@ -6575,9 +6572,6 @@ class CfgBuildables {
 				crateObject = "dsr_objects_house_lv2_preview";
 				description = "This is for testing, it should not be buildable.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
-				
-				crateObject = "DSR_objects_House_lv2_preview";
-				
 				condition = "false";
 			};
 		};
@@ -6627,7 +6621,7 @@ class CfgBuildables {
 				parts[] = {
 					{"dsr_item_lumber",30},
 					{"dsr_item_hardware",4},
-					{"dsr_item_scrapmetal",2}
+					{"dsr_item_scrapmetal",2},
 					{"dsr_item_logs",2}
 				};
 				name = "Stockade Wall Rampart no ramp";
@@ -6641,7 +6635,7 @@ class CfgBuildables {
 				parts[] = {
 					{"dsr_item_lumber",40},
 					{"dsr_item_hardware",10},
-					{"dsr_item_scrapmetal",4}
+					{"dsr_item_scrapmetal",4},
 					{"dsr_item_logs",10}
 				};
 				name = "Stockade Guard Tower";
