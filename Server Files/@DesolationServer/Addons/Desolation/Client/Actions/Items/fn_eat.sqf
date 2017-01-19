@@ -11,8 +11,7 @@
 
 params["_classname"];
 _success = {
-	DS_var_hunger = (DS_var_hunger + 20) min 100;
-	DS_var_lastAte = diag_tickTime;
+	[20] call DS_fnc_onEat;
 };
 _failure = {
 	private["_type"];

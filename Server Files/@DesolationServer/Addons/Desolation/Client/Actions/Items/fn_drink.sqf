@@ -22,8 +22,7 @@ if((_classname find '_full' != 0) || (_classname find '_dirty' != 0)) then {
 };
 
 _success = {
-	DS_var_thirst = (DS_var_thirst + 20) min 100;
-	DS_var_lastDrank = diag_tickTime;
+	[20] call DS_fnc_onDrink;
 };
 _failure = {
 	private["_type"];

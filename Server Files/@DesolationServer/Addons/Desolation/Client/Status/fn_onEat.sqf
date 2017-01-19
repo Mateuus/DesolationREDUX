@@ -10,5 +10,5 @@
  */
 
 params["_hungerChange"];
-DS_var_lastAte = diag_tickTime;
+DS_var_lastAte = 0;
 DS_var_Hunger = (DS_var_Hunger + _hungerChange) min 100;

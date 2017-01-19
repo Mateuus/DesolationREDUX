@@ -10,5 +10,5 @@
  */
 
 params["_thirstChange"];
-DS_var_lastDrank = diag_tickTime;
+DS_var_lastDrank = 0;
 DS_var_Thirst = (DS_var_Thirst + _thirstChange) min 100;
