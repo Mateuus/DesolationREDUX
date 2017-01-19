@@ -276,7 +276,7 @@ class Cfg3DActions
 			{
 				text = "Inventory";
 				condition = "_thisObject isKindOf 'LootWeaponHolder'";
-				code = "player action ['Gear', _thisObject];"
+				code = "player action ['Gear', _thisObject];";
 			};
 			class BloodBag
 			{
