@@ -61,7 +61,7 @@ while {DS_var_3DActionsEnabled} do
 				true
 			} count _hitpoints;
 		};
-		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1)) exitWith
+		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1) || (_obj isKindOf "Land_Pallets_stack_F")) exitWith
 		{
 			_pos = _obj modelToWorld [0,0,0];
 			_data = "action" call DS_fnc_get3DPartName;
