@@ -86,7 +86,7 @@ while {DS_var_3DActionsEnabled} do
 
 	if (!((count _validActions) < 1) && !(_validActions isEqualTo DS_var_valid3DActions)) then
 	{
-		DS_var_valid3DActions = _validActions;
+		DS_var_valid3DActions = +_validActions;
 	};
 	uiSleep 0.1;
 	true
