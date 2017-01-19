@@ -11,6 +11,7 @@ class Plugins
 		tag = "DS";
 	};
 };
+/*
 class CfgPluginActions {
 	class RepairCars {
 		class Actions {
@@ -44,6 +45,7 @@ class CfgPluginActions {
 		text = "Repair Vehicle";
 	};
 };
+*/
 class CfgPluginKeybinds 
 {
 	class OpenJournalIndex 

@@ -50,7 +50,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 
 	if !(_validActions isEqualTo DS_var_valid3DActionsCode) then
 	{
-		DS_var_valid3DActionsCode = _validActions;
+		DS_var_valid3DActionsCode = +_validActions;
 	};
 }
 else

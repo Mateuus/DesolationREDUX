@@ -9,6 +9,12 @@
  * https://www.bistudio.com/monetization/
  */
 
+// Fixes the error.
+if (isNil "DS_var_valid3DActions") then
+{
+	DS_var_valid3DActions = [];
+};
+
 if !(canSuspend) exitWith { _this spawn DS_fnc_calculate3DActions; };
 
 while {DS_var_3DActionsEnabled} do
@@ -36,7 +42,7 @@ while {DS_var_3DActionsEnabled} do
 			false
 		};
 
-		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "Man") || (_obj isKindOf "House")) exitWith
+		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "House")) exitWith
 		{
 			_hitpoints = "true" configClasses (configFile >> "CfgVehicles" >> typeOf _obj >> "Hitpoints");
 
@@ -47,27 +53,29 @@ while {DS_var_3DActionsEnabled} do
 			{
 				_partName = configName (_hitpoints select _i);
 				_pos = _obj selectionPosition [getText((_hitpoints select _i) >> "name"), "HitPoints"];
-				if !(_pos isEqualTo [0,0,0]) then
+				_position = _obj modelToWorldVisual _pos;
+				if (!(_pos isEqualTo [0,0,0]) && !((player distance _position) > 5)) then
 				{
-					_pos = _obj modelToWorldVisual _pos;
 					_damage = _obj getHitPointDamage _partName;
 					_data = (tolower _partName) call DS_fnc_get3DPartName;
 					if (isNull _data) exitWith {};
 					_txt = getText (_data >> "Name");
 					_icon = getText (_data >> "Icon");
-					_validActions pushBack [_icon,_damage,_pos,_txt,_partName];
+					_validActions pushBack [_icon, _damage, _position, _txt, _partName];
 				};
 				_i = _i + 1;
 				true
 			} count _hitpoints;
 		};
-		if ((_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1) || (_obj isKindOf "Land_Pallets_stack_F")) exitWith
+		if ((_obj isKindOf "Man") || (_obj isKindOf "DSR_Crate_Base") || (_obj isKindOf "DSR_objects_base") || (_obj isKindOf "LootWeaponHolder") || (toLower(str _obj) find 'water' != -1) || (_obj isKindOf "Land_Pallets_stack_F")) exitWith
 		{
 			_pos = _obj modelToWorld [0,0,0];
-			_data = "action" call DS_fnc_get3DPartName;
-			//_txt = getText (_data >> "Name");
-			_icon = getText (_data >> "Icon");
-			_validActions pushBack [_icon,0,_pos,"","Action"];
+			if !((player distance _pos) > 5) then
+			{
+				_data = "action" call DS_fnc_get3DPartName;
+				_icon = getText (_data >> "Icon");
+				_validActions pushBack [_icon,0,_pos,"","Action"];
+			};
 		};
 		DS_var_valid3DActions = [];
 	}

@@ -264,7 +264,7 @@ class Cfg3DActions
 	{
 		name = "Actions";
 		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions 
+		class Actions 
 		{
 			class Lift 
 			{
@@ -272,61 +272,25 @@ class Cfg3DActions
 				condition = "if !(isNil 'OM_fnc_canLift') then { [_thisObject] call OM_fnc_canLift; } else { false };";
 				code = "[_thisObject] call OM_fnc_liftObject;";
 			};
+			class Inventory
+			{
+				text = "Inventory";
+				condition = "_thisObject isKindOf 'LootWeaponHolder'";
+				code = "player action ['Gear', _thisObject];"
+			};
+			class BloodBag
+			{
+				text = "Blood Bag";
+				condition = "_thisObject isKindOf 'man'";
+				code = "";
+			};
+			class Splint
+			{
+				text = "Splint";
+				condition = "_thisObject isKindOf 'man'";
+				code = "";
+			};
 		};
-	};
-	class diaphragm
-	{
-		name = "Diaphragm";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class abdomen
-	{
-		name = "Abdomen";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class neck
-	{
-		name = "Neck";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class arm
-	{
-		name = "Arm";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class chest
-	{
-		name = "Chest";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class pelvis
-	{
-		name = "Pelvis";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class hand
-	{
-		name = "Hand";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class leg
-	{
-		name = "Leg";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
-	};
-	class head
-	{
-		name = "Head";
-		icon = "\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa";
-		class Actions: 3DDefaultActions {};		
 	};
 	class missiles
 	{

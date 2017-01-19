@@ -37,6 +37,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 
 	{
 		_x params ["_icon","_damage","_pos","_txt","_partName"];
+
 		_valid = false;
 		for "_j" from 1 to _distance do 
 		{
@@ -48,59 +49,21 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 			};
 		};
 
+		_size = (7 - (player distance _pos)) / 5;
 		if (_valid) then
 		{
 			if !(_alreadyHasValidAction) then
 			{
-				drawIcon3D 
-				[
-					_icon,
-					[_damage, 1 - _damage, 0, 1],
-					_pos,
-					2*1.5,
-					2*1.5,
-					0,
-					_txt + " " + str ((1 - _damage) * 100) + "%",
-					2,
-					0.05,
-					"PuristaBold"
-				];
+				_size = (7 - (player distance _pos)) / 3;
 				_alreadyHasValidAction = true;
 				DS_var_3DActionData = [_partName,_damage,_x];
-			}
-			else
-			{
-				drawIcon3D 
-				[
-					_icon,
-					[_damage, 1 - _damage, 0, 1],
-					_pos,
-					1*1.5,
-					1*1.5,
-					0,
-					_txt + " " + str ((1 - _damage) * 100) + "%",
-					2,
-					0.05,
-					"PuristaBold"
-				];
 			};
-		}
-		else
-		{
-			drawIcon3D 
-			[
-				_icon,
-				[_damage, 1 - _damage, 0, 1],
-				_pos,
-				1*1.5,
-				1*1.5,
-				0,
-				_txt + " " + str ((1 - _damage) * 100) + "%",
-				2,
-				0.05,
-				"PuristaBold"
-			];
 		};
+
+		_drawData = [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
+
+		drawIcon3D _drawData;
+
 		true
 	} count DS_var_valid3DActions;
 
@@ -113,38 +76,15 @@ else
 {
 	{
 		_x params ["_icon","_damage","_pos","_txt","_partName"];
+		_size = (7 - (player distance _pos)) / 5;
 		if (_x isEqualTo (DS_var_3DActionData select 2)) then
 		{
-			drawIcon3D 
-			[
-				_icon,
-				[_damage, 1 - _damage, 0, 1],
-				_pos,
-				2*1.5,
-				2*1.5,
-				0,
-				_txt + " " + str ((1 - _damage) * 100) + "%",
-				2,
-				0.05,
-				"PuristaBold"
-			];
-		}
-		else
-		{
-			drawIcon3D 
-			[
-				_icon,
-				[_damage, 1 - _damage, 0, 1],
-				_pos,
-				1*1.5,
-				1*1.5,
-				0,
-				_txt + " " + str ((1 - _damage) * 100) + "%",
-				2,
-				0.05,
-				"PuristaBold"
-			];
+			_size = (7 - (player distance _pos)) / 3;
 		};
+
+		_drawData = [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
+
+		drawIcon3D _drawData;
 		true
 	} count DS_var_valid3DActions;
 
@@ -154,11 +94,11 @@ else
 	_circleCount = count DS_var_valid3DActionsCode;
 	_k = 0;
 
-	for[{_i = 0}, {_i < _circleCount * 50}, {_i = _i + 50}] do
+	for[{_i = 0}, {_i < _circleCount * 65}, {_i = _i + 65}] do
 	{
 		(DS_var_valid3DActionsCode select _k) params ["_code","_txt"];
 		_k = _k + 1;
-		_iconPos = [(_pos select 0) + (0.1 * sin(_i)), (_pos select 1) + (0.1 * cos(_i)), _pos select 2];
+		_iconPos = [(_pos select 0) + (0.15 * sin(_i)), (_pos select 1) + (0.15 * cos(_i)), _pos select 2];
 
 		_valid = false;
 		for "_j" from 1 to _distance do 
@@ -171,23 +111,13 @@ else
 				_valid = true;
 			};
 		};
+		
+		_size = (7 - (player distance _pos)) / 5;
 		if (_valid) then
 		{
 			if !(_alreadyHasValidAction) then
 			{
-				drawIcon3D 
-				[
-					"\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa",
-					[0.3, 0.3, 1, 1],
-					_iconPos,
-					1*1.5,
-					1*1.5,
-					0,
-					_txt,
-					2,
-					0.05,
-					"PuristaBold"
-				];
+				_size = (7 - (player distance _pos)) / 3;
 				_alreadyHasValidAction = true;
 				if (isNil "DS_var_valid3DActionCodeSelected") then
 				{
@@ -197,40 +127,12 @@ else
 				{
 					DS_var_valid3DActionCodeSelected = _code;
 				};
-			}
-			else
-			{
-				drawIcon3D 
-				[
-					"\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa",
-					[0.3, 0.3, 1, 1],
-					_iconPos,
-					0.5*1.5,
-					0.5*1.5,
-					0,
-					_txt,
-					2,
-					0.05,
-					"PuristaBold"
-				];		
 			};
-		}
-		else
-		{
-			drawIcon3D 
-			[
-				"\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa",
-				[0.3, 0.3, 1, 1],
-				_iconPos,
-				0.5*1.5,
-				0.5*1.5,
-				0,
-				_txt,
-				2,
-				0.05,
-				"PuristaBold"
-			];	
 		};
+
+		_drawData = ["\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa", [0.3, 0.3, 1, 1], _iconPos, _size, _size, 0, _txt, 2, _size / 20, "PuristaBold"];
+
+		drawIcon3D _drawData;
 
 		if !(_alreadyHasValidAction) then
 		{
