@@ -36,7 +36,7 @@ switch(_type)do{
 
 
 		if (_kickable) exitWith {
-			{ (findDisplay 46) closeDisplay 0; } remoteExecCall ["call", _playerObj];
+			[_kickReason] remoteExecCall ["DS_fnc_notWhitelisted", _playerObj];
 		};
 		
 		_playerObj setVariable ["pUUID",_playeruuid];

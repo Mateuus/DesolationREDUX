@@ -108,6 +108,7 @@ class CfgFunctions
 			file = "Desolation\Client\Functions";
 			isclient = 1;
 			class infoText {};
+			class notWhitelisted {};
 			class receiveTransmition {};
 			class calcGrayscale {};
 			class getCfgValue {};
