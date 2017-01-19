@@ -20,15 +20,8 @@ if(player getVariable ["SVAR_DS_var_Thirst",0] != DS_var_Thirst) then {
 if(player getVariable ["SVAR_DS_var_Hunger",0] != DS_var_Hunger) then {
 	player setVariable ["SVAR_DS_var_Hunger",DS_var_Hunger,true];
 };
-if(player getVariable ["SVAR_DS_var_lastAte",0] != DS_var_lastAte) then {
-	player setVariable ["SVAR_DS_var_lastAte",DS_var_lastAte,true];
-};
-if(player getVariable ["SVAR_DS_var_lastDrank",0] != DS_var_lastDrank) then {
-	player setVariable ["SVAR_DS_var_lastDrank",DS_var_lastDrank,true];
-};
-if(player getVariable ["SVAR_DS_var_lastImmune",0] != DS_var_lastImmune) then {
-	player setVariable ["SVAR_DS_var_lastImmune",DS_var_lastImmune,true];
-};
 if(player getVariable ["SVAR_DS_var_InfectionDOT",0] != SM_infectionDOT) then {
 	player setVariable ["SVAR_DS_var_InfectionDOT",SM_infectionDOT,true];
 };
+
+player setVariable ["SVAR_TimedStates",[DS_var_lastAte,DS_var_lastDrank,DS_var_lastImmune],true];
