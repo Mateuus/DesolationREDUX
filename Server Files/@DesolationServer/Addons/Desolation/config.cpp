@@ -6556,6 +6556,7 @@ class CfgBuildables {
 				};
 				name = "Small Shack";
 				model = "DSR_objects_House_lv1";
+				crateObject = "dsr_objects_house_lv1_preview";
 				description = "The small shack is small... and a shack... a good starting house for losers.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
 				
@@ -6565,18 +6566,90 @@ class CfgBuildables {
 			};
 			class HouseLvl2 {
 				parts[] = {
-					{"dsr_item_lumber",300},
-					{"dsr_item_plywood",700},
-					{"dsr_item_logs",150}
+					{"dsr_item_lumber",60},
+					{"dsr_item_plywood",14},
+					{"dsr_item_logs",45}
 				};
 				name = "Large Shack";
 				model = "DSR_objects_House_lv2";
+				crateObject = "dsr_objects_house_lv2_preview";
 				description = "This is for testing, it should not be buildable.";
 				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
 				
 				crateObject = "DSR_objects_House_lv2_preview";
 				
 				condition = "false";
+			};
+		};
+	};
+	class Stockade {
+		condition = "true"; 
+		preview = "\SM_Zombz\Survivors_icon.paa";  
+		name = "Stockade Items";  
+		class Buildables {
+			class StockadeWall {
+				parts[] = {
+					{"dsr_item_lumber",23},
+					{"dsr_item_hardware",4}
+				};
+				name = "Base Stockade Wall";
+				model = "dsr_objects_stockade_wall";
+				description = "Basic stockade wall piece";
+				crateObject = "dsr_objects_stockade_wall_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeRampart {
+				parts[] = {
+					{"dsr_item_lumber",45},
+					{"dsr_item_hardware",6}
+				};
+				name = "Stockade Wall Rampart Full";
+				model = "dsr_objects_stockade_rampart";
+				description = "Stockade Wall with Rampart and Ramp";
+				crateObject = "dsr_objects_stockade_rampart_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeRampart_2 {
+				parts[] = {
+					{"dsr_item_lumber",38},
+					{"dsr_item_hardware",5}
+				};
+				name = "Stockade Wall Rampart no ramp";
+				model = "dsr_objects_stockade_rampart_2";
+				description = "Stockade Wall with Rampart";
+				crateObject = "dsr_objects_stockade_rampart_2_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeGate {
+				parts[] = {
+					{"dsr_item_lumber",30},
+					{"dsr_item_hardware",4},
+					{"dsr_item_scrapmetal",2}
+					{"dsr_item_logs",2}
+				};
+				name = "Stockade Wall Rampart no ramp";
+				model = "dsr_objects_stockade_rampart_2";
+				description = "Stockade Wall with Rampart";
+				crateObject = "dsr_objects_stockade_rampart_2_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeTower {
+				parts[] = {
+					{"dsr_item_lumber",40},
+					{"dsr_item_hardware",10},
+					{"dsr_item_scrapmetal",4}
+					{"dsr_item_logs",10}
+				};
+				name = "Stockade Guard Tower";
+				model = "dsr_objects_stockade_tower";
+				description = "Stockade Guard Tower";
+				crateObject = "dsr_objects_stockade_tower_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
 			};
 		};
 	};
@@ -6598,7 +6671,32 @@ class CfgBuildables {
 				
 				condition = "true";
 			};
-			
+			class Workbench {
+				parts[] = {
+					{"dsr_item_lumber",10},
+					{"dsr_item_hardware",1},
+					{"dsr_item_scrapmetal",1}
+				};
+				name = "Workbench";
+				model = "dsr_objects_workbench";
+				description = "Crafting Workbench";
+				crateObject = "dsr_objects_workbench_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class WaterCatchment {
+				parts[] = {
+					{"dsr_item_logs",6},
+					{"dsr_item_ducttape",1},
+					{"dsr_item_plasticdrum",1}
+				};
+				name = "Water Catch";
+				model = "dsr_objects_water_catchment";
+				description = "System for catching rain water";
+				crateObject = "dsr_objects_water_catchment_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
 		};
 	};
 };
