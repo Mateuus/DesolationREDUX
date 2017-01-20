@@ -79,6 +79,13 @@ class CfgVehicles
 		hiddenSelectionsTextures[] = {};
 		editorSubcategory = "DSR_Objects";
 	};
+	class DSR_objects_splint: DSR_Objects_Base
+	{
+		scope = 2;
+		scopeCurator = 2;
+		model = "dsr_items\medical\splint\dsr_splint";
+		displayName = "splint";
+	};
 	#include "gun_cab\gun_cab.hpp"
 	#include "house_lv1\house_lv1.hpp"
 	#include "house_lv2\house_lv2.hpp"
