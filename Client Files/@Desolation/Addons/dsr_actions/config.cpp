@@ -8,7 +8,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		vehicles[] = {};
-		author[]= {"Desolation Redux Dev Team"};
+		author = "Desolation Redux Dev Team";
 	};
 };
 
