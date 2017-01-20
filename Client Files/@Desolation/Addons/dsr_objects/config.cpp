@@ -83,7 +83,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		scopeCurator = 2;
-		model = "dsr_items\medical\splint\dsr_splint";
+		model = "dsr_objects\splint\dsr_splint";
 		displayName = "splint";
 	};
 	#include "gun_cab\gun_cab.hpp"
