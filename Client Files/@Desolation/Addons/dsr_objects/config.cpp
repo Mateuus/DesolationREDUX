@@ -81,6 +81,7 @@ class CfgVehicles
 	};
 	#include "gun_cab\gun_cab.hpp"
 	#include "house_lv1\house_lv1.hpp"
+	#include "house_lv2\house_lv2.hpp"
 	#include "decor\decor.hpp"
 	#include "cot\cot.hpp"
 	#include "stockade_gate\stockade_gate.hpp"
@@ -93,7 +94,6 @@ class CfgVehicles
 	#include "farming\farming.hpp"
 	#include "anvillog\anvillog.hpp"
 	#include "billboard\billboard.hpp"
-	#include "house_lv2\house_lv2.hpp"
 };
 class CfgEditorSubcategories
 {
