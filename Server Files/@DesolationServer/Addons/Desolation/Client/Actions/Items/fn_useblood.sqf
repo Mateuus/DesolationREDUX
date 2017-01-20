@@ -8,15 +8,44 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
-_success = {
-	Systemchat "TODO: Action";
-};
-_failure = {
-	private["_type"];
-	_type = _this select 0;
-	if(_type != "Player Moved") then {
-		systemchat _type;
-	};
-};
 
-["dsr_item_bloodbag_full",true,_success,_failure] call DS_fnc_useItem;
+params["_classname",["_target",""]];
+if(_target isEqualType "") then {
+
+	_success = {
+		Systemchat "GIVE SELF BLOOD HERE";
+	};
+	_failure = {
+		private["_type"];
+		_type = _this select 0;
+		if(_type != "Player Moved") then {
+			systemchat _type;
+		};
+	};
+
+	[_classname/*"dsr_item_bloodbag_full"*/,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItem;
+	
+} else {
+
+	if(isNull _target) exitWith {};
+	
+	_success = {
+		systemchat "GIVE TARGET BLOOD HERE";
+	};
+	_failure = {
+		private["_type"];
+		_type = _this select 0;
+		if(_type != "Player Moved") then {
+			systemchat _type;
+		};
+	};
+	
+	[_classname/*"dsr_item_bloodbag_full"*/,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItemTarget;
+
+};
+ 
+ 
+ 
+ 
+ 
+ 

@@ -10,16 +10,36 @@
  */
 
 // Kegan made me syntax
-params["_classname"];
-_success = {
-	player setHitPointDamage ["HitLegs",0];
-	systemchat "I have applied the splint";
-};
-_failure = {
-	private["_type"];
-	_type = _this select 0;
-	if(_type != "Player Moved") then {
-		systemchat _type;
+params["_classname",["_target",""]];
+if(_target isEqualType "") then {
+
+	_success = {
+		player setHitPointDamage ["HitLegs",0];
+		systemchat "I have applied the splint";
 	};
+	_failure = {
+		private["_type"];
+		_type = _this select 0;
+		if(_type != "Player Moved") then {
+			systemchat _type;
+		};
+	};
+	[_classname,true,_success,_failure] call DS_fnc_useItem;
+	
+} else {
+
+	if(isNull _target) exitWith {};
+	
+	_success = {
+		systemchat "HAVE TARGET APPLY SPLINT HERE";
+	};
+	_failure = {
+		private["_type"];
+		_type = _this select 0;
+		if(_type != "Player Moved") then {
+			systemchat _type;
+		};
+	};
+	[_classname,_target,true,_success,_failure] call DS_fnc_useItemTarget;
+
 };
-[_classname,true,_success,_failure] call DS_fnc_useItem;

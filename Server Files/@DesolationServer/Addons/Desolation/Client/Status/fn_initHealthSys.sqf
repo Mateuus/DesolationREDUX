@@ -21,3 +21,4 @@ DS_var_lastKnockout = 0;
 DS_var_InfectionDOT = player getVariable ["SVAR_DS_var_InfectionDOT",0];
 DS_var_Immune = false;
 DS_var_lastImmune = (player getVariable ["SVAR_TimedStates",[0,0,0]]) select 2;
+DS_var_canSelfBlood = ["CanSelfBloodbag"] call DS_fnc_getCfgValue;

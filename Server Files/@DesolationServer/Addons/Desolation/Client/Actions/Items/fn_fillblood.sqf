@@ -9,8 +9,12 @@
  * https://www.bistudio.com/monetization/
  */
 
+ 
+params["_classname",["_target",objNull]];
+if(isNull _target) exitWith {};
+
 _success = {
-	Systemchat "TODO: Action";
+	systemchat "TAKE TARGETS BLOOD HERE";
 };
 _failure = {
 	private["_type"];
@@ -19,5 +23,4 @@ _failure = {
 		systemchat _type;
 	};
 };
-
-["dsr_item_bloodbag_empty",true,_success,_failure] call DS_fnc_useItem;
+[_classname/*"dsr_item_bloodbag_empty"*/,_target,true,_success,_failure,"dsr_item_bloodbag_full"] call DS_fnc_useItemTarget;

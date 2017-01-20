@@ -8,8 +8,11 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
+params["_classname",["_target",objNull]];
+if(isNull _target) exitWith {};
+
 _success = {
-	Systemchat "TODO: Action";
+	systemchat "USE DEFIB ON TARGET HERE";
 };
 _failure = {
 	private["_type"];
@@ -18,5 +21,4 @@ _failure = {
 		systemchat _type;
 	};
 };
-
-["dsr_item_defibrillator",true,_success,_failure] call DS_fnc_useItem;
+[_classname,_target,false,_success,_failure] call DS_fnc_useItemTarget;

@@ -130,7 +130,9 @@ class CfgFunctions
 			file = "Desolation\Client\Actions\Items";
 			isclient = 1;
 			class doAction {};
+			class doActionTarget {};
 			class useItem {};
+			class useItemTarget {};
 			class drink {};
 			class eat {};
 			class fillblood {};

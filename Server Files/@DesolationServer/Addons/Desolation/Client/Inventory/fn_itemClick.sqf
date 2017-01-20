@@ -9,6 +9,8 @@
  * https://www.bistudio.com/monetization/
  */
 
+#define BUTTON_W 0.2
+ 
 disableSerialization;
 params["_params"];
 call ds_fnc_closebuttons;
@@ -34,22 +36,31 @@ _cursorStr = str cursorObject;
 _actions = configFile >> "CfgMagazines" >> _classname >> "Actions";
 _bIndex = 0;
 _buttons = [];
+
+_replace = {
+	params["_string","_search","_replace"];
+	private["_index","_sub1","_sub2","_nString"];
+	_index = _string find _search;
+	_sub1 = _string select [0,_index];
+	_sub2 = _string select [_index+10];
+	_nString = _sub1 + _replace + _sub2;
+	_nString;
+};
+
 if(isClass _actions) then {
 	for "_i" from 0 to count(_actions)-1 do {
 		_action = _actions select _i;
 		if(isClass _action) then {
 			_aText = getText(_action >> "text");
-			_index = _aText find "%itemname%";
-			_sub1 = _aText select [0,_index];
-			_sub2 = _aText select [_index+10];
-			_aText = _sub1 + _itemtext + _sub2;
+			_aText = [_aText,"%itemname%",_itemtext] call _replace;
+			_aText = [_aText,"%targetname%",name cursorObject] call _replace;
 			
 			_condition = getText(_action >> "condition");
 			_action = getText(_action >> "action");
 			if(call compile _condition) then {
 				_bY = _buttonY + (0.042*_bIndex);
 				_bH = 0.04;
-				_bW = 0.16;
+				_bW = BUTTON_W;
 				_bX = _buttonX;
 				_bIndex = _bIndex + 1;
 				_ctrl = _display ctrlCreate ["RscButton",-1];
@@ -65,7 +76,7 @@ if(isClass _actions) then {
 };
 _bY = _buttonY + (0.042*_bIndex);
 _bH = 0.04;
-_bW = 0.16;
+_bW = BUTTON_W;
 _bX = _buttonX;
 _bIndex = _bIndex + 1;
 _ctrl = _display ctrlCreate ["RscButton",-1];
