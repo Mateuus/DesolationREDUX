@@ -143,9 +143,15 @@ class CfgMagazines {
 	};
 	class dsr_item_bandage {
 		class Actions {
-			class Use : Action_Use {
+			class Use {
+				text = "Apply Bandage";
 				condition = "!(isNil 'ds_fnc_usebandage')";
 				action = "[_classname] spawn ds_fnc_usebandage";
+			};
+			class UseOnTarget {
+				text = "Apply On %targetname%";
+				condition = "!(isNil 'ds_fnc_usebandage') && !isNull cursorObject && alive cursorObject && isplayer cursorObject && (count(cursorObject getVariable['SVAR_BLEED_SOURCES',[]]) > 0)";
+				action = "[_classname,cursorObject] spawn ds_fnc_usebandage";
 			};
 		};
 	};

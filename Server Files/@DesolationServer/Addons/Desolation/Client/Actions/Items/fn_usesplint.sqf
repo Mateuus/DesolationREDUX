@@ -31,6 +31,7 @@ if(_target isEqualType "") then {
 	if(isNull _target) exitWith {};
 	
 	_success = {
+		params["_target"];
 		systemchat "HAVE TARGET APPLY SPLINT HERE";
 	};
 	_failure = {

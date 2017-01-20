@@ -14,6 +14,7 @@ params["_classname",["_target",objNull]];
 if(isNull _target) exitWith {};
 
 _success = {
+	params["_target"];
 	systemchat "TAKE TARGETS BLOOD HERE";
 };
 _failure = {

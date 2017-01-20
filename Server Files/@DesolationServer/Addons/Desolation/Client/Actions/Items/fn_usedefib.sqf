@@ -12,6 +12,7 @@ params["_classname",["_target",objNull]];
 if(isNull _target) exitWith {};
 
 _success = {
+	params["_target"];
 	systemchat "USE DEFIB ON TARGET HERE";
 };
 _failure = {

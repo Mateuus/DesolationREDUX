@@ -40,7 +40,7 @@ if(_target isEqualType "") then {
 		};
 	};
 	
-	[_classname/*"dsr_item_bloodbag_full"*/,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItemTarget;
+	[_classname/*"dsr_item_bloodbag_full"*/,_target,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItemTarget;
 
 };
  

@@ -19,7 +19,7 @@ if(({toLower(_x) == toLower(_classname)} count (magazines player)) > 0) then {
 				player removeMagazine _classname;
 			};
 			
-			call _oncomplete;
+			[_target] call _oncomplete;
 			
 			if(_replacement != "") then {
 				player addMagazine _replacement;
