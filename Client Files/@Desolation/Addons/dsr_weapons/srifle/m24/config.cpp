@@ -8,10 +8,6 @@
  * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
  * https://www.bistudio.com/monetization/
  */
-
-/*
-	Quick N Dirty
-*/
 class CfgPatches
 {
 	class dsr_weapons_us_dmr_scoped

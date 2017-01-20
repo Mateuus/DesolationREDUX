@@ -246,7 +246,7 @@ class CfgWeapons
 	class dsr_m4a3: dsr_weapons_arifle_m4a3_base
 	{
 		scope = 2; /// should be visible and useable in game
-		displayName = "dsr_m4a3"; /// some name
+		displayName = "M4A3"; /// some name
 		model = "\dsr_weapons\arifle\m4a3\dsr_m4a3.p3d"; /// path to model
 
 		picture = "\dsr_weapons\arifle\m4a3\data\UI\gear_test_weapon_01_X_CA.paa"; /// different accessories have M, S, T instead of X

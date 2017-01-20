@@ -1,3 +1,13 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ *
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 class CfgPatches
 {
 	class dsr_weapons_us_dmr_scoped
@@ -21,20 +31,6 @@ class SlotInfo;
 class MuzzleSlot;
 class CowsSlot;
 class PointerSlot;
-/*
- * Desolation Redux
- * http://desolationredux.com/
- * © 2016 Desolation Dev Team
- *
- * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
- * To view a copy of this license, visit:
- * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
- * https://www.bistudio.com/monetization/
- */
-
-/*
-	Quick N Dirty
-*/
 class UnderBarrelSlot;
 class CfgWeapons
 {

@@ -1,3 +1,13 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ *
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 #include "basicdefines_A3.hpp"
 class CfgPatches
 {
@@ -99,7 +109,7 @@ class CfgWeapons
 /////////////////////////////////////////////////////  I R O N S I G H T S  /////////////////////////////////////////////////////
 
 		descriptionShort = "CZ805A2 5.56"; /// displayed on mouseOver in Inventory
-		handAnim[] = {"OFP2_ManSkeleton", "dsr_weapons\arifle\cz805\data\anims\propergrip.rtm"}; /// MX hand animation actually fits this rifle well
+		handAnim[] = {"OFP2_ManSkeleton", "dsr_weapons\arifle\cz805\data\anims\cz805.rtm"}; /// MX hand animation actually fits this rifle well
 		dexterity = 1.8;
 		description = "CZ805 A2 with rail system and iron sights.";
 		scope = 2;
@@ -246,7 +256,7 @@ class CfgWeapons
 	class dsr_cz805_a2: dsr_weapons_arifle_cz805_a2_base
 	{
 		scope = 2; /// should be visible and useable in game
-		displayName = "dsr_m4a3"; /// some name
+		displayName = "CZ805"; /// some name
 		model = "\dsr_weapons\arifle\cz805\dsr_cz805_a2.p3d"; /// path to model
 
 		picture = "\dsr_weapons\arifle\cz805\data\ui\picture_cz805_a1_ca.paa"; /// different accessories have M, S, T instead of X
