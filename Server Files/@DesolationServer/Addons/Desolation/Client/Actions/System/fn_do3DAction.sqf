@@ -11,21 +11,21 @@
 
 uiSleep 0.2;
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
-if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = "" };
+if (isNil "DS_var_valid3DActionCodeSelected") then { DS_var_valid3DActionCodeSelected = -1; };
 _obj = cursorTarget;
 if (isNull _obj) then
 {
 	_obj = cursorObject;
 };
 if (isNull _obj) exitWith { false };
-if (DS_var_valid3DActionCodeSelected == "") then
+if (DS_var_valid3DActionCodeSelected == -1) then
 {
-	DS_var_valid3DActionCodeSelected = "";
 	if (isNil "DS_var_3DActionData") exitWith { false };
 
 	DS_var_3DActionData params ["_partName","_thisDamage"];
 	if (_partName == "") then { _partName = "action" };
-	_actionConfig = ((toLower _partName) call DS_fnc_get3DPartName) >> "Actions";
+	_partData = (toLower _partName) call DS_fnc_get3DPartName;
+	_actionConfig = _partData >> "Actions";
 	_actionConfig = (configProperties [_actionConfig, "true", true]);
 
 	_validActions = [];
@@ -39,7 +39,7 @@ if (DS_var_valid3DActionCodeSelected == "") then
 		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _condition + " };";
 		if (call compile _condition) then 
 		{
-			_validActions pushBack [_code,_text];
+			_validActions pushBack [_code, _text, _partName, 1];
 		};
 	};
 	if ((count _validActions) < 1) exitWith
@@ -55,9 +55,10 @@ if (DS_var_valid3DActionCodeSelected == "") then
 }
 else
 {
-	if !(DS_var_valid3DActionCodeSelected == "undef") then
+	if (DS_var_valid3DActionCodeSelected != -1) then
 	{
-		_code = "[" + str (DS_var_3DActionData select 1) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + DS_var_valid3DActionCodeSelected + " };";
+		(DS_var_valid3DActionsCode select DS_var_valid3DActionCodeSelected) params ["_code","_text","_partName","_index"];
+		_code = "[" + str (DS_var_3DActionData select 1) + "," + str(_partName) + "," + str(_index) + "]" + " call { params['_thisDamage','_thisPartName','_thisIndex']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _code + " };";
 		call compile _code;
 		DS_var_3DPartName = nil;
 		DS_var_3DActionData = nil;

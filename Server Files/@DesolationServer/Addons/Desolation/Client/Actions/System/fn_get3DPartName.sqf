@@ -9,9 +9,11 @@
  * https://www.bistudio.com/monetization/
  */
 
-private _return = configNull;
-private _cfg = "true" configClasses (configFile >> "Cfg3DActions");
+_return = [configNull, -1];
+_cfg = "true" configClasses (configFile >> "Cfg3DActions");
+_k = 0;
 {
-	if ((_this find (configName _x)) != -1) exitWith { _return = _x; };
+	if ((_this find (configName _x)) != -1) exitWith { _return = [_x, _k]; };
+	_k = _k + 1;
 } count _cfg;
 _return

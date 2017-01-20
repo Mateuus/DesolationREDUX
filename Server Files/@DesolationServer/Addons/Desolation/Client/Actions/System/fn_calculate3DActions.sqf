@@ -9,7 +9,6 @@
  * https://www.bistudio.com/monetization/
  */
 
-// Fixes the error.
 if (isNil "DS_var_valid3DActions") then
 {
 	DS_var_valid3DActions = [];
@@ -57,7 +56,8 @@ while {DS_var_3DActionsEnabled} do
 				if (!(_pos isEqualTo [0,0,0]) && !((player distance _position) > 5)) then
 				{
 					_damage = _obj getHitPointDamage _partName;
-					_data = (tolower _partName) call DS_fnc_get3DPartName;
+					_partElement = (tolower _partName) call DS_fnc_get3DPartName;
+					_data = _partElement select 0;
 					if (isNull _data) exitWith {};
 					_txt = getText (_data >> "Name");
 					_icon = getText (_data >> "Icon");
@@ -72,7 +72,7 @@ while {DS_var_3DActionsEnabled} do
 			_pos = _obj modelToWorld [0,0,0];
 			if !((player distance _pos) > 5) then
 			{
-				_data = "action" call DS_fnc_get3DPartName;
+				_data = ("action" call DS_fnc_get3DPartName) select 0;
 				_icon = getText (_data >> "Icon");
 				_validActions pushBack [_icon,0,_pos,"","Action"];
 			};
@@ -91,3 +91,5 @@ while {DS_var_3DActionsEnabled} do
 	uiSleep 0.1;
 	true
 };
+
+true

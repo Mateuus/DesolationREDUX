@@ -76,11 +76,18 @@ class CfgPluginKeybinds
 		code = "[] spawn DS_fnc_do3DAction;";
 	};
 };
+
 class CfgFunctions
 {
 	class DS
 	{
 		//--- client functions
+		class Client_Actions_Vehicle {
+			file = "Desolation\client\actions\repair";
+			isclient = 1;
+			class removePart {};
+			class repairPart {};
+		};
 		class Client_Building {
 			file = "Desolation\Client\Building";
 			isclient = 1;
@@ -152,20 +159,6 @@ class CfgFunctions
 			class useCure {};
 			class useImmune {};
 		};
-		class Client_Actions_Repair {
-			file = "Desolation\Client\Actions\Repair";
-			isclient = 1;
-			class CheckBody {};
-			class CheckEngine {};
-			class CheckFueltank {};
-			class CheckGlass {};
-			class CheckWheels {};
-			class repairBody {};
-			class repairEngine {};
-			class repairFuelTank {};
-			class repairGlass {};
-			class repairWheels {};
-		};
 		class Client_Interface {
 			file = "Desolation\Client\Interface";
 			isclient = 1;
@@ -216,6 +209,12 @@ class CfgFunctions
 			class setupInvEvents {};
 		};
 		//--- server functions
+		class Server_Actions_Vehicle {
+			file = "Desolation\Server\actions\repair";
+			isserver = 1;
+			class removePartReq {};
+			class repairPartReq {};
+		};
 		class Server_Database {
 			file = "Desolation\Server\Database";
 			isserver = 1;

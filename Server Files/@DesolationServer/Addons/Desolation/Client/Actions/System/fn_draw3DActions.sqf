@@ -97,7 +97,6 @@ else
 	for[{_i = 0}, {_i < _circleCount * 65}, {_i = _i + 65}] do
 	{
 		(DS_var_valid3DActionsCode select _k) params ["_code","_txt"];
-		_k = _k + 1;
 		_iconPos = [(_pos select 0) + (0.15 * sin(_i)), (_pos select 1) + (0.15 * cos(_i)), _pos select 2];
 
 		_valid = false;
@@ -121,11 +120,11 @@ else
 				_alreadyHasValidAction = true;
 				if (isNil "DS_var_valid3DActionCodeSelected") then
 				{
-					DS_var_valid3DActionCodeSelected = "";
+					DS_var_valid3DActionCodeSelected = -1;
 				};
-				if (DS_var_valid3DActionCodeSelected != _code) then
+				if (DS_var_valid3DActionCodeSelected != _k) then
 				{
-					DS_var_valid3DActionCodeSelected = _code;
+					DS_var_valid3DActionCodeSelected = _k;
 				};
 			};
 		};
@@ -136,8 +135,9 @@ else
 
 		if !(_alreadyHasValidAction) then
 		{
-			DS_var_valid3DActionCodeSelected = "undef";
+			DS_var_valid3DActionCodeSelected = -1;
 		};
+		_k = _k + 1;
 	};
 };
 

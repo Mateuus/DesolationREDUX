@@ -255,26 +255,21 @@ class CfgMagazines {
 	};
 };
 
-class 3DDefaultActions
+class 3DActionDefaultRepair
 {
-	class Prestine
-	{
-		text = "Prestine";
-		condition = "_thisDamage == 0";
-		code = "systemchat 'i like prestine';";
-	};
-	class Destroyed
-	{
-		text = "Destroyed";
-		condition = "_thisDamage >= 1";
-		code = "systemchat 'i am destroyed';";
-	};
-	class Damaged
-	{
-		text = "Damaged";
-		condition = "_thisDamage < 1 && _thisDamage > 0";
-		code = "systemchat 'i am damaged';";
-	};
+	text = "Repair";
+	condition = "_thisDamage > 0";
+	code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+	returned[] = {};
+	required[] = {};
+};
+class 3DActionDefaultRemove
+{
+	text = "Remove";
+	condition = "_thisDamage != 1";
+	code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_removePart";
+	required[] = {};
+	returned[] = {};
 };
 
 class Cfg3DActions
@@ -315,156 +310,683 @@ class Cfg3DActions
 	{
 		name = "Missiles";
 		icon = "\dsr_ui\Assets\actions\Missiles.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 3}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};		
 	};
 	class glass
 	{
 		name = "Glass";
 		icon = "\dsr_ui\Assets\actions\glass.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_items_glasspart", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_items_glasspart", 1}
+				};
+			};
+		};
 	};
 	class wheel
 	{
 		name = "Wheel";
 		icon = "\dsr_ui\Assets\actions\wheel.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_tirepart", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_tirepart", 1}
+				};
+			};
+		};
 	};
 	class engine
 	{
 		name = "Engine";
 		icon = "\dsr_ui\Assets\actions\engine.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_engineblock", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_engineblock", 1}
+				};
+			};
+		};
 	};
 	class fuel
 	{
 		name = "Fuel";
 		icon = "\dsr_ui\Assets\actions\fuel.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_gastank", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_gastank", 1}
+				};
+			};
+		};
 	};
 	class body
 	{
 		name = "Body";
 		icon = "\dsr_ui\Assets\actions\body.paa";
-		class Actions: 3DDefaultActions {};
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 4}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+		};
 	};
 	class avionics
 	{
 		name = "Avionics";
 		icon = "\dsr_ui\Assets\actions\avionics.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_electricalcomp", 2},
+					{"dsr_item_hardware", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_electricalcomp", 1},
+					{"dsr_item_hardware", 1}
+				};
+			};
+		};	
 	};
 	class gear
 	{
 		name = "Gear";
 		icon = "\dsr_ui\Assets\actions\gear.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_tirepart", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_tirepart", 1}
+				};
+			};
+		};	
 	};
 	class winch
 	{
 		name = "Winch";
 		icon = "\dsr_ui\Assets\actions\winch.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_hardware", 2},
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_hardware", 1},
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};		
 	};
 	class hull
 	{
 		name = "Hull";
 		icon = "\dsr_ui\Assets\actions\hull.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 4}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+		};		
 	};
 	class turret
 	{
 		name = "Turret";
 		icon = "\dsr_ui\Assets\actions\turret.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2},
+					{"dsr_item_hardware", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class gun
 	{
 		name = "Gun";
 		icon = "\dsr_ui\Assets\actions\gun.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2},
+					{"dsr_item_hardware", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};			
 	};
 	class transmission
 	{
 		name = "Transmission";
 		icon = "\dsr_ui\Assets\actions\transmission.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2},
+					{"dsr_item_hardware", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};			
 	};
 	class stabilizer
 	{
 		name = "Stabilizer";
 		icon = "\dsr_ui\Assets\actions\stabilizer.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};
 	};
 	class rotor
 	{
 		name = "Rotor";
 		icon = "\dsr_ui\Assets\actions\rotor.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class track
 	{
 		name = "Totor";
 		icon = "\dsr_ui\Assets\actions\track.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 5}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 3}
+				};
+			};
+		};	
 	};
 	class tail
 	{
 		name = "Tail";
 		icon = "\dsr_ui\Assets\actions\tail.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class port
 	{
 		name = "Port";
 		icon = "\dsr_ui\Assets\actions\port.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class blade
 	{
 		name = "Blade";
 		icon = "\dsr_ui\Assets\actions\blade.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class starter
 	{
 		name = "Starter";
 		icon = "\dsr_ui\Assets\actions\starter.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class door
 	{
 		name = "Door";
 		icon = "\dsr_ui\Assets\actions\door.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};			
 	};
 	class elevator
 	{
 		name = "Elevator";
 		icon = "\dsr_ui\Assets\actions\elevator.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};		
 	};
 	class light
 	{
 		name = "Light";
 		icon = "\dsr_ui\Assets\actions\light.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_campinglight", 1}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_campinglight", 1}
+				};
+			};
+		};		
 	};
 	class flap
 	{
 		name = "Flap";
 		icon = "\dsr_ui\Assets\actions\flap.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 	class hatch
 	{
 		name = "Hatch";
 		icon = "\dsr_ui\Assets\actions\hatch.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};		
 	};
 	class ramp
 	{
 		name = "Ramp";
 		icon = "\dsr_ui\Assets\actions\ramp.paa";
-		class Actions: 3DDefaultActions {};		
+		class Actions
+		{
+			class repair: 3DActionDefaultRepair
+			{
+				text = "Reapir";
+				condition = "_thisDamage > 0";
+				code = "[_thisPartName, _thisObject, _thisIndex] spawn DS_fnc_repairPart";
+				returned[] = {};
+				required[] =
+				{
+					{"dsr_item_scrapmetal", 2}
+				};
+			};
+			class Remove: 3DActionDefaultRemove
+			{
+				returned[] =
+				{
+					{"dsr_item_scrapmetal", 1}
+				};
+			};
+		};	
 	};
 };

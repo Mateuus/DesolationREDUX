@@ -9,4 +9,10 @@
  * https://www.bistudio.com/monetization/
  */
 
-_cursor getHitPointDamage 'HitBody' > 0
+if (2 call DS_fnc_doAction) then
+{
+	_this pushBack player;
+	_this remoteExecCall ["DS_fnc_removePartReq", 2];
+};
+
+true
