@@ -60,9 +60,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 			};
 		};
 
-		_drawData = [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
-
-		drawIcon3D _drawData;
+		drawIcon3D [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
 
 		true
 	} count DS_var_valid3DActions;
@@ -82,9 +80,7 @@ else
 			_size = (7 - (player distance _pos)) / 3;
 		};
 
-		_drawData = [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
-
-		drawIcon3D _drawData;
+		drawIcon3D [_icon, [_damage, 1 - _damage, 0, 1], _pos, _size, _size, 0, (_txt + " " + str ((1 - _damage) * 100) + "%"), 2, _size / 20, "PuristaBold"];
 		true
 	} count DS_var_valid3DActions;
 
@@ -129,9 +125,7 @@ else
 			};
 		};
 
-		_drawData = ["\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa", [0.3, 0.3, 1, 1], _iconPos, _size, _size, 0, _txt, 2, _size / 20, "PuristaBold"];
-
-		drawIcon3D _drawData;
+		drawIcon3D ["\a3\ui_f\data\igui\cfg\weaponcursors\gl_gs.paa", [0.3, 0.3, 1, 1], _iconPos, _size, _size, 0, _txt, 2, _size / 20, "PuristaBold"];
 
 		if !(_alreadyHasValidAction) then
 		{
