@@ -33,7 +33,7 @@ class Stage1
 };
 class Stage2
 {
-	texture = "ca\weapons\data\detailmaps\metal_rough_dt.paa";
+	texture = "a3\weapons_f\data\detailmaps\metal_rough_dt.paa";
 	uvSource = "tex";
 	class uvTransform
 	{
