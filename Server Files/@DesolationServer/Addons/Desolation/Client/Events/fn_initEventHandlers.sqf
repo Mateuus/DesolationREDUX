@@ -34,8 +34,13 @@ player addEventHandler ["HandleDamage",{
 					DS_var_Blood = DS_var_Blood - _bloodLoss;
 				};
 			} else {
-				_bloodLoss = _damage * 8250;
-				DS_var_Blood = DS_var_Blood - _bloodLoss;
+				if(_shooter isKindOf "LandVehicle") then {
+					_bloodLoss = _damage * 825;
+					DS_var_Blood = DS_var_Blood - _bloodLoss;
+				} else {
+					_bloodLoss = _damage * 8250;
+					DS_var_Blood = DS_var_Blood - _bloodLoss;
+				};
 			};
 		} else {
 			_bloodLoss = _damage * 13750;

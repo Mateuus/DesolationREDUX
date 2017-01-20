@@ -13,7 +13,12 @@ if(isNull _target) exitWith {};
 
 _success = {
 	params["_target"];
-	systemchat "USE DEFIB ON TARGET HERE";
+	_state = lifeState _target;
+	if(_state == "INCAPACITATED") then {
+		_target setVariable ["DS_var_Defibbed",true,true];
+	} else {
+		[-500] remoteExecCall ["DS_fnc_onBloodRecive", _target];
+	};
 };
 _failure = {
 	private["_type"];

@@ -24,6 +24,11 @@ for "_i" from 1 to _time do {
 			_time = _response;
 		};
 	};
+
+	if(player getVariable ["DS_var_Defibbed",false]) then {
+		player setVariable ["DS_var_Defibbed",nil,true];
+		breakTo "exitKo";
+	};
 	if(!alive player) exitWith {};
 	uiSleep 1;
 };

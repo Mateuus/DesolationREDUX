@@ -15,7 +15,12 @@ if(isNull _target) exitWith {};
 
 _success = {
 	params["_target"];
-	systemchat "TAKE TARGETS BLOOD HERE";
+	_blood = _target getVariable ["SVAR_DS_var_Blood",27500];
+	if(_blood > 15000) then {
+		[-15000] remoteExecCall ["DS_fnc_onBloodReceive",_target];
+	} else {
+		systemchat ((name _target) + " does not have enough blood!");
+	};
 };
 _failure = {
 	private["_type"];
@@ -24,4 +29,4 @@ _failure = {
 		systemchat _type;
 	};
 };
-[_classname/*"dsr_item_bloodbag_empty"*/,_target,true,_success,_failure,"dsr_item_bloodbag_full"] call DS_fnc_useItemTarget;
+[_classname,_target,true,_success,_failure,"dsr_item_bloodbag_full"] call DS_fnc_useItemTarget;

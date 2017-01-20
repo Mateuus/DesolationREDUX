@@ -32,7 +32,9 @@ if(_target isEqualType "") then {
 	
 	_success = {
 		params["_target"];
-		systemchat "HAVE TARGET APPLY SPLINT HERE";
+		{
+			player setHitPointDamage ["HitLegs",0];
+		} remoteExecCall ["call",_target];
 	};
 	_failure = {
 		private["_type"];

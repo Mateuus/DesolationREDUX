@@ -29,8 +29,8 @@ _event = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 _time = diag_tickTime + 6;
 player playActionNow (_actions select _action);
 _pos = getposatl _target;
-waitUntil{diag_tickTime >= _time || ds_var_cancelAction || (_target distance _pos > 0.01)};
-if(_target distance _pos > 0.01) then {
+waitUntil{diag_tickTime >= _time || ds_var_cancelAction || (_target distance _pos > 0.05)};
+if(_target distance _pos > 0.05) then {
 	ds_var_cancelAction = true;
 };
 [player,"amovpknlmstpsraswrfldnon"] remoteExecCall ["switchMove",-2];

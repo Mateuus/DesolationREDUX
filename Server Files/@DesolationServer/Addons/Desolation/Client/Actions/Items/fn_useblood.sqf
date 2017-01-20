@@ -13,7 +13,7 @@ params["_classname",["_target",""]];
 if(_target isEqualType "") then {
 
 	_success = {
-		Systemchat "GIVE SELF BLOOD HERE";
+		[15000] call DS_fnc_onBloodReceive;
 	};
 	_failure = {
 		private["_type"];
@@ -23,14 +23,15 @@ if(_target isEqualType "") then {
 		};
 	};
 
-	[_classname/*"dsr_item_bloodbag_full"*/,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItem;
+	[_classname,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItem;
 	
 } else {
 
 	if(isNull _target) exitWith {};
 	
 	_success = {
-		systemchat "GIVE TARGET BLOOD HERE";
+		params["_target"];
+		[15000] remoteExecCall ["DS_fnc_onBloodReceive",_target];
 	};
 	_failure = {
 		private["_type"];
@@ -40,7 +41,7 @@ if(_target isEqualType "") then {
 		};
 	};
 	
-	[_classname/*"dsr_item_bloodbag_full"*/,_target,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItemTarget;
+	[_classname,_target,true,_success,_failure,"dsr_item_bloodbag_empty"] call DS_fnc_useItemTarget;
 
 };
  
