@@ -9,6 +9,10 @@
  * https://www.bistudio.com/monetization/
  */
 
+if (isNil "DS_var_3DActionsEnabled") then
+{
+	DS_var_3DActionsEnabled = false;
+};
 if !(DS_var_3DActionsEnabled) exitWith { false };
 uiSleep 0.2;
 if (isNil "DS_var_valid3DActionsCode") then { DS_var_valid3DActionsCode = []; };
