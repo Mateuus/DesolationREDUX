@@ -8,7 +8,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		vehicles[] = {};
-		author[]= {"Desolation Redux Dev Team"};
+		author = "Desolation Redux Dev Team";
 	};
 };
 
@@ -121,15 +121,9 @@ class CfgMagazines {
 	//--- medical
 	class dsr_item_splint {
 		class Actions {
-			class Use {
-				text = "Apply Splint";
+			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usesplint') && ((player getHitPointDamage 'HitLegs') > 0)";
 				action = "[_classname] spawn ds_fnc_usesplint";
-			};
-			class UseOnTarget {
-				text = "Apply On %targetname%";
-				condition = "!(isNil 'ds_fnc_usesplint') && !isNull cursorObject && ((cursorObject getHitPointDamage 'HitLegs') > 0) && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_usesplint";
 			};
 		};
 	};
@@ -143,38 +137,25 @@ class CfgMagazines {
 	};
 	class dsr_item_bandage {
 		class Actions {
-			class Use {
-				text = "Apply Bandage";
+			class Use : Action_Use {
 				condition = "!(isNil 'ds_fnc_usebandage')";
 				action = "[_classname] spawn ds_fnc_usebandage";
-			};
-			class UseOnTarget {
-				text = "Apply On %targetname%";
-				condition = "!(isNil 'ds_fnc_usebandage') && !isNull cursorObject && alive cursorObject && isplayer cursorObject && (count(cursorObject getVariable['SVAR_BLEED_SOURCES',[]]) > 0)";
-				action = "[_classname,cursorObject] spawn ds_fnc_usebandage";
 			};
 		};
 	};
 	class dsr_item_bloodbag_empty {
 		class Actions {
-			class Fill {
-				text = "Take %targetname%'s Blood";
-				condition = "!(isNil 'ds_fnc_fillblood') && !isNull cursorObject && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_fillblood";
+			class Fill : Action_Fill {
+				condition = "!(isNil 'ds_fnc_fillblood')";
+				action = "[_classname] spawn ds_fnc_fillblood";
 			};
 		};
 	};
 	class dsr_item_bloodbag_full {
 		class Actions {
-			class Use {
-				text = "Give Myself Blood";
-				condition = "!(isNil 'ds_fnc_useblood') && !(isNil 'ds_var_canSelfBlood') && ds_var_canSelfBlood";
+			class Use : Action_Use {
+				condition = "!(isNil 'ds_fnc_useblood') && !isNil 'ds_var_blood'";
 				action = "[_classname] spawn ds_fnc_useblood";
-			};
-			class UseOnTarget {
-				text = "Give %targetname% Blood";
-				condition = "!(isNil 'ds_fnc_useblood') && !isNull cursorObject && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_useblood";
 			};
 			class Drink : Action_Drink {};
 		};
@@ -182,8 +163,8 @@ class CfgMagazines {
 	class dsr_item_defibrillator {
 		class Actions {
 			class Use : Action_Use {
-				condition = "!(isNil 'ds_fnc_usedefib') && !isNull cursorObject && isPlayer cursorObject && alive cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_usedefib";
+				condition = "!(isNil 'ds_fnc_usedefib') && cursorObject isKindOf 'man' && !isPlayer cursorObject && !alive cursorObject";
+				action = "[_classname] spawn ds_fnc_usedefib";
 			};
 		};
 	};
