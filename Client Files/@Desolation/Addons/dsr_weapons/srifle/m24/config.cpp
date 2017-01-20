@@ -57,7 +57,8 @@ class CfgWeapons
 		handAnim[]=
 		{
 			"OFP2_ManSkeleton",
-			"\A3\Weapons_F_Mark\LongRangeRifles\DMR_06\data\Anim\DMR_06.rtm"
+			"dsr_weapons\srifle\dmr\data\anim\m24.rtm"
+			//"\A3\Weapons_F_Mark\LongRangeRifles\DMR_06\data\Anim\DMR_06.rtm"
 		};
 		DLC="Mark";
 		overviewPicture="\A3\Data_F_Mark\Images\watermarkInfo_page02_ca.paa";
@@ -520,7 +521,7 @@ class CfgWeapons
 		model="dsr_weapons\srifle\m24\dsr_m24_des.p3d";
 		dexterity=1.6799999;
 		displayName="DSR_M24_des";
-		picture="\A3\Weapons_F_Mark\LongRangeRifles\DMR_06\Data\UI\gear_DMR_06_camo_X_CA.paa";
+		picture="dsr_weapons\srifle\m24\data\ui\m24_des_ca.paa";
 		UiPicture="\A3\weapons_f\data\UI\icon_regular_CA.paa";
 		descriptionShort="M24_des";
 		inertia=0.80000001;

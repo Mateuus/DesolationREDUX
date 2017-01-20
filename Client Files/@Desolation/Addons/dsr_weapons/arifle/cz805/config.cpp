@@ -95,7 +95,7 @@ class CfgWeapons
 			{
 				iconPosition[] = {0.2, 0.7};
 				iconScale = 0.2;
-				compatibleItems[] = {"acc_flashlight","acc_pointer_IR"};
+				//compatibleItems[] = {"acc_flashlight","acc_pointer_IR"};
 			};
 		};
 
@@ -143,8 +143,8 @@ class CfgWeapons
 				// closure (bolt action) sound definition should be part of SoundSet
 				soundSetShot[] =
 				{
-					Test_Weapon_01_Shot_SoundSet,
-					Test_Weapon_01_Tail_SoundSet
+					Mk20_Shot_SoundSet,
+					Mk20_Tail_SoundSet
 				};
 			};
 
@@ -152,8 +152,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_silencerShot_SoundSet,
-					Test_Weapon_01_silencerTail_SoundSet
+					Mk20_silencerShot_SoundSet,
+					Mk20_silencerTail_SoundSet
 				};
 			};
 
@@ -180,8 +180,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_Shot_SoundSet,
-					Test_Weapon_01_Tail_SoundSet
+					Mk20_Shot_SoundSet,
+					Mk20_Tail_SoundSet
 				};
 			};
 
@@ -189,8 +189,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_silencerShot_SoundSet,
-					Test_Weapon_01_silencerTail_SoundSet
+					Mk20_silencerShot_SoundSet,
+					Mk20_silencerTail_SoundSet
 				};
 			};
 

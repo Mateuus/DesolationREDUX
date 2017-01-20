@@ -54,7 +54,7 @@ class CfgWeapons
 		reloadAction="GestureReloadDMR06";
 		recoil="recoil_dmr_06";
 		maxZeroing=1600;
-		handAnim[]={"OFP2_ManSkeleton","\dsr_weapons\srifle\dmr\data\anim\M24.rtm"};
+		handAnim[]={"OFP2_ManSkeleton","\dsr_weapons\srifle\dmr\data\anim\m24.rtm"};
 		DLC="Mark";
 		overviewPicture="\A3\Data_F_Mark\Images\watermarkInfo_page02_ca.paa";
 		hiddenSelections[]={};
@@ -513,7 +513,7 @@ class CfgWeapons
 		handAnim[]={"OFP2_ManSkeleton","\dsr_weapons\srifle\dmr\data\anim\M24.rtm"};
 		dexterity=1.6799999;
 		displayName="DSR_US_DMR";
-		picture="\A3\Weapons_F_Mark\LongRangeRifles\DMR_06\Data\UI\gear_DMR_06_camo_X_CA.paa";
+		picture="dsr_weapons\srifle\dmr\data\ui\w_us_dmr_ca.paa";
 		UiPicture="\A3\weapons_f\data\UI\icon_regular_CA.paa";
 		descriptionShort="US_DMR";
 		inertia=0.80000001;

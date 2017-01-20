@@ -1,3 +1,13 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ *
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 #include "basicdefines_A3.hpp"
 class CfgPatches
 {
@@ -85,7 +95,7 @@ class CfgWeapons
 			{
 				iconPosition[] = {0.2, 0.7};
 				iconScale = 0.2;
-				compatibleItems[] = {"acc_flashlight","acc_pointer_IR"};
+				//compatibleItems[] = {};
 			};
 		};
 
@@ -99,7 +109,7 @@ class CfgWeapons
 /////////////////////////////////////////////////////  I R O N S I G H T S  /////////////////////////////////////////////////////
 
 		descriptionShort = "M4A3 5.56"; /// displayed on mouseOver in Inventory
-		handAnim[] = {"OFP2_ManSkeleton", "\A3\Weapons_F\Rifles\MX\data\Anim\MX_gl.rtm"}; /// MX hand animation actually fits this rifle well
+		handAnim[] = {"OFP2_ManSkeleton", "dsr_weapons\arifle\m4a3\data\anims\propergrip.rtm"}; /// M16 Hand Animation
 		dexterity = 1.8;
 		description = "An M4 Variant with rail system and iron sights.";
 		scope = 2;
@@ -133,8 +143,8 @@ class CfgWeapons
 				// closure (bolt action) sound definition should be part of SoundSet
 				soundSetShot[] =
 				{
-					Test_Weapon_01_Shot_SoundSet,
-					Test_Weapon_01_Tail_SoundSet
+					Katiba_Shot_SoundSet,
+					Katiba_Tail_SoundSet
 				};
 			};
 
@@ -142,8 +152,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_silencerShot_SoundSet,
-					Test_Weapon_01_silencerTail_SoundSet
+					Katiba_silencerShot_SoundSet,
+					Katiba_silencerTail_SoundSet
 				};
 			};
 
@@ -170,8 +180,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_Shot_SoundSet,
-					Test_Weapon_01_Tail_SoundSet
+					Katiba_Shot_SoundSet,
+					Katiba_Tail_SoundSet
 				};
 			};
 
@@ -179,8 +189,8 @@ class CfgWeapons
 			{
 				soundSetShot[] =
 				{
-					Test_Weapon_01_silencerShot_SoundSet,
-					Test_Weapon_01_silencerTail_SoundSet
+					Katiba_silencerShot_SoundSet,
+					Katiba_silencerTail_SoundSet
 				};
 			};
 
@@ -249,7 +259,7 @@ class CfgWeapons
 		displayName = "M4A3"; /// some name
 		model = "\dsr_weapons\arifle\m4a3\dsr_m4a3.p3d"; /// path to model
 
-		picture = "\dsr_weapons\arifle\m4a3\data\UI\gear_test_weapon_01_X_CA.paa"; /// different accessories have M, S, T instead of X
+		picture = "\dsr_weapons\arifle\m4a3\data\ui\m4a3_ca.paa"; /// different accessories have M, S, T instead of X
 		UiPicture = "\A3\Weapons_F\Data\UI\icon_gl_CA.paa"; /// weapon with grenade launcher should be marked such way
 
 		weaponInfoType = "RscWeaponZeroing"; /// display with zeroing is good for iron sights
