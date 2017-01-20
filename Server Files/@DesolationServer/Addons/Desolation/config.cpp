@@ -73,7 +73,7 @@ class CfgPluginKeybinds
 		tag = "DS";
 		variable = "do3DAction";
 		defaultKeys[] = {{0x39,0}};
-		code = "[] spawn DS_fnc_do3DAction; false";
+		code = "[] spawn DS_fnc_do3DAction; DS_var_3DActionsEnabled";
 	};
 };
 
