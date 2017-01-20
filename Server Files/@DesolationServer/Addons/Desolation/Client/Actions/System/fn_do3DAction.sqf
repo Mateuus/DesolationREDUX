@@ -24,7 +24,8 @@ if (DS_var_valid3DActionCodeSelected == -1) then
 
 	DS_var_3DActionData params ["_partName","_thisDamage"];
 	if (_partName == "") then { _partName = "action" };
-	_partData = (toLower _partName) call DS_fnc_get3DPartName;
+	_data = (toLower _partName) call DS_fnc_get3DPartName;
+	_partData = _data select 0;
 	_actionConfig = _partData >> "Actions";
 	_actionConfig = (configProperties [_actionConfig, "true", true]);
 
@@ -39,7 +40,7 @@ if (DS_var_valid3DActionCodeSelected == -1) then
 		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _condition + " };";
 		if (call compile _condition) then 
 		{
-			_validActions pushBack [_code, _text, _partName, 1];
+			_validActions pushBack [_code, _text, _partName, (_data select 1)];
 		};
 	};
 	if ((count _validActions) < 1) exitWith

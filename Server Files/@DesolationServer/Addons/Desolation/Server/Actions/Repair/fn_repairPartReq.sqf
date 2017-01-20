@@ -44,7 +44,7 @@ if ((count _missingItems) != 0) exitWith
 {
 	for "_i" from 1 to (_x select 1) do
 	{
-		_player removeMagazine (_x select 0);
+		_player removeMagazineGlobal (_x select 0);
 	};
 } count _required;
 

@@ -1,3 +1,14 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
+
 params ["_hitPoint","_object","_index","_player"];
 
 _configAry = "true" configClasses (configFile >> "Cfg3DActions");
@@ -5,11 +16,11 @@ _config = _configAry select _index;
 _returned = getArray (_config >> "Actions" >> "Remove" >> "returned");
 
 _lootHolder = objNull;
-_nearLootHolders = _player nearObjects ["GroundWeaponHolder", 25];
-_nearLootHolders append (_player nearObjects ["LootWeaponHolder", 25]);
+_nearLootHolders = _player nearObjects ["GroundWeaponHolder", 5];
+_nearLootHolders append (_player nearObjects ["LootWeaponHolder", 5]);
 if ((count _nearLootHolders) != 0) then
 {
-	_distance = 25;
+	_distance = 5;
 	{
 		_tmpDist = _player distance _x;
 		if (_tmpDist < _distance) then
