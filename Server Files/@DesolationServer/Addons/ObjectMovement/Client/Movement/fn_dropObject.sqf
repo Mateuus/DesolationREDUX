@@ -9,6 +9,7 @@
  * https://www.bistudio.com/monetization/
  */
 
+if(isNull OM_var_lifted) exitWith {false};
 if(local OM_var_lifted) then {[OM_var_lifted] remoteExecCall ["OM_fnc_serverDrop",2];};
 if !(isNil "OM_var_EachFrameEH") then 
 {

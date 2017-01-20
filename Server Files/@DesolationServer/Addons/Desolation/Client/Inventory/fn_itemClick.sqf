@@ -41,8 +41,9 @@ _replace = {
 	params["_string","_search","_replace"];
 	private["_index","_sub1","_sub2","_nString"];
 	_index = _string find _search;
+	if(_index == -1) exitWith {_string};
 	_sub1 = _string select [0,_index];
-	_sub2 = _string select [_index+10];
+	_sub2 = _string select [_index+count(_search)];
 	_nString = _sub1 + _replace + _sub2;
 	_nString;
 };
