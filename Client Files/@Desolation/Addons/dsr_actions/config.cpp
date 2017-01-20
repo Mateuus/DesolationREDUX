@@ -176,7 +176,9 @@ class CfgMagazines {
 				condition = "!(isNil 'ds_fnc_useblood') && !isNull cursorObject && alive cursorObject && isplayer cursorObject";
 				action = "[_classname,cursorObject] spawn ds_fnc_useblood";
 			};
-			class Drink : Action_Drink {};
+			class Drink : Action_Drink {
+				text = "Drink Blood";
+			};
 		};
 	};
 	class dsr_item_defibrillator {
