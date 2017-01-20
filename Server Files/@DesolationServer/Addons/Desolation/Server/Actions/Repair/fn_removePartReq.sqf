@@ -43,6 +43,17 @@ if (isNull _lootHolder) then
 } count _returned;
 
 _object setOwner 2;
+if !(local _object) then
+{
+	while {!local _object} do
+	{
+		_object setOwner 2;
+		if !(isNull(driver _object)) then
+		{
+			(driver _object) action ["Eject", _object];
+		};
+	};
+};
 _object setHitPointDamage [_hitPoint, 1];
 
 true

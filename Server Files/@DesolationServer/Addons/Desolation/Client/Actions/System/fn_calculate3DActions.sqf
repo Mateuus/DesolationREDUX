@@ -9,6 +9,7 @@
  * https://www.bistudio.com/monetization/
  */
 
+private ["_obj","_validActions","_dif0","_dif1","_distance","_hitpoints","_i","_partName","_pos","_position","_data","_txt","_icon"];
 if (isNil "DS_var_valid3DActions") then
 {
 	DS_var_valid3DActions = [];
@@ -41,7 +42,7 @@ while {DS_var_3DActionsEnabled} do
 			false
 		};
 
-		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship") || (_obj isKindOf "House")) exitWith
+		if ((_obj isKindOf "landVehicle") || (_obj isKindOf "air") || (_obj isKindOf "ship")) exitWith
 		{
 			_hitpoints = "true" configClasses (configFile >> "CfgVehicles" >> typeOf _obj >> "Hitpoints");
 
@@ -53,9 +54,9 @@ while {DS_var_3DActionsEnabled} do
 				_partName = configName (_hitpoints select _i);
 				_pos = _obj selectionPosition [getText((_hitpoints select _i) >> "name"), "HitPoints"];
 				_position = _obj modelToWorldVisual _pos;
-				if (!(_pos isEqualTo [0,0,0]) && !((player distance _position) > 5)) then
+				_damage = _obj getHitPointDamage _partName;
+				if !((player distance _position) > 5) then
 				{
-					_damage = _obj getHitPointDamage _partName;
 					_partElement = (tolower _partName) call DS_fnc_get3DPartName;
 					_data = _partElement select 0;
 					if (isNull _data) exitWith {};
@@ -74,7 +75,7 @@ while {DS_var_3DActionsEnabled} do
 			{
 				_data = ("action" call DS_fnc_get3DPartName) select 0;
 				_icon = getText (_data >> "Icon");
-				_validActions pushBack [_icon,0,_pos,"","Action"];
+				_validActions pushBack [_icon, 0, _pos, "", "Action"];
 			};
 		};
 		DS_var_valid3DActions = [];
