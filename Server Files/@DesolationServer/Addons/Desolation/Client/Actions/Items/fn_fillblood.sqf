@@ -15,12 +15,7 @@ if(isNull _target) exitWith {};
 
 _success = {
 	params["_target"];
-	_blood = _target getVariable ["SVAR_DS_var_Blood",27500];
-	if(_blood > 15000) then {
-		[-15000] remoteExecCall ["DS_fnc_onBloodReceive",_target];
-	} else {
-		systemchat ((name _target) + " does not have enough blood!");
-	};
+	[-15000] remoteExecCall ["DS_fnc_onBloodReceive",_target];
 };
 _failure = {
 	private["_type"];

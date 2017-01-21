@@ -159,7 +159,7 @@ class CfgMagazines {
 		class Actions {
 			class Fill {
 				text = "Take %targetname%'s Blood";
-				condition = "!(isNil 'ds_fnc_fillblood') && !isNull cursorTarget && alive cursorTarget && isplayer cursorTarget";
+				condition = "!(isNil 'ds_fnc_fillblood') && !isNull cursorTarget && alive cursorTarget && isplayer cursorTarget && ((cursorTarget getVariable ['SVAR_DS_var_Blood',27500]) > 15000)";
 				action = "[_classname,cursorTarget] spawn ds_fnc_fillblood";
 			};
 		};
