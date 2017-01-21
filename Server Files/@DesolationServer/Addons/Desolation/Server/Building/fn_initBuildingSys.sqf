@@ -39,6 +39,7 @@ for "_i" from 0 to count(_config)-1 do {
 				_bDesc = getText(_buildable >> "description");
 				_bPreview = getText(_buildable >> "preview");
 				_bCondition = getText(_buildable >> "condition");
+				_bCrateModel = getText(_buildable >> "crateObject");
 				
 				_bDataGroup pushBack [
 					_bParts,
@@ -46,7 +47,8 @@ for "_i" from 0 to count(_config)-1 do {
 					_bModel,
 					_bDesc,
 					_bPreview,
-					_bCondition
+					_bCondition,
+					_bCrateModel
 				];
 			};
 		};
