@@ -29,3 +29,6 @@
 
 # ARMA binary files
 **/*.pbo
+
+# ARMA p3d files (licensing issue)
+**/*.p3d
