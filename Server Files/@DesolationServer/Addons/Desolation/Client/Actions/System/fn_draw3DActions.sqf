@@ -29,8 +29,9 @@ if (isNull _obj) then
 if (isNull _obj) exitWith { false };
 (boundingBoxReal _obj) params ["_dif0","_dif1"];
 _distance = (_dif0 distance _dif1) + 4;
-_visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,4.5]);
+_visPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,5.5]);
 _camPos = ASLToATL(AGLToASL positionCameraToWorld [0,0,0]);
+_vecFT = _camPos vectorFromTo _visPos;
 if ((count DS_var_valid3DActionsCode) < 1) then
 {
 	_alreadyHasValidAction = false;
@@ -41,7 +42,7 @@ if ((count DS_var_valid3DActionsCode) < 1) then
 		_valid = false;
 		for "_j" from 1 to _distance do 
 		{
-			_vChange = (_camPos vectorFromTo _visPos) vectorMultiply (((_camPos distance _visPos) / 20)*_j);
+			_vChange = _vecFT vectorMultiply (((_camPos distance _visPos) / 20)*_j);
 			_checkPos = _camPos vectorAdd _vChange;
 			if((_checkPos distance _pos) <= 0.1) exitWith 
 			{
@@ -98,7 +99,7 @@ else
 		_valid = false;
 		for "_j" from 1 to _distance do 
 		{
-			_vChange = (_camPos vectorFromTo _visPos) vectorMultiply (((_camPos distance _visPos) / 20)*_j);
+			_vChange = _vecFT vectorMultiply (((_camPos distance _visPos) / 20)*_j);
 			_checkPos = _camPos vectorAdd _vChange;
 			_valid = false;
 			if((_checkPos distance _iconPos) <= 0.1) exitWith 

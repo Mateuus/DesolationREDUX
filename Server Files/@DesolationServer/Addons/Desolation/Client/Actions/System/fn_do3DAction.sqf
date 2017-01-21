@@ -45,7 +45,7 @@ if (DS_var_valid3DActionCodeSelected == -1) then
 		_condition = "[" + str (_thisDamage) + "]" + " call { params['_thisDamage']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _condition + " };";
 		if (call compile _condition) then 
 		{
-			_validActions pushBack [_code, _text, _partName, (_data select 1)];
+			_validActions pushBack [_code, _text, _partName, (_data select 1), _condition];
 		};
 	};
 	if ((count _validActions) < 1) exitWith
@@ -63,9 +63,12 @@ else
 {
 	if (DS_var_valid3DActionCodeSelected != -1) then
 	{
-		(DS_var_valid3DActionsCode select DS_var_valid3DActionCodeSelected) params ["_code","_text","_partName","_index"];
-		_code = "[" + str (DS_var_3DActionData select 1) + "," + str(_partName) + "," + str(_index) + "]" + " call { params['_thisDamage','_thisPartName','_thisIndex']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _code + " };";
-		call compile _code;
+		(DS_var_valid3DActionsCode select DS_var_valid3DActionCodeSelected) params ["_code","_text","_partName","_index","_condition"];
+		if (call compile _condition) then
+		{
+			_code = "[" + str (DS_var_3DActionData select 1) + "," + str(_partName) + "," + str(_index) + "]" + " call { params['_thisDamage','_thisPartName','_thisIndex']; _thisObject = cursorTarget; if (isNull _thisObject) then { _thisObject = cursorObject; }; " + _code + " };";
+			call compile _code;
+		};
 		DS_var_3DPartName = nil;
 		DS_var_3DActionData = nil;
 		DS_var_valid3DActionsCode = nil;
