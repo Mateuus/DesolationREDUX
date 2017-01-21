@@ -15,7 +15,7 @@ _unit setVariable ["DS_var_BleedSources",[],true];
 _unit setVariable ["DS_var_BleedSourcesInfo",[],true];
 */
 {
-	_bsources = _x getVariable["SVAR_BLEED_SOURCES",[]];
+	_bsources = _x getVariable["BLEED_SOURCES",[]];
 	
 	_unit = _x;
 	{
@@ -27,3 +27,12 @@ _unit setVariable ["DS_var_BleedSourcesInfo",[],true];
 	} forEach _bsources;
 	
 } forEach allPlayers;
+
+//--- load DB saved bleed sources
+{
+	_selection = _x select 0;
+	_level = _x select 1;
+	_offset = _x select 2;
+	
+	[player,_level,_selection,_offset] remoteExec ["DS_fnc_createBleedSource",-2];
+} forEach (player getVariable ["SVAR_BleedData",[]]);

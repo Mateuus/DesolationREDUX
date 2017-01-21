@@ -70,7 +70,8 @@ _loadout = [
 	_tools select 1
 ];
 
-_unit switchMove _anim;
+[_unit,_anim] remoteExecCall ["switchMove",0];
+
 {
 	_name = _x;
 	_damage = (_hitpoints select 2) select _forEachIndex;

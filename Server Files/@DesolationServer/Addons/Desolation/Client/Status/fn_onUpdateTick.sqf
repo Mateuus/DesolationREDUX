@@ -23,5 +23,10 @@ if(player getVariable ["SVAR_DS_var_Hunger",0] != DS_var_Hunger) then {
 if(player getVariable ["SVAR_DS_var_InfectionDOT",0] != SM_infectionDOT) then {
 	player setVariable ["SVAR_DS_var_InfectionDOT",SM_infectionDOT,true];
 };
+// save bleed source data without causing issues with JIP
+if !((player getVariable ["SVAR_BleedData",[]]) isEqualTo (player getVariable ["BLEED_SOURCES",[]])) then {
+	player setVariable ["SVAR_BleedData",(player getVariable ["BLEED_SOURCES",[]]),true];
+};
 
 player setVariable ["SVAR_TimedStates",[DS_var_lastAte,DS_var_lastDrank,DS_var_lastImmune],true];
+
