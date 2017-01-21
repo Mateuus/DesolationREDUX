@@ -31,14 +31,12 @@ _blackListObjects = [];
 _canSee = false;
 if (count(_blackListObjects) != 0) then
 {
-	_i = 0;
 	_deleted = [];
 	{
 		if (toLower(_x) in _blackListObjects) then
 		{
-			_deleted pushBack _i;
+			_deleted pushBack _x;
 		};
-		_i = _i + 1;
 		true
 	} count _objects;
 
