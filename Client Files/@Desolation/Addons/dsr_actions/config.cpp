@@ -128,8 +128,8 @@ class CfgMagazines {
 			};
 			class UseOnTarget {
 				text = "Apply On %targetname%";
-				condition = "!(isNil 'ds_fnc_usesplint') && !isNull cursorObject && ((cursorObject getHitPointDamage 'HitLegs') > 0) && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_usesplint";
+				condition = "!(isNil 'ds_fnc_usesplint') && !isNull cursorTarget && ((cursorTarget getHitPointDamage 'HitLegs') > 0) && alive cursorTarget && isplayer cursorTarget";
+				action = "[_classname,cursorTarget] spawn ds_fnc_usesplint";
 			};
 		};
 	};
@@ -150,8 +150,8 @@ class CfgMagazines {
 			};
 			class UseOnTarget {
 				text = "Apply On %targetname%";
-				condition = "!(isNil 'ds_fnc_usebandage') && !isNull cursorObject && alive cursorObject && isplayer cursorObject && (count(cursorObject getVariable['SVAR_BLEED_SOURCES',[]]) > 0)";
-				action = "[_classname,cursorObject] spawn ds_fnc_usebandage";
+				condition = "!(isNil 'ds_fnc_usebandage') && !isNull cursorTarget && alive cursorTarget && isplayer cursorTarget && (count(cursorTarget getVariable['SVAR_BLEED_SOURCES',[]]) > 0)";
+				action = "[_classname,cursorTarget] spawn ds_fnc_usebandage";
 			};
 		};
 	};
@@ -159,8 +159,8 @@ class CfgMagazines {
 		class Actions {
 			class Fill {
 				text = "Take %targetname%'s Blood";
-				condition = "!(isNil 'ds_fnc_fillblood') && !isNull cursorObject && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_fillblood";
+				condition = "!(isNil 'ds_fnc_fillblood') && !isNull cursorTarget && alive cursorTarget && isplayer cursorTarget";
+				action = "[_classname,cursorTarget] spawn ds_fnc_fillblood";
 			};
 		};
 	};
@@ -173,8 +173,8 @@ class CfgMagazines {
 			};
 			class UseOnTarget {
 				text = "Give %targetname% Blood";
-				condition = "!(isNil 'ds_fnc_useblood') && !isNull cursorObject && alive cursorObject && isplayer cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_useblood";
+				condition = "!(isNil 'ds_fnc_useblood') && !isNull cursorTarget && alive cursorTarget && isplayer cursorTarget";
+				action = "[_classname,cursorTarget] spawn ds_fnc_useblood";
 			};
 			class Drink : Action_Drink {
 				text = "Drink Blood";
@@ -184,8 +184,8 @@ class CfgMagazines {
 	class dsr_item_defibrillator {
 		class Actions {
 			class Use : Action_Use {
-				condition = "!(isNil 'ds_fnc_usedefib') && !isNull cursorObject && isPlayer cursorObject && alive cursorObject";
-				action = "[_classname,cursorObject] spawn ds_fnc_usedefib";
+				condition = "!(isNil 'ds_fnc_usedefib') && !isNull cursorTarget && isPlayer cursorTarget && alive cursorTarget";
+				action = "[_classname,cursorTarget] spawn ds_fnc_usedefib";
 			};
 		};
 	};
