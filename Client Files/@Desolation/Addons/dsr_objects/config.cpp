@@ -50,6 +50,7 @@ class CfgVehicles
 		icon = "iconObject_1x1";
 		destrType = "DestructNo";
 		mapSize = 1;
+		mass = 150;
 	};
 	class DSR_Crate_Airdrop_F : DSR_Crate_Base
 	{
