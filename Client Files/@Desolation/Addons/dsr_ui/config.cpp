@@ -441,6 +441,17 @@ class DS_Journal_Index {
 		};
 	};
 	class Controls {
+		class RscPictureButton: RscActivePicture
+		{
+			idc = 10;
+			text = "dsr_ui\Assets\indexbtn.paa";
+			action = "systemchat 'INDEX CLICKED'";
+			style = 2096;
+			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*80)";
+			x = "safeZoneX + (safeZoneW/2) - (pixelW*400) - (pixelW*120)";
+			w = "100*pixelW";
+			h = "100*pixelH";
+		};
 		class LeftTitle: DsrTitleText
 		{
 			y = "safeZoneY + (safeZoneH/2) - (pixelH*400) + (pixelH*60)";
