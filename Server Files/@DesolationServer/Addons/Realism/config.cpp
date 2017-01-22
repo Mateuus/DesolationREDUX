@@ -24,5 +24,11 @@ class CfgFunctions
 			class initRealism {};
 			class blurMonitor {};
 		};
+		class Server
+		{
+			file = "Realism\Server";
+			isserver = 1;
+			class initServer {};
+		};
 	};
 };
