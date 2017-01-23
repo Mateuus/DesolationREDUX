@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class TimeModify {};
 };
+
 class Plugins
 {
 	class TimeModify
@@ -10,7 +11,8 @@ class Plugins
 		desc = "Modify the speed of the day/night cycle";
 		tag = "TM";
 	};
-}
+};
+
 class CfgFunctions
 {
 	class TM

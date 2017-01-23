@@ -10,33 +10,34 @@ class Plugins
 		desc = "ArmA 3 Zombie Survival Mod";
 		tag = "DS";
 	};
-}
+};
+/*
 class CfgPluginActions {
 	class RepairCars {
 		class Actions {
 			class RepairEngine {
 				text = "Repair Engine";
-				action = "systemchat 'repairing engine';";
+				action = "systemchat 'repairing engine'; [] spawn DS_fnc_repairEngine;";
 				condition = "call DS_fnc_CheckEngine";
 			};
 			class RepairBody {
 				text = "Repair Body";
-				action = "systemchat 'repairing body';";
+				action = "systemchat 'repairing body'; [] spawn DS_fnc_repairBody;";
 				condition = "call DS_fnc_CheckBody";
 			};
 			class RepairFueltank {
 				text = "Repair Fuel Tank";
-				action = "systemchat 'repairing fuel tank';";
+				action = "systemchat 'repairing fuel tank'; [] spawn DS_fnc_repairFuelTank;";
 				condition = "call DS_fnc_CheckFueltank";
 			};
 			class RepairGlass {
 				text = "Repair Glass";
-				action = "systemchat 'repairing glass';";
+				action = "systemchat 'repairing glass'; [] spawn DS_fnc_repairGlass;";
 				condition = "call DS_fnc_CheckGlass";
 			};
 			class RepairWheels {
-				text = "Repair Wheels";
-				action = "systemchat 'repairing wheels';";
+				text = "Repair Wheel";
+				action = "systemchat 'repairing wheels'; [] spawn DS_fnc_repairWheels;";
 				condition = "call DS_fnc_CheckWheels";
 			};
 		};
@@ -44,11 +45,58 @@ class CfgPluginActions {
 		text = "Repair Vehicle";
 	};
 };
+*/
+class CfgPluginKeybinds 
+{
+	class OpenJournalIndex 
+	{
+		displayName = "Open Building Journal";
+		tooltip = "Open the journal containing buildables";
+		tag = "DS";
+		variable = "OpenBuildingJournal";
+		defaultKeys[] = {{0x24,0}};
+		code = "call DS_fnc_openJournal;";
+	};
+	class Toggle3DAction 
+	{
+		displayName = "Toggle 3D Actions";
+		tooltip = "Toggle 3D actions to be able to easily use any actions in 3D";
+		tag = "DS";
+		variable = "Toggle3DAction";
+		defaultKeys[] = {{0x0F,0}};
+		code = "call DS_fnc_toggleActions;";
+	};
+	class do3DAction
+	{
+		displayName = "Use 3D Action";
+		tooltip = "Allows you to use the highlighted action";
+		tag = "DS";
+		variable = "do3DAction";
+		defaultKeys[] = {{0x39,0}};
+		code = "[] spawn DS_fnc_do3DAction; DS_var_3DActionsEnabled";
+	};
+};
+
 class CfgFunctions
 {
 	class DS
 	{
 		//--- client functions
+		class Client_Actions_Vehicle {
+			file = "Desolation\client\actions\repair";
+			isclient = 1;
+			class removePart {};
+			class repairPart {};
+		};
+		class Client_Building {
+			file = "Desolation\Client\Building";
+			isclient = 1;
+			class openJournal {};
+			class initBuilding {};
+			class onBuildClick {};
+			class registerBuildable {};
+			class onCrateFilled {};
+		};
 		class Client_Spawning {
 			file = "Desolation\Client\Spawning";
 			isclient = 1;
@@ -69,13 +117,29 @@ class CfgFunctions
 			file = "Desolation\Client\Functions";
 			isclient = 1;
 			class infoText {};
+			class notWhitelisted {};
 			class receiveTransmition {};
+			class calcGrayscale {};
+			class getCfgValue {};
+			class shuffleArray {};
+			class genRandMapPos {};
+		};
+		class Client_Actions_System {
+			file = "Desolation\Client\Actions\System";
+			isclient = 1;
+			class toggleActions {};
+			class draw3DActions {};
+			class get3DPartName {};
+			class calculate3DActions {};
+			class do3DAction {};
 		};
 		class Client_Actions_Items {
 			file = "Desolation\Client\Actions\Items";
 			isclient = 1;
 			class doAction {};
+			class doActionTarget {};
 			class useItem {};
+			class useItemTarget {};
 			class drink {};
 			class eat {};
 			class fillblood {};
@@ -91,15 +155,9 @@ class CfgFunctions
 			class usepainkillers {};
 			class usevitamins {};
 			class usewpt {};
-		};
-		class Client_Actions_Repair {
-			file = "Desolation\Client\Actions\Repair";
-			isclient = 1;
-			class CheckBody {};
-			class CheckEngine {};
-			class CheckFueltank {};
-			class CheckGlass {};
-			class CheckWheels {};
+			class usesplint {};
+			class useCure {};
+			class useImmune {};
 		};
 		class Client_Interface {
 			file = "Desolation\Client\Interface";
@@ -115,14 +173,15 @@ class CfgFunctions
 			file = "Desolation\Client\Status";
 			isclient = 1;
 			class initHealthSys {};
-			class initStatusSys {};
 			class onBleedTick {};
 			class onBloodReceive {};
 			class onDrink {};
 			class onEat {};
 			class onEffectTick {};
+			class onInfectionTick {};
 			class onHungerTick {};
 			class onThirstTick {};
+			class onUpdateTick {};
 			class onTick {};
 		};
 		class Client_Medical {
@@ -150,6 +209,12 @@ class CfgFunctions
 			class setupInvEvents {};
 		};
 		//--- server functions
+		class Server_Actions_Vehicle {
+			file = "Desolation\Server\actions\repair";
+			isserver = 1;
+			class removePartReq {};
+			class repairPartReq {};
+		};
 		class Server_Database {
 			file = "Desolation\Server\Database";
 			isserver = 1;
@@ -197,29 +262,114 @@ class CfgFunctions
 			file = "Desolation\Server\Crashes";
 			isserver = 1;
 			class spawnCrashes {};
-		};
-		class Server_Zombies {
-			file = "Desolation\Server\Zombies";
-			isserver = 1;
-			class spawnZombies {};
-			class startMasterBrain {};
+			class crashSmoke {};
+			class spawnCrashLoot {};
+			class initHeliCrashes {};
+			class heliCrashAnim {};
 		};
 		class Server_Vehicles {
 			file = "Desolation\Server\Vehicles";
 			isserver = 1;
 			class spawnVehicles {};
+			class spawnFromDB {};
+			class vehicleMonitor {};
 			class simManager {};
 		};
-		class Server_Functions {
-			file = "Desolation\Server\Functions";
+		class Server_Building {
+			file = "Desolation\Server\Building";
 			isserver = 1;
-			class getCfgValue {};
-			class shuffleArray {};
+			class requestBuild {};
+			class finishBuild {};
+			class initBuildingSys {};
+		};
+		class Server_Locking {
+			file = "Desolation\Server\Locking";
+			isserver = 1;
+			class checkServerLock {};
+			class initLock {};
 		};
 		class Server {
 			file = "Desolation\Server";
 			isserver = 1;
 			class initServer {};
+		};
+	};
+};
+class CfgHeliCrashes {
+	class Settings {
+		MinTimeBetweenCrashes = 5;
+		MaxTimeBetweenCrashes = 20;
+		NumberOfCrashesToSpawn = 5;
+		MaxSearchDistance = 5000;
+	};
+	class CrashTypes {
+		class Military {
+			HeliClass = "I_Heli_Transport_02_F";
+			WreckClass = "I_Heli_Transport_02_F";
+			WreckSmoke = 1; //1 for true 0 for false!
+			SpawnAltitude = 600;
+			//particle effects config (size and origin)
+			SmokePos[] = {0,0,0};
+			SmokeSize = 7;
+			Locations[] =
+			{
+				{4060.2971,2753.147},
+				{3014.8438,12482.121},
+				{7501.166,9649.7529},
+				{10790.136,4316.1323}
+			};
+			
+			class loot {
+				maxLootpiles = 10;//not implemented yet
+				weapons[] = {
+					"srifle_EBR_F"
+				};
+				magazines[] = {
+				
+				};
+				items[] = {
+					"FirstAidKit"
+				};
+				backpacks[] = {
+			
+				};
+			};
+		};
+		
+		class Medical {
+			HeliClass = "I_Heli_Transport_02_F";
+			WreckClass = "I_Heli_Transport_02_F";
+			WreckSmoke = 1; //1 for true 0 for false!
+			SpawnAltitude = 600;
+			//particle effects config (size and origin)
+			SmokePos[] = {0,0,0};
+			SmokeSize = 7;
+			Locations[] =
+			{
+				{2794.793,6132.3345},
+				{12407.456,3987.5303},
+				{11379.448,11809.968},
+				{10190.923,2723.2224}
+			};
+			
+			class loot {
+				maxLootpiles = 10;//not implemented yet
+				weapons[] = {
+				};
+				magazines[] = {
+				"dsr_item_antibiotic",
+				"dsr_item_bloodbag_full",
+				"dsr_item_bandage",
+				"dsr_item_defibrillator",
+				"dsr_item_disinfectant",
+				"dsr_item_painkillers"
+				};
+				items[] = {
+				"FirstAidKit"
+				};
+				backpacks[] = {
+				};
+			};
 		};
 	};
 };
@@ -301,354 +451,408 @@ class CfgAirdropSpawns {
 class CfgItemSpawns {
 	buildingTypes[] = {"Military","Civilian","Industrial","Commercial","Medical","Mechanical"};
 	lootRarity[] = {"rare","semirare","average","semicommon","common"};
-	lootTypes[] = {	"Weapon","Handgun","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart", "Attachment"};
+	lootTypes[] = {"Weapon","Handgun","Magazine","Food","Drink","Medical","Junk","Backpack","Uniform","Vest","Helmet","Cosmetic","GeneralItem","Construction","Book","Electronic","CarPart","Attachment"};
 
 	class Loot {
         class Military {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
-                rare[] = {
-                    {"dsr_item_beans",1}
+			class Magazine {
+				rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
                 };
                 semirare[] = {
-                    {"dsr_item_cereal",1}
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
                 };
                 average[] = {
-                    {"dsr_item_powderedmilk",1}
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
                 };
                 semicommon[] = {
-                    {"dsr_item_rice",1}
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
                 };
                 common[] = {
-                    {"dsr_item_bacon",1}
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+			};
+            class Food {
+                rare[] = {
+                    {"dsr_item_beans",100}
+                };
+                semirare[] = {
+                    {"dsr_item_powderedmilk",100}
+                };
+                average[] = {
+                    {"dsr_item_cereal",100}
+                };
+                semicommon[] = {
+                    {"dsr_item_rice",100}
+                };
+                common[] = {
+                    {"dsr_item_bacon",100}
                 };
             };
             class Drink {
                 rare[] = {
-                    {"dsr_item_waterbottle_full",1},
-                    {"dsr_item_canteen_full",1}
+                    {"dsr_item_waterbottle_full",70},
+                    {"dsr_item_canteen_full",30}
                 };
                 semirare[] = {
-                    {"dsr_item_rustyspirit",1},
-                    {"dsr_item_spirit",1}
+                    {"dsr_item_franta",55},
+                    {"dsr_item_spirit",45}
 				};
                 average[] = {
-                    {"dsr_item_franta",1}
+                    {"dsr_item_rustyspirit",100}
                 };
                 semicommon[] = {
-                    {"dsr_item_waterbottle_empty",1},
-                    {"dsr_item_canteen_empty",1}
+                    {"dsr_item_waterbottle_dirty",70},
+                    {"dsr_item_canteen_dirty",30}
                 };
                 common[] = {
-                    {"dsr_item_waterbottle_dirty",1},
-                    {"dsr_item_canteen_dirty",1}
+                    {"dsr_item_waterbottle_empty",70},
+                    {"dsr_item_canteen_empty",30}
                 };
             };
             class Medical {
                 rare[] = {
-                    {"dsr_item_antibiotic",1},
-                    {"dsr_item_bandage",1},
-                    {"dsr_item_defibrillator",1},
-                    {"dsr_item_bloodbag_full",1}
+                    {"dsr_item_antibiotic",40},
+                    {"dsr_item_bloodbag_full",25},
+                    {"dsr_item_defibrillator",35}
                 };
                 semirare[] = {
-                    {"dsr_item_bandage",1},
-                    {"dsr_item_bloodbag_empty",1}
+                    {"dsr_item_painkillers",40},
+                    {"dsr_item_bloodbag_empty",60}
                 };
                 average[] = {
-                    {"dsr_item_bandage",1},
-                    {"dsr_item_disinfectant",1},
-                    {"dsr_item_painkillers",1},
-                    {"dsr_item_waterpurificationtablets",1}
+                    {"dsr_item_handwarmer",20},
+                    {"dsr_item_painkillers",30},
+                    {"dsr_item_bandage",40},
+                    {"dsr_item_waterpurificationtablets",10}
                 };
                 semicommon[] = {
-                    {"dsr_item_bandage",1},
-                    {"dsr_item_handwarmer",1},
-                    {"dsr_item_vitamins",1}
+                    {"dsr_item_bandage",35},
+                    {"dsr_item_handwarmer",15},
+                    {"dsr_item_vitamins",50}
                 };
                 common[] = {
-                    {"dsr_item_bandage",1},
-                    {"dsr_item_vitamins",1}
+                    {"dsr_item_bandage",25},
+                    {"dsr_item_disinfectant",30},
+                    {"dsr_item_vitamins",45}
 				};
             };
             class Junk {
                 rare[] = {
-                    {"dsr_item_suitcase",1},
-                    {"dsr_item_money",1},
-                    {"dsr_item_crushedcan",1}
+                    {"dsr_item_suitcase",35},
+                    {"dsr_item_money",65}
                 };
                 semirare[] = {
-                    {"dsr_item_crushedcan",1},
-                    {"dsr_item_file2",1},
-                    {"dsr_item_crushedcan",1}
+                    {"dsr_item_file2",40},
+                    {"dsr_item_money",60}
                 };
                 average[] = {
-                    {"dsr_item_photos",1},
-                    {"dsr_item_file2",1},
-                    {"dsr_item_crushedcan",1}
+                    {"dsr_item_photos",65},
+                    {"dsr_item_file2",35}
                 };
                 semicommon[] = {
-                    {"dsr_item_photos",1},
-                    {"dsr_item_notepad",1},
-                    {"dsr_item_pen_black",1},
-                    {"dsr_item_pen_red",1},
-                    {"dsr_item_crushedcan",1}
+                    {"dsr_item_photos",25},
+                    {"dsr_item_notepad",5},
+                    {"dsr_item_pen_black",5},
+                    {"dsr_item_pen_red",5},
+                    {"dsr_item_crushedcan",60}
                 };
                 common[] = {
-                    {"dsr_item_notepad",1},
-                    {"dsr_item_pencil_blue",1},
-                    {"dsr_item_pencil_green",1},
-                    {"dsr_item_pencil_red",1},
-                    {"dsr_item_pencil_yellow",1},
-                    {"dsr_item_crushedcan",1}
+                    {"dsr_item_notepad",15},
+                    {"dsr_item_pencil_blue",4},
+                    {"dsr_item_pencil_green",2},
+                    {"dsr_item_pencil_red",2},
+                    {"dsr_item_pencil_yellow",2},
+                    {"dsr_item_crushedcan",75}
                 };
             };
             class Backpack {
                 rare[] = {
-                    {"B_Carryall_oucamo",1},
-                    {"B_Carryall_ocamo",1},
-                    {"B_Carryall_khk",1},
-                    {"B_Carryall_oli",1},
-                    {"B_Carryall_cbr",1},
-                    {"B_Carryall_mcamo",1},
+                    {"B_Carryall_oucamo",20},
+                    {"B_Carryall_ocamo",15},
+                    {"B_Carryall_khk",10},
+                    {"B_Carryall_oli",20},
+                    {"B_Carryall_cbr",10},
+                    {"B_Carryall_mcamo",10},
                     //Special Need to Test (Some might spawn with gear in them)
-                    {"I_Parachute_02_F",1},
-                    {"B_Parachute_02_F",1},
-                    {"B_AssaultPack_rgr_LAT",1},
-                    {"B_AssaultPack_rgr_Medic",1},
-                    {"B_AssaultPack_rgr_Repair",1},
-                    {"B_AssaultPack_blk_DiverExp",1},
-                    {"B_Kitbag_rgr_Exp",1},
-                    {"B_FieldPack_blk_DiverExp",1},
-                    {"B_FieldPack_ocamo_Medic",1},
-                    {"B_FieldPack_cbr_LAT",1},
-                    {"B_FieldPack_cbr_Repair",1},
-                    {"B_Carryall_ocamo_Exp",1}
+                    {"I_Parachute_02_F",5},
+                    {"B_Parachute_02_F",5},
+                    {"B_Carryall_ocamo_Exp",5}
                 };
                 semirare[] = {
-                    {"B_Kitbag_sgg",1},
-                    {"B_Kitbag_cbr",1},
-                    {"B_Kitbag_mcamo",1}
+                    {"B_Kitbag_sgg",65},
+                    {"B_Kitbag_cbr",25},
+                    {"B_Kitbag_mcamo",5},
+                    {"B_Kitbag_rgr_Exp",5}
                 };
                 average[] = {
-                    {"B_Bergen_blk",1},
-                    {"B_Bergen_rgr",1},
-                    {"B_Bergen_sgg",1},
-                    {"B_Bergen_mcamo",1}
+                    {"B_Bergen_blk",55},
+                    {"B_Bergen_rgr",15},
+                    {"B_Bergen_sgg",15},
+                    {"B_Bergen_mcamo",15}
                 };
                 semicommon[] = {
-                    {"B_HuntingBackpack",1},
-                    {"B_OutdoorPack_blk",1},
-                    {"B_OutdoorPack_blu",1},
-                    {"B_OutdoorPack_tan",1},
-                    {"B_FieldPack_blk",1},
-                    {"B_FieldPack_oucamo",1},
-                    {"B_FieldPack_ocamo",1},
-                    {"B_FieldPack_cbr",1}
+                    {"B_HuntingBackpack",5},
+                    {"B_OutdoorPack_blk",8},
+                    {"B_OutdoorPack_blu",6},
+                    {"B_OutdoorPack_tan",6},
+                    {"B_FieldPack_blk",30},
+                    {"B_FieldPack_oucamo",15},
+                    {"B_FieldPack_ocamo",15},
+                    {"B_FieldPack_cbr",15}
                 };
                 common[] = {
-                    {"B_AssaultPack_blk",1},
-                    {"B_AssaultPack_dgtl",1},
-                    {"B_AssaultPack_khk",1},
-                    {"B_AssaultPack_sgg",1},
-                    {"B_AssaultPack_cbr",1},
-                    {"B_AssaultPack_mcamo",1}
+                    {"B_AssaultPack_blk",50},
+                    {"B_AssaultPack_dgtl",10},
+                    {"B_AssaultPack_khk",10},
+                    {"B_AssaultPack_sgg",10},
+                    {"B_AssaultPack_cbr",15},
+                    {"B_AssaultPack_mcamo",5}
                 };
             };
             class Uniform {
                 rare[] = {
-                    {"U_B_CombatUniform_wdl",1},
-                    {"U_B_CombatUniform_sgg",1},
-                    {"U_B_CombatUniform_wdl_tshirt",1},
-                    {"U_B_CombatUniform_sgg_tshirt",1},
-                    {"U_O_SpecopsUniform_blk",1},
-                    {"U_B_CombatUniform_wdl_vest",1},
-                    {"U_B_CombatUniform_sgg_vest",1},
-                    {"U_B_SpecopsUniform_sgg",1},
-                    {"U_AttisBody",1},
-                    {"U_AntigonaBody",1},
-                    {"U_B_CombatUniform_mcam_worn",1},
                     {"U_B_CombatUniform_mcam_tshirt",1},
                     {"U_B_CombatUniform_mcam",1},
-                    {"U_I_CombatUniform",1},
-                    {"U_O_CombatUniform_ocamo",1},
-                    {"U_O_CombatUniform_oucamo",1},
-                    {"U_Competitor",1},
+                    {"U_I_CombatUniform",1},                //Green or Independant
+                    {"U_O_CombatUniform_ocamo",1},          //Hex
+                    {"U_O_CombatUniform_oucamo",1},         //Winter
                     {"U_B_CTRG_1",1},
                     {"U_B_CTRG_3",1},
-                    {"U_OG_leader",1},
-                    {"U_BG_Guerilla1_1",1},
-                    {"U_IG_Guerilla1_1",1},
-                    {"U_OG_Guerilla1_1",1},
-                    {"U_OG_Guerilla2_1",1},
-                    {"U_IG_Guerilla2_1",1},
-                    {"U_BG_Guerilla2_1",1},
-                    {"U_BG_Guerilla2_2",1},
-                    {"U_IG_Guerilla2_2",1},
-                    {"U_OG_Guerilla2_2",1},
-                    {"U_BG_Guerilla2_3",1},
-                    {"U_IG_Guerilla2_3",1},
-                    {"U_OG_Guerilla2_3",1},
-                    {"U_BG_Guerilla3_1",1},
-                    {"U_IG_Guerilla3_1",1},
-                    {"U_OG_Guerilla3_1",1},
-                    {"U_OG_Guerilla3_2",1},
-                    {"U_IG_Guerilla3_2",1},
-                    {"U_BG_Guerilla3_2",1},
-                    {"U_IG_Guerrilla_6_1",1},
-                    {"U_BG_Guerrilla_6_1",1},
-                    {"U_OG_Guerrilla_6_1",1},
-                    {"U_BG_leader",1},
                     {"U_B_FullGhillie_ard",1},
                     {"U_B_FullGhillie_lsh",1},
                     {"U_B_FullGhillie_sard",1},
                     {"U_B_GhillieSuit",1},
                     {"U_B_CombatUniform_mcam_vest",1},
-                    {"U_B_Wetsuit",1},
-                    {"U_I_Wetsuit",1},
-                    {"U_O_Wetsuit",1},
-                    {"U_I_G_resistanceLeader_F",1},
-                    {"U_IG_leader",1},
+                    {"U_B_Wetsuit",1},                      //Black
+                    {"U_I_Wetsuit",1},                      //Green
+                    {"U_O_Wetsuit",1},                      //Digital
+                    {"U_I_G_resistanceLeader_F",1},         //Tattoo'd Guy
                     {"U_I_OfficerUniform",1},
                     {"U_I_CombatUniform_shortsleeve",1},
-                    {"U_I_HeliPilotCoveralls",1},
-                    {"U_I_pilotCoveralls",1},
                     {"U_I_CombatUniform_tshirt",1},
-                    {"U_O_SpecopsUniform_ocamo",1},
-                    {"U_O_OfficerUniform_ocamo",1},
-                    {"U_O_PilotCoveralls",1}
+                    {"U_O_OfficerUniform_ocamo",1}
                 };
                 semirare[] = {
-                    {"U_B_survival_uniform",1},
-                    {"U_B_CTRG_2",1},
-                    {"U_Marshal",1},
-                    {"U_NikosBody",1},
-                    {"U_NikosAgedBody",1},
-                    {"U_OrestesBody",1},
-                    {"U_C_Scientist",1},
-                    {"U_C_PriestBody",1},
-                    {"U_KerryBody",1},
-                    {"U_MillerBody",1},
-                    {"U_Rangemaster",1},
-                    {"U_B_HeliPilotCoveralls",1},
-                    {"U_B_PilotCoveralls",1},
-                    {"U_OI_Scientist",1}
+                    {"U_B_survival_uniform",5},
+                    {"U_B_CTRG_2",5},
+                    {"U_C_Scientist",10},
+                    {"U_Rangemaster",5},
+                    {"U_B_HeliPilotCoveralls",10},           //US Green        
+                    {"U_B_PilotCoveralls",15},               //Grey
+                    {"U_O_PilotCoveralls",8},               //Camo
+                    {"U_OG_leader",5},
+                    {"U_BG_Guerilla1_1",5},
+                    {"U_BG_Guerilla3_2",5},
+                    {"U_I_HeliPilotCoveralls",15},           //Tan
+                    {"U_I_pilotCoveralls",12}                //Green
                 };
                 average[] = {
-                    {"U_C_Fisherman",1},
-                    {"U_C_FishermanOveralls",1},
-                    {"U_C_HunterBody_brn",1},
-                    {"U_IG_Menelaos",1},
-                    {"U_C_Novak",1}
+                    {"U_Competitor",20},
+                    {"U_BG_Guerilla2_1",15},
+                    {"U_BG_Guerilla2_2",15},
+                    {"U_BG_Guerilla2_3",15},
+                    {"U_BG_Guerilla3_1",15},
+                    {"U_Marshal",20}
                 };
                 semicommon[] = {
-                    {"U_C_Commoner1_2",1},     
-                    {"U_C_Commoner1_3",1},
-                    {"U_C_Commoner2_1",1},
-                    {"U_C_Commoner2_2",1},
-                    {"U_C_Commoner2_3",1}
+                    {"U_C_Commoner1_1",10},
+                    {"U_C_Commoner1_2",10},     
+                    {"U_C_Commoner1_3",10},
+                    {"U_C_Commoner2_1",10},
+                    {"U_C_Commoner2_2",10},
+                    {"U_C_Commoner2_3",10},
+                    {"U_C_Journalist",4},
+                    {"U_C_Poloshirt_stripped",5},
+                    {"U_C_Commoner_shorts",9},
+                    {"U_C_ShirtSurfer_shorts",5},
+                    {"U_C_TeeSurfer_shorts_1",5},
+                    {"U_C_TeeSurfer_shorts_2",5},
+                    {"U_C_WorkerCoveralls",4},
+                    {"U_C_HunterBody_grn",3}
                 };
                 common[] = {
-                    {"U_C_Poor_2",1},
-                    {"U_C_Poor_1",1},
-                    {"U_C_Poor_shorts_1",1},
-                    {"U_C_Poloshirt_blue",1},
-                    {"U_C_Poloshirt_burgundy",1},
-                    {"U_C_Poloshirt_tricolour",1},
-                    {"U_C_Poloshirt_salmon",1},
-                    {"U_C_Poloshirt_redwhite",1},
-                    {"U_C_WorkerOveralls",1},
-                    {"U_C_Farmer",1},
-                    {"U_C_Scavenger_2",1},
-                    {"U_C_Scavenger_1",1},
-                    {"U_C_Poor_shorts_2",1},
-                    {"U_C_Journalist",1},
-                    {"U_C_Poloshirt_stripped",1},
-                    {"U_C_Commoner1_1",1},
-                    {"U_C_Commoner_shorts",1},
-                    {"U_C_ShirtSurfer_shorts",1},
-                    {"U_C_TeeSurfer_shorts_1",1},
-                    {"U_C_TeeSurfer_shorts_2",1},
-                    {"U_C_WorkerCoveralls",1},
-                    {"U_C_HunterBody_grn",1}
+                    {"U_C_Poor_1",25},
+                    {"U_C_Poor_2",25},
+                    {"U_C_Poor_shorts_1",10},
+                    {"U_C_Poloshirt_blue",10},
+                    {"U_C_Poloshirt_burgundy",10},
+                    {"U_C_Poloshirt_tricolour",5},
+                    {"U_C_Poloshirt_salmon",10},
+                    {"U_C_Poloshirt_redwhite",5}
                 };
             };
             class Vest {
@@ -1049,84 +1253,195 @@ class CfgItemSpawns {
         class Civilian {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07_F",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
+            class Magazine {
+                rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
+                };
+                average[] = {
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
+                };
+                semicommon[] = {
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
+                };
+                common[] = {
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+            };
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -1797,84 +2112,195 @@ class CfgItemSpawns {
         class Industrial {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07_F",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
+            class Magazine {
+                rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
+                };
+                average[] = {
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
+                };
+                semicommon[] = {
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
+                };
+                common[] = {
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+            };
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -2545,84 +2971,195 @@ class CfgItemSpawns {
         class Commercial {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07_F",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
+            class Magazine {
+                rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
+                };
+                average[] = {
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
+                };
+                semicommon[] = {
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
+                };
+                common[] = {
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+            };
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -3293,84 +3830,195 @@ class CfgItemSpawns {
         class Medical {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07_F",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
+            class Magazine {
+                rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
+                };
+                average[] = {
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
+                };
+                semicommon[] = {
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
+                };
+                common[] = {
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+            };
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -4041,84 +4689,195 @@ class CfgItemSpawns {
         class Mechanical {
             class Weapon {
                 rare[] = {
-                    {"srifle_EBR_F",1},
-                    {"srifle_GM6_F",1},
-                    {"srifle_LRR_F",1},
-                    {"srifle_GM6_camo_F",1},
-                    {"srifle_LRR_camo_F",1},
-                    {"srifle_DMR_01_F",1},
-                    {"srifle_DMR_02_F",1},
-                    {"srifle_DMR_02_camo_F",1},
-                    {"srifle_DMR_02_sniper_F",1},
-                    {"srifle_DMR_03_F",1},
-                    {"srifle_DMR_03_khaki_F",1},
-                    {"srifle_DMR_03_tan_F",1},
-                    {"srifle_DMR_03_multicam_F",1},
-                    {"srifle_DMR_03_woodland_F",1},
-                    {"srifle_DMR_04_F",1},
-                    {"srifle_DMR_04_Tan_F",1},
-                    {"srifle_DMR_05_blk_F",1},
-                    {"srifle_DMR_05_hex_F",1},
-                    {"srifle_DMR_05_tan_F",1},
-                    {"srifle_DMR_06_camo_F",1},
-                    {"srifle_DMR_06_olive_F",1},
-                    {"srifle_DMR_06_camo_khs_F",1},
-                    {"LMG_Mk200_F",1},
-                    {"LMG_Zafir_F",1},
-                    {"MMG_01_hex_F",1},
-                    {"MMG_01_tan_F",1},
-                    {"MMG_02_camo_F",1},
-                    {"MMG_02_black_F",1},
-                    {"MMG_02_sand_F",1}
+                    {"DSR_srifle_DMR_02",5},                //MAR-10
+                    {"DSR_srifle_DMR_02_camo",5},           //MAR-10
+                    {"DSR_srifle_DMR_02_sniper",5},         //MAR-10
+                    {"DSR_srifle_DMR_03",6},                //Mk-I EMR
+                    {"DSR_srifle_DMR_03_khaki",5},          //Mk-I EMR
+                    {"DSR_srifle_DMR_03_tan",5},            //Mk-I EMR
+                    {"DSR_srifle_DMR_03_multicam",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_03_woodland",5},       //Mk-I EMR
+                    {"DSR_srifle_DMR_04",4},                //ASP-1 Kir
+                    {"DSR_srifle_DMR_04_Tan",5},            //ASP-1 Kir
+                    {"DSR_srifle_DMR_05_blk",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_hex",5},            //Cyrus
+                    {"DSR_srifle_DMR_05_tan",5},            //Cyrus
+                    {"DSR_srifle_EBR",7},
+                    {"DSR_srifle_GM6",1},
+                    {"DSR_srifle_GM6_camo",1},
+                    {"DSR_srifle_LRR",2},
+                    {"DSR_srifle_LRR_camo",2},
+                    {"DSR_LMG_Zafir",7},
+                    {"DSR_MMG_01_hex",2},                   //Navid
+                    {"DSR_MMG_01_tan",2},                   //Navid
+                    {"DSR_MMG_02_camo",3},                  //SPMG
+                    {"DSR_MMG_02_black",4},                 //SPMG
+                    {"DSR_MMG_02_sand",4}                   //SPMG
                 };
                 semirare[] = {
-                    {"arifle_MXC_F",1},
-                    {"arifle_MX_F",1},
-                    {"arifle_MX_GL_F",1},
-                    {"arifle_MX_SW_F",1},
-                    {"arifle_MXM_F",1},
-                    {"arifle_MXC_Black_F",1},
-                    {"arifle_MX_Black_F",1},
-                    {"arifle_MX_GL_Black_F",1},
-                    {"arifle_MX_SW_Black_F",1},
-                    {"arifle_MXM_Black_F",1}
+                    {"DSR_arifle_MX_GL",17},
+                    {"DSR_arifle_MX_GL_Black",16},
+                    {"DSR_arifle_MX_SW",15},
+                    {"DSR_arifle_MX_SW_Black",14},
+                    {"DSR_arifle_MXM",13},
+                    {"DSR_arifle_MXM_Black",12},
+                    {"DSR_LMG_Mk200",6},
+                    {"DSR_srifle_DMR_01",5},                 //Rahim
+                    {"DSR_srifle_DMR_06_camo",1},            //Mk14
+                    {"DSR_srifle_DMR_06_olive",1}            //Mk14
                 };
                 average[] = {
-                    {"DSR_arifle_Katiba",1},
-                    {"arifle_Katiba_C_F",1},
-                    {"arifle_Katiba_GL_F",1}
+                    {"DSR_arifle_Katiba",20},
+                    {"DSR_arifle_Katiba_C",18},
+                    {"DSR_arifle_Katiba_GL",16},
+                    {"DSR_arifle_MXC",13},
+                    {"DSR_arifle_MXC_Black",12},
+                    {"DSR_arifle_MX",11},
+                    {"DSR_arifle_MX_Black",10}
                 };
                 semicommon[] = {
-                    {"hgun_PDW2000_F",1}
+                    {"DSR_arifle_Katiba",37},
+                    {"DSR_arifle_Katiba_C",32},
+                    {"DSR_arifle_Katiba_GL",31}
                 };
                 common[] = {
-                    {"SMG_01_F",1},
-                    {"SMG_02_F",1}
+                    {"DSR_SMG_01",45},
+                    {"DSR_SMG_02",55}
                 };
             };
             class Handgun {
                 rare[] = {
-                    {"hgun_Pistol_heavy_01_F",1},
-                    {"hgun_Pistol_heavy_02_F",1},
-                    {"DSR_hgun_P07_F",1}
+                    {"DSR_hgun_PDW2000",1},
+                    {"DSR_hgun_Pistol_heavy_01",35},    //4-five
+                    {"DSR_hgun_Pistol_heavy_02",10},    //Zubr
+                    {"DSR_hgun_P07",54}
                 };
                 semirare[] = {
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_heavy_01",5},    //4-five
+                    {"DSR_hgun_P07",40},
+                    {"DSR_hgun_Rook",55}
                 };
                 average[] = {
-                    {"DSR_hgun_Rook",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_ACPC2",55},
+                    {"DSR_hgun_P07",10},
+                    {"DSR_hgun_Rook",35}
                 };
                 semicommon[] = {
-                    {"DSR_hgun_P07",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Rook",25},
+                    {"DSR_hgun_ACPC2",75}
                 };
                 common[] = {
-                    {"hgun_Pistol_Signal_F",1},
-                    {"hgun_ACPC2_F",1}
+                    {"DSR_hgun_Pistol_Signal",45},
+                    {"DSR_hgun_ACPC2",55}
                 };
             };
-            class Food {
+            class Magazine {
+                rare[] = {
+                    {"100Rnd_580x42_Mag_F",13},
+                    {"100Rnd_580x42_Mag_Tracer_F",12},
+                    {"5Rnd_127x108_Mag",2},             //12.7 mm 5Rnd Mag
+                    {"5Rnd_127x108_APDS_Mag",1},        //12.7mm 5Rnd APDS Mag
+                    {"10Rnd_127x54_Mag",3},             //12.7mm 10Rnd Mag - ASPR
+                    {"7Rnd_408_Mag",6},                 //.408 7Rnd LRR Mag
+                    {"20Rnd_762x51_Mag",10},            //7.62 mm 20Rnd Mag
+                    {"10Rnd_338_Mag",6},                //.338 LM 10Rnd Mag
+                    {"10Rnd_93x64_DMR_05_Mag",3},       //9.3mm 10Rnd Mag
+                    {"10Rnd_50BW_Mag_F",4},             //.50 BW 10Rnd Caseless Mag - Type 115
+                    {"130Rnd_338_Mag",4},
+                    {"150Rnd_762x54_Box",8},
+                    {"150Rnd_762x54_Box_Tracer",7},
+                    {"150Rnd_93x64_Mag",5},
+                    {"1Rnd_HE_Grenade_shell",9},
+                    {"3Rnd_HE_Grenade_shell",7}
+                };
+                semirare[] = {
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"30Rnd_65x39_caseless_mag",5},
+                    {"30Rnd_65x39_caseless_green",4},
+                    {"30Rnd_65x39_caseless_mag_Tracer",4},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",4},
+                    {"10Rnd_762x54_Mag",3},                         //7.62 mm 10Rnd Mag - Rahim
+                    {"30Rnd_762x39_Mag_F",2},
+                    {"30Rnd_762x39_Mag_Green_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_F",1},
+                    {"30Rnd_762x39_Mag_Tracer_Green_F",1},
+                    {"30Rnd_580x42_Mag_F",3},
+                    {"30Rnd_580x42_Mag_Tracer_F",2},
+                    {"100Rnd_65x39_caseless_mag",3},
+                    {"100Rnd_65x39_caseless_mag_Tracer",2},
+                    {"200Rnd_65x39_cased_Box",3},
+                    {"200Rnd_65x39_cased_Box_Tracer",2},
+                    {"200Rnd_65x39_Belt_Tracer_Red",2},
+                    {"200Rnd_65x39_Belt_Tracer_Green",2},
+                    {"200Rnd_65x39_Belt_Tracer_Yellow",2},
+                    {"150Rnd_762x54_Box",3},
+                    {"150Rnd_762x54_Box_Tracer",2},
+                    {"150Rnd_556x45_Drum_Mag_F",3},
+                    {"150Rnd_556x45_Drum_Mag_Tracer_F",1},
+                    {"200Rnd_556x45_Box_F",4},
+                    {"200Rnd_556x45_Box_Red_F",3},
+                    {"200Rnd_556x45_Box_Tracer_F",3},
+                    {"200Rnd_556x45_Box_Tracer_Red_F",3}
+                };
+                average[] = {
+                    {"30Rnd_545x39_Mag_F",12},
+                    {"30Rnd_545x39_Mag_Green_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_F",11},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",10},
+                    {"30Rnd_556x45_Stanag",6},
+                    {"30Rnd_556x45_Stanag_green",5},
+                    {"30Rnd_556x45_Stanag_red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Red",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Green",5},
+                    {"30Rnd_556x45_Stanag_Tracer_Yellow",5},
+                    {"20Rnd_556x45_UW_mag",7},
+                    {"30Rnd_65x39_caseless_mag",4},
+                    {"30Rnd_65x39_caseless_green",3},
+                    {"30Rnd_65x39_caseless_mag_Tracer",3},
+                    {"30Rnd_65x39_caseless_green_mag_Tracer",3},
+                    {"20Rnd_650x39_Cased_Mag_F",5}
+                };
+                semicommon[] = {
+                    {"30Rnd_545x39_Mag_F",3},
+                    {"30Rnd_545x39_Mag_Green_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_F",2},
+                    {"30Rnd_545x39_Mag_Tracer_Green_F",2},
+                    {"30Rnd_45ACP_Mag_SMG_01",10},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Green",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Red",7},
+                    {"30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02",9},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Red",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Yellow",7},
+                    {"30Rnd_9x21_Mag_SMG_02_Tracer_Green",7},
+                    {"30Rnd_9x21_Mag",9},
+                    {"30Rnd_9x21_Red_Mag",7},
+                    {"30Rnd_9x21_Yellow_Mag",7},
+                    {"30Rnd_9x21_Green_Mag",7}
+                };
+                common[] = {
+                    {"FlareWhite_F",9},
+                    {"FlareGreen_F",9},
+                    {"FlareRed_F",9},
+                    {"FlareYellow_F",9},
+                    {"6Rnd_GreenSignal_F",9},
+                    {"6Rnd_RedSignal_F",9},
+                    {"10Rnd_9x21_Mag",7},
+                    {"16Rnd_9x21_Mag",4},
+                    {"16Rnd_9x21_red_Mag",5},
+                    {"16Rnd_9x21_green_Mag",5},
+                    {"16Rnd_9x21_yellow_Mag",5},
+                    {"11Rnd_45ACP_Mag",8},
+                    {"9Rnd_45ACP_Mag",9},
+                    {"6Rnd_45ACP_Cylinder",3}
+                };
+            };
+			class Food {
                 rare[] = {
                     {"dsr_item_beans",1}
                 };
@@ -5785,3 +6544,169 @@ class CfgVehicleSpawns {
 
 	};
 };
+
+class CfgBuildables {
+    class Type1Houses {
+		condition = "true"; //--- a check to see if the person has knowledge to build this type
+		preview = "\SM_Zombz\Survivors_icon.paa"; //--- preview icon for index
+		name = "Type 1 Houses"; //--- name of this buidlable group
+		class Buildables {
+			class HouseLvl1 {
+				parts[] = {
+					{"dsr_item_lumber",30},
+					{"dsr_item_plywood",7},
+					{"dsr_item_logs",15}
+				};
+				name = "Small Shack";
+				model = "DSR_objects_House_lv1";
+				crateObject = "dsr_objects_house_lv1_preview";
+				description = "The small shack is small... and a shack... a good starting house for losers.";
+				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				condition = "true";
+			};
+			class HouseLvl2 {
+				parts[] = {
+					{"dsr_item_lumber",60},
+					{"dsr_item_plywood",14},
+					{"dsr_item_logs",45}
+				};
+				name = "Large Shack";
+				model = "DSR_objects_House_lv2";
+				crateObject = "dsr_objects_house_lv2_preview";
+				description = "This is for testing, it should not be buildable.";
+				preview = "\dsr_ui\Assets\houseLvl1Preview_ca.paa";
+				condition = "false";
+			};
+		};
+	};
+	class Stockade {
+		condition = "true"; 
+		preview = "\SM_Zombz\Survivors_icon.paa";  
+		name = "Stockade Items";  
+		class Buildables {
+			class StockadeWall {
+				parts[] = {
+					{"dsr_item_lumber",23},
+					{"dsr_item_hardware",4}
+				};
+				name = "Base Stockade Wall";
+				model = "dsr_objects_stockade_wall";
+				description = "Basic stockade wall piece";
+				crateObject = "dsr_objects_stockade_wall_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeRampart {
+				parts[] = {
+					{"dsr_item_lumber",45},
+					{"dsr_item_hardware",6}
+				};
+				name = "Stockade Wall Rampart Full";
+				model = "dsr_objects_stockade_rampart";
+				description = "Stockade Wall with Rampart and Ramp";
+				crateObject = "dsr_objects_stockade_rampart_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeRampart_2 {
+				parts[] = {
+					{"dsr_item_lumber",38},
+					{"dsr_item_hardware",5}
+				};
+				name = "Stockade Wall Rampart no ramp";
+				model = "dsr_objects_stockade_rampart_2";
+				description = "Stockade Wall with Rampart";
+				crateObject = "dsr_objects_stockade_rampart_2_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeGate {
+				parts[] = {
+					{"dsr_item_lumber",30},
+					{"dsr_item_hardware",4},
+					{"dsr_item_scrapmetal",2},
+					{"dsr_item_logs",2}
+				};
+				name = "Stockade Wall Rampart no ramp";
+				model = "dsr_objects_stockade_rampart_2";
+				description = "Stockade Wall with Rampart";
+				crateObject = "dsr_objects_stockade_rampart_2_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class StockadeTower {
+				parts[] = {
+					{"dsr_item_lumber",40},
+					{"dsr_item_hardware",10},
+					{"dsr_item_scrapmetal",4},
+					{"dsr_item_logs",10}
+				};
+				name = "Stockade Guard Tower";
+				model = "dsr_objects_stockade_tower";
+				description = "Stockade Guard Tower";
+				crateObject = "dsr_objects_stockade_tower_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+		};
+	};
+	class Misc {
+		condition = "true"; 
+		preview = "\SM_Zombz\Survivors_icon.paa";  
+		name = "Miscellaneous";  
+		class Buildables {
+			class Pallets {
+				parts[] = {
+					{"dsr_item_lumber",10}
+				};
+				name = "Pallet";
+				model = "Land_Pallets_stack_F";
+				description = "A stack of pallets";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				
+				crateObject = "DSR_objects_Storage_Small";
+				
+				condition = "true";
+			};
+			class Workbench {
+				parts[] = {
+					{"dsr_item_lumber",10},
+					{"dsr_item_hardware",1},
+					{"dsr_item_scrapmetal",1}
+				};
+				name = "Workbench";
+				model = "dsr_objects_workbench";
+				description = "Crafting Workbench";
+				crateObject = "dsr_objects_workbench_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+			class WaterCatchment {
+				parts[] = {
+					{"dsr_item_logs",6},
+					{"dsr_item_ducttape",1},
+					{"dsr_item_plasticdrum",1}
+				};
+				name = "Water Catch";
+				model = "dsr_objects_water_catchment";
+				description = "System for catching rain water";
+				crateObject = "dsr_objects_water_catchment_preview";
+				preview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Pallets_stack_F.jpg";
+				condition = "true";
+			};
+		};
+	};
+};
+class CfgCraftables {
+	class CraftableItem {
+		parts[] = {
+			{"Item",2},
+			{"Different Item",1}
+		};
+		name = "Some Crafted Item";
+		item = "DSR_Item_That_Is_Craftable";
+		description = "Sick moves";
+		condition = "true";
+	};
+};
+

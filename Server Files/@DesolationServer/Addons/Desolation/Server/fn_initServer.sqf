@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-	
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 _enabled = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
 if(!_enabled) exitWith {diag_log "DESOLATION IS NOT ENABLED, THE PLUGIN WILL NOT RUN";};
@@ -19,31 +23,31 @@ if !(_debug) then {
 addMissionEventHandler ["PlayerDisconnected", DS_fnc_playerDisconnected];
 addMissionEventHandler ["HandleDisconnect", DS_fnc_handleDisconnect];
 
-// vehicle spawn calculations
-_dbSpawnData = []; //--- get this from the database spawning system
-diag_log ("Spawned " + str(count(_dbSpawnData)) + " vehicles from the database");
-_randomSpawnCount = (["NumVehicles"] call DS_fnc_getCfgValue) - count(_dbSpawnData);
+call DS_fnc_initLock;
 
-
-// start vehicle spawns
-[_randomSpawnCount,_dbSpawnData] spawn DS_fnc_spawnVehicles;
+// start vehicle & object spawns
+[] spawn DS_fnc_spawnVehicles;
 
 // start helicrash spawns
+[] call DS_fnc_initHeliCrashes;
 [] spawn DS_fnc_spawnCrashes;
-
-// start zombie spawns
-[] spawn DS_fnc_spawnZombies;
 
 // start item spawns
 [] spawn DS_fnc_lootManager;
+
+// start the building system
+[] spawn DS_fnc_initBuildingSys;
+
+
+
+// start the crafting system (not implemented)
+// [] spawn DS_fnc_initCraftingSys;
 
 // start airdrops
 [] spawn DS_fnc_initAirdrops;
 
 //--- start subsystems
 [] spawn DS_fnc_simManager;
-
-
 
 //--- DEBUG (monitor thread counts)
 [] spawn {
@@ -53,6 +57,9 @@ _randomSpawnCount = (["NumVehicles"] call DS_fnc_getCfgValue) - count(_dbSpawnDa
 		
 		if(NUM_THREADS > 13 && diag_fps < 40) then {
 			diag_log ("ERROR: CANT KEEP UP! To many threads running on the server - " + str(NUM_THREADS) + " - FPS: " + str(diag_fps));
+		};
+		if(diag_fps < 15) then {
+			diag_log ("ERROR: CANT KEEP UP! Thread Count: " + str(Diag_activeScripts) + " - FPS: " + str(diag_fps));
 		};
 		uiSleep 0.5;
 	};

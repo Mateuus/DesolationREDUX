@@ -1,26 +1,24 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
+
 #include "..\constants.hpp"
 
-params["_request"];
+params["_request",["_isScheduled",true]];
 private["_response","_compiledResponse","_uuid", "_finalResponse","_return","_doswitchloop","_innerdoloop"];
 
-diag_log "DesoDB > Sending request";
-_size = 1000;
-_len = count(_request);
-for "_i" from 0 to ceil(_len/_size) do {
-	if(_i == ceil(_len/_size)) then {
-		diag_log (_request select [_i*_size]);
-	} else {
-		diag_log (_request select [_i*_size,_size]);
-	};
-};
-
 _response = "libredex" callExtension _request;
-diag_log "DesoDB > Checking Response";
-diag_log _response;
 _compiledResponse = call compile _response;
 
 _doswitchloop = true;
-
+_return = _response; //fix if result does not contain a msg type header
 // do loop because there seems to be no "fall throu"
 while{_doswitchloop} do {
     _doswitchloop = false;
@@ -44,11 +42,11 @@ while{_doswitchloop} do {
 
             /* empty uuid means function call without retuning data e.g. updates */
             if (_uuid != "") then {
-                _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllarguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } }";
+                _request = "{ 'dllFunction': '" + PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL + "', 'dllArguments': {  'dbfunction': '" + PROTOCOL_DBCALL_FUNCTION_RETURN_ASYNC_MSG + "', 'dbarguments': {  'msguuid': '" + _uuid + "' } } }";
 
                 _innerdoloop = true;
                 while{_innerdoloop} do {
-                    _response = "redex" callExtension _request;
+                    _response = "libredex" callExtension _request;
 
                     if(_response == PROTOCOL_MESSAGE_NOT_EXISTING) then {
                         uiSleep 0.5;
@@ -71,11 +69,12 @@ while{_doswitchloop} do {
             _uuid = _compiledResponse select 1;
             _finalResponse = _compiledResponse select 2;
             
-            _request = "{ 'dllfunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllarguments': {  'msguuid': '" + _uuid + "' } }";
-
+            _request = "{ 'dllFunction': '" + PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE + "', 'dllArguments': {  'msguuid': '" + _uuid + "' } }";
+			
+			diag_log "Receiving multipart message";
             _innerdoloop = true;
             while{_innerdoloop} do {
-                _response = "redex" callExtension _request;
+                _response = "libredex" callExtension _request;
 
                 if(_response != PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG) then {
                     _finalResponse = _finalResponse + _response;
@@ -85,7 +84,7 @@ while{_doswitchloop} do {
             };
             
             _compiledResponse = call compile _finalResponse;
-            
+            diag_log "Message received";
             _doswitchloop = true;
         };
 
@@ -100,5 +99,9 @@ while{_doswitchloop} do {
         };
     };
 };
-diag_log ("DB RESPONSE > " + str(_return));
+
+if(isNil {_return}) exitWith {
+	diag_log ("DB RESPONSE > NIL RETURN");
+	"";
+};
 _return;

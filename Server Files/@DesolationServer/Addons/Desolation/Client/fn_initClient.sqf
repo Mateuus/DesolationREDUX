@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-	
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 _enabled = call compile (["Enabled","DS"] call BASE_fnc_getCfgValue);
 if(!_enabled) exitWith {diag_log "DESOLATION IS NOT ENABLED, THE PLUGIN WILL NOT RUN";};
@@ -13,7 +17,7 @@ if(!_enabled) exitWith {diag_log "DESOLATION IS NOT ENABLED, THE PLUGIN WILL NOT
 0 fadeMusic 0;
 
 call ds_fnc_initInvHandler;
-call ds_fnc_initHealthSys;
+[] spawn DS_fnc_initBuilding;
 
 //asks the server to spawn us
 

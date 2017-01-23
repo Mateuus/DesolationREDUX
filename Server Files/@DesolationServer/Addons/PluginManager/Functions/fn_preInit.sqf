@@ -1,3 +1,13 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 params["_check","_functions_forclients"];
 
 diag_log "<PluginManager>: Preinit Called";
@@ -9,12 +19,15 @@ diag_log "<PluginManager>: Preinit Called";
 
 diag_log format["<PluginManager>: Broadcasted %1 functions",count(_functions_forclients)];
 
-//--- broadcast config settings 
-call BASE_fnc_compileCfg; 
-
 //--- compile initialization list of files
+_request = ["GetInitOrder"] call DB_fnc_buildIORequest;
+diag_log str _request;
+_order = [_request] call DB_fnc_sendRequest;
 
-_order = call compile ("Config" callExtension "GetInitOrder");
+//--- broadcast config settings 
+[_order] call BASE_fnc_compileCfg; 
+
+
 
 diag_log format["<PluginManager>: Loading %1 plugins",count(_order)];
 

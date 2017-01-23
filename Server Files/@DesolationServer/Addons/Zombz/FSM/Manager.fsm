@@ -1,0 +1,126 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZombieIdleManager">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",2,250,1125.000000,875.000000,1225.000000,925.000000,0.000000,"Init"};
+item1[] = {"CleanUp",4,218,1125.000000,950.000000,1225.000000,1000.000000,0.000000,"CleanUp"};
+item2[] = {"ZombieCheck",4,218,1025.000000,950.000000,1125.000000,1000.000000,0.000000,"ZombieCheck"};
+item3[] = {"",7,210,995.999939,1020.999878,1004.000122,1029.000000,0.000000,""};
+item4[] = {"",7,210,1071.000000,1020.999695,1079.000000,1029.000244,0.000000,""};
+item5[] = {"",7,210,1171.000000,1020.999695,1179.000000,1029.000244,0.000000,""};
+item6[] = {"",7,210,996.000000,896.000000,1004.000000,904.000061,0.000000,""};
+item7[] = {"Init_1",0,250,1125.000000,725.000000,1225.000000,775.000000,0.000000,"Init"};
+item8[] = {"True",8,218,1125.000000,800.000000,1225.000000,850.000000,0.000000,"True"};
+item9[] = {"Failed_Passed_Zo",4,4314,1225.000000,950.000000,1325.000000,1000.000000,0.000000,"Failed" \n "Passed" \n "Zombies"};
+item10[] = {"",7,210,1271.000000,1021.000000,1279.000000,1029.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,2};
+link2[] = {0,9};
+link3[] = {1,5};
+link4[] = {2,4};
+link5[] = {3,6};
+link6[] = {4,3};
+link7[] = {5,4};
+link8[] = {6,0};
+link9[] = {7,8};
+link10[] = {8,0};
+link11[] = {9,10};
+link12[] = {10,5};
+globals[] = {0.000000,0,0,0,0,640,480,2,26,6316128,1,902.168213,1464.863770,1202.138062,770.100708,1236,949,1};
+window[] = {2,-1,-1,-1,-1,692,26,1176,26,3,1254};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "ZombieIdleManager";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "ZombieCheck">*/
+                                class ZombieCheck
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) > 30"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_checkZombies;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_Passed_Zo">*/
+                                class Failed_Passed_Zo
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(SM_FailedPassedZombies isEqualTo [])"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"_deleted = [];" \n
+                                         "{" \n
+                                         "	_zombieAgent = objectfromNetID (_x select 1);" \n
+                                         "	_target = objectfromNetID (_x select 0);" \n
+                                         "	_passed = _zombieAgent setOwner (owner _target);" \n
+                                         "	if (_passed) then" \n
+                                         "	{" \n
+                                         "		_deleted pushback _forEachIndex;" \n
+                                         "	};" \n
+                                         "} forEach SM_FailedPassedZombies;" \n
+                                         "" \n
+                                         "if !(_deleted isEqualTo []) then" \n
+                                         "{" \n
+                                         "	{" \n
+                                         "		SM_FailedPassedZombies deleteAt (_x - _forEachIndex);" \n
+                                         "	} forEach _deleted;" \n
+                                         "};"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "CleanUp">*/
+                                class CleanUp
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) > 60"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[] call SM_fnc_zombieCleanup;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init_1">*/
+                class Init_1
+                {
+                        name = "Init_1";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "True">*/
+                                class True
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init_1";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

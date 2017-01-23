@@ -1,14 +1,17 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-	
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 params["_classname"];
 _success = {
-	DS_var_hunger = (DS_var_hunger + 20) min 100;
-	DS_var_lastAte = diag_tickTime;
+	[20] call DS_fnc_onEat;
 };
 _failure = {
 	private["_type"];

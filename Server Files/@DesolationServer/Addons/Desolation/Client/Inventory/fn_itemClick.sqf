@@ -1,10 +1,16 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-	
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
+#define BUTTON_W 0.2
+ 
 disableSerialization;
 params["_params"];
 call ds_fnc_closebuttons;
@@ -24,26 +30,38 @@ if(isNull _ctrl) exitWith {systemchat "ERROR: ctrlNull 2";};
 
 _classname = _ctrl lbData _item;
 _itemtext = _ctrl lbText _item;
-	
+_cursor = typeof cursorObject;
+_cursorStr = str cursorObject;
+
 _actions = configFile >> "CfgMagazines" >> _classname >> "Actions";
 _bIndex = 0;
 _buttons = [];
+
+_replace = {
+	params["_string","_search","_replace"];
+	private["_index","_sub1","_sub2","_nString"];
+	_index = _string find _search;
+	if(_index == -1) exitWith {_string};
+	_sub1 = _string select [0,_index];
+	_sub2 = _string select [_index+count(_search)];
+	_nString = _sub1 + _replace + _sub2;
+	_nString;
+};
+
 if(isClass _actions) then {
 	for "_i" from 0 to count(_actions)-1 do {
 		_action = _actions select _i;
 		if(isClass _action) then {
 			_aText = getText(_action >> "text");
-			_index = _aText find "%itemname%";
-			_sub1 = _aText select [0,_index];
-			_sub2 = _aText select [_index+10];
-			_aText = _sub1 + _itemtext + _sub2;
+			_aText = [_aText,"%itemname%",_itemtext] call _replace;
+			_aText = [_aText,"%targetname%",name cursorObject] call _replace;
 			
 			_condition = getText(_action >> "condition");
 			_action = getText(_action >> "action");
 			if(call compile _condition) then {
 				_bY = _buttonY + (0.042*_bIndex);
 				_bH = 0.04;
-				_bW = 0.16;
+				_bW = BUTTON_W;
 				_bX = _buttonX;
 				_bIndex = _bIndex + 1;
 				_ctrl = _display ctrlCreate ["RscButton",-1];
@@ -59,7 +77,7 @@ if(isClass _actions) then {
 };
 _bY = _buttonY + (0.042*_bIndex);
 _bH = 0.04;
-_bW = 0.16;
+_bW = BUTTON_W;
 _bX = _buttonX;
 _bIndex = _bIndex + 1;
 _ctrl = _display ctrlCreate ["RscButton",-1];

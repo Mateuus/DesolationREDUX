@@ -1,1 +1,0 @@
-_cursor getHitPointDamage 'HitEngine' > 0

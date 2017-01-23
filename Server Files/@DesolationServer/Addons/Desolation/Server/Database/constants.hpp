@@ -1,3 +1,22 @@
+/* constants.hpp
+ *
+ * Copyright 2016-2017 Desolation Redux
+ *
+ * Author: Legodev <legodevgit@mailbox.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#ifndef SOURCE_CONSTANTS_HPP_
+#define SOURCE_CONSTANTS_HPP_
 
 /*
  * Magic Numbers
@@ -20,6 +39,7 @@
 
 // Libary Functions
 #define PROTOCOL_LIBARY_FUNCTION_EXECUTE_INIT_DB "initdb"
+#define PROTOCOL_LIBARY_FUNCTION_EXECUTE_TERMINATE_DB "termdb"
 #define PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL "dbcall"
 #define PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE "rcvmsg"
 #define PROTOCOL_LIBARY_FUNCTION_CHECK_MESSAGE_STATE "chkmsg"
@@ -43,6 +63,7 @@
 
 #define PROTOCOL_DBCALL_FUNCTION_LOAD_OBJECT "loadObject"
 #define PROTOCOL_DBCALL_FUNCTION_CREATE_OBJECT "createObject"
+#define PROTOCOL_DBCALL_FUNCTION_QUIET_CREATE_OBJECT "qcreateObject"
 #define PROTOCOL_DBCALL_FUNCTION_UPDATE_OBJECT "updateObject"
 #define PROTOCOL_DBCALL_FUNCTION_DECLARE_OBJECT_DEATH "killObject"
 #define PROTOCOL_DBCALL_FUNCTION_DUMP_OBJECTS "dumpObjects"
@@ -110,3 +131,5 @@
 #define PROTOCOL_MESSAGE_NOT_EXISTING "MESSAGE DOES NOT EXIST"
 #define PROTOCOL_MESSAGE_EMPTY "EMPTY MESSAGE DOES EXIST"
 #define PROTOCOL_MESSAGE_TRANSMIT_FINISHED_MSG "DONE GETTING CONTENT"
+
+#endif /* SOURCE_CONSTANTS_HPP_ */

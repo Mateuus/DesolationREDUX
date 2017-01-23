@@ -1,0 +1,106 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, Manager">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",2,250,1125.000000,875.000000,1225.000000,925.000000,0.000000,"Init"};
+item1[] = {"Timeout",4,218,1125.000000,950.000000,1225.000000,1000.000000,0.000000,"Timeout"};
+item2[] = {"Init_1",0,250,1125.000000,725.000000,1225.000000,775.000000,0.000000,"Init"};
+item3[] = {"True",8,218,1125.000000,800.000000,1225.000000,850.000000,0.000000,"True"};
+item4[] = {"Dead",4,218,1250.000000,875.000000,1350.000000,925.000000,0.000000,"Dead"};
+item5[] = {"Exit",1,250,1250.000000,800.000000,1350.000000,850.000000,0.000000,"Exit"};
+link0[] = {0,1};
+link1[] = {0,4};
+link2[] = {1,0};
+link3[] = {2,3};
+link4[] = {3,0};
+link5[] = {4,5};
+globals[] = {0.000000,0,0,0,0,640,480,2,26,6316128,1,731.552002,1589.190674,1213.735474,555.241821,1236,949,1};
+window[] = {2,-1,-1,-1,-1,770,104,1254,104,3,1254};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Manager";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"if(diag_tickTime >= DS_var_NextSave) then " \n
+                         "{" \n
+                         "	call ds_fnc_saveData;" \n
+                         "};" \n
+                         "call ds_fnc_onTick;" \n
+                         "" \n
+                         "_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Dead">*/
+                                class Dead
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) > 1 && alive player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init_1">*/
+                class Init_1
+                {
+                        name = "Init_1";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"DS_var_NextSave = diag_tickTime + 60*5;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "True">*/
+                                class True
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Exit">*/
+                class Exit
+                {
+                        name = "Exit";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"true"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init_1";
+        finalStates[] =
+        {
+                "Exit",
+        };
+};
+/*%FSM</COMPILE>*/

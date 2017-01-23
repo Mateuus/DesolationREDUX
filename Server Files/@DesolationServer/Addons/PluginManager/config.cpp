@@ -9,6 +9,7 @@ class CfgPatches
 		author[]= {"Kegan"};
 	};
 };
+
 class Plugins
 {
 	class PluginManager
@@ -17,7 +18,8 @@ class Plugins
 		desc = "Master PBO for handling plugins";
 		tag = "BASE";
 	};
-}
+};
+
 class CfgFunctions {
 	init = "PluginManager\initFunctions.sqf";
 	class BASE 
@@ -32,6 +34,7 @@ class CfgFunctions {
 			class compileCfg {};
 			class setupEvents {};
 			class initActions {};
+			class initKeybinds {};
 			class start 
 			{
 				preInit = 1;
@@ -43,9 +46,11 @@ class CfgFunctions {
 			file = "PluginManager\Client";
 			class getCfgValue {};
 			class randomAreaLocation {};
+			class hasSuffix {};
 			class addEventHandler {};
 			class removeEventHandler {};
 			class initEventHandlers {};
+			class initKeybindUI {};
 			class startActionManager {};
 		};
 	};

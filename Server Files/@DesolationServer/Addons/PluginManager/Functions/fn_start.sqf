@@ -1,3 +1,14 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
+
 _this spawn {
 	_server_functions = _this select 2;
 	
@@ -28,9 +39,14 @@ _this spawn {
 	
 	[_fnclist] call BASE_fnc_setupEvents;
 	
+	[] call BASE_fnc_initKeybinds;
+	
+	
 	diag_log "<PluginManager>: Starting plugins...";
-	{
-		if((toLower(_x) find "initserver") != -1) then {
+	{	
+		_isStartServer = [_x,"initServer"] call BASE_fnc_hasSuffix;
+		
+		if(_isStartServer) then {
 			diag_log ((_plugins select _forEachIndex) + " > Init Server");
 			[] spawn (missionNamespace getVariable [_x,{DIAG_LOG "FAILED TO FIND FUNCTION";}]);
 		};

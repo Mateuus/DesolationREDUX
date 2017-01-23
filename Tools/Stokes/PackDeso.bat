@@ -1,0 +1,31 @@
+@echo off
+taskkill /f /im arma3.exe
+taskkill /f /im arma3server.exe
+timeout /t 1
+set "mikeroTools=C:\Program Files (x86)\Mikero\DePboTools\bin"
+set "modSource=F:\Git\DSR\Client Files\@Desolation\Addons"
+set "deploy=F:\Mods\Arma_3\@Desolation"
+del /s /q "P:\dsr_actions"
+del /s /q "P:\dsr_code"
+del /s /q "P:\dsr_items"
+del /s /q "P:\dsr_jointrails"
+del /s /q "P:\dsr_music"
+del /s /q "P:\dsr_objects"
+del /s /q "P:\dsr_patches"
+del /s /q "P:\dsr_ui"
+del /s /q "P:\dsr_vehicles"
+del /s /q "P:\dsr_weapons"
+del /s /q "P:\dsr_zombz_code"
+xcopy /s "%modSource%" "P:\"
+"%mikeroTools%\pboproject.exe" "P:\dsr_actions" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_code" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_items" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_jointrails" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_music" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_objects" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_patches" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_ui" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_vehicles" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_weapons" -Mod="%deploy%"
+"%mikeroTools%\pboproject.exe" "P:\dsr_zombz_code" -Mod="%deploy%"
+exit /b

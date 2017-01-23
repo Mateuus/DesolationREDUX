@@ -1,9 +1,13 @@
 /*
-	Desolation Redux
-	2016 Desolation Dev Team
-
-	License info here and copyright symbol above
-*/
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 private["_buildingTypes","_MinPiles","_DoRespawn","_RespawnTimeS","_Config_Options","_lChance","_sChance","_tChance","_gChance","_data","_all_buildings","_cfg","_name","_buildingsToSpawn","_buildingsToDespawn","_buildingsNotToDespawn","_houses","_nearest_building","_nearest_building_type","_last_nearest","_hasVar","_isSpawned","_savedLoot","_spawnTime","_doFreshSpawn","_x"];
 
 if !(["SpawnLoot"] call DS_fnc_getCfgValue) exitWith {diag_log "<Loot Manager>: Loot spawning turned off";};
@@ -39,7 +43,8 @@ for "_i" from 0 to count(configFile >> "CfgItemSpawns" >> "Buildings")-1 do {
 		_all_buildings pushBack _name;
 	};
 };
-
+DS_var_finishedLoot = true;
+call DS_fnc_checkServerLock;
 diag_log "<Loot Manager>: Loot Manager Running!";
 
 while{true} do {
@@ -114,6 +119,7 @@ while{true} do {
 		_isSpawned = _x getVariable ["IsSpawnedLoot",false];
 		_savedLoot = _x getVariable ["SavedLoot",[]];
 		_spawnTime = _x getVariable ["SpawnedTime",0];
+		_lootPiles = _x getVariable ["LOOT_PILES",[]];
 
 		_doFreshSpawn = false;
 
@@ -126,26 +132,25 @@ while{true} do {
 				};
 			};
 		};
-
-		if(_doFreshSpawn) then {
-			_x setVariable ["SpawnedLoot",true];
-			_x setVariable ["SpawnedTime",diag_tickTime];
-			_x setVariable ["SavedLoot",[]];
-			_x setVariable ["IsSpawnedLoot",true];
-			diag_log ("Spawning loot @ " + typeof(_x));
-			[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
-		} else {
-			if(!_isSpawned) then {
-				diag_log ("Respawning loot @ " + typeof(_x));
-				[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+		
+		if(count(_lootPiles) == 0) then {
+			if(_doFreshSpawn) then {
+				_x setVariable ["SpawnedLoot",true];
+				_x setVariable ["SpawnedTime",diag_tickTime];
+				_x setVariable ["SavedLoot",[]];
+				_x setVariable ["IsSpawnedLoot",true];
+				[_x,_MinPiles,_buildingTypes,_Config_Options,[]] remoteExecCall ["DS_fnc_spawnLoot",2]; //temp: we need to get DS_fnc_spawnLoot into a non-schedueled environment
+			} else {
+				if(!_isSpawned) then {
+					[_x,_MinPiles,_buildingTypes,_Config_Options,_savedLoot] remoteExecCall ["DS_fnc_spawnLoot",2];
+				};
 			};
 		};
 	} forEach _buildingsToSpawn;
 	{
 		if !(_x in _buildingsNotToDespawn) then {
-			diag_log ("Despawning loot @ " + typeof(_x)); //--- running on non-spawned buildings?
 			_x setVariable ["IsSpawnedLoot",false];
-			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];  //--- despawns once?
+			[_x] remoteExecCall ["DS_fnc_despawnLoot",2];
 		};
 	} forEach _buildingsToDespawn;
 

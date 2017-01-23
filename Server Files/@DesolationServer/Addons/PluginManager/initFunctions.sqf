@@ -1,3 +1,13 @@
+/*
+ * Desolation Redux
+ * http://desolationredux.com/
+ * © 2016 Desolation Dev Team
+ * 
+ * This work is licensed under the Arma Public License Share Alike (APL-SA) + Bohemia monetization rights.
+ * To view a copy of this license, visit:
+ * https://www.bistudio.com/community/licenses/arma-public-license-share-alike/
+ * https://www.bistudio.com/monetization/
+ */
 
 /*
 	File: init.sqf
@@ -107,7 +117,7 @@ _fncCompile = {
 	_fncVar = _this select 0;
 	_fncMeta = _this select 1;
 	_fncHeader = _this select 2;
-	_fncFinal = _this select 3;
+	_fncFinal = false; //_this select 3; TODO: uncomment this
 
 	_fncPath = _fncMeta select 0;
 	_fncExt = _fncMeta select 1;

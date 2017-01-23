@@ -26,6 +26,9 @@
 #include <boost/function.hpp>
 #include "constants.hpp"
 #include "database/dbcon.hpp"
+#include "fileio/fileio.hpp"
+#include "datetime/datetime.hpp"
+#include "randomlist/randomlist.hpp"
 
 class redex {
 public:
@@ -38,18 +41,25 @@ private:
 	typedef boost::function<
 			std::string(boost::property_tree::ptree &dbarguments)> DLL_FUNCTION;
 	typedef std::map<std::string, DLL_FUNCTION> DLL_FUNCTIONS;
-	DLL_FUNCTIONS dllfunctions;
+	DLL_FUNCTIONS dllFunctions;
+
 	dbcon dbconnection;
+	fileio fileinputoutput;
+	datetime datetimeobj;
+	randomlist randomlistobj;
 
 	std::mutex msgmutex;
 	typedef std::map<PROTOCOL_IDENTIFIER_DATATYPE, std::queue<std::string>> MESSAGE_MAP;
 	MESSAGE_MAP msgmap;
 
-	std::string initdb(boost::property_tree::ptree &dllarguments);
-	std::string termdb(boost::property_tree::ptree &dllarguments);
-	std::string dbcall(boost::property_tree::ptree &dllarguments);
-	std::string rcvmsg(boost::property_tree::ptree &dllarguments);
-	std::string chkmsg(boost::property_tree::ptree &dllarguments);
+	std::string initdb(boost::property_tree::ptree &dllArguments);
+	std::string termdb(boost::property_tree::ptree &dllArguments);
+	std::string dbcall(boost::property_tree::ptree &dllArguments);
+	std::string iocall(boost::property_tree::ptree &dllArguments);
+	std::string dtcall(boost::property_tree::ptree &dllArguments);
+	std::string rlcall(boost::property_tree::ptree &dllArguments);
+	std::string rcvmsg(boost::property_tree::ptree &dllArguments);
+	std::string chkmsg(boost::property_tree::ptree &dllArguments);
 
 	std::string multipartMSGGenerator(std::string returnString, int outputSize);
 };

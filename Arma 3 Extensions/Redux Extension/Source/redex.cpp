@@ -29,19 +29,28 @@
 #include "utils/uuid.hpp"
 
 redex::redex() {
-	dllfunctions.insert(
+	dllFunctions.insert(
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_INIT_DB),
 					boost::bind(&redex::initdb, this, _1)));
-	dllfunctions.insert(
+	dllFunctions.insert(
 				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_TERMINATE_DB),
 						boost::bind(&redex::termdb, this, _1)));
-	dllfunctions.insert(
+	dllFunctions.insert(
 			std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DB_CALL),
 					boost::bind(&redex::dbcall, this, _1)));
-	dllfunctions.insert(
+	dllFunctions.insert(
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_IO_CALL),
+						boost::bind(&redex::iocall, this, _1)));
+	dllFunctions.insert(
+				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_DT_CALL),
+						boost::bind(&redex::dtcall, this, _1)));
+	dllFunctions.insert(
+					std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_EXECUTE_RL_CALL),
+							boost::bind(&redex::rlcall, this, _1)));
+	dllFunctions.insert(
 				std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_RECEIVE_MESSAGE),
 						boost::bind(&redex::rcvmsg, this, _1)));
-	dllfunctions.insert(
+	dllFunctions.insert(
 					std::make_pair(std::string(PROTOCOL_LIBARY_FUNCTION_CHECK_MESSAGE_STATE),
 							boost::bind(&redex::chkmsg, this, _1)));
 	return;
@@ -80,23 +89,29 @@ std::string redex::processCallExtension(const char *function, int outputSize) {
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_json(functionstream, pt);
 
-	std::string dllfunction = pt.get<std::string>("dllfunction");
-	boost::property_tree::ptree &dllarguments = pt.get_child("dllarguments");
+	std::string dllFunction = pt.get<std::string>("dllFunction");
+	boost::property_tree::ptree &dllArguments = pt.get_child("dllArguments");
 
-	DLL_FUNCTIONS::iterator it = dllfunctions.find(dllfunction);
-	if (it != dllfunctions.end()) {
+	DLL_FUNCTIONS::iterator it = dllFunctions.find(dllFunction);
+	if (it != dllFunctions.end()) {
 		const DLL_FUNCTION &func(it->second);
 
 		try {
-			returnString = func(dllarguments);
+			returnString = func(dllArguments);
 		} catch (std::exception const& e) {
+			std::string error = e.what();
+			int i = 0;
+			while ((i = error.find("\"", i)) != std::string::npos) {
+				error.insert(i, "\"");
+				i += 2;
+			}
 			returnString = "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_ERROR)+ "\", \"";
-			returnString += e.what();
+			returnString += error;
 			returnString += "\"]";
 		}
 
 	} else {
-		throw std::runtime_error("Don't know dllfunction: " + dllfunction);
+		throw std::runtime_error("Don't know dllFunction: " + dllFunction);
 	}
 
 	if (returnString.length() > outputSize) {
@@ -167,8 +182,8 @@ std::string redex::termdb(boost::property_tree::ptree &dbcall) {
 	return "[\"" + std::string(PROTOCOL_MESSAGE_TYPE_MESSAGE) + "\", \"DONE\"]";
 }
 
-std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
-	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
+std::string redex::rcvmsg(boost::property_tree::ptree &dllArguments) {
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllArguments.get<PROTOCOL_IDENTIFIER_DATATYPE>(PROTOCOL_IDENTIFIER_NAME);
 	std::queue<std::string> *stringqueue;
 	std::string returnString;
 
@@ -200,8 +215,8 @@ std::string redex::rcvmsg(boost::property_tree::ptree &dllarguments) {
 	return returnString;
 }
 
-std::string redex::chkmsg(boost::property_tree::ptree &dllarguments) {
-	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllarguments.get<PROTOCOL_IDENTIFIER_DATATYPE>("messageIdentifier");
+std::string redex::chkmsg(boost::property_tree::ptree &dllArguments) {
+	PROTOCOL_IDENTIFIER_DATATYPE messageIdentifier = dllArguments.get<PROTOCOL_IDENTIFIER_DATATYPE>("messageIdentifier");
 	std::queue<PROTOCOL_IDENTIFIER_DATATYPE> *stringqueue;
 	std::string returnString;
 
@@ -229,7 +244,18 @@ std::string redex::chkmsg(boost::property_tree::ptree &dllarguments) {
 	return returnString;
 }
 
-std::string redex::dbcall(boost::property_tree::ptree &dllarguments) {
-	return dbconnection.processDBCall(dllarguments);
+std::string redex::dbcall(boost::property_tree::ptree &dllArguments) {
+	return dbconnection.processDBCall(dllArguments);
 }
 
+std::string redex::iocall(boost::property_tree::ptree &dllArguments) {
+	return fileinputoutput.processExtCall(dllArguments);
+}
+
+std::string redex::dtcall(boost::property_tree::ptree &dllArguments) {
+	return datetimeobj.processExtCall(dllArguments);
+}
+
+std::string redex::rlcall(boost::property_tree::ptree &dllArguments) {
+	return randomlistobj.processExtCall(dllArguments);
+}
